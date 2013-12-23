@@ -49,6 +49,10 @@ public class Viaggio {
 		this.numeroPersone = numeroPersone;
 		this.attivita=attivita;
 	}
+	
+	public Viaggio(int id){
+		this.id=id;
+	}
 
 	public ArrayList<Attivita> getAttivita() {
 		return attivita;
