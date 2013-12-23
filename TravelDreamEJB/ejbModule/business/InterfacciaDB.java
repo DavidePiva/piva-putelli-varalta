@@ -26,14 +26,11 @@ public class InterfacciaDB {
 		return isConnesso;
 	}
 	
-	private void connetti() throws SQLException{
-		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-		} catch (Exception e){
-			return;
-		}
+	public void connetti() throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException{
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		String connectionUrl = "jdbc:mysql://localhost:3306/traveldreamdb";
 		String connectionUser = "root";
+		System.out.println("Inserisci password");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String connectionPassword = "";
 		try {
@@ -51,7 +48,7 @@ public class InterfacciaDB {
 		conn.close();
 	}
 	
-	public ArrayList<Viaggio> viaggiPerDestinazione(String citta) throws SQLException{
+	public ArrayList<Viaggio> viaggiPerDestinazione(String citta) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		if(!isConnesso){
 			connetti();
 		}
@@ -64,6 +61,20 @@ public class InterfacciaDB {
 			viaggi.add(viaggio);
 		}
 		return viaggi;
+	}
+	
+	public ArrayList<Aeroporto> aeroporti() throws SQLException{
+		ArrayList<Aeroporto> a = new ArrayList<Aeroporto>();
+		String query = "SELECT * FROM Aeroporto";
+		ResultSet rs = stmt.executeQuery(query);
+		while(rs.next()){
+			int id = rs.getInt("idAeroporto");
+			String nome = rs.getString("nome");
+			String citta = rs.getString("citta");
+			Aeroporto ar = new Aeroporto(id, nome, citta);
+			a.add(ar);
+		}
+		return a;
 	}
 	
 	
