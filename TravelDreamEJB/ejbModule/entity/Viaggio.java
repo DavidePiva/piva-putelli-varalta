@@ -2,7 +2,6 @@ package entity;
 
 import java.util.ArrayList;
 
-import enums.TipoCamera;
 
 public class Viaggio {
 
