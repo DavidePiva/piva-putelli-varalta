@@ -15,7 +15,7 @@ public class Viaggio {
 	boolean pagato;
 	int numeroPersone;
 	ArrayList<Attivita> attivita;
-	
+	ArrayList<Utente> partecipanti;
 
 	public Viaggio() {
 	
@@ -30,6 +30,7 @@ public class Viaggio {
 		this.pagato = false;
 		this.numeroPersone = 0;
 		this.attivita=null;
+		this.partecipanti=new ArrayList<Utente>();
 	}
 	
 	public Viaggio(int id, Pernottamento pernottamento, Volo voloAndata,
@@ -47,6 +48,7 @@ public class Viaggio {
 		this.pagato = pagato;
 		this.numeroPersone = numeroPersone;
 		this.attivita=attivita;
+		this.partecipanti=new ArrayList<Utente>();
 	}
 	
 	public Viaggio(int id){
