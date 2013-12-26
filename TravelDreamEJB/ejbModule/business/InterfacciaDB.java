@@ -28,7 +28,7 @@ public class InterfacciaDB {
 	
 	private static void connetti() throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		String connectionUrl = "jdbc:mysql://localhost:3306/traveldreamdb";
+		String connectionUrl = "jdbc:mysql://localhost:3306/TravelDreamDB";
 		String connectionUser = "root";
 		System.out.println("Inserisci password");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

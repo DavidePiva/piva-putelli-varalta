@@ -79,5 +79,4 @@ public class Attivita {
 		this.prezzo = prezzo;
 	}
 	
-	
 }

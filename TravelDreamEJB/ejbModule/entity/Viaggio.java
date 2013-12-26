@@ -16,6 +16,7 @@ public class Viaggio {
 	int numeroPersone;
 	ArrayList<Attivita> attivita;
 	ArrayList<Utente> partecipanti;
+	boolean regalabile;
 
 	public Viaggio() {
 	
@@ -31,6 +32,7 @@ public class Viaggio {
 		this.numeroPersone = 0;
 		this.attivita=null;
 		this.partecipanti=new ArrayList<Utente>();
+		this.regalabile=false;
 	}
 	
 	public Viaggio(int id, Pernottamento pernottamento, Volo voloAndata,
@@ -49,6 +51,7 @@ public class Viaggio {
 		this.numeroPersone = numeroPersone;
 		this.attivita=attivita;
 		this.partecipanti=new ArrayList<Utente>();
+		this.regalabile=false;
 	}
 	
 	public Viaggio(int id){
@@ -133,6 +136,22 @@ public class Viaggio {
 
 	public void setNumeroPersone(int numeroPersone) {
 		this.numeroPersone = numeroPersone;
+	}
+
+	public ArrayList<Utente> getPartecipanti() {
+		return partecipanti;
+	}
+
+	public void setPartecipanti(ArrayList<Utente> partecipanti) {
+		this.partecipanti = partecipanti;
+	}
+
+	public boolean isRegalabile() {
+		return regalabile;
+	}
+
+	public void setRegalabile(boolean regalabile) {
+		this.regalabile = regalabile;
 	}
 	
 	
