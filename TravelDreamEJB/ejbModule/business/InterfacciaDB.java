@@ -134,6 +134,15 @@ public class InterfacciaDB {
 		stmt.executeUpdate(delete);
 	}
 	
+	public static void aggiungiPartecipante(int idViaggio, String emailPartecipante) throws SQLException{
+		String insert = "INSERT INTO Partecipazione VALUES("+idViaggio+","+emailPartecipante+",0)";
+		stmt.executeUpdate(insert);
+	}
+	
+	public static void rimuoviPartecipante(int idViaggio, String emailPartecipante) throws SQLException{
+		String delete = "DELETE FROM Partecipazione WHERE idViaggio = "+idViaggio+"AND emailPartecipante ="+emailPartecipante;
+		stmt.executeUpdate(delete);
+	}
 	
 	/*
 	 * metodi deprecati per gestire l'oggetto Time, bisogna trovare un'alternativa
@@ -170,6 +179,25 @@ public class InterfacciaDB {
 		int id = v.getId();
 		String query = "UPDATE Viaggio SET numeroPersone = "+numeroPersone +" WHERE idViaggio = "+id;
 		stmt.executeQuery(query);
+	}
+	
+	public static void modificaPernottamento(int idViaggio, int idPernottamento) throws SQLException{
+		String update = "UPDATE Viaggio_Pernottamento SET idPernottamento="+idPernottamento + " WHERE idViaggio = " + idViaggio;
+		stmt.executeUpdate(update);
+	}
+	
+	public static void viaggioPagato(int idViaggio) throws SQLException{
+		String update = "UPDATE Viaggio SET pagato = 1 WHERE idViaggio = "+idViaggio;
+		stmt.executeUpdate(update);
+	}
+	
+	public static void rendiRegalabile(int idViaggio) throws SQLException{
+		String update = "UPDATE Viaggio_Pernottamento set regalabile = 1 WHERE idViaggio = "+ idViaggio;
+		stmt.executeUpdate(update);
+		update = "UPDATE Viaggio_Attivita set regalabile = 1 WHERE idViaggio = "+ idViaggio;
+		stmt.executeUpdate(update);
+		update = "UPDATE Viaggio_Volo set regalabile = 1 WHERE idViaggio = "+ idViaggio;
+		stmt.executeUpdate(update);
 	}
 	
 	
