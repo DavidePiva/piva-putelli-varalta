@@ -8,7 +8,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
+
 import enums.*;
 import entity.*;
 
@@ -124,6 +127,49 @@ public class InterfacciaDB {
 	public static void inserisciAttivita(int idViaggio, int idAttivita) throws SQLException{
 		String insert = "INSERT INTO Viaggio_Attivita VALUES("+idViaggio+","+idAttivita+","+"0)";
 		stmt.executeUpdate(insert);
+	}
+	
+	public static void rimuoviAttivita(int idViaggio, int idAttivita) throws SQLException{
+		String delete = "DELETE FROM Viaggio_Attivita WHERE idViaggio = "+idViaggio+"AND idAttivita ="+idAttivita;
+		stmt.executeUpdate(delete);
+	}
+	
+	
+	/*
+	 * metodi deprecati per gestire l'oggetto Time, bisogna trovare un'alternativa
+	 */
+	@SuppressWarnings("deprecation")
+	public static ArrayList<Volo> voliPerData(Aeroporto partenza,Aeroporto arrivo,int anno, int mese, int giorno) throws SQLException{
+		int s = partenza.getId();
+		int e = arrivo.getId();
+		String query = "SELECT * FROM Volo, Compagnia WHERE Volo.compagnia = Compagnia.idCompagnia AND aeroportoPartenza = "+s+" AND aeroportoArrivo = "+e+" AND data = "+anno+"-"+mese+"/"+giorno;
+		ArrayList<Volo> voli = new ArrayList<Volo>();
+		ResultSet rs = stmt.executeQuery(query);
+		while(rs.next()){
+			int id = rs.getInt("id");
+			float prezzo = rs.getFloat("prezzo");
+			int idCompagnia = rs.getInt("compagnia");
+			Date tempoPartenza = rs.getDate("oraPartenza");
+			int h = tempoPartenza.getHours();
+			int m = tempoPartenza.getMinutes();
+			int se = tempoPartenza.getSeconds();
+			Date tempoArrivo = rs.getDate("oraArrivo");
+			int h1 = tempoArrivo.getHours();
+			int m1 = tempoArrivo.getMinutes();
+			int s1 = tempoArrivo.getSeconds();
+			String nomeCompagnia = rs.getString("nome");
+			String descrizione = rs.getString ("descrizione");
+			Compagnia c = new Compagnia(idCompagnia,nomeCompagnia,descrizione);
+			Volo v = new Volo(id, partenza, arrivo, prezzo, c, anno, mese, giorno,h,m,se,h1,m1,s1);
+			voli.add(v);
+		}
+		return voli;
+	}
+	
+	public static void modificaNumeroPersone(Viaggio v, int numeroPersone) throws SQLException{
+		int id = v.getId();
+		String query = "UPDATE Viaggio SET numeroPersone = "+numeroPersone +" WHERE idViaggio = "+id;
+		stmt.executeQuery(query);
 	}
 	
 	
