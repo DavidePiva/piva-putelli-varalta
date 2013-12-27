@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Viaggio {
 
 	int id;
+	Pacchetto pacchetto;
 	Pernottamento pernottamento;
 	Volo voloAndata;
 	Volo voloRitorno;
@@ -21,6 +22,7 @@ public class Viaggio {
 	public Viaggio() {
 	
 		super();
+		this.pacchetto=null;
 		this.id = 0;
 		this.pernottamento =null;
 		this.voloAndata = null;
@@ -35,12 +37,13 @@ public class Viaggio {
 		this.regalabile=false;
 	}
 	
-	public Viaggio(int id, Pernottamento pernottamento, Volo voloAndata,
+	public Viaggio(int id,Pacchetto pacchetto, Pernottamento pernottamento, Volo voloAndata,
 			Volo voloRitorno, String citta, float prezzo, Utente titolare,
 			boolean pagato, int numeroPersone, ArrayList<Attivita> attivita ) {
 	
 		super();
 		this.id = id;
+		this.pacchetto=pacchetto;
 		this.pernottamento = pernottamento;
 		this.voloAndata = voloAndata;
 		this.voloRitorno = voloRitorno;
@@ -152,6 +155,14 @@ public class Viaggio {
 
 	public void setRegalabile(boolean regalabile) {
 		this.regalabile = regalabile;
+	}
+
+	public Pacchetto getPacchetto() {
+		return pacchetto;
+	}
+
+	public void setPacchetto(Pacchetto pacchetto) {
+		this.pacchetto = pacchetto;
 	}
 	
 	
