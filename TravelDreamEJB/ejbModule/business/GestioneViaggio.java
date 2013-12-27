@@ -64,10 +64,10 @@ public class GestioneViaggio {
 	/*
 	public ArrayList<Volo> cercaVoliPerData(int anno,int mese,int giorno,boolean isAndata){
 		if(isAndata){
-			ArrayList<Volo> voliCandidatiAndata = InterfacciaDB.voliPerData(viaggio.getVoloAndata().getAeroportoPartenza().getCitta(),viaggio.getVoloAndata().getAeroportoArrivo().getCitta(),anno,mese,giorno);
+			ArrayList<Volo> voliCandidatiAndata = InterfacciaDB.voliPerData(viaggio.getVoloAndata().getAeroportoPartenza(),viaggio.getVoloAndata().getAeroportoArrivo(),anno,mese,giorno);
 			return voliCandidatiAndata;
 		}else if(!isAndata){
-			ArrayList<Volo> voliCandidatiRitorno = InterfacciaDB.voliPerData(viaggio.getVoloRitorno().getAeroportoPartenza().getCitta(),viaggio.getVoloRitorno().getAeroportoArrivo().getCitta(),anno,mese,giorno);
+			ArrayList<Volo> voliCandidatiRitorno = InterfacciaDB.voliPerData(viaggio.getVoloRitorno().getAeroportoPartenza(),viaggio.getVoloRitorno().getAeroportoArrivo(),anno,mese,giorno);
 			return voliCandidatiRitorno;
 		}
 	}*/
@@ -117,11 +117,9 @@ public class GestioneViaggio {
 		}
 	}
 	
-	public boolean rimuoviPartecipante(Utente partecipante){
+	public void rimuoviPartecipante(Utente partecipante){
 		viaggio.getPartecipanti().remove(partecipante);
 	//	InterfacciaDB.rimuoviPartecipante(viaggio.getId(),partecipante.getEmail());
-		return true;
-		///////////////QUANDO TORNA FALSE??? 
 	}
 	private void ricalcolaPrezzo(){
 		int p=0;
