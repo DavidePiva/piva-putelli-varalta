@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import entity.*;
 import enums.TargetPacchetto;
+import enums.TipologiaPacchetto;
 
 public class GestioneOfferte {
 		
@@ -85,6 +86,11 @@ public class GestioneOfferte {
 	public void eliminaFoto(int i){
 		this.pacchetto.setFoto(null, i);
 //		InterfacciaDB.modificaFotoPacchetto(this.pacchetto.getId(),null,num);
+	}
+	
+	public void modificaTipologia(TipologiaPacchetto tipo){
+		this.pacchetto.setTipologia(tipo);
+//		InterfacciaDB.modificaTipologiaPacchetto(this.pacchetto.getId(),tipo);
 	}
 	
 }
