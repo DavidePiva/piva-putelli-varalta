@@ -1,6 +1,5 @@
 package entity;
 
-import enums.TipologiaUtente;
 
 public class Utente {
 
