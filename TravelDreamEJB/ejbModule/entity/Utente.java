@@ -8,7 +8,6 @@ public class Utente {
 	String nome;
 	String cognome;
 	String criptoPassword;
-	TipologiaUtente tipologiaUtente;
 	Boolean attivo;
 
 	public Utente() {
@@ -17,17 +16,15 @@ public class Utente {
 		this.nome = null;
 		this.cognome = null;
 		this.criptoPassword = null;
-		this.tipologiaUtente = null;
 		this.attivo = false;
 	}
 	
-	public Utente(String email, String nome, String cognome, String criptoPassword, TipologiaUtente tipologiaUtente, Boolean attivo) {
+	public Utente(String email, String nome, String cognome, String criptoPassword, Boolean attivo) {
 		super();
 		this.email = email;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.criptoPassword = criptoPassword;
-		this.tipologiaUtente = tipologiaUtente;
 		this.attivo = attivo;
 	}
 
@@ -61,14 +58,6 @@ public class Utente {
 
 	public void setCriptoPassword(String criptoPassword) {
 		this.criptoPassword = criptoPassword;
-	}
-
-	public TipologiaUtente getTipologiaUtente() {
-		return tipologiaUtente;
-	}
-
-	public void setTipologiaUtente(TipologiaUtente tipologiaUtente) {
-		this.tipologiaUtente = tipologiaUtente;
 	}
 
 	public Boolean getAttivo() {
