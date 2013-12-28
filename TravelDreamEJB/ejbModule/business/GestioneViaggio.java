@@ -12,7 +12,6 @@ public class GestioneViaggio {
 		viaggio=new Viaggio();
 	}
 	
-	//setta un nuovo viaggio da gestire
 	public void nuovoViaggio(Pacchetto p,Utente u) throws SQLException{
 		
 		Viaggio v=new Viaggio();
@@ -71,15 +70,15 @@ public class GestioneViaggio {
 		}
 	}
 	
-	public boolean modificaVolo(Volo volo, boolean isAndata){
+	public boolean modificaVolo(Volo volo, boolean isAndata) throws SQLException{
 		if(isAndata){
 			viaggio.setVoloAndata(volo);
-	//		InterfacciaDB.modificaVolo(viaggio,volo,true);
+			InterfacciaDB.modificaVolo(viaggio.getId(),volo.getId(),true);
 			ricalcolaPrezzo();
 			return true;
 		}else if(!isAndata){
 			viaggio.setVoloRitorno(volo);
-	//		InterfacciaDB.modificaVolo(viaggio,volo,false);
+			InterfacciaDB.modificaVolo(viaggio.getId(),volo.getId(),false);
 			ricalcolaPrezzo();
 			return true;
 		}else{
@@ -122,13 +121,13 @@ public class GestioneViaggio {
 	}
 
 	
-	private void ricalcolaPrezzo(){
+	private void ricalcolaPrezzo() throws SQLException{
 		if(confrontoViaggioPacchetto()){
 			viaggio.setPrezzo(viaggio.getPacchetto().getPrezzo());
 		}else{
-			int p=0;
+			float p=0;
 			p+=viaggio.getVoloAndata().getPrezzo()+viaggio.getVoloRitorno().getPrezzo();
-//			p+=InterfacciaDB.getPrezzoCamera(viaggio.getPernottamento().getHotel().getId(),viaggio.getPernottamento().getTipoCamera());
+			p+=InterfacciaDB.getPrezzoCamera(viaggio.getPernottamento().getHotel().getId(),viaggio.getPernottamento().getTipoCamera());
 			ArrayList<Attivita> a=viaggio.getAttivita();
 			for(int i=0;i<a.size();i++){
 				p+=a.get(i).getPrezzo();
