@@ -227,4 +227,32 @@ public class InterfacciaDB {
 		stmt.executeUpdate(update);
 	}
 	
+	public static void inserisciAttivitaInPacchetto(int idPacchetto, int idAttivita) throws SQLException{
+		String insert = "INSERT INTO Pacchetto_Attivita VALUES("+idPacchetto+","+idAttivita+")";
+		stmt.executeUpdate(insert);
+	}
+	
+	public static void rimuoviAttivitaDaPacchetto(int idPacchetto, int idAttivita) throws SQLException{
+		String delete = "DELETE FROM Pacchetto_Attivita WHERE idPacchetto = "+idPacchetto+"AND idAttivita ="+idAttivita;
+		stmt.executeUpdate(delete);
+	}
+	
+	public static void modificaPrezzoPacchetto(int idPacchetto, float prezzo) throws SQLException{
+		String update = "UPDATE Pacchetto SET prezzo = "+prezzo+" WHERE idPacchetto = "+idPacchetto;
+		stmt.executeUpdate(update);
+	}
+	
+	public static void modificaTitoloPacchetto(int idPacchetto, String titolo) throws SQLException{
+		String update = "UPDATE Pacchetto SET titolo = "+titolo+" WHERE idPacchetto = "+idPacchetto;
+		stmt.executeUpdate(update);
+	}
+	
+	public static void modificaDescrizionePacchetto(int idPacchetto, String descrizione) throws SQLException{
+		String update = "UPDATE Pacchetto SET descrizione = "+descrizione+" WHERE idPacchetto = "+idPacchetto;
+		stmt.executeUpdate(update);
+	}
+	
+	
+	
+	
 }
