@@ -12,6 +12,8 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.TemporalType;
+
 import enums.*;
 import entity.*;
 
@@ -151,7 +153,7 @@ public class InterfacciaDB {
 	public static ArrayList<Volo> voliPerData(Aeroporto partenza,Aeroporto arrivo,int anno, int mese, int giorno) throws SQLException{
 		int s = partenza.getId();
 		int e = arrivo.getId();
-		String query = "SELECT * FROM Volo, Compagnia WHERE Volo.compagnia = Compagnia.idCompagnia AND aeroportoPartenza = "+s+" AND aeroportoArrivo = "+e+" AND data = "+anno+"-"+mese+"/"+giorno;
+		String query = "SELECT * FROM Volo, Compagnia WHERE Volo.compagnia = Compagnia.idCompagnia AND aeroportoPartenza = "+s+" AND aeroportoArrivo = "+e+" AND data = "+anno+"-"+mese+"-"+giorno;
 		ArrayList<Volo> voli = new ArrayList<Volo>();
 		ResultSet rs = stmt.executeQuery(query);
 		while(rs.next()){
@@ -200,5 +202,29 @@ public class InterfacciaDB {
 		stmt.executeUpdate(update);
 	}
 	
+	public static float getPrezzoCamera(int idHotel, TipoCamera tc) throws SQLException{
+		String query = "SELECT prezzo FROM TipoCamere_Hotel WHERE idHotel = "+idHotel+" tipoCamera = "+tc;
+		ResultSet rs = stmt.executeQuery(query);
+		float prezzo = rs.getFloat("prezzo");
+		return prezzo;
+	}
+	
+	public static float getPrezzoPacchetto(int idPacchetto) throws SQLException{
+		String query = "SELECT prezzo FROM Pacchetto WHERE idPacchetto = "+idPacchetto;
+		ResultSet rs = stmt.executeQuery(query);
+		float prezzo = rs.getFloat("prezzo");
+		return prezzo;
+	}
+	
+	public static void modificaVolo(int idViaggio, int idVolo, boolean andata) throws SQLException{
+		String update;
+		if(andata){
+			update = "UPDATE Viaggio SET voloAndata = " +idVolo+" WHERE idViaggio = "+idViaggio;
+		}
+		else{
+			update = "UPDATE Viaggio SET voloRitorno = " +idVolo+" WHERE idViaggio = "+idViaggio;
+		}
+		stmt.executeUpdate(update);
+	}
 	
 }
