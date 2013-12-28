@@ -13,10 +13,12 @@ public class Pacchetto {
 	Volo voloRitorno;
 	String citta;
 	String descrizione;
+	String titolo;
 	float prezzo;
 	TipologiaPacchetto tipologia;
 	TargetPacchetto target;
 	ArrayList<Attivita> attivita;
+	String[] foto;
 	
 	public Pacchetto() {
 		super();
@@ -26,16 +28,17 @@ public class Pacchetto {
 		this.voloRitorno = null;
 		this.citta = null;
 		this.descrizione =null;
+		this.titolo=null;
 		this.prezzo = 0;
 		this.tipologia = null;
 		this.target = null;
-	
+		this.foto= new String[6];
 		this.attivita=null;
 	}
 	
 	public Pacchetto(int id, Pernottamento pernottamento, Volo voloAndata,
-			Volo voloRitorno, String citta, String descrizione, float prezzo,
-			TipologiaPacchetto tipologia, TargetPacchetto target) {
+			Volo voloRitorno, String citta, String descrizione, String titolo, float prezzo,
+			TipologiaPacchetto tipologia, TargetPacchetto target,String[] foto, ArrayList<Attivita> attivita) {
 		super();
 		this.id = id;
 		this.pernottamento = pernottamento;
@@ -43,10 +46,12 @@ public class Pacchetto {
 		this.voloRitorno = voloRitorno;
 		this.citta = citta;
 		this.descrizione = descrizione;
+		this.titolo=titolo;
 		this.prezzo = prezzo;
 		this.tipologia = tipologia;
 		this.target = target;
 		this.attivita=attivita;
+		this.foto=foto;
 	}
 	
 	
@@ -110,6 +115,30 @@ public class Pacchetto {
 
 	public void setAttivita(ArrayList<Attivita> attivita) {
 		this.attivita = attivita;
+	}
+
+	public String getTitolo() {
+		return titolo;
+	}
+
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
+	}
+
+	public String[] getFotos() {
+		return foto;
+	}
+	
+	public String getFoto(int i){
+		return foto[i];
+	}
+	
+	public void setFotos(String[] foto) {
+		this.foto = foto;
+	}
+	
+	public void setFoto(String foto,int i){
+		this.foto[i]=foto;
 	}
 	
 	
