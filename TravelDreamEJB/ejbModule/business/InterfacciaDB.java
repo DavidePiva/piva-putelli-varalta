@@ -227,6 +227,54 @@ public class InterfacciaDB {
 		stmt.executeUpdate(update);
 	}
 	
+	public static void inserisciPacchetto(Pacchetto p) throws SQLException{
+		int id = p.getId();
+		int idPernottamento = p.getPernottamento().getId();
+		int andata = p.getVoloAndata().getId();
+		int ritorno = p.getVoloRitorno().getId();
+		String citta = p.getCitta();
+		String descrizione = p.getDescrizione();
+		float prezzo = p.getPrezzo();
+		TipologiaPacchetto tp = p.getTipologia();
+		TargetPacchetto t = p.getTarget();
+		if(!presenzaPernottamento(idPernottamento)){
+			inserisciPernottamento(p.getPernottamento());
+		}
+		ArrayList<Attivita> att = p.getAttivita();
+		String insert = "INSERT INTO Pacchetto VALUES("+id+","+idPernottamento+","+andata+","+ritorno+","+citta+","+descrizione+","+prezzo+","+tp.name()+","+t.name()+")";
+		stmt.executeUpdate(insert);
+		for(int i = 0; i < att.size(); i++){
+			Attivita a = att.get(i);
+			inserisciAttivitaInPacchetto(id,a.getId());
+		}
+	}
+	
+	public static void modificaVoloInPacchetto(int idPacchetto, int idVolo, boolean andata) throws SQLException{
+		String update;
+		if(andata){
+			update = "UPDATE Pacchetto set voloAndata = "+idVolo+" WHERE idPacchetto = "+idPacchetto;
+		}
+		else{
+			update = "UPDATE Pacchetto set voloRitorno = "+idVolo+" WHERE idPacchetto = "+idPacchetto;
+		}
+		stmt.executeUpdate(update);
+	}
+	
+	public static void modificaPernottamentoInPacchetto(int idPacchetto, int idPernottamento) throws SQLException{
+		String update = "UPDATE Pacchetto set pernottamento = "+idPernottamento+" WHERE idPacchetto = "+idPacchetto;
+		stmt.execute(update);
+	}
+	
+	public static void modificaTargetPacchetto(int idPacchetto, TargetPacchetto tp) throws SQLException{
+		String update = "UPDATE Pacchetto set target = "+tp.name()+" WHERE idPacchetto = "+idPacchetto;
+		stmt.execute(update);
+	}
+	
+	public static void modificaTipologiaPacchetto(int idPacchetto, TipologiaPacchetto tp) throws SQLException{
+		String update = "UPDATE Pacchetto set tipologia = "+tp.name()+" WHERE idPacchetto = "+idPacchetto;
+		stmt.execute(update);
+	}
+	
 	public static void inserisciAttivitaInPacchetto(int idPacchetto, int idAttivita) throws SQLException{
 		String insert = "INSERT INTO Pacchetto_Attivita VALUES("+idPacchetto+","+idAttivita+")";
 		stmt.executeUpdate(insert);
