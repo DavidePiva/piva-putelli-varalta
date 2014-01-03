@@ -7,11 +7,11 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean(name="ds")
 @RequestScoped
 public class DatiStaticiBean {
-	
+/*	
 	@EJB
 	private DatiStatici datistatici;
 	
 	public String inserisciEsempio(){
 		return datistatici.esempio();
-	}
+	}*/
 }
