@@ -105,7 +105,11 @@ public class InterfacciaDB {
 			Attivita a = att.get(i);
 			inserisciAttivita(id,a.getId());
 		}
-		insert = "INTO INTO Viaggio_Pernottamento("+id+","+p.getId()+","+"0)";
+		insert = "INSERT INTO Viaggio_Pernottamento("+id+","+p.getId()+","+"0)";
+		stmt.executeUpdate(insert);
+		insert = "INSERT INTO Viaggio_Volo("+id+","+andata.getId()+",0)";
+		stmt.executeUpdate(insert);
+		insert =  "INSERT INTO Viaggio_Volo("+id+","+ritorno.getId()+",0)";
 		stmt.executeUpdate(insert);
 	}
 	
@@ -262,17 +266,17 @@ public class InterfacciaDB {
 	
 	public static void modificaPernottamentoInPacchetto(int idPacchetto, int idPernottamento) throws SQLException{
 		String update = "UPDATE Pacchetto set pernottamento = "+idPernottamento+" WHERE idPacchetto = "+idPacchetto;
-		stmt.execute(update);
+		stmt.executeUpdate(update);
 	}
 	
 	public static void modificaTargetPacchetto(int idPacchetto, TargetPacchetto tp) throws SQLException{
 		String update = "UPDATE Pacchetto set target = "+tp.name()+" WHERE idPacchetto = "+idPacchetto;
-		stmt.execute(update);
+		stmt.executeUpdate(update);
 	}
 	
 	public static void modificaTipologiaPacchetto(int idPacchetto, TipologiaPacchetto tp) throws SQLException{
 		String update = "UPDATE Pacchetto set tipologia = "+tp.name()+" WHERE idPacchetto = "+idPacchetto;
-		stmt.execute(update);
+		stmt.executeUpdate(update);
 	}
 	
 	public static void inserisciAttivitaInPacchetto(int idPacchetto, int idAttivita) throws SQLException{
@@ -300,7 +304,32 @@ public class InterfacciaDB {
 		stmt.executeUpdate(update);
 	}
 	
+	public static void creaPernottamento(int idHotel, TipoCamera tc) throws SQLException{
+		String insert = "INSERT INTO Pernottamento ('hotel','tipo') VALUES ("+idHotel+", "+tc.name()+")";
+		stmt.executeUpdate(insert);
+	}
 	
+	public static void creaHotel(String nome, String citta, String indirizzo, String tel, String descrizione, float prezzoCamere[], String urlFoto1, String urlFoto2, String urlFoto3) throws SQLException{
+		String insert = "INSERT INTO Hotel (`idHotel`, `nome`, `citta`, `indirizzo`, `telefono`, `descrizione`) VALUES (NULL,"+nome+","+citta+","+indirizzo+","+tel+","+descrizione+")";
+		stmt.executeUpdate(insert);
+		//L'idHotel non ce l'abbiamo, va recuperato! Faccio una query su nome, città e indirizzo.
+		String select = "SELECT idHotel FROM Hotel WHERE nome ="+nome+" AND citta ="+citta+" AND indirizzo = "+indirizzo;
+		ResultSet rs = stmt.executeQuery(select);
+		int idHotel =rs.getInt("idHotel");
+		insert = "INSERT INTO TipoCamere_Hotel VALUES ("+idHotel+","+"LOWCOST"+","+prezzoCamere[0]+")";
+		stmt.executeUpdate(insert);
+		insert = "INSERT INTO TipoCamere_Hotel VALUES ("+idHotel+","+"SMART"+","+prezzoCamere[1]+")";
+		stmt.executeUpdate(insert);
+		insert = "INSERT INTO TipoCamere_Hotel VALUES ("+idHotel+","+"DREAM"+","+prezzoCamere[2]+")";
+		stmt.executeUpdate(insert);
+	}
+	
+	public static void creaAttivita(int anno, int mese, int giorno, int ora, int minuti, String titolo, String descrizione, String citta, float prezzo, String foto1, String foto2, String foto3) throws SQLException{
+		String data = anno+"-"+mese+"-"+giorno;
+		String time = ora+":"+minuti+":00";
+		String insert = "INSERT INTO Attivita(`idAttivita`, `data`, `ora`, `titolo`, `descrizione`, `citta`, `prezzo`) VALUES (NULL,"+data+","+ora+","+titolo+","+descrizione+","+citta+","+prezzo+")";
+		stmt.executeUpdate(insert);
+	}
 	
 	
 }
