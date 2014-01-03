@@ -85,9 +85,9 @@ public class GestioneOfferte {
 	
 	
 	
-	public void eliminaFoto(int i){
+	public void eliminaFotoPacchetto(int i){
 		this.pacchetto.setFoto(null, i);
-//		InterfacciaDB.modificaFotoPacchetto(this.pacchetto.getId(),null,num);
+//		InterfacciaDB.eliminaFotoPacchetto(this.pacchetto.getId(),num);
 	}
 	
 	public void modificaTipologia(TipologiaPacchetto tipo) throws SQLException{
