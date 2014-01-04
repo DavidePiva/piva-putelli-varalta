@@ -17,7 +17,7 @@ public class GestioneComponenti {
 	}
 	
 	public void creaHotel(String nome,String citta,String indirizzo,String telefono,String descrizione,	TipoCamera[] tipiCamera){
-//		InterfacciaDB.creaHotel(nome,citta,indirizzo,telefono,descrizione,tipiCamera);
+	//	InterfacciaDB.creaHotel(nome,citta,indirizzo,telefono,descrizione,tipiCamera);
 	}
 	
 	
@@ -36,40 +36,33 @@ public class GestioneComponenti {
 	
 	//###MODIFICA###//
 	
-	public void modificaPernottamento(int idPernottamento,Hotel h, TipoCamera t){
-//		InterfacciaDB.modificaPernottamento(idPernottamento,h.getId(),t);
+	public void modificaPernottamento(int idPernottamento,Hotel h, TipoCamera t) throws SQLException{
+		InterfacciaDB.modificaPernottamento(idPernottamento,h.getId(),t);
 	}
 	
 	public void modificaHotel(int idHotel, String nome,String citta,String indirizzo,String telefono,String descrizione,	TipoCamera[] tipiCamera){
-//		InterfacciaDB.modificaHotel(idHotel,nome,citta,indirizzo,telefono,descizione,tipiCamera);
+//		InterfacciaDB.modificaHotel(idHotel,nome,citta,indirizzo,telefono,descrizione,tipiCamera);
 	}
 	
 	public void modificaAttivita(int idAttivita,int anno,int mese,int giorno,int ora,int minuti,String titolo,
-			String descrizione,String citta,float prezzo)
+			String descrizione,String citta,float prezzo) throws SQLException
 	{
-//		InterfacciaDB.modificaAttivita(idAttivita,anno,mese,giorno,ora,minuti,titolo,descrizione,citta,prezzo);
+		InterfacciaDB.modificaAttivita(idAttivita,anno,mese,giorno,ora,minuti,titolo,descrizione,citta,prezzo);
 
 	}
 	
-	public void modificaFoto(TipoComponente tipoComponente,int id,int numeroFoto,String url){
-//		InterfacciaDB.modificaFotoComponente(tipoComponente,id,numeroFoto,url);
+	public void modificaFoto(TipoComponente tipoComponente,int id,int numeroFoto,String url) throws SQLException{
+		InterfacciaDB.modificaFotoComponente(tipoComponente,id,numeroFoto,url);
 	}
 	
 	//###ELIMINAZIONE###//
 	
-	public void eliminaFoto(TipoComponente tipoComponente,int id,int numeroFoto){
-//		InterfacciaDB.eliminaFotoComponente(tipoComponente,id,numeroFoto);
+	public void eliminaFoto(TipoComponente tipoComponente,int id,int numeroFoto) throws SQLException{
+		InterfacciaDB.eliminaFotoComponente(tipoComponente,id,numeroFoto);
 	}
 	
-	public void	eliminaHotel(int idHotel){
-//		InterfacciaDB.eliminaHotel(idHotel);
+	public void	eliminaComponente(TipoComponente tipo,int id){
+//		InterfacciaDB.eliminaComponente(tipo,id);
 	}
 	
-	public void eliminaAttivita(int idAttivita){
-//		InterfacciaDB.eliminaAttivita(idAttivita);
-	}
-	
-	public void eliminaPernottamento(int idPernottamento){
-//		InterfacciaDB.eliminaPernottamento(idPernottamento);
-	}
 }

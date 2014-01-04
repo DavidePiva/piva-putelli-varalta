@@ -321,7 +321,7 @@ public class InterfacciaDB {
 	public static void creaHotel(String nome, String citta, String indirizzo, String tel, String descrizione, float prezzoCamere[], String urlFoto1, String urlFoto2, String urlFoto3) throws SQLException{
 		String insert = "INSERT INTO Hotel (`idHotel`, `nome`, `citta`, `indirizzo`, `telefono`, `descrizione`,'selezionabile') VALUES (NULL,"+nome+","+citta+","+indirizzo+","+tel+","+descrizione+"1,)";
 		stmt.executeUpdate(insert);
-		//L'idHotel non ce l'abbiamo, va recuperato! Faccio una query su nome, città e indirizzo.
+		//L'idHotel non ce l'abbiamo, va recuperato! Faccio una query su nome, cittï¿½ e indirizzo.
 		String select = "SELECT idHotel FROM Hotel WHERE nome ="+nome+" AND citta ="+citta+" AND indirizzo = "+indirizzo;
 		ResultSet rs = stmt.executeQuery(select);
 		int idHotel =rs.getInt("idHotel");
@@ -359,7 +359,7 @@ public class InterfacciaDB {
 		stmt.executeUpdate(update);	
 	}
 	
-	public static void modificaAttitiva(int idAttivita,int anno, int mese, int giorno, int ora, int minuti, String titolo, String descrizione, String citta, float prezzo) throws SQLException{
+	public static void modificaAttivita(int idAttivita,int anno, int mese, int giorno, int ora, int minuti, String titolo, String descrizione, String citta, float prezzo) throws SQLException{
 		String data = anno+"-"+mese+"-"+giorno;
 		String time = ora+":"+minuti+":00";
 		String update = "UPDATE Attivita SET data = "+data+", ora ="+time+", titolo = "+titolo+", descrizione = "+descrizione+", citta = "+citta+", prezzo ="+prezzo+"WHERE idAttivita = "+idAttivita;
