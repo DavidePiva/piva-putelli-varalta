@@ -304,13 +304,22 @@ public class InterfacciaDB {
 		stmt.executeUpdate(update);
 	}
 	
+	public static void modificaFotoPacchetto(int idPacchetto, String urlFoto, int numeroFoto) throws SQLException{
+		String update = "UPDATE Pacchetto SET foto"+ numeroFoto+ " = "+urlFoto+" WHERE idPacchetto = "+idPacchetto;
+		stmt.executeUpdate(update);
+	}
+	
+	public static void cancellaFotoPacchetto(int idPacchetto, int numeroFoto) throws SQLException{
+		modificaFotoPacchetto(idPacchetto, "NULL", numeroFoto);
+	}
+	
 	public static void creaPernottamento(int idHotel, TipoCamera tc) throws SQLException{
-		String insert = "INSERT INTO Pernottamento ('hotel','tipo') VALUES ("+idHotel+", "+tc.name()+")";
+		String insert = "INSERT INTO Pernottamento ('hotel','tipo','selezionabile') VALUES ("+idHotel+", "+tc.name()+",1)";
 		stmt.executeUpdate(insert);
 	}
 	
 	public static void creaHotel(String nome, String citta, String indirizzo, String tel, String descrizione, float prezzoCamere[], String urlFoto1, String urlFoto2, String urlFoto3) throws SQLException{
-		String insert = "INSERT INTO Hotel (`idHotel`, `nome`, `citta`, `indirizzo`, `telefono`, `descrizione`) VALUES (NULL,"+nome+","+citta+","+indirizzo+","+tel+","+descrizione+")";
+		String insert = "INSERT INTO Hotel (`idHotel`, `nome`, `citta`, `indirizzo`, `telefono`, `descrizione`,'selezionabile') VALUES (NULL,"+nome+","+citta+","+indirizzo+","+tel+","+descrizione+"1,)";
 		stmt.executeUpdate(insert);
 		//L'idHotel non ce l'abbiamo, va recuperato! Faccio una query su nome, città e indirizzo.
 		String select = "SELECT idHotel FROM Hotel WHERE nome ="+nome+" AND citta ="+citta+" AND indirizzo = "+indirizzo;
@@ -327,9 +336,34 @@ public class InterfacciaDB {
 	public static void creaAttivita(int anno, int mese, int giorno, int ora, int minuti, String titolo, String descrizione, String citta, float prezzo, String foto1, String foto2, String foto3) throws SQLException{
 		String data = anno+"-"+mese+"-"+giorno;
 		String time = ora+":"+minuti+":00";
-		String insert = "INSERT INTO Attivita(`idAttivita`, `data`, `ora`, `titolo`, `descrizione`, `citta`, `prezzo`) VALUES (NULL,"+data+","+ora+","+titolo+","+descrizione+","+citta+","+prezzo+")";
+		String insert = "INSERT INTO Attivita(`idAttivita`, `data`, `ora`, `titolo`, `descrizione`, `citta`, `prezzo`,'selezionabile') VALUES (NULL,"+data+","+ora+","+time+","+titolo+","+descrizione+","+citta+","+prezzo+"1,)";
 		stmt.executeUpdate(insert);
 	}
 	
+	public static void modificaFotoComponente(TipoComponente tc, int idComponente, int numeroFoto, String urlFoto) throws SQLException{
+		String update = "UPDATE "+ tc.name()+ " SET foto"+ numeroFoto+ " = "+urlFoto+" WHERE id"+tc.name()+" = "+idComponente;
+		stmt.executeUpdate(update);
+	}
+	
+	public static void eliminaFotoComponente(TipoComponente tc, int idComponente, int numeroFoto) throws SQLException{
+		modificaFotoComponente(tc,idComponente,numeroFoto,"NULL");
+	}
+	
+	public static void modificaPernottamento(int idPernottamento, int idHotel, TipoCamera tc) throws SQLException{
+		String update = "UPDATE Pernottamento SET hotel = " +idHotel+ ",tipo = "+ tc.name()+ " WHERE idPernottamento = "+idPernottamento;
+		stmt.executeUpdate(update);
+	}
+	
+	public static void modificaHotel(int idHotel, String nome, String citta, String indirizzo, String tel, String descrizione) throws SQLException{
+		String update = "UPDATE Hotel SET nome = "+nome+", citta = "+citta+", indirizzo = "+indirizzo+", telefono = "+tel+", descrizione ="+descrizione+" WHERE idHotel = "+idHotel;
+		stmt.executeUpdate(update);	
+	}
+	
+	public static void modificaAttitiva(int idAttivita,int anno, int mese, int giorno, int ora, int minuti, String titolo, String descrizione, String citta, float prezzo) throws SQLException{
+		String data = anno+"-"+mese+"-"+giorno;
+		String time = ora+":"+minuti+":00";
+		String update = "UPDATE Attivita SET data = "+data+", ora ="+time+", titolo = "+titolo+", descrizione = "+descrizione+", citta = "+citta+", prezzo ="+prezzo+"WHERE idAttivita = "+idAttivita;
+		stmt.executeUpdate(update);
+	}
 	
 }
