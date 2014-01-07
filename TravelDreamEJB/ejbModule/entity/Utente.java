@@ -1,5 +1,17 @@
 package entity;
 
+import java.util.List;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+
+import enums.TipoUtente;
+import DTO.UtenteDTO;
+
 
 public class Utente {
 
@@ -8,6 +20,13 @@ public class Utente {
 	String cognome;
 	String criptoPassword;
 	Boolean attivo;
+	
+	@ElementCollection(targetClass = TipoUtente.class)
+    @CollectionTable(name = "Utente_Gruppo",
+                    joinColumns = @JoinColumn(name = "email"))
+    @Enumerated(EnumType.STRING)
+    @Column(name="groupname")
+    private List<TipoUtente> gruppi;
 
 	public Utente() {
 		super();
@@ -25,6 +44,15 @@ public class Utente {
 		this.cognome = cognome;
 		this.criptoPassword = criptoPassword;
 		this.attivo = attivo;
+	}
+	
+	public Utente(UtenteDTO user){
+		super();
+		this.email=user.getEmail();
+		this.nome=user.getNome();
+		this.cognome=user.getCognome();
+		this.criptoPassword=user.getCriptoPassword();
+		this.attivo=user.getAttivo();
 	}
 
 	public String getEmail() {
@@ -65,6 +93,14 @@ public class Utente {
 
 	public void setAttivo(Boolean attivo) {
 		this.attivo = attivo;
+	}
+
+	public List<TipoUtente> getGruppi() {
+		return gruppi;
+	}
+
+	public void setGruppi(List<TipoUtente> gruppi) {
+		this.gruppi = gruppi;
 	}
 	
 }
