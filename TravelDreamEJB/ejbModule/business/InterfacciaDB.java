@@ -428,4 +428,19 @@ public class InterfacciaDB {
 		return a;
 	}
 	
+	public static Pernottamento getPernottamento(int idPernottamento, int idViaggio) throws SQLException{
+		String query = "SELECT * FROM Pernottamento WHERE idPernottamento = "+idPernottamento;
+		ResultSet rs = stmt.executeQuery(query);
+		Hotel h = getHotel(rs.getInt("hotel"));
+		TipoCamera tc = TipoCamera.valueOf(rs.getString("tipo"));
+		query = "SELECT regalabile FROM Viaggio_Pernottamento WHERE idPernottamento = "+idPernottamento+" AND idViaggio = "+idViaggio;
+		int i = rs.getInt("regalabile");
+		boolean regalabile=false;
+		if(i==1){
+			regalabile=true;
+		}
+		Pernottamento p = new Pernottamento(idPernottamento,h,tc,regalabile);
+		return p;
+	}
+	
 }
