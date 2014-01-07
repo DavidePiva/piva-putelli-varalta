@@ -354,9 +354,15 @@ public class InterfacciaDB {
 		stmt.executeUpdate(update);
 	}
 	
-	public static void modificaHotel(int idHotel, String nome, String citta, String indirizzo, String tel, String descrizione) throws SQLException{
+	public static void modificaHotel(int idHotel, String nome, String citta, String indirizzo, String tel, String descrizione, float prezziCamere[]) throws SQLException{
 		String update = "UPDATE Hotel SET nome = "+nome+", citta = "+citta+", indirizzo = "+indirizzo+", telefono = "+tel+", descrizione ="+descrizione+" WHERE idHotel = "+idHotel;
 		stmt.executeUpdate(update);	
+		update = "UPDATE TipoCamere_Hotel SET prezzo="+prezziCamere[0]+" WHERE tipoCamera=LOWCOST AND  idHotel = "+idHotel;
+		stmt.executeUpdate(update);	
+		update = "UPDATE TipoCamere_Hotel SET prezzo="+prezziCamere[1]+" WHERE tipoCamera=SMART AND  idHotel = "+idHotel;
+		stmt.executeUpdate(update);
+		update = "UPDATE TipoCamere_Hotel SET prezzo="+prezziCamere[2]+" WHERE tipoCamera=DREAM AND  idHotel = "+idHotel;
+		stmt.executeUpdate(update);
 	}
 	
 	public static void modificaAttivita(int idAttivita,int anno, int mese, int giorno, int ora, int minuti, String titolo, String descrizione, String citta, float prezzo) throws SQLException{
@@ -364,6 +370,11 @@ public class InterfacciaDB {
 		String time = ora+":"+minuti+":00";
 		String update = "UPDATE Attivita SET data = "+data+", ora ="+time+", titolo = "+titolo+", descrizione = "+descrizione+", citta = "+citta+", prezzo ="+prezzo+"WHERE idAttivita = "+idAttivita;
 		stmt.executeUpdate(update);
+	}
+	
+	public static void eliminaComponente(TipoComponente tc, int idComponente) throws SQLException{
+		String delete = "DELETE FROM "+tc.name()+ "WHERE id"+tc.name()+" = "+idComponente;
+		stmt.executeUpdate(delete);
 	}
 	
 }
