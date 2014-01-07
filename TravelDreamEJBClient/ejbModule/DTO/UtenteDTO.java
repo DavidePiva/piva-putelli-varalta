@@ -5,7 +5,7 @@ public class UtenteDTO {
 	String nome;
 	String cognome;
 	String criptoPassword;
-	Boolean attivo;
+	boolean attivo;
 	
 	public String getEmail() {
 		return email;
@@ -39,11 +39,11 @@ public class UtenteDTO {
 		this.criptoPassword = criptoPassword;
 	}
 
-	public Boolean getAttivo() {
+	public boolean getAttivo() {
 		return attivo;
 	}
 
-	public void setAttivo(Boolean attivo) {
+	public void setAttivo(boolean attivo) {
 		this.attivo = attivo;
 	}
 }

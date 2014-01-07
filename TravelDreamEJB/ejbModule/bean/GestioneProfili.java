@@ -7,6 +7,7 @@ import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import java.util.List;
 
 import entity.Utente;
@@ -36,7 +37,7 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		List<TipoUtente> gruppi = new ArrayList<TipoUtente>();
 		gruppi.add(TipoUtente.USER);
 		nuovoUtente.setGruppi(gruppi);
-		em.persist(nuovoUtente);		
+		em.persist(nuovoUtente);
 	}
 
 	@Override
