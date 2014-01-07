@@ -382,4 +382,29 @@ public class InterfacciaDB {
 		stmt.executeUpdate(update);
 	}
 	
+	public static Hotel getHotel(int idHotel) throws SQLException{
+		String query = "SELECT * FROM Hotel WHERE idHotel = "+idHotel;
+		ResultSet rs = stmt.executeQuery(query);
+		String nome = rs.getString("nome");
+		String citta = rs.getString("citta");
+		String indirizzo = rs.getString("indirizzo");
+		String telefono = rs.getString("telefono");
+		String descrizione = rs.getString("descrizione");
+		ArrayList<TipoCamera> a = getCamereHotel(idHotel);
+		Hotel h = new Hotel(idHotel,nome,citta,indirizzo,telefono,descrizione,a);
+		return h;
+	}
+	
+	public static ArrayList<TipoCamera> getCamereHotel(int idHotel) throws SQLException{
+		String query = "SELECT * FROM TipoCamere_Hotel WHERE idHotel = "+idHotel;
+		ResultSet rs =stmt.executeQuery(query);
+		ArrayList<TipoCamera> a = new ArrayList<TipoCamera>();
+		while(rs.next()){
+			String tipo = rs.getString("tipoCamera");
+			TipoCamera tc = TipoCamera.valueOf(tipo);
+			a.add(tc);
+		}
+		return a;
+	}
+	
 }
