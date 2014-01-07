@@ -6,14 +6,13 @@ import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
-
+import DTO.UtenteDTO;
 import enums.TipoUtente;
 
 @Table(name="Utente")
@@ -53,7 +52,7 @@ public class Utente implements Serializable {
 		this.criptoPassword = criptoPassword;
 		this.attivo = attivo;
 	}
-	/*
+	
 	public Utente(UtenteDTO user){
 		super();
 		this.email=user.getEmail();
@@ -61,7 +60,7 @@ public class Utente implements Serializable {
 		this.cognome=user.getCognome();
 		this.criptoPassword=user.getCriptoPassword();
 		this.attivo=user.getAttivo();
-	}*/
+	}
 
 	public String getEmail() {
 		return email;

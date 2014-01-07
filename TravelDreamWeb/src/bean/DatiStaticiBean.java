@@ -12,7 +12,6 @@ public class DatiStaticiBean {
 	private DatiStaticiLocal datistatici;
 	
 	public String esempio(){
-	//	return datistatici.esempio();
-		return "";
+		return datistatici.esempio();
 	}
 }
