@@ -9,6 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 
+
+import DTO.UtenteDTO;
+
 import java.util.List;
 
 import entity.Utente;
@@ -31,7 +34,7 @@ public class GestioneProfili implements GestioneProfiliLocal {
     public GestioneProfili() {
         // TODO Auto-generated constructor stub
     }
-/*
+
 	@Override
 	public void salva(UtenteDTO utente) {
 		Utente nuovoUtente = new Utente(utente);
@@ -59,16 +62,6 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		return null;
 	}
 
-	@Override
-	public void salva(UtenteDTO utente) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void aggiorna(UtenteDTO utente) {
-		// TODO Auto-generated method stub
-		
-	}
-*/
+
 }
