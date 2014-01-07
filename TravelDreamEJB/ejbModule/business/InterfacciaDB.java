@@ -54,21 +54,6 @@ public class InterfacciaDB {
 		conn.close();
 	}
 	
-	public static ArrayList<Viaggio> viaggiPerDestinazione(String citta) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException{
-		if(!isConnesso){
-			connetti();
-		}
-		ArrayList<Viaggio> viaggi = new ArrayList<Viaggio>();
-		String query = "SELECT * FROM Viaggio WHERE citta="+citta;
-		ResultSet rs = stmt.executeQuery(query);
-		while(rs.next()){
-			int id = rs.getInt("id");
-			Viaggio viaggio = new Viaggio(id);
-			viaggi.add(viaggio);
-		}
-		return viaggi;
-	}
-	
 	public static ArrayList<Aeroporto> aeroporti() throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		if(!isConnesso){
 			connetti();
@@ -443,4 +428,60 @@ public class InterfacciaDB {
 		return p;
 	}
 	
+	public static ArrayList<Attivita> getListaAttivitaViaggio(int idViaggio) throws SQLException{
+		String query = "SELECT * FROM Viaggio_Attivita, Attivita WHERE Viaggio_Attivita.idAttivita = Attivita.idAttivita AND idViaggio = "+idViaggio;
+		ResultSet rs = stmt.executeQuery(query);
+		ArrayList<Attivita> a = new ArrayList<Attivita>();
+		while(rs.next()){
+			int idAttivita = rs.getInt("idAttivita");
+			String titolo = rs.getString("titolo");
+			float prezzo = rs.getFloat("prezzo");
+			Attivita att = new Attivita(idAttivita,titolo,prezzo);
+			a.add(att);	
+		}
+		return a;
+	}
+	
+	public static ArrayList<Attivita> getListaAttivitaPacchetto(int idPacchetto) throws SQLException{
+		String query = "SELECT * FROM Pacchetto_Attivita, Attivita WHERE Pacchetto_Attivita.idAttivita = Attivita.idAttivita AND idPacchetto = "+idPacchetto;
+		ResultSet rs = stmt.executeQuery(query);
+		ArrayList<Attivita> a = new ArrayList<Attivita>();
+		while(rs.next()){
+			int idAttivita = rs.getInt("idAttivita");
+			String titolo = rs.getString("titolo");
+			float prezzo = rs.getFloat("prezzo");
+			Attivita att = new Attivita(idAttivita,titolo,prezzo);
+			a.add(att);	
+		}
+		return a;
+	}
+	
+	public static ArrayList<Pacchetto> pacchettiPerDestinazione(String citta) throws SQLException{
+		ArrayList<Pacchetto> pacchetti = new ArrayList<Pacchetto>();
+		String query = "SELECT * FROM Pacchetto WHERE citta="+citta;
+		ResultSet rs = stmt.executeQuery(query);
+		while(rs.next()){
+			int id = rs.getInt("id");
+			String titolo = rs.getString("titolo");
+			float prezzo = rs.getFloat("prezzo");
+			Pacchetto p = new Pacchetto(id,titolo,citta,prezzo);
+			pacchetti.add(p);
+		}
+		return pacchetti;
+	}
+	
+	public static ArrayList<Pacchetto> pacchettiPerTipologia(TipologiaPacchetto tp) throws SQLException{
+		ArrayList<Pacchetto> pacchetti = new ArrayList<Pacchetto>();
+		String query = "SELECT * FROM Pacchetto WHERE tipologia = "+tp.name();
+		ResultSet rs = stmt.executeQuery(query);
+		while(rs.next()){
+			int id = rs.getInt("id");
+			String titolo = rs.getString("titolo");
+			float prezzo = rs.getFloat("prezzo");
+			String citta = rs.getString("citta");
+			Pacchetto p = new Pacchetto(id,titolo,citta,prezzo);
+			pacchetti.add(p);
+		}
+		return pacchetti;
+	}
 }
