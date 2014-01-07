@@ -377,4 +377,9 @@ public class InterfacciaDB {
 		stmt.executeUpdate(delete);
 	}
 	
+	public static void eliminaPacchetto(int idPacchetto) throws SQLException{
+		String update = "UPDATE Pacchetto SET selezionabile = 0 WHERE idPacchetto = "+idPacchetto;
+		stmt.executeUpdate(update);
+	}
+	
 }
