@@ -7,17 +7,14 @@ import javax.ejb.Stateless;
 
 import entity.Aeroporto;
 import business.InterfacciaDB;
-import DTO.AeroportoDTO;
+
 
 /**
  * Session Bean implementation class DatiStatici
  */
 @Stateless
 public class DatiStatici implements DatiStaticiLocal {
-
-    /**
-     * Default constructor. 
-     */
+/*
     public DatiStatici() {
     }
     
@@ -26,7 +23,7 @@ public class DatiStatici implements DatiStaticiLocal {
     	return "Hello world!";
     }
 
-	
+	/*
 	@Override
 	public ArrayList<AeroportoDTO> aeroporti() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		ArrayList<AeroportoDTO> aeroportiDTO = new ArrayList<>();
@@ -47,7 +44,6 @@ public class DatiStatici implements DatiStaticiLocal {
 		
 		return aDTO;
 	}
-
-
+*/
 
 }

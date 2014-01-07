@@ -3,7 +3,7 @@ package business;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import DTO.UtenteDTO;
+
 import bean.GestioneProfili;
 import entity.*;
 
@@ -26,7 +26,7 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-		
+		/*
 		GestioneProfili gp = new GestioneProfili();
 		UtenteDTO u = new UtenteDTO();
 		u.setEmail("gfhfh@gmail.com");
@@ -34,7 +34,7 @@ public class Main {
 		u.setCognome("Rodari");
 		u.setNome("Gianni");
 		u.setAttivo(true);
-		gp.salva(u);
+		gp.salva(u);*/
 	}
 
 }
