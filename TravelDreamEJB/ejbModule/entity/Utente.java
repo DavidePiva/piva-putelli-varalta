@@ -15,7 +15,6 @@ import javax.persistence.Table;
 
 
 import enums.TipoUtente;
-import DTO.UtenteDTO;
 
 @Table(name="Utente")
 
@@ -54,7 +53,7 @@ public class Utente implements Serializable {
 		this.criptoPassword = criptoPassword;
 		this.attivo = attivo;
 	}
-	
+	/*
 	public Utente(UtenteDTO user){
 		super();
 		this.email=user.getEmail();
@@ -62,7 +61,7 @@ public class Utente implements Serializable {
 		this.cognome=user.getCognome();
 		this.criptoPassword=user.getCriptoPassword();
 		this.attivo=user.getAttivo();
-	}
+	}*/
 
 	public String getEmail() {
 		return email;
