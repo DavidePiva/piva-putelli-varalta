@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.persistence.TemporalType;
 
@@ -404,6 +405,26 @@ public class InterfacciaDB {
 			TipoCamera tc = TipoCamera.valueOf(tipo);
 			a.add(tc);
 		}
+		return a;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public static Attivita getAttivita(int idAttivita) throws SQLException{
+		String query = "SELECT * FROM Attivita WHERE idAttivita = "+idAttivita;
+		ResultSet rs = stmt.executeQuery(query);
+		Date d = rs.getDate("data");
+		int anno = d.getYear();
+		int mese = d.getMonth();
+		int giorno = d.getDay();
+		Time e = rs.getTime("ora");
+		int ora = e.getHours();
+		int minuti = e.getMinutes();
+		int secondi = e.getSeconds();
+		String titolo = rs.getString("titolo");
+		String descrizione = rs.getString("descrizione");
+		String citta = rs.getString("citta");
+		float prezzo = rs.getFloat("prezzo");
+		Attivita a = new Attivita(idAttivita, anno,mese,giorno,ora,minuti,secondi,titolo,descrizione,citta,prezzo);
 		return a;
 	}
 	
