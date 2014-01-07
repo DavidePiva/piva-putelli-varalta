@@ -4,11 +4,55 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>Traveldream</h:head>
+<head>
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+  <title>TravelDream</title>
+  <link href='css/application.css' media='all' rel='stylesheet' type='text/css' />
+</head>
 <body>
-	<h:form>
-		<h:inputText id="x" value="#{ds.esempio}" readonly="true" />
-	</h:form>
 
+
+<div id="boxintestazione">
+    <div id="boxlogo"><img src="css/v1sinistra.png" /></div>
+    <div id="boxlandmarktop">
+        <a id="textlandmark_right" href="localhost:3000">Registrati</a>
+        <h:link outcome="admins/index" value="LOGIN" id="textlandmark_left" />
+    </div>
+  </div><!--/intestazione-->
+  <div id="boxlinea1"></div>
+  <div id="boxlinea2"></div>
+  <div id="boxlinea3"></div>
+  <div id="boxlinea4"></div>
+  <div id="boxlinea5"></div>
+<div id="boxbig">
+  <div id="boxmenu">
+    <div id="boxlandmarkleft">
+      <ul id="boxleft">
+        <li>prima voce</li>
+        <li>seconda voce</li>
+        <li>terza voce</li>
+      </ul>
+    </div>
+    <div id="boxlinkleft">
+      <ul id="boxleft">
+        <li>primo link</li>
+        <li>secondo link</li>
+      </ul>
+    </div>
+  </div>
+  <div id="boxcontenuto">
+    <h1>Benvenuti</h1>   
+<div>
+
+
+
+<h:form>
+	<h:inputText id="x" value="#{ds.esempio()}" readonly="true" />
+</h:form>
+
+
+</div>
+</div>
+</div><!--/boxbig-->
 </body>
 </html>

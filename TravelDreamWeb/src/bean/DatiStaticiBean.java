@@ -1,5 +1,5 @@
 package bean;
-
+//ManageBean statico
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -7,11 +7,11 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean(name="ds")
 @RequestScoped
 public class DatiStaticiBean {
-	/*
-	@EJB
-	private DatiStatici datistatici;
 	
-	public String inserisciEsempio(){
+	@EJB
+	private DatiStaticiLocal datistatici;
+	
+	public String esempio(){
 		return datistatici.esempio();
-	}*/
+	}
 }
