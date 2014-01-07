@@ -1,5 +1,7 @@
 package bean;
 //ManageBean statico
+import java.sql.SQLException;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -13,5 +15,9 @@ public class DatiStaticiBean {
 	
 	public String esempio(){
 		return datistatici.esempio();
+	}
+	
+	public String aeroporti() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+		return datistatici.aeroporti().toString();
 	}
 }
