@@ -1,20 +1,29 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+
 
 import enums.TipoUtente;
 import DTO.UtenteDTO;
 
+@Table(name="Utente")
 
-public class Utente {
+public class Utente implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
+	@Id
 	String email;
 	String nome;
 	String cognome;
@@ -25,7 +34,7 @@ public class Utente {
     @CollectionTable(name = "Utente_Gruppo",
                     joinColumns = @JoinColumn(name = "email"))
     @Enumerated(EnumType.STRING)
-    @Column(name="groupname")
+    @Column(name="gruppo")
     private List<TipoUtente> gruppi;
 
 	public Utente() {

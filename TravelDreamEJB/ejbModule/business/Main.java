@@ -9,8 +9,7 @@ import entity.*;
 
 public class Main {
 
-	public static void main(String[] args) throws SQLException {
-		InterfacciaDB interfaccia=new InterfacciaDB();
+	public static void main(String[] args) {
 		/*try {
 			ArrayList<Aeroporto> viaggi;
 			try {
@@ -35,7 +34,6 @@ public class Main {
 		u.setCognome("Rodari");
 		u.setNome("Gianni");
 		u.setAttivo(true);
-		
 		gp.salva(u);
 	}
 

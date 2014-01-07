@@ -32,7 +32,7 @@ public class InterfacciaDB {
 		return isConnesso;
 	}
 	
-	private static void connetti() throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException{
+	public static void connetti() throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		String connectionUrl = "jdbc:mysql://localhost:3306/TravelDreamDB";
 		String connectionUser = "root";
