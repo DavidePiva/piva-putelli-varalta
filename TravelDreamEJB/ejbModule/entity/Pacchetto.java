@@ -54,12 +54,6 @@ public class Pacchetto {
 		this.foto=foto;
 	}
 	
-	public Pacchetto(int id, String titolo, String citta, float prezzo) {
-		this.id = id;
-		this.titolo = titolo;
-		this.citta = citta;
-		this.prezzo = prezzo;
-	}
 	
 	public int getId() {
 		return id;

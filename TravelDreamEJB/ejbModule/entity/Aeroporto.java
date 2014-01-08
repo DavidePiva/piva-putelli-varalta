@@ -1,7 +1,5 @@
 package entity;
 
-
-
 public class Aeroporto {
 	
 	int id;
@@ -20,12 +18,6 @@ public class Aeroporto {
 		this.nome = nome;
 		this.citta = citta;
 	}
-	/*
-	public Aeroporto(AeroportoDTO a){
-		this.id=a.getId();
-		this.nome=a.getNome();
-		this.citta=a.getCitta();
-	}*/
 	public int getId() {
 		return id;
 	}
