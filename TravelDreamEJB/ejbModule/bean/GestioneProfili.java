@@ -40,12 +40,19 @@ public class GestioneProfili implements GestioneProfiliLocal {
                 Utente nuovoUtente = new Utente(utente);
                /* List<TipoUtente> gruppi = new ArrayList<TipoUtente>();
                 gruppi.add(TipoUtente.USER);*/
-                List<Gruppo> gruppi=new ArrayList<Gruppo>();
+          /*      List<Gruppo> gruppi=new ArrayList<Gruppo>();
                 Gruppo g=new Gruppo();
                 g.setIdGruppo("USER");
                 gruppi.add(g);
-                nuovoUtente.setGruppos(gruppi);
-                em.persist(nuovoUtente);
+                nuovoUtente.setGruppos(gruppi);*/
+        		Utente u = new Utente();
+        		u.setEmail("ciccionissuuuuuimome@gmail.com");
+        		u.setCognome("Pippo");
+        		u.setNome("Gianni");
+        		u.setAttivo((byte) 1);
+        		u.setPassword("password");
+        		
+                em.persist(u);
         }
 
         @Override
