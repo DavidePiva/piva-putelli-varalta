@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import org.apache.commons.codec.digest.DigestUtils;
+//import org.apache.commons.codec.digest.DigestUtils;
 
 import DTO.UtenteDTO;
 
@@ -16,6 +16,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="Utente")
 @NamedQuery(name="Utente.findAll", query="SELECT u FROM Utente u")
 public class Utente implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -35,8 +36,8 @@ public class Utente implements Serializable {
         this.email=user.getEmail();
         this.nome=user.getNome();
         this.cognome=user.getCognome();
-        this.password=DigestUtils.sha256Hex(user.getCriptoPassword());
-        this.attivo=1;
+        this.password=user.getCriptoPassword();
+        this.attivo=(byte)1;
 }
 
 	
