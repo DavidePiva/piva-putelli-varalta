@@ -35,6 +35,11 @@ public class Hotel {
 		this.descrizione = descrizione;
 		this.camere= camere;
 	}
+	
+	public Hotel(int id, String nome){
+		this.id = id;
+		this.nome = nome;
+	}
 
 	public ArrayList<TipoCamera> getCamere() {
 		return camere;

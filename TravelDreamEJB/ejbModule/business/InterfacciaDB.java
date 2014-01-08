@@ -456,12 +456,26 @@ public class InterfacciaDB {
 		return a;
 	}
 	
+	public static ArrayList<Attivita> attivitaPerDestinazione(String citta) throws SQLException{
+		String query = "SELECT * FROM Attivita WHERE citta = "+citta;
+		ResultSet rs = stmt.executeQuery(query);
+		ArrayList<Attivita> a = new ArrayList<Attivita>();
+		while(rs.next()){
+			int idAttivita = rs.getInt("idAttivita");
+			String titolo = rs.getString("titolo");
+			float prezzo = rs.getFloat("prezzo");
+			Attivita att = new Attivita(idAttivita,titolo,prezzo);
+			a.add(att);	
+		}
+		return a;
+	}
+	
 	public static ArrayList<Pacchetto> pacchettiPerDestinazione(String citta) throws SQLException{
 		ArrayList<Pacchetto> pacchetti = new ArrayList<Pacchetto>();
 		String query = "SELECT * FROM Pacchetto WHERE citta="+citta;
 		ResultSet rs = stmt.executeQuery(query);
 		while(rs.next()){
-			int id = rs.getInt("id");
+			int id = rs.getInt("idPacchetto");
 			String titolo = rs.getString("titolo");
 			float prezzo = rs.getFloat("prezzo");
 			Pacchetto p = new Pacchetto(id,titolo,citta,prezzo);
@@ -475,7 +489,7 @@ public class InterfacciaDB {
 		String query = "SELECT * FROM Pacchetto WHERE tipologia = "+tp.name();
 		ResultSet rs = stmt.executeQuery(query);
 		while(rs.next()){
-			int id = rs.getInt("id");
+			int id = rs.getInt("idPacchetto");
 			String titolo = rs.getString("titolo");
 			float prezzo = rs.getFloat("prezzo");
 			String citta = rs.getString("citta");
@@ -484,4 +498,33 @@ public class InterfacciaDB {
 		}
 		return pacchetti;
 	}
+	
+	public static ArrayList<Pacchetto> pacchettiPerHotel(int idHotel) throws SQLException{
+		ArrayList<Pacchetto> pacchetti = new ArrayList<Pacchetto>();
+		String query = "SELECT * FROM Pacchetto, Pernottamento WHERE Pacchetto.idPernottamento = Pernottamento.idPernottamento AND Pernottamento.hotel ="+idHotel;
+		ResultSet rs = stmt.executeQuery(query);
+		while(rs.next()){
+			int id = rs.getInt("idPacchetto");
+			String titolo = rs.getString("titolo");
+			float prezzo = rs.getFloat("prezzo");
+			String citta = rs.getString("citta");
+			Pacchetto p = new Pacchetto(id,titolo,citta,prezzo);
+			pacchetti.add(p);
+		}
+		return pacchetti;
+	}
+	
+	public static ArrayList<Hotel> hotelPerDestinazione(String citta) throws SQLException{
+		ArrayList<Hotel> h = new ArrayList<Hotel>();
+		String query = "SELECT * FROM Hotel WHERE citta = "+citta;
+		ResultSet rs = stmt.executeQuery(query);
+		while(rs.next()){
+			int id = rs.getInt("idHotel");
+			String nome = rs.getString("nome");
+			Hotel hotel = new Hotel(id,nome);
+			h.add(hotel);
+		}
+		return h;
+	}
+	
 }
