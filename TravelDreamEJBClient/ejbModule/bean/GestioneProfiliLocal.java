@@ -14,5 +14,6 @@ public interface GestioneProfiliLocal {
         public void eliminaUtente();
        
         public UtenteDTO getUtenteDTO();
+
        
 }

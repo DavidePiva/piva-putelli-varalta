@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-//import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import DTO.UtenteDTO;
 
@@ -32,15 +32,6 @@ public class Utente implements Serializable {
 
 	private String password;
 
-    public Utente(UtenteDTO user){
-        this.email=user.getEmail();
-        this.nome=user.getNome();
-        this.cognome=user.getCognome();
-        this.password=user.getCriptoPassword();
-        this.attivo=(byte)1;
-}
-
-	
 	//bi-directional many-to-many association to Attivita
 	@ManyToMany
 	@JoinTable(
@@ -103,7 +94,22 @@ public class Utente implements Serializable {
 
 	public Utente() {
 	}
-
+	
+    public Utente(UtenteDTO user){
+        this.email=user.getEmail();
+        this.nome=user.getNome();
+        this.cognome=user.getCognome();
+    //this.password=DigestUtils.sha256Hex(user.getCriptoPassword());
+      
+        this.password=user.getCriptoPassword();
+        if(user.getAttivo()){
+        	this.attivo=(byte)1;
+        }else{
+        	this.attivo=(byte)0;
+        }
+    }
+	
+	
 	public String getEmail() {
 		return this.email;
 	}
