@@ -30,12 +30,6 @@ public class Attivita {
 		this.citta = citta;
 		this.prezzo = prezzo;
 	}
-	
-	public Attivita(int id, String titolo, float prezzo){
-		this.id = id;
-		this.titolo = titolo;
-		this.prezzo = prezzo;
-	}
 
 	public int getId() {
 		return id;

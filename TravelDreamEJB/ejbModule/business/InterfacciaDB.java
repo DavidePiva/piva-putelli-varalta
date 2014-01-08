@@ -427,7 +427,7 @@ public class InterfacciaDB {
 		Pernottamento p = new Pernottamento(idPernottamento,h,tc,regalabile);
 		return p;
 	}
-	
+	/*
 	public static ArrayList<Attivita> getListaAttivitaViaggio(int idViaggio) throws SQLException{
 		String query = "SELECT * FROM Viaggio_Attivita, Attivita WHERE Viaggio_Attivita.idAttivita = Attivita.idAttivita AND idViaggio = "+idViaggio;
 		ResultSet rs = stmt.executeQuery(query);
@@ -526,5 +526,5 @@ public class InterfacciaDB {
 		}
 		return h;
 	}
-	
+	*/
 }

@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="TravelDreamEJB">
+		<jta-data-source>traveldream_connection</jta-data-source>
+		<class>model.Aeroporto</class>
+		<class>model.Attivita</class>
+		<class>model.Compagnia</class>
+		<class>model.Gruppo</class>
+		<class>model.Hotel</class>
+		<class>model.Pacchetto</class>
+		<class>model.Partecipazione</class>
+		<class>model.PartecipazionePK</class>
+		<class>model.Pernottamento</class>
+		<class>model.TipoCamere_Hotel</class>
+		<class>model.TipoCamere_HotelPK</class>
+		<class>model.Utente</class>
+		<class>model.Viaggio</class>
+		<class>model.Viaggio_Attivita</class>
+		<class>model.Viaggio_AttivitaPK</class>
+		<class>model.Viaggio_Pernottamento</class>
+		<class>model.Viaggio_PernottamentoPK</class>
+		<class>model.Viaggio_Volo</class>
+		<class>model.Viaggio_VoloPK</class>
+		<class>model.Volo</class>
 	</persistence-unit>
 </persistence>

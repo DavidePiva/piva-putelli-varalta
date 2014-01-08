@@ -1,39 +1,13 @@
 package entity;
 
-import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+public class Utente {
 
-import DTO.UtenteDTO;
-import enums.TipoUtente;
-
-@Table(name="Utente")
-
-public class Utente implements Serializable {
-
-	private static final long serialVersionUID = 1L;
-	
-	@Id
 	String email;
 	String nome;
 	String cognome;
 	String criptoPassword;
 	Boolean attivo;
-	
-	@ElementCollection(targetClass = TipoUtente.class)
-    @CollectionTable(name = "Utente_Gruppo",
-                    joinColumns = @JoinColumn(name = "email"))
-    @Enumerated(EnumType.STRING)
-    @Column(name="gruppo")
-    private List<TipoUtente> gruppi;
 
 	public Utente() {
 		super();
@@ -51,15 +25,6 @@ public class Utente implements Serializable {
 		this.cognome = cognome;
 		this.criptoPassword = criptoPassword;
 		this.attivo = attivo;
-	}
-	
-	public Utente(UtenteDTO user){
-		super();
-		this.email=user.getEmail();
-		this.nome=user.getNome();
-		this.cognome=user.getCognome();
-		this.criptoPassword=user.getCriptoPassword();
-		this.attivo=user.getAttivo();
 	}
 
 	public String getEmail() {
@@ -100,14 +65,6 @@ public class Utente implements Serializable {
 
 	public void setAttivo(Boolean attivo) {
 		this.attivo = attivo;
-	}
-
-	public List<TipoUtente> getGruppi() {
-		return gruppi;
-	}
-
-	public void setGruppi(List<TipoUtente> gruppi) {
-		this.gruppi = gruppi;
 	}
 	
 }
