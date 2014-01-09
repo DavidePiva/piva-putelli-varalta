@@ -99,9 +99,10 @@ public class Utente implements Serializable {
         this.email=user.getEmail();
         this.nome=user.getNome();
         this.cognome=user.getCognome();
-    //this.password=DigestUtils.sha256Hex(user.getCriptoPassword());
-      
-        this.password=user.getCriptoPassword();
+     
+   //    	this.password=DigestUtils.sha256Hex(user.getPassword());
+ 
+        this.password=user.getPassword();
         if(user.getAttivo()){
         	this.attivo=(byte)1;
         }else{

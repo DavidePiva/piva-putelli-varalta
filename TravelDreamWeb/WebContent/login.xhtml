@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+<title>TravelDream</title>
+<link href='css/application.css' media='all' rel='stylesheet'
+	type='text/css' />
+</head>
+<body>
+
+
+	<div id="boxintestazione">
+		<div id="boxlogo">
+			<img src="css/v1sinistra.png" />
+		</div>
+		<div id="boxlandmarktop">
+			
+		</div>
+	</div>
+	<!--/intestazione-->
+	<div id="boxlinea1"></div>
+	<div id="boxlinea2"></div>
+	<div id="boxlinea3"></div>
+	<div id="boxlinea4"></div>
+	<div id="boxlinea5"></div>
+	<div id="boxbig">
+		<div id="boxmenu">
+			<div id="boxlandmarkleft">
+				<ul id="boxleft">
+					<li>prima voce</li>
+					<li>seconda voce</li>
+					<li>terza voce</li>
+				</ul>
+			</div>
+			<div id="boxlinkleft">
+				<ul id="boxleft">
+					<li>primo link</li>
+					<li>secondo link</li>
+				</ul>
+			</div>
+		</div>
+		<div id="boxcontenuto">
+			<div>
+				<h:form>
+					<h1>Login</h1>
+					<br></br>
+					<p:panel>
+						<h:panelGrid columns="1" id="regGrid">
+							<h:outputLabel for="email">Email</h:outputLabel>
+							<p:inputText id="email" value="" />
+							<p:message for="email" />
+							<h:outputLabel for="password">Password</h:outputLabel>
+							<p:inputText id="password" value="" feedback="true" match="pwd2" label="Password"/>
+							<p:message for="password"/>
+						</h:panelGrid>
+						  <br></br>
+						  <p:commandButton value="Login" update="regGrid"/>
+					</p:panel>
+				</h:form>
+			</div>
+		</div>
+	</div>
+	<!--/boxbig-->
+</body>
+</html>
