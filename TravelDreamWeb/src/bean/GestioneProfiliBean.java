@@ -22,7 +22,7 @@ public class GestioneProfiliBean {
 			u.setCognome(p.toString());
 			u.setNome(p.toString());
 			u.setAttivo(true);
-			u.setCriptoPassword("password");
+			u.setPassword("password");
 
 			gestioneprofili.salva(u);
 		}
