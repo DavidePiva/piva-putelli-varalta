@@ -15,7 +15,7 @@ public class GestioneProfiliBean {
 
 	public void salva() {
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10; i++) {
 			Integer p=i;
 			UtenteDTO u = new UtenteDTO();
 			u.setEmail(p.toString() + "@gmail.com");
