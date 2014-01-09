@@ -8,10 +8,5 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/davide/Scrivania/commons-codec-1.9/commons-codec-1.9-test-sources.jar"/>
-	<classpathentry kind="lib" path="/home/davide/Scrivania/commons-codec-1.9/commons-codec-1.9-tests.jar"/>
-	<classpathentry kind="lib" path="/home/davide/Scrivania/commons-codec-1.9/commons-codec-1.9-sources.jar"/>
-	<classpathentry kind="lib" path="/home/davide/Scrivania/commons-codec-1.9/commons-codec-1.9-javadoc.jar"/>
-	<classpathentry kind="lib" path="/home/davide/Scrivania/commons-codec-1.9/commons-codec-1.9.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
