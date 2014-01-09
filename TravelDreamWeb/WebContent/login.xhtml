@@ -18,9 +18,7 @@
 		<div id="boxlogo">
 			<img src="css/v1sinistra.png" />
 		</div>
-		<div id="boxlandmarktop">
-			
-		</div>
+		<div id="boxlandmarktop"></div>
 	</div>
 	<!--/intestazione-->
 	<div id="boxlinea1"></div>
@@ -45,8 +43,20 @@
 			</div>
 		</div>
 		<div id="boxcontenuto">
-			<div>
-				<h:form>
+		
+		<form method="post" action="j_security_check">
+			Username: <input type="text" name="j_username" />
+			Password: <input
+				type="password" name="j_password" /> 
+				<input type="submit" value="Login" />
+				<input type="reset" value="Reset" />
+		</form>
+		
+		
+			<!-- <div>
+				
+				<h:form onsubmit="document.getElementById('login').action='j_security_check';"
+			prependId="false">
 					<h1>Login</h1>
 					<br></br>
 					<p:panel>
@@ -59,10 +69,10 @@
 							<p:message for="password"/>
 						</h:panelGrid>
 						  <br></br>
-						  <p:commandButton value="Login" update="regGrid"/>
+						  <p:commandButton value="Login" update="regGrid" ajax="false"/>
 					</p:panel>
 				</h:form>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<!--/boxbig-->

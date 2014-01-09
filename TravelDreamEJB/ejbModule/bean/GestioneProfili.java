@@ -9,6 +9,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import DTO.UtenteDTO;
 
 import java.util.List;
@@ -44,6 +46,7 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		nuovoUtente.setGruppos(gruppi);
 
 		em.persist(nuovoUtente);
+
 	}
 
 	@Override

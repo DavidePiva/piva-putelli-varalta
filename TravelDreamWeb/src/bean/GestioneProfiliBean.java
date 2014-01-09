@@ -15,12 +15,12 @@ public class GestioneProfiliBean {
 
 	public void salva() {
 
-		for (int i = 0; i < 10; i++) {
-			Integer p=i;
+		 {
+	
 			UtenteDTO u = new UtenteDTO();
-			u.setEmail(p.toString() + "@gmail.com");
-			u.setCognome(p.toString());
-			u.setNome(p.toString());
+			u.setEmail("ddd@gmail.com");
+			u.setCognome("b");
+			u.setNome("a");
 			u.setAttivo(true);
 			u.setPassword("password");
 

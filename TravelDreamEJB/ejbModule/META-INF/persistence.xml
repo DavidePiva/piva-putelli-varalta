@@ -22,5 +22,11 @@
 		<class>model.Viaggio_Volo</class>
 		<class>model.Viaggio_VoloPK</class>
 		<class>model.Volo</class>
+		<properties>
+
+			<property name="eclipselink.logging.level" value="FINE"/>
+			
+		</properties>
+	
 	</persistence-unit>
 </persistence>
