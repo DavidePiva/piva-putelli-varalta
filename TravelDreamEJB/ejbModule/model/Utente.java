@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
+import business.SHA256;
 import DTO.UtenteDTO;
 
 import java.util.List;
@@ -99,10 +98,10 @@ public class Utente implements Serializable {
         this.email=user.getEmail();
         this.nome=user.getNome();
         this.cognome=user.getCognome();
-     
-      //	this.password=DigestUtils.sha256Hex(user.getPassword());
-
-        this.password=user.getPassword();
+ 
+     	String criptoPassword=SHA256.sha256(user.getPassword());
+     	this.password=criptoPassword;
+    //    this.password=user.getPassword();
         if(user.getAttivo()){
         	this.attivo=(byte)1;
         }else{
