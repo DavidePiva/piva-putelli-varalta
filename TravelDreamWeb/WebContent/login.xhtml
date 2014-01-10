@@ -14,8 +14,10 @@
 
 
 	<div id="boxintestazione">
-		<div id="boxlogo">
-			<img src="../css/v1sinistra.png" />
+		<h:link outcome="/index" ><img src="../css/v1sinistra.png" /></h:link>
+		<div id="boxlandmarktop">
+			<h:link outcome="registrati" value="REGISTRATI"
+				id="textlandmark_right" />
 		</div>
 		<div id="boxlandmarktop"></div>
 	</div>
@@ -45,8 +47,8 @@
 			<h1>Login</h1>
 
 			<form method="post" action="j_security_check">
-				Username: <input type="text" name="j_username" /> Password: <input
-					type="password" name="j_password" /> <input type="submit"
+				Username: <input type="text" name="j_username" /><br /> Password: <input
+					type="password" name="j_password" /> <br /> <input type="submit"
 					value="Login" /> <input type="reset" value="Reset" />
 			</form>
 

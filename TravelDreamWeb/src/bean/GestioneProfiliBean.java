@@ -1,5 +1,7 @@
 package bean;
 
+
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -13,19 +15,26 @@ public class GestioneProfiliBean {
 	@EJB
 	private GestioneProfiliLocal gestioneprofili;
 
-	public void salva() {
-
-		 {
+	private UtenteDTO utente;
 	
-			UtenteDTO u = new UtenteDTO();
-			u.setEmail("ddd@gmail.com");
-			u.setCognome("b");
-			u.setNome("a");
-			u.setAttivo(true);
-			u.setPassword("password");
+	public GestioneProfiliBean() {
+		this.utente=new UtenteDTO();
+	}
+	
+	
+	public UtenteDTO getUtente() {
+		return utente;
+	}
 
-			gestioneprofili.salva(u);
-		}
+
+	public void setUtente(UtenteDTO utente) {
+		this.utente = utente;	
+	}
+
+
+	public String salva() {
+	 		gestioneprofili.salva(utente);
+			return "/index?faces-redirect=true";
 	}
 
 }
