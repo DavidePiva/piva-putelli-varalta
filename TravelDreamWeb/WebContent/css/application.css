@@ -24,7 +24,7 @@ div#boxlandmarktop{
     margin-top: -26px;
     text-align: center;
 }
-a#textlandmark_right{
+a#textlandmark_right, a#textlandmark_right2{
     color:#444444;
     background-image: linear-gradient(to top, #eeeeee, white);/*
     border-right: 3px solid #b46f34;
@@ -38,7 +38,7 @@ a#textlandmark_right{
     font-weight: normal;
     text-decoration: none;
  }
-a#textlandmark_left{
+a#textlandmark_left, a#textlandmark_left2{
     color:#444444;
     background-image: linear-gradient(to top, #eeeeee, white);/*
     border-right: 3px solid #b46f34;
