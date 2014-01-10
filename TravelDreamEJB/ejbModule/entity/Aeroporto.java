@@ -1,5 +1,6 @@
 package entity;
 
+
 public class Aeroporto {
 	
 	int id;

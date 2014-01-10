@@ -47,9 +47,9 @@ public class GestioneProfiliBean {
 	}
 	
 	public String nomeUtente(){
-		//return gestioneprofili.getUtenteDTO().getNome();
-		//System.out.println(gestioneprofili.getUtenteDTO().getNome());
-		return "BOE!";
+		String s =  gestioneprofili.getUtenteDTO().getNome();
+		return s;
+		//return "BOE!";
 	}
 
 }
