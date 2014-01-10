@@ -9,15 +9,12 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 import DTO.UtenteDTO;
 
 import java.util.List;
 
 import model.Gruppo;
 import model.Utente;
-import enums.TipoUtente;
 
 /**
  * Session Bean implementation class GestioneProfili
@@ -64,8 +61,8 @@ public class GestioneProfili implements GestioneProfiliLocal {
 
 	@Override
 	public UtenteDTO getUtenteDTO() {
-		// TODO Auto-generated method stub
-		return null;
+		UtenteDTO utenteDTO = convertiInDTO(getUtenteAttuale());
+		return utenteDTO;
 	}
 
 	public Utente find(String email) {
@@ -80,7 +77,24 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		return context.getCallerPrincipal().getName();
 	}
 
+	private UtenteDTO convertiInDTO(Utente u) {
+		UtenteDTO uDTO = new UtenteDTO();
+		uDTO.setEmail(u.getEmail());
+		uDTO.setNome(u.getNome());
+		uDTO.setCognome(u.getCognome());
+		uDTO.setAttivo(u.getAttivo()!=0); //Conversione alla bruttodio, e infatti ci sono problemi...
+		return uDTO;
+	}
+
 	public void remove(Utente u) {
 		em.remove(u);
+	}
+
+	@Override
+	public boolean loggato() {
+		if (getUtenteAttualeEmail() != "ANONYMOUS")
+			return true;
+		return false;
+
 	}
 }
