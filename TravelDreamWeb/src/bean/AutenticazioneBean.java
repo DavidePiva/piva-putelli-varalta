@@ -3,8 +3,9 @@ package bean;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
-@ManagedBean
+@ManagedBean(name="autenticazione")
 @RequestScoped
 public class AutenticazioneBean {
 
@@ -25,6 +26,12 @@ public class AutenticazioneBean {
 
 	public String getImpiegatoContent() {
 		return aut.getImpiegatoContent();
+	}
+
+	public String logout() {
+		FacesContext.getCurrentInstance().getExternalContext()
+				.invalidateSession();
+		return "/index?faces-redirect=true";
 	}
 
 }
