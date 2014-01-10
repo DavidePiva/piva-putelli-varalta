@@ -36,5 +36,19 @@ public class GestioneProfiliBean {
 	 		gestioneprofili.salva(utente);
 			return "/index?faces-redirect=true";
 	}
+	
+	public boolean loggato(){
+		return gestioneprofili.loggato();
+	}
+	
+	public boolean nonLoggato(){
+		return !loggato();
+	}
+	
+	public String nomeUtente(){
+		//return gestioneprofili.getUtenteDTO().getNome();
+		//System.out.println(gestioneprofili.getUtenteDTO().getNome());
+		return "BOE!";
+	}
 
 }
