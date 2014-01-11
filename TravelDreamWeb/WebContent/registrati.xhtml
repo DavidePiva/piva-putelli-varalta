@@ -52,9 +52,11 @@
 						
 								<h:outputLabel for="nome">Nome</h:outputLabel>
 							<p:inputText id="nome" value="#{gp.utente.nome}" />
-					
+							<p:message for="nome"  />			
+							
 							<h:outputLabel for="cognome">Cognome</h:outputLabel>
 							<p:inputText id="cognome" value="#{gp.utente.cognome}" />
+							<p:message for="cognome" />
 						
 							<h:outputLabel for="email">Email</h:outputLabel>
 							<p:inputText id="email" value="#{gp.utente.email}" />
