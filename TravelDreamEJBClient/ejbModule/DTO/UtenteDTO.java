@@ -1,9 +1,21 @@
 package DTO;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class UtenteDTO {
-        String email;
-        String nome;
+	
+		
+		@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+            message="Email non valida")
+		@NotEmpty(message="Email obbligatoria")
+		String email;
+		@NotEmpty(message="Nome obbligatorio")
+		String nome;
+		@NotEmpty(message="Cognome obbligatorio")
         String cognome;
+		@NotEmpty(message="Inserisci una password")
         String password;
         Boolean attivo;
        
