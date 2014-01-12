@@ -1,5 +1,6 @@
 package bean;
 //ManageBean statico
+
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -24,6 +25,14 @@ public class DatiStaticiBean {
 		aero = datistatici.getAeroportoDTO();
 		return aero.getNome();
 	}
+	
+	private List<String> citta;
+	
+	public List<String> getCitta(){
+		citta= datistatici.getDestinazioni();
+		return citta;
+	}
+	
 	
 	public String citta(int i){
 		List<String> c = datistatici.getDestinazioni();
