@@ -86,7 +86,16 @@ function menuFunc(menuId)
 			<br></br>
 			<h:outputText id = "city3" value="#{ds.citta(3)}"></h:outputText>
 			<br></br>
-			</div>
+
+			<ul>
+				<ui:repeat value="#{ds.citta}" var="c">
+					<li><h:link value="#{citta}" outcome="c">
+					  	<f:param name="c" value="#{c.id}" />
+						</h:link></li>
+				</ui:repeat>
+			</ul>
+			
+		</div>
 		</div>
 	<!--/boxbig-->
 </body>
