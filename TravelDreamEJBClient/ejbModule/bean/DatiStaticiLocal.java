@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import DTO.*;
@@ -8,4 +10,5 @@ import DTO.*;
 public interface DatiStaticiLocal {
 	public String esempio();
 	public AeroportoDTO getAeroportoDTO();
+	public List<String> getDestinazioni();
 }

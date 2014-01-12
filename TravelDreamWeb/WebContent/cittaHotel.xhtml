@@ -67,7 +67,7 @@ function menuFunc(menuId)
 			<div id="boxHotel">
 			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="cittaHotel" value = "Città"></h:link></li>
+					<li>Tutte le città</li>
 					<li><h:link outcome="hotelPerPrezzo" value = "Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
@@ -79,17 +79,15 @@ function menuFunc(menuId)
 			</div>
 		</div>
 		<div id="boxcontenuto">
-			<h1>Benvenuti</h1>
-			<div>
-				<h:form>
-					<h:inputText id="x" value="#{ds.esempio()}" readonly="true" />
-					<h:commandButton action="#{gp.salva()}" value="SALVAMI" />
-					<h:inputText id="y" value="#{gp.loggato()}" readonly="true" />
-					<h:outputText id="z" value="#{ds.nomeAeroporto()}"></h:outputText>
-				</h:form>
+			<h1>Tutte le città</h1>
+			<h:outputText id = "city1" value="#{ds.citta(1)}"></h:outputText>
+			<br></br>
+			<h:outputText id = "city2" value="#{ds.citta(2)}"></h:outputText>
+			<br></br>
+			<h:outputText id = "city3" value="#{ds.citta(3)}"></h:outputText>
+			<br></br>
 			</div>
 		</div>
-	</div>
 	<!--/boxbig-->
 </body>
 </html>
