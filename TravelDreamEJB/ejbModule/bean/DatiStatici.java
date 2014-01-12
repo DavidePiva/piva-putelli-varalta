@@ -1,10 +1,17 @@
 package bean;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import model.Aeroporto;
 import DTO.AeroportoDTO;
@@ -49,6 +56,14 @@ public class DatiStatici implements DatiStaticiLocal {
 
 	public Aeroporto getAeroporto(int id){
 		Aeroporto a = em.find(Aeroporto.class,id);
+		return a;
+	}
+
+	@Override
+	public List<String> getDestinazioni() {
+		Query q = em.createNativeQuery("SELECT DISTINCT citta FROM Aeroporto ORDER BY citta ASC");
+		List a = new ArrayList<String>();
+		a = q.getResultList();
 		return a;
 	}
 

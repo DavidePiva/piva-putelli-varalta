@@ -1,5 +1,7 @@
 package bean;
 //ManageBean statico
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -21,6 +23,11 @@ public class DatiStaticiBean {
 	public String nomeAeroporto(){
 		aero = datistatici.getAeroportoDTO();
 		return aero.getNome();
+	}
+	
+	public String citta(int i){
+		List<String> c = datistatici.getDestinazioni();
+		return c.get(i);
 	}
 	
 }
