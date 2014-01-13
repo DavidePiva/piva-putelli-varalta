@@ -29,6 +29,10 @@ public class Hotel implements Serializable {
 	private byte selezionabile;
 
 	private String telefono;
+	
+	private String	foto1;
+	private String	foto2;
+	private String	foto3;
 
 	//bi-directional many-to-one association to Pernottamento
 	@OneToMany(mappedBy="hotelBean")
@@ -140,5 +144,31 @@ public class Hotel implements Serializable {
 
 		return tipoCamereHotel;
 	}
+
+	public String getFoto1() {
+		return foto1;
+	}
+
+	public void setFoto1(String foto1) {
+		this.foto1 = foto1;
+	}
+
+	public String getFoto2() {
+		return foto2;
+	}
+
+	public void setFoto2(String foto2) {
+		this.foto2 = foto2;
+	}
+
+	public String getFoto3() {
+		return foto3;
+	}
+
+	public void setFoto3(String foto3) {
+		this.foto3 = foto3;
+	}
+	
+	
 
 }
