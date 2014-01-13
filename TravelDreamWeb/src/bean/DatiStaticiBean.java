@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import DTO.AeroportoDTO;
@@ -13,6 +14,9 @@ import DTO.HotelDTO;
 @ManagedBean(name="ds")
 @RequestScoped
 public class DatiStaticiBean {
+	
+	@ManagedProperty("#{param.c}")
+	String s;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
@@ -42,12 +46,12 @@ public class DatiStaticiBean {
 		return c.get(i);
 	}
 	
-	public List<HotelDTO> hotelPerCitta() {
-		return datistatici.hotelPerCitta();
+	public List<HotelDTO> hotelPerCitta(String s) {
+		return datistatici.hotelPerCitta(s);
 	}
 	
 	public String nome(){
-		List<HotelDTO> h = hotelPerCitta();
+		List<HotelDTO> h = hotelPerCitta(s);
 		HotelDTO h2 = h.get(1);
 		return h2.getNome();
 	}
