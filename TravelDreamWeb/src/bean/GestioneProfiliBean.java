@@ -33,7 +33,7 @@ public class GestioneProfiliBean {
 
 
 	public String salva() {
-			this.utente.setAttivo(true);
+			this.utente.setAttivo((byte) 1);
 			gestioneprofili.salva(utente);
 			return "/index?faces-redirect=true";
 	}

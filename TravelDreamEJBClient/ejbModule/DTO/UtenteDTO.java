@@ -17,7 +17,7 @@ public class UtenteDTO {
         String cognome;
 		@NotEmpty(message="Inserisci una password")
         String password;
-        Boolean attivo;
+        byte attivo;
        
         public String getEmail() {
                 return email;
@@ -51,11 +51,11 @@ public class UtenteDTO {
                 this.password = password;
         }
 
-        public Boolean getAttivo() {
+        public byte getAttivo() {
                 return attivo;
         }
 
-        public void setAttivo(Boolean attivo) {
+        public void setAttivo(byte attivo) {
                 this.attivo = attivo;
         }
 }

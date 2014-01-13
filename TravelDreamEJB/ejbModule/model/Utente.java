@@ -101,12 +101,12 @@ public class Utente implements Serializable {
  
      	String criptoPassword=SHA256.sha256(user.getPassword());
      	this.password=criptoPassword;
-    //    this.password=user.getPassword();
-        if(user.getAttivo()){
+     	this.attivo=user.getAttivo();
+    /*    if(user.getAttivo()){
         	this.attivo=(byte)1;
         }else{
         	this.attivo=(byte)0;
-        }
+        }*/
     }
 	
 	

@@ -82,7 +82,7 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		uDTO.setEmail(u.getEmail());
 		uDTO.setNome(u.getNome());
 		uDTO.setCognome(u.getCognome());
-		uDTO.setAttivo(true); //Conversione alla bruttodio, e infatti ci sono problemi...
+		uDTO.setAttivo(u.getAttivo()); //Conversione alla bruttodio, e infatti ci sono problemi...
 		return uDTO;
 	}
 
