@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import DTO.AeroportoDTO;
+import DTO.HotelDTO;
 
 @ManagedBean(name="ds")
 @RequestScoped
@@ -36,10 +37,20 @@ public class DatiStaticiBean {
 		
 	}
 	
-	
 	public String citta(int i){
 		List<String> c = datistatici.getDestinazioni();
 		return c.get(i);
 	}
+	
+	public List<HotelDTO> hotelPerCitta() {
+		return datistatici.hotelPerCitta();
+	}
+	
+	public String nome(){
+		List<HotelDTO> h = hotelPerCitta();
+		HotelDTO h2 = h.get(1);
+		return h2.getNome();
+	}
+	
 	
 }
