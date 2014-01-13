@@ -1,15 +1,24 @@
 package DTO;
 
-import java.util.GregorianCalendar;
+import java.math.BigDecimal;
+import java.sql.Time;
+import java.util.Date;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+
 
 public class AttivitaDTO {
 	
 	int id;
-	GregorianCalendar inizio;
+	@Temporal(TemporalType.DATE)
+	private Date data;
+	private Time ora;
 	String titolo;
 	String descrizione;
 	String citta;
-	float prezzo;
+	BigDecimal prezzo;
 	String foto1;
 	String foto2;
 	String foto3;
@@ -21,12 +30,7 @@ public class AttivitaDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public GregorianCalendar getInizio() {
-		return inizio;
-	}
-	public void setInizio(GregorianCalendar inizio) {
-		this.inizio = inizio;
-	}
+
 	public String getTitolo() {
 		return titolo;
 	}
@@ -45,10 +49,10 @@ public class AttivitaDTO {
 	public void setCitta(String citta) {
 		this.citta = citta;
 	}
-	public float getPrezzo() {
+	public BigDecimal getPrezzo() {
 		return prezzo;
 	}
-	public void setPrezzo(float prezzo) {
+	public void setPrezzo(BigDecimal prezzo) {
 		this.prezzo = prezzo;
 	}
 	public String getFoto1() {
@@ -74,6 +78,18 @@ public class AttivitaDTO {
 	}
 	public void setSelezionabile(boolean selezionabile) {
 		this.selezionabile = selezionabile;
+	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
+	public Time getOra() {
+		return ora;
+	}
+	public void setOra(Time ora) {
+		this.ora = ora;
 	}
 	
 	
