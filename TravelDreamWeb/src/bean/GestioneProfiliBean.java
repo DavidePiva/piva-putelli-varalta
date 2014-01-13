@@ -33,7 +33,7 @@ public class GestioneProfiliBean {
 
 
 	public String salva() {
-			this.utente.setAttivo((byte) 1);
+			this.utente.setAttivo(true);
 			gestioneprofili.salva(utente);
 			return "/index?faces-redirect=true";
 	}
@@ -46,9 +46,8 @@ public class GestioneProfiliBean {
 		return !loggato();
 	}
 	
-	public String nomeUtente(){
-		String s =  gestioneprofili.getUtenteDTO().getNome();
-		return s;
+	public String getNomeUtente(){
+		return gestioneprofili.getUtenteDTO().getNome();
 		//return "BOE!";
 	}
 
