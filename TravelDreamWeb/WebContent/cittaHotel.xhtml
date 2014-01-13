@@ -89,8 +89,8 @@ function menuFunc(menuId)
 
 			<ul>
 				<ui:repeat value="#{ds.citta}" var="c">
-					<li><h:link value="#{citta}" outcome="c">
-					  	<f:param name="c" value="#{c.id}" />  <!--/qui non so che fareeeeeeeeee-->
+					<li><h:link value="#{c}" outcome="c">
+					  	<f:param name="c" value="#{c}" />  
 						</h:link></li>
 				</ui:repeat>
 			</ul>
