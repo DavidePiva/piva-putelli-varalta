@@ -23,7 +23,7 @@ public class Utente implements Serializable {
 	@Id
 	private String email;
 
-	private byte attivo;
+	private boolean attivo;
 
 	private String cognome;
 
@@ -102,7 +102,7 @@ public class Utente implements Serializable {
      	String criptoPassword=SHA256.sha256(user.getPassword());
      	this.password=criptoPassword;
      	this.attivo=user.getAttivo();
-    /*    if(user.getAttivo()){
+     /*   if(user.getAttivo()){
         	this.attivo=(byte)1;
         }else{
         	this.attivo=(byte)0;
@@ -118,11 +118,11 @@ public class Utente implements Serializable {
 		this.email = email;
 	}
 
-	public byte getAttivo() {
+	public boolean getAttivo() {
 		return this.attivo;
 	}
 
-	public void setAttivo(byte attivo) {
+	public void setAttivo(boolean attivo) {
 		this.attivo = attivo;
 	}
 

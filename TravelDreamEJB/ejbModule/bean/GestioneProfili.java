@@ -28,19 +28,21 @@ public class GestioneProfili implements GestioneProfiliLocal {
 	@Resource
 	private EJBContext context;
 
-	public GestioneProfili() {
+	/*public GestioneProfili() {
 		// TODO Auto-generated constructor stub
-	}
+	}*/
 
 	@Override
 	public void salva(UtenteDTO utente) {
 		Utente nuovoUtente = new Utente(utente);
+		nuovoUtente.setAttivo(utente.getAttivo());
 
 		List<Gruppo> gruppi = new ArrayList<Gruppo>();
 		Gruppo g = new Gruppo();
 		g.setIdGruppo("USER");
 		gruppi.add(g);
 		nuovoUtente.setGruppos(gruppi);
+		//nuovoUtente.setAttivo(true);
 
 		em.persist(nuovoUtente);
 
@@ -60,6 +62,7 @@ public class GestioneProfili implements GestioneProfiliLocal {
 	}
 
 	@Override
+	@RolesAllowed({"USER"})
 	public UtenteDTO getUtenteDTO() {
 		UtenteDTO utenteDTO = convertiInDTO(getUtenteAttuale());
 		return utenteDTO;
@@ -83,6 +86,12 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		uDTO.setNome(u.getNome());
 		uDTO.setCognome(u.getCognome());
 		uDTO.setAttivo(u.getAttivo()); //Conversione alla bruttodio, e infatti ci sono problemi...
+    /*    if(u.getAttivo()==1){
+        	uDTO.setAttivo(true);
+        }else{
+        	uDTO.setAttivo(false);
+        }*/
+		
 		return uDTO;
 	}
 
