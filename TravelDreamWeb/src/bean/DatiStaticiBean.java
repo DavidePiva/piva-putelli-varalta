@@ -30,7 +30,10 @@ public class DatiStaticiBean {
 	
 	public List<String> getCitta(){
 		citta= datistatici.getDestinazioni();
+		for(String s : citta)
+			System.out.println(s);
 		return citta;
+		
 	}
 	
 	
