@@ -15,11 +15,11 @@ public class Pernottamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idPernottamento;
-
-	private byte selezionabile;
-
-	private String tipo;
+		private int idPernottamento;
+	
+		private byte selezionabile;
+	
+		private String tipo;
 
 	//bi-directional many-to-many association to Utente
 	@ManyToMany(mappedBy="pernottamentos")
