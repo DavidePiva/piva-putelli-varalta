@@ -15,11 +15,21 @@ import DTO.HotelDTO;
 @RequestScoped
 public class DatiStaticiBean {
 	
-	@ManagedProperty("#{param.c}")
-	String s;
+	/*@ManagedProperty("#{param.c}")*/
+	private String s;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
+	
+	
+	public String getS() {
+		return s;
+	}
+
+	public void setS(String s) {
+		this.s = s;
+	}
+
 	private AeroportoDTO aero;
 	
 	public String esempio(){

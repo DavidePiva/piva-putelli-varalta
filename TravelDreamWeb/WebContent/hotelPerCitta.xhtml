@@ -80,7 +80,15 @@
 		</div>
 		<div id="boxcontenuto">
 				<h1>Ci sono</h1>
-				<h:outputLabel value = "#{ds.nome()}"></h:outputLabel>
+				
+				<!-- Codice varaltiano -->
+				    <f:metadata>
+        				<f:viewParam name="c" value="#{ds.s}" />
+   					      
+  					</f:metadata>
+				<!-- Fine codice varaltiano -->
+				
+				<h:outputLabel value = "#{ds.s}"></h:outputLabel>
 		</div>
 	</div>
 	<!--/boxbig-->
