@@ -25,7 +25,7 @@ public class Autenticazione implements AutenticazioneLocal {
 	}
 	
 	@Override
-	@RolesAllowed({"USER"})
+	@RolesAllowed({"USER", "ADMIN", "IMPIEGATO"})
 	public String getUserContent() {
 
 		return "hello zio";

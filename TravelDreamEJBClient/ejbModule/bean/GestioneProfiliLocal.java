@@ -14,6 +14,5 @@ public interface GestioneProfiliLocal {
         public void eliminaUtente();
         public boolean loggato();
         public UtenteDTO getUtenteDTO();
-
-       
+        public boolean isAdmin();
 }
