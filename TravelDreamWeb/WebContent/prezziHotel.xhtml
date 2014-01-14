@@ -55,10 +55,10 @@
 			<div id="boxPacchetti">
 				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="cittaPacchetti"
+					<li><h:link outcome="viaggiPerDestinazione"
 							value="Per Destinazione" id="p1"></h:link></li>
-					<li><h:link outcome="prezziPacchetti"
-							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:outputLabel
+							value="Per tutte le tasche" id="p2"></h:outputLabel></li>
 					<li><h:link outcome="viaggiPerTipo"
 							value="Quello che fa per te" id="p3"></h:link></li>
 				</ul>
@@ -67,8 +67,7 @@
 				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
 					<li><h:link outcome="cittaHotel" value = "Città"></h:link></li>
-					<li><h:link outcome="prezziHotel"
-							value="Per tutte le tasche"></h:link></li>
+					<li><h:outputLabel value = "Per tutte le tasche"></h:outputLabel></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
@@ -79,16 +78,15 @@
 			</div>
 		</div>
 		<div id="boxcontenuto">
-				<h1>Ci sono</h1>
-				
-				<!-- Codice varaltiano -->
-				    <f:metadata>
-        				<f:viewParam name="c" value="#{ds.cittaSelezionata}" />
-   					      
-  					</f:metadata>
-				<!-- Fine codice varaltiano -->
-				
-				<h:outputLabel value = "#{ds.nome()}"></h:outputLabel>
+			<h1>Fasce di prezzo</h1>
+			<ul>
+				<ui:repeat value="" var="c">
+					<li><h:link value="#{c}" outcome="pacchettiPerPrezzo">
+							<f:param name="c" value="#{c}" />
+						</h:link></li>
+				</ui:repeat>
+			</ul>
+
 		</div>
 	</div>
 	<!--/boxbig-->
