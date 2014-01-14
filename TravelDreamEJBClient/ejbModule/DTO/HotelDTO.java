@@ -13,7 +13,7 @@ public class HotelDTO {
 
 	private String nome;
 
-	private byte selezionabile;
+	private boolean selezionabile;
 
 	private String telefono;
 	
@@ -50,10 +50,10 @@ public class HotelDTO {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public byte isSelezionabile() {
+	public boolean isSelezionabile() {
 		return selezionabile;
 	}
-	public void setSelezionabile(byte selezionabile) {
+	public void setSelezionabile(boolean selezionabile) {
 		this.selezionabile = selezionabile;
 	}
 	public String getTelefono() {

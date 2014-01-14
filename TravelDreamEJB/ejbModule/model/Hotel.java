@@ -27,7 +27,7 @@ public class Hotel implements Serializable {
 
 	private String nome;
 
-	private byte selezionabile;
+	private boolean selezionabile;
 
 	private String telefono;
 	
@@ -86,11 +86,11 @@ public class Hotel implements Serializable {
 		this.nome = nome;
 	}
 
-	public byte getSelezionabile() {
+	public boolean getSelezionabile() {
 		return this.selezionabile;
 	}
 
-	public void setSelezionabile(byte selezionabile) {
+	public void setSelezionabile(boolean selezionabile) {
 		this.selezionabile = selezionabile;
 	}
 

@@ -71,17 +71,15 @@ public class DatiStatici implements DatiStaticiLocal {
 	}
 	
 	public List<HotelDTO> hotelPerCitta(String s){
-		Query q = em.createNativeQuery("SELECT * FROM Hotel WHERE citta = '"+s+"'");
-		List<HotelDTO> h = new ArrayList<HotelDTO>();
-		List<Hotel> h1 = new ArrayList<Hotel>();
-		h1 = q.getResultList();
-		int i = h1.size();
-		for(int j = 0; j <= h1.size(); j++){
-			Hotel ho = h1.get(j);
-			HotelDTO ho1 = convertiHotelDTO(ho);
-			h.add(ho1);
+		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE citta = '"+s+"'");
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		List<HotelDTO> lista = new ArrayList<HotelDTO>();
+		for(int index = 0; index < i.size(); index++){
+			Hotel h = em.find(Hotel.class, i.get(index));
+			lista.add(convertiHotelDTO(h));
 		}
-		return h;
+		return lista;
 	}
 	
 	public HotelDTO convertiHotelDTO(Hotel h){
