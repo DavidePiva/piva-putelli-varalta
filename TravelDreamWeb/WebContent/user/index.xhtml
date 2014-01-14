@@ -9,6 +9,7 @@
 	<h:outputText value="info utente #{autenticazione.userContent}" />
 	<h:form>
 		<h:commandButton action="#{autenticazione.logout}" value="Logout" />
+		<h:link outcome="/admin/index" value="Sono potentissimo!!!"	id="link_admin" rendered="#{gp.isAdmin()}" />
 	</h:form>
 
 	<h:link outcome="/index">

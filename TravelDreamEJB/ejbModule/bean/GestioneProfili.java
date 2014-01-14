@@ -14,6 +14,7 @@ import DTO.UtenteDTO;
 import java.util.List;
 
 import model.Gruppo;
+import model.Hotel;
 import model.Utente;
 
 /**
@@ -28,9 +29,9 @@ public class GestioneProfili implements GestioneProfiliLocal {
 	@Resource
 	private EJBContext context;
 
-	/*public GestioneProfili() {
-		// TODO Auto-generated constructor stub
-	}*/
+	/*
+	 * public GestioneProfili() { // TODO Auto-generated constructor stub }
+	 */
 
 	@Override
 	public void salva(UtenteDTO utente) {
@@ -42,7 +43,7 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		g.setIdGruppo("USER");
 		gruppi.add(g);
 		nuovoUtente.setGruppos(gruppi);
-		//nuovoUtente.setAttivo(true);
+		// nuovoUtente.setAttivo(true);
 
 		em.persist(nuovoUtente);
 
@@ -62,12 +63,17 @@ public class GestioneProfili implements GestioneProfiliLocal {
 	}
 
 	@Override
-	@RolesAllowed({"USER"})
+	@RolesAllowed({ "USER", "ADMIN", "IMPIEGATO" })
 	public UtenteDTO getUtenteDTO() {
 		UtenteDTO utenteDTO = convertiInDTO(getUtenteAttuale());
 		return utenteDTO;
 	}
 
+	@RolesAllowed({ "ADMIN" })
+	private boolean metodoAdmin() {
+		System.out.println("ROmbadflg ");
+		return true;
+	}
 	public Utente find(String email) {
 		return em.find(Utente.class, email);
 	}
@@ -85,13 +91,13 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		uDTO.setEmail(u.getEmail());
 		uDTO.setNome(u.getNome());
 		uDTO.setCognome(u.getCognome());
-		uDTO.setAttivo(u.getAttivo()); //Conversione alla bruttodio, e infatti ci sono problemi...
-    /*    if(u.getAttivo()==1){
-        	uDTO.setAttivo(true);
-        }else{
-        	uDTO.setAttivo(false);
-        }*/
-		
+		uDTO.setAttivo(u.getAttivo()); // Conversione alla bruttodio, e infatti
+										// ci sono problemi...
+		/*
+		 * if(u.getAttivo()==1){ uDTO.setAttivo(true); }else{
+		 * uDTO.setAttivo(false); }
+		 */
+
 		return uDTO;
 	}
 
@@ -106,4 +112,11 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		return false;
 
 	}
+
+	@Override
+	public boolean isAdmin() {
+		return context.isCallerInRole("ADMIN");
+	}
+
+	
 }

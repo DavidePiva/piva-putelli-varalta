@@ -50,5 +50,9 @@ public class GestioneProfiliBean {
 		return gestioneprofili.getUtenteDTO().getNome();
 		//return "BOE!";
 	}
+	
+	public boolean isAdmin(){
+		return gestioneprofili.isAdmin();
+	}
 
 }
