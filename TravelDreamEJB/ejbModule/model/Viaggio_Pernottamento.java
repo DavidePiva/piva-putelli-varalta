@@ -9,6 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="Viaggio_Pernottamento")
 @NamedQuery(name="Viaggio_Pernottamento.findAll", query="SELECT v FROM Viaggio_Pernottamento v")
 public class Viaggio_Pernottamento implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -16,7 +17,7 @@ public class Viaggio_Pernottamento implements Serializable {
 	@EmbeddedId
 	private Viaggio_PernottamentoPK id;
 
-	private byte regalabile;
+	private boolean regalabile;
 
 	//bi-directional many-to-one association to Pernottamento
 	@ManyToOne
@@ -39,11 +40,11 @@ public class Viaggio_Pernottamento implements Serializable {
 		this.id = id;
 	}
 
-	public byte getRegalabile() {
+	public boolean getRegalabile() {
 		return this.regalabile;
 	}
 
-	public void setRegalabile(byte regalabile) {
+	public void setRegalabile(boolean regalabile) {
 		this.regalabile = regalabile;
 	}
 

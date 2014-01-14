@@ -9,7 +9,8 @@ import java.math.BigDecimal;
  * The persistent class for the TipoCamere_Hotel database table.
  * 
  */
-@Entity
+@Entity		
+@Table(name="TipoCamere_Hotel")
 @NamedQuery(name="TipoCamere_Hotel.findAll", query="SELECT t FROM TipoCamere_Hotel t")
 public class TipoCamere_Hotel implements Serializable {
 	private static final long serialVersionUID = 1L;

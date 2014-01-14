@@ -13,6 +13,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="Attivita")
 @NamedQuery(name="Attivita.findAll", query="SELECT a FROM Attivita a")
 public class Attivita implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -38,7 +39,7 @@ public class Attivita implements Serializable {
 
 	private BigDecimal prezzo;
 
-	private byte selezionabile;
+	private boolean selezionabile;
 
 	private String titolo;
 
@@ -129,11 +130,11 @@ public class Attivita implements Serializable {
 		this.prezzo = prezzo;
 	}
 
-	public byte getSelezionabile() {
+	public boolean getSelezionabile() {
 		return this.selezionabile;
 	}
 
-	public void setSelezionabile(byte selezionabile) {
+	public void setSelezionabile(boolean selezionabile) {
 		this.selezionabile = selezionabile;
 	}
 
