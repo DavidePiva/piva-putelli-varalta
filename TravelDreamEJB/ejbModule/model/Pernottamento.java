@@ -10,6 +10,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="Pernottamento")
 @NamedQuery(name="Pernottamento.findAll", query="SELECT p FROM Pernottamento p")
 public class Pernottamento implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -17,7 +18,7 @@ public class Pernottamento implements Serializable {
 	@Id
 		private int idPernottamento;
 	
-		private byte selezionabile;
+		private boolean selezionabile;
 	
 		private String tipo;
 
@@ -53,11 +54,11 @@ public class Pernottamento implements Serializable {
 		this.idPernottamento = idPernottamento;
 	}
 
-	public byte getSelezionabile() {
+	public boolean getSelezionabile() {
 		return this.selezionabile;
 	}
 
-	public void setSelezionabile(byte selezionabile) {
+	public void setSelezionabile(boolean selezionabile) {
 		this.selezionabile = selezionabile;
 	}
 
