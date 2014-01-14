@@ -2,7 +2,7 @@ package entity;
 
 
 public class Aeroporto {
-	
+	//
 	int id;
 	String nome;
 	String citta;
