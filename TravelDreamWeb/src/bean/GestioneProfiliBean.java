@@ -54,5 +54,9 @@ public class GestioneProfiliBean {
 	public boolean isAdmin(){
 		return gestioneprofili.isAdmin();
 	}
+	
+	public boolean isImpiegato(){
+		return gestioneprofili.isImpiegato();
+	}
 
 }

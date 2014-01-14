@@ -15,4 +15,5 @@ public interface GestioneProfiliLocal {
         public boolean loggato();
         public UtenteDTO getUtenteDTO();
         public boolean isAdmin();
+        public boolean isImpiegato();
 }
