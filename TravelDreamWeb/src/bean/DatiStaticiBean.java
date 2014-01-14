@@ -62,7 +62,7 @@ public class DatiStaticiBean {
 	
 	public String nome(){
 		List<HotelDTO> h = hotelPerCitta(s);
-		HotelDTO h2 = h.get(1);
+		HotelDTO h2 = h.get(0);
 		return h2.getNome();
 	}
 	
