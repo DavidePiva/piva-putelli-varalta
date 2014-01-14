@@ -15,19 +15,18 @@ import DTO.HotelDTO;
 @RequestScoped
 public class DatiStaticiBean {
 	
-	/*@ManagedProperty("#{param.c}")*/
-	private String s;
+	private String cittaSelezionata;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
 	
 	
-	public String getS() {
-		return s;
+	public String getCittaSelezionata() {
+		return cittaSelezionata;
 	}
 
-	public void setS(String s) {
-		this.s = s;
+	public void setCittaSelezionata(String cittaSelezionata) {
+		this.cittaSelezionata = cittaSelezionata;
 	}
 
 	private AeroportoDTO aero;
@@ -61,7 +60,7 @@ public class DatiStaticiBean {
 	}
 	
 	public String nome(){
-		List<HotelDTO> h = hotelPerCitta(s);
+		List<HotelDTO> h = hotelPerCitta(cittaSelezionata);
 		HotelDTO h2 = h.get(0);
 		return h2.getNome();
 	}

@@ -16,6 +16,8 @@ import javax.persistence.Query;
 
 import model.Aeroporto;
 import model.Hotel;
+import model.Pernottamento;
+import model.TipoCamere_Hotel;
 import DTO.AeroportoDTO;
 import DTO.HotelDTO;
 
@@ -89,6 +91,10 @@ public class DatiStatici implements DatiStaticiLocal {
 		String descrizione = h.getDescrizione();
 		String telefono = h.getTelefono();
 		String indirizzo = h.getIndirizzo();
+		boolean selezionabile = h.getSelezionabile();
+		String foto1 = h.getFoto1();
+		String foto2 = h.getFoto2();
+		String foto3 = h.getFoto3();
 		HotelDTO h2 = new HotelDTO();
 		h2.setIdHotel(id);
 		h2.setNome(nome);
@@ -96,6 +102,10 @@ public class DatiStatici implements DatiStaticiLocal {
 		h2.setIndirizzo(indirizzo);
 		h2.setTelefono(telefono);
 		h2.setDescrizione(descrizione);
+		h2.setSelezionabile(selezionabile);
+		h2.setFoto1(foto1);
+		h2.setFoto2(foto2);
+		h2.setFoto3(foto3);
 		return h2;
 	}
 
