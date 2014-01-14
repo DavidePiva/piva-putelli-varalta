@@ -11,6 +11,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="Viaggio")
 @NamedQuery(name="Viaggio.findAll", query="SELECT v FROM Viaggio v")
 public class Viaggio implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +23,7 @@ public class Viaggio implements Serializable {
 
 	private int numeroPersone;
 
-	private byte pagato;
+	private boolean pagato;
 
 	private BigDecimal prezzo;
 
@@ -94,11 +95,11 @@ public class Viaggio implements Serializable {
 		this.numeroPersone = numeroPersone;
 	}
 
-	public byte getPagato() {
+	public boolean getPagato() {
 		return this.pagato;
 	}
 
-	public void setPagato(byte pagato) {
+	public void setPagato(boolean pagato) {
 		this.pagato = pagato;
 	}
 
