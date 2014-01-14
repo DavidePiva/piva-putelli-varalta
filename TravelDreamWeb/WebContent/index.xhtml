@@ -36,17 +36,24 @@ function menuFunc(menuId)
 				<img src="css/v1sinistra.png" />
 			</h:link>
 		</div>
-		<div id="boxlandmarktop">
-			<h:link outcome="/user/index" value="LOGIN" id="textlandmark_left"
-				rendered="#{gp.nonLoggato()}" />
-			<h:link outcome="registrati" value="REGISTRATI"
-				id="textlandmark_right" rendered="#{gp.nonLoggato()}" />
-				
-			<h:link outcome="registrati" value="LOGOUT"
-				id="textlandmark_left2" rendered="#{gp.loggato()}" />
-			<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}" id="textlandmark_right2"
-				rendered="#{gp.loggato()}" />
-		</div>
+		<h:form id="boxlandmarktop">
+			<div id="boxlandmarktop">
+				<!-- <a id="textlandmark_left" name="textlandmark_left" href="/TravelDreamWeb/user/index.jsf">LOGIN</a><a id="textlandmark_right" name="textlandmark_right" href="/TravelDreamWeb/registrati.jsf">REGISTRATI</a>-->
+
+				<h:link outcome="/user/index" value="LOGIN" id="textlandmark_left"
+					rendered="#{gp.nonLoggato()}" />
+				<h:link outcome="registrati" value="REGISTRATI"
+					id="textlandmark_right" rendered="#{gp.nonLoggato()}" />
+
+				<h:commandLink action="#{autenticazione.logout}" value="LOGOUT"
+					id="textlandmark_left2" rendered="#{gp.loggato()}" />
+
+				<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}"
+					id="textlandmark_right2" rendered="#{gp.loggato()}" />
+
+
+			</div>
+		</h:form>
 	</div>
 	<!--/intestazione-->
 	<div id="boxlinea1"></div>
