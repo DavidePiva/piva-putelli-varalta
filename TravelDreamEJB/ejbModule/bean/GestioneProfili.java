@@ -118,5 +118,10 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		return context.isCallerInRole("ADMIN");
 	}
 
+	@Override
+	public boolean isImpiegato() {
+		return context.isCallerInRole("IMPIEGATO");
+	}
+
 	
 }
