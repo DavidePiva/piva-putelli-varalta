@@ -11,6 +11,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="Pacchetto")
 @NamedQuery(name="Pacchetto.findAll", query="SELECT p FROM Pacchetto p")
 public class Pacchetto implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -37,7 +38,7 @@ public class Pacchetto implements Serializable {
 
 	private BigDecimal prezzo;
 
-	private byte selezionabile;
+	private boolean selezionabile;
 
 	private String target;
 
@@ -160,11 +161,11 @@ public class Pacchetto implements Serializable {
 		this.prezzo = prezzo;
 	}
 
-	public byte getSelezionabile() {
+	public boolean getSelezionabile() {
 		return this.selezionabile;
 	}
 
-	public void setSelezionabile(byte selezionabile) {
+	public void setSelezionabile(boolean selezionabile) {
 		this.selezionabile = selezionabile;
 	}
 

@@ -31,7 +31,7 @@ public class PacchettoDTO {
 
 	private BigDecimal prezzo;
 
-	private byte selezionabile;
+	private boolean selezionabile;
 
 	private String target;
 
@@ -143,11 +143,11 @@ public class PacchettoDTO {
 		this.prezzo = prezzo;
 	}
 
-	public byte getSelezionabile() {
+	public boolean getSelezionabile() {
 		return selezionabile;
 	}
 
-	public void setSelezionabile(byte selezionabile) {
+	public void setSelezionabile(boolean selezionabile) {
 		this.selezionabile = selezionabile;
 	}
 

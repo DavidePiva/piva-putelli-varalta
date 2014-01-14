@@ -10,6 +10,7 @@ import javax.faces.bean.RequestScoped;
 
 import DTO.AeroportoDTO;
 import DTO.HotelDTO;
+import DTO.PacchettoDTO;
 
 @ManagedBean(name="ds")
 @RequestScoped
@@ -63,6 +64,16 @@ public class DatiStaticiBean {
 		List<HotelDTO> h = hotelPerCitta(cittaSelezionata);
 		HotelDTO h2 = h.get(0);
 		return h2.getNome();
+	}
+	
+	public String pacchetto(){
+		List<PacchettoDTO> lp = pacchettiPerCitta(cittaSelezionata);
+		PacchettoDTO p = lp.get(0);
+		return p.getTitolo();
+	}
+
+	private List<PacchettoDTO> pacchettiPerCitta(String s) {
+		return datistatici.pacchettiPerCitta(s);
 	}
 	
 	

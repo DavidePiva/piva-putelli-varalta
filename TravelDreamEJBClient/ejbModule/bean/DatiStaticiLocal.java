@@ -12,4 +12,5 @@ public interface DatiStaticiLocal {
 	public AeroportoDTO getAeroportoDTO();
 	public List<String> getDestinazioni();
 	public List<HotelDTO> hotelPerCitta(String s);
+	public List<PacchettoDTO> pacchettiPerCitta(String s);
 }

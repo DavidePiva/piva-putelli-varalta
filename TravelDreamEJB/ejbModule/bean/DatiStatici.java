@@ -1,5 +1,6 @@
 package bean;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -16,10 +17,13 @@ import javax.persistence.Query;
 
 import model.Aeroporto;
 import model.Hotel;
+import model.Pacchetto;
 import model.Pernottamento;
 import model.TipoCamere_Hotel;
+import model.Volo;
 import DTO.AeroportoDTO;
 import DTO.HotelDTO;
+import DTO.PacchettoDTO;
 
 
 /**
@@ -107,6 +111,41 @@ public class DatiStatici implements DatiStaticiLocal {
 		h2.setFoto2(foto2);
 		h2.setFoto3(foto3);
 		return h2;
+	}
+
+	@Override
+	public List<PacchettoDTO> pacchettiPerCitta(String s) {
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE citta = '"+s+"'");
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		List<PacchettoDTO> l1 = new ArrayList<PacchettoDTO>();
+		for(int index = 0; index < i.size(); index++){
+			Pacchetto p = em.find(Pacchetto.class, i.get(index));
+			l1.add(convertiPacchettoDTO(p));
+		}
+		return l1;
+	}
+	
+	public PacchettoDTO convertiPacchettoDTO(Pacchetto p){
+		PacchettoDTO p1 = new PacchettoDTO();
+		int idPacchetto = p.getIdPacchetto();
+		Pernottamento pe = p.getPernottamentoBean();
+		Volo v1 = p.getVolo1();
+		Volo v2 = p.getVolo2();
+		String citta = p.getCitta();
+		String titolo = p.getTitolo();
+		String descrizione = p.getDescrizione();
+		BigDecimal prezzo = p.getPrezzo();
+		boolean selezionabile = p.getSelezionabile();
+		p1.setCitta(citta);
+		p1.setTitolo(titolo);
+		p1.setPrezzo(prezzo);
+		p1.setDescrizione(descrizione);
+		p1.setVoloAndata(v1.getIdVolo());
+		p1.setVoloRitorno(v2.getIdVolo());
+		p1.setIdPernottamento(pe.getIdPernottamento());
+		p1.setSelezionabile(selezionabile);
+		return p1;
 	}
 
 }
