@@ -137,6 +137,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		String descrizione = p.getDescrizione();
 		BigDecimal prezzo = p.getPrezzo();
 		boolean selezionabile = p.getSelezionabile();
+		p1.setIdPacchetto(idPacchetto);
 		p1.setCitta(citta);
 		p1.setTitolo(titolo);
 		p1.setPrezzo(prezzo);
