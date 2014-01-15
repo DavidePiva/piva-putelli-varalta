@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import DTO.AeroportoDTO;
@@ -20,6 +19,7 @@ public class DatiStaticiBean {
 	private String cittaSelezionata;
 	private List<String> citta;
 	private List<String> hotels;
+	private List<Integer> ids;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
@@ -60,6 +60,15 @@ public class DatiStaticiBean {
 			hotels.add(h.get(i).getNome());
 		}
 		return hotels;
+	}
+	
+	public List<Integer> getIds(){
+		ids = new ArrayList<Integer>();
+		List<HotelDTO> h = hotelPerCitta(cittaSelezionata);
+		for(int i = 0; i < h.size(); i++){
+			ids.add(h.get(i).getIdHotel());
+		}
+		return ids;
 	}
 	
 	public String citta(int i){

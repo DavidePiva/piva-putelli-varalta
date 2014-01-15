@@ -63,34 +63,41 @@ function menuFunc(menuId)
 	<div id="boxlinea5"></div>
 	<div id="boxbig">
 		<div id="boxmenu">
-			<div id="boxPacchetti">	
-			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+			<div id="boxPacchetti">
+				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
-					<li><h:link outcome="prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="pacchettiPerTipo" value = "Quello che fa per te" id="p3"></h:link></li>
+					<li><h:link outcome="cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
+					<li><h:link outcome="prezziPacchetti"
+							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="pacchettiPerTipo"
+							value="Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
-			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="cittaHotel" value = "Città"></h:link></li>
-					<li><h:link outcome="prezziHotel" value = "Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="prezziHotel" value="Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
 				<ul id="boxleft3">
-					<li><h:link outcome="chiSiamo" value = "Chi siamo"></h:link></li>
-					<li><h:link outcome="contatti" value = "Contatti"></h:link></li>
+					<li><h:link outcome="chiSiamo" value="Chi siamo"></h:link></li>
+					<li><h:link outcome="contatti" value="Contatti"></h:link></li>
 				</ul>
 			</div>
 		</div>
 		<div id="boxcontenuto">
-			<h1>Pagina di un hotel a cazzo</h1>
 			<div>
+				<h1>Pagina hotel</h1>
+				    <f:metadata>
+        				<f:viewParam name="hotel" value="#{sh.nomeHotel}" />			      
+  					</f:metadata>
+				<h:outputLabel value="#{sh.getDescrizione()}"></h:outputLabel>
+		</div>
 			</div>
 		</div>
-	</div>
 	<!--/boxbig-->
 </body>
 </html>
