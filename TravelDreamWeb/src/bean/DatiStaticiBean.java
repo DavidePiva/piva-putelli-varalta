@@ -20,6 +20,7 @@ public class DatiStaticiBean {
 	private List<String> citta;
 	private List<String> hotels;
 	private List<Integer> ids;
+	private List<String> pacchetti;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
@@ -95,6 +96,15 @@ public class DatiStaticiBean {
 
 	private List<PacchettoDTO> pacchettiPerCitta(String s) {
 		return datistatici.pacchettiPerCitta(s);
+	}
+	
+	public List<String> getPacchetti(){
+		List<PacchettoDTO> l1 = pacchettiPerCitta(cittaSelezionata);
+		pacchetti = new ArrayList<String>();
+		for(int i = 0; i < l1.size(); i++){
+			pacchetti.add(l1.get(i).getTitolo());
+		}
+		return pacchetti;
 	}
 	
 	

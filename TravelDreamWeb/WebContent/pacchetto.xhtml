@@ -10,19 +10,23 @@
 <link href='css/application.css' media='all' rel='stylesheet'
 	type='text/css' />
 <script>
-	function start() {
-		document.getElementById('boxleft1').style.display = "none";
-		document.getElementById('boxleft2').style.display = "none";
-	}
+function start(){
+	document.getElementById('boxleft1').style.display = "none";
+	document.getElementById('boxleft2').style.display = "none";
+}
 
-	function menuFunc(menuId) {
-		if (document.getElementById(menuId).style.display == "none") {
-			start();
-			document.getElementById(menuId).style.display = "block";
-		} else {
-			start();
-		}
+function menuFunc(menuId)
+{
+	if(document.getElementById(menuId).style.display == "none")
+	{
+		start();
+		document.getElementById(menuId).style.display = "block";
 	}
+	else
+	{
+		start();
+	}
+}
 </script>
 </head>
 <body onload="javascript:start()">
@@ -32,17 +36,24 @@
 				<img src="css/v1sinistra.png" />
 			</h:link>
 		</div>
-		<div id="boxlandmarktop">
-			<h:link outcome="/user/index" value="LOGIN" id="textlandmark_left"
-				rendered="#{gp.nonLoggato()}" />
-			<h:link outcome="registrati" value="REGISTRATI"
-				id="textlandmark_right" rendered="#{gp.nonLoggato()}" />
+		<h:form id="boxlandmarktop">
+			<div id="boxlandmarktop">
+				<!-- <a id="textlandmark_left" name="textlandmark_left" href="/TravelDreamWeb/user/index.jsf">LOGIN</a><a id="textlandmark_right" name="textlandmark_right" href="/TravelDreamWeb/registrati.jsf">REGISTRATI</a>-->
 
-			<h:link outcome="registrati" value="LOGOUT" id="textlandmark_left2"
-				rendered="#{gp.loggato()}" />
-			<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}"
-				id="textlandmark_right2" rendered="#{gp.loggato()}" />
-		</div>
+				<h:link outcome="/user/index" value="LOGIN" id="textlandmark_left"
+					rendered="#{gp.nonLoggato()}" />
+				<h:link outcome="registrati" value="REGISTRATI"
+					id="textlandmark_right" rendered="#{gp.nonLoggato()}" />
+
+				<h:commandLink action="#{autenticazione.logout}" value="LOGOUT"
+					id="textlandmark_left2" rendered="#{gp.loggato()}" />
+
+				<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}"
+					id="textlandmark_right2" rendered="#{gp.loggato()}" />
+
+
+			</div>
+		</h:form>
 	</div>
 	<!--/intestazione-->
 	<div id="boxlinea1"></div>
@@ -55,18 +66,19 @@
 			<div id="boxPacchetti">
 				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
+					<li><h:link outcome="cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
 					<li><h:link outcome="prezziPacchetti"
 							value="Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="viaggiPerTipo"
+					<li><h:link outcome="pacchettiPerTipo"
 							value="Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
 				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="cittaHotel" value = "Città"></h:link></li>
-					<li><h:link outcome="prezziHotel" value = "Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="prezziHotel" value="Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
@@ -77,21 +89,15 @@
 			</div>
 		</div>
 		<div id="boxcontenuto">
-				<h1>Ci sono</h1>
-				
-				<!-- Codice varaltiano -->
+			<div>
+				<h1>Pagina pacchetto</h1>
 				    <f:metadata>
-        				<f:viewParam name="c" value="#{ds.cittaSelezionata}" />
-   					      
+        				<f:viewParam name="pacchetto" value="#{sp.nomePacchetto}" />			      
   					</f:metadata>
-				<!-- Fine codice varaltiano -->
-				<ui:repeat value="#{ds.pacchetti}" var="pacchetto">
-				<li><h:link value="#{pacchetto}" outcome="pacchetto">
-						<f:param name="pacchetto" value="#{pacchetto}" />
-					</h:link></li>
-			</ui:repeat>
+				<h:outputLabel value="#{sp.getDescrizione()}"></h:outputLabel>
 		</div>
-	</div>
+			</div>
+		</div>
 	<!--/boxbig-->
 </body>
 </html>
