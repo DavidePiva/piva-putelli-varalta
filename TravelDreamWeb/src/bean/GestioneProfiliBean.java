@@ -2,6 +2,9 @@ package bean;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -16,7 +19,19 @@ public class GestioneProfiliBean {
 	private GestioneProfiliLocal gestioneprofili;
 
 	private UtenteDTO utente;
+	public String utenteSelezionato;
 	
+	
+	public String getUtenteSelezionato() {
+		return utenteSelezionato;
+	}
+
+
+	public void setUtenteSelezionato(String utenteSelezionato) {
+		this.utenteSelezionato = utenteSelezionato;
+	}
+
+
 	public GestioneProfiliBean() {
 		this.utente=new UtenteDTO();
 	}
@@ -57,6 +72,14 @@ public class GestioneProfiliBean {
 	
 	public boolean isImpiegato(){
 		return gestioneprofili.isImpiegato();
+	}
+	
+	public List<UtenteDTO> listaUtenti(){
+		return gestioneprofili.listaUtenti();
+	}
+	
+	public void rendiImpiegato(){
+		gestioneprofili.rendiImpiegato(utenteSelezionato);
 	}
 
 }

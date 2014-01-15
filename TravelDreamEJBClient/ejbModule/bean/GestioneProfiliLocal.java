@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import DTO.UtenteDTO;
@@ -16,4 +18,6 @@ public interface GestioneProfiliLocal {
         public UtenteDTO getUtenteDTO();
         public boolean isAdmin();
         public boolean isImpiegato();
+        public List<UtenteDTO> listaUtenti();
+        public void rendiImpiegato(String email);
 }
