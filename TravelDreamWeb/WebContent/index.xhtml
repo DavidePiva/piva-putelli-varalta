@@ -45,7 +45,7 @@ function menuFunc(menuId)
 				<h:link outcome="registrati" value="REGISTRATI"
 					id="textlandmark_right" rendered="#{gp.nonLoggato()}" />
 
-				<h:commandLink action="#{autenticazione.logout}" value="LOGOUT"
+				<h:commandLink action="#{gp.logout}" value="LOGOUT"
 					id="textlandmark_left2" rendered="#{gp.loggato()}" />
 
 				<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}"

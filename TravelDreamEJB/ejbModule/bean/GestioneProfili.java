@@ -58,11 +58,13 @@ public class GestioneProfili implements GestioneProfiliLocal {
 
 	}
 
-	@RolesAllowed({})
 	@Override
 	public void eliminaUtente() {
 		remove(getUtenteAttuale());
-
+	}
+	
+	public void remove(Utente u) {
+		em.remove(u);
 	}
 
 	@Override
@@ -72,11 +74,6 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		return utenteDTO;
 	}
 
-	@RolesAllowed({ "ADMIN" })
-	private boolean metodoAdmin() {
-		System.out.println("ROmbadflg ");
-		return true;
-	}
 	public Utente find(String email) {
 		return em.find(Utente.class, email);
 	}
@@ -94,19 +91,11 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		uDTO.setEmail(u.getEmail());
 		uDTO.setNome(u.getNome());
 		uDTO.setCognome(u.getCognome());
-		uDTO.setAttivo(u.getAttivo()); // Conversione alla bruttodio, e infatti
-										// ci sono problemi...
-		/*
-		 * if(u.getAttivo()==1){ uDTO.setAttivo(true); }else{
-		 * uDTO.setAttivo(false); }
-		 */
-
+		uDTO.setAttivo(u.getAttivo());
 		return uDTO;
 	}
 
-	public void remove(Utente u) {
-		em.remove(u);
-	}
+
 
 	@Override
 	public boolean loggato() {
