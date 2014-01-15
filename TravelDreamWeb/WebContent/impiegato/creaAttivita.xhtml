@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+<title>TravelDream</title>
+<link href='../css/application.css' media='all' rel='stylesheet'
+	type='text/css' />
+</head>
+<body>
+
+
+	<div id="boxintestazione">
+		<h:link outcome="/index">
+			<img src="css/v1sinistra.png" />
+		</h:link>
+		<div id="boxlandmarktop">
+			<h:link outcome="login" value="LOGIN" id="textlandmark_left" />
+		</div>
+	</div>
+	<!--/intestazione-->
+	<div id="boxlinea1"></div>
+	<div id="boxlinea2"></div>
+	<div id="boxlinea3"></div>
+	<div id="boxlinea4"></div>
+	<div id="boxlinea5"></div>
+	<div id="boxbig">
+		<div id="boxmenu">
+			<div id="boxlandmarkleft">
+				<ul id="boxleft">
+					<li>prima voce</li>
+					<li>seconda voce</li>
+					<li>terza voce</li>
+				</ul>
+			</div>
+			<div id="boxlinkleft">
+				<ul id="boxleft">
+					<li>primo link</li>
+					<li>secondo link</li>
+				</ul>
+			</div>
+		</div>
+		<div id="boxcontenuto">
+			<div>
+				<h:form>
+					<h1>Crea una nuova attività</h1>
+					<br></br>
+
+					<table>
+						<tr><td>
+							<p:panel>
+								<h:panelGrid columns="1" id="regGrid1">
+
+									<h:outputLabel for="titolo">Titolo</h:outputLabel>
+									<p:inputText id="titolo" value="" />
+									<p:message for="titolo" />
+									
+									<h:outputLabel for="descrizione">Descrizione</h:outputLabel>
+									<textarea name="nome testo" cols="22" rows="5">Descrizione</textarea>
+									<h:outputLabel for="descrizione">Descrizione</h:outputLabel>
+									<p:inputText id="descrizione" value="" />
+									<p:message for="descrizione" />
+
+									<h:outputLabel for="citta">Città</h:outputLabel>
+									<p:inputText id="citta" value="" />
+									<p:message for="citta" />
+
+									<h:outputLabel for="prezzo">Prezzo</h:outputLabel>
+									<p:inputText id="prezzo" value="" />
+									<p:message for="prezzo" />
+
+
+								</h:panelGrid>
+
+							</p:panel>
+						</td>
+						<td>
+							<p:panel>
+								<h:panelGrid columns="1" id="regGrid2">
+
+									<h:outputLabel for="data">Data</h:outputLabel>
+									<p:inputText id="data" value="" />
+									<p:message for="data" />
+									
+									<h:outputLabel for="ora">Ora</h:outputLabel>
+									<p:inputText id="ora" value="" />
+									<p:message for="ora" />
+
+									<h:outputLabel for="foto1">Url prima foto</h:outputLabel>
+									<p:inputText id="foto1" value="" />
+									<p:message for="foto1" />
+
+									<h:outputLabel for="foto2">Url seconda foto</h:outputLabel>
+									<p:inputText id="foto2" value="" />
+									<p:message for="foto2" />
+
+									<h:outputLabel for="foto3">Url terza foto</h:outputLabel>
+									<p:inputText id="foto3" value="" />
+									<p:message for="foto3" />
+
+
+								</h:panelGrid>
+
+							</p:panel>
+						</td></tr>
+
+					</table>
+				</h:form>
+			</div>
+		</div>
+	</div>
+	<!--/boxbig-->
+</body>
+</html>
