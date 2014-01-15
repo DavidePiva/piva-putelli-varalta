@@ -80,13 +80,6 @@
 		</div>
 		<div id="boxcontenuto">
 			<h1>Tutte le città</h1>
-			<h:outputText id="city1" value="#{ds.citta(1)}"></h:outputText>
-			<br></br>
-			<h:outputText id="city2" value="#{ds.citta(2)}"></h:outputText>
-			<br></br>
-			<h:outputText id="city3" value="#{ds.citta(3)}"></h:outputText>
-			<br></br>
-
 			<ul>
 				<ui:repeat value="#{ds.citta}" var="c">
 					<li><h:link value="#{c}" outcome="hotelPerCitta">
