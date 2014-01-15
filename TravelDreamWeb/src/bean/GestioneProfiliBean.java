@@ -2,12 +2,12 @@ package bean;
 
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import DTO.UtenteDTO;
 
@@ -89,5 +89,18 @@ public class GestioneProfiliBean {
 	public void rendiUtente(){
 		gestioneprofili.rendiUtente(utenteSelezionato);
 	}
+	
+	public String logout() {
+		FacesContext.getCurrentInstance().getExternalContext()
+				.invalidateSession();
+		return "/index?faces-redirect=true";
+	}
+	
+    public String eliminaUtente(){
+    	
+	    FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+	    gestioneprofili.eliminaUtente();
+	    return "/index?faces-redirect=true";
+    }
 
 }
