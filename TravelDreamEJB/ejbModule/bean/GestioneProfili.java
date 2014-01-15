@@ -46,7 +46,6 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		g.setIdGruppo("USER");
 		gruppi.add(g);
 		nuovoUtente.setGruppos(gruppi);
-		// nuovoUtente.setAttivo(true);
 
 		em.persist(nuovoUtente);
 

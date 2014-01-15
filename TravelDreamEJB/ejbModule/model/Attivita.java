@@ -1,7 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import DTO.AttivitaDTO;
+
 import java.math.BigDecimal;
 import java.sql.Time;
 import java.util.Date;
@@ -57,7 +61,22 @@ public class Attivita implements Serializable {
 
 	public Attivita() {
 	}
-
+	
+	public Attivita(AttivitaDTO a) {
+		this.idAttivita=a.getId();
+		this.citta=a.getCitta();
+		this.data=a.getData();		
+		this.descrizione=a.getDescrizione();
+		this.foto1=a.getFoto1();
+		this.foto2=a.getFoto2();
+		this.foto3=a.getFoto3();
+		this.ora=a.getOra();
+		this.prezzo=a.getPrezzo();
+		this.selezionabile=a.isSelezionabile();	
+		this.titolo=a.getTitolo();
+	}
+	
+	
 	public int getIdAttivita() {
 		return this.idAttivita;
 	}
