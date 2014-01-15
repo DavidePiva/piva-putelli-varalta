@@ -1,6 +1,7 @@
 package bean;
 //ManageBean statico
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -17,6 +18,8 @@ import DTO.PacchettoDTO;
 public class DatiStaticiBean {
 	
 	private String cittaSelezionata;
+	private List<String> citta;
+	private List<String> hotels;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
@@ -41,7 +44,6 @@ public class DatiStaticiBean {
 		return aero.getNome();
 	}
 	
-	private List<String> citta;
 	
 	public List<String> getCitta(){
 		citta= datistatici.getDestinazioni();
@@ -51,13 +53,23 @@ public class DatiStaticiBean {
 		
 	}
 	
+	public List<String> getHotels(){
+		hotels = new ArrayList<String>();
+		List<HotelDTO> h = hotelPerCitta(cittaSelezionata);
+		for(int i = 0; i < h.size(); i++){
+			hotels.add(h.get(i).getNome());
+		}
+		return hotels;
+	}
+	
 	public String citta(int i){
 		List<String> c = datistatici.getDestinazioni();
 		return c.get(i);
 	}
 	
 	public List<HotelDTO> hotelPerCitta(String s) {
-		return datistatici.hotelPerCitta(s);
+		List<HotelDTO> h = datistatici.hotelPerCitta(s);
+		return h;
 	}
 	
 	public String nome(){
