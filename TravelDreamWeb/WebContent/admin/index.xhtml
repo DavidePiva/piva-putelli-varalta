@@ -87,12 +87,22 @@
 		<div id="boxcontenuto">
 			<h1>Benvenuto Admin</h1>
 			<div>
+			<b>Seleziona utente: </b>
 				<h:form>
 					<h:selectOneMenu value="#{gp.utenteSelezionato}">
 						<f:selectItems value="#{gp.listaUtenti()}" var="c" itemLabel="#{c.email}"
 							itemValue="#{c.email}" />
 					</h:selectOneMenu>
-					<h:commandButton value="Potenzia" action="#{gp.rendiImpiegato()}"/>
+					<h:commandButton value="Rendi impiegato" action="#{gp.rendiImpiegato()}"/>
+				</h:form><br /><br />
+				
+			<b>Seleziona impiegato: </b>
+				<h:form>
+					<h:selectOneMenu value="#{gp.utenteSelezionato}">
+						<f:selectItems value="#{gp.listaImpiegati()}" var="c" itemLabel="#{c.email}"
+							itemValue="#{c.email}" />
+					</h:selectOneMenu>
+					<h:commandButton value="Rendi utente" action="#{gp.rendiUtente()}"/>
 				</h:form>
 			</div>
 		</div>

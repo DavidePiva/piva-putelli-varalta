@@ -128,23 +128,6 @@ public class GestioneProfili implements GestioneProfiliLocal {
 
 	@Override
 	public List<UtenteDTO> listaUtenti() {
-		/*Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE citta = '"+s+"'");
-		List<Integer> i = new ArrayList<Integer>();
-		i = q.getResultList();
-		List<PacchettoDTO> l1 = new ArrayList<PacchettoDTO>();
-		for(int index = 0; index < i.size(); index++){
-			Pacchetto p = em.find(Pacchetto.class, i.get(index));
-			l1.add(convertiPacchettoDTO(p));
-		}
-		return l1;*/
-		
-		/*List<Utente> u = new ArrayList<Utente>();
-		u=(List<Utente>) em.find(Utente.class, "");
-		System.out.println(u.get(0).getEmail());
-		System.out.println(u.get(0).getEmail());*/
-		
-		//Query q = em.createNamedQuery("SELECT Utente.email FROM Utente, Utente_Gruppo WHERE Utente_Gruppo.idGruppo = 'USER' AND Utente.email=Utente_Gruppo.email");
-		//Query q = em.createNamedQuery("SELECT DISTINCT email FROM Utente");
 		Query q = em.createNativeQuery("SELECT DISTINCT Utente.email FROM Utente, Utente_Gruppo WHERE Utente_Gruppo.idGruppo = 'USER' AND Utente.email=Utente_Gruppo.email");
 		List s = new ArrayList<String>();
 		Gruppo g = new Gruppo();
@@ -174,6 +157,38 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		u.setGruppos(gruppi);
 		em.merge(u);
 		
+	}
+
+	@Override
+	public List<UtenteDTO> listaImpiegati() {
+		Query q = em.createNativeQuery("SELECT DISTINCT Utente.email FROM Utente, Utente_Gruppo WHERE Utente_Gruppo.idGruppo = 'IMPIEGATO' AND Utente.email=Utente_Gruppo.email");
+		List s = new ArrayList<String>();
+		Gruppo g = new Gruppo();
+		g.setIdGruppo("ADMIN");
+		s = q.getResultList();
+		List<UtenteDTO> uList = new ArrayList<UtenteDTO>();
+		for(int i=0; i<s.size(); i++){
+			Utente u = em.find(Utente.class, s.get(i));
+			if(!u.getGruppos().contains(g))
+			{
+				uList.add(convertiInDTO(u));
+			}
+		}
+		
+		
+		
+		return uList;
+	}
+
+	@Override
+	public void rendiUtente(String email) {
+		Utente u = find(email);
+		Gruppo g = new Gruppo();
+		g.setIdGruppo("USER");
+		List<Gruppo> gruppi = new ArrayList<Gruppo>();
+		gruppi.add(g);
+		u.setGruppos(gruppi);
+		em.merge(u);
 	}
 
 	
