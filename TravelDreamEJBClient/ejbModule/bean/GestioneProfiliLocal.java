@@ -20,4 +20,6 @@ public interface GestioneProfiliLocal {
         public boolean isImpiegato();
         public List<UtenteDTO> listaUtenti();
         public void rendiImpiegato(String email);
+        public List<UtenteDTO> listaImpiegati();
+        public void rendiUtente(String email);
 }

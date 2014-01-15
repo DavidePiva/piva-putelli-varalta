@@ -78,8 +78,16 @@ public class GestioneProfiliBean {
 		return gestioneprofili.listaUtenti();
 	}
 	
+	public List<UtenteDTO> listaImpiegati(){
+		return gestioneprofili.listaImpiegati();
+	}
+	
 	public void rendiImpiegato(){
 		gestioneprofili.rendiImpiegato(utenteSelezionato);
+	}
+	
+	public void rendiUtente(){
+		gestioneprofili.rendiUtente(utenteSelezionato);
 	}
 
 }
