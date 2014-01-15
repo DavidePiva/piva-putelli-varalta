@@ -87,8 +87,11 @@
    					      
   					</f:metadata>
 				<!-- Fine codice varaltiano -->
-				
-				<h:outputLabel value = "#{ds.nome()}"></h:outputLabel>
+			<ui:repeat value="#{ds.hotels}" var="hotel">
+				<li><h:link value="#{hotel}" outcome="hotel">
+						<f:param name="hotel" value="#{hotel}" />
+					</h:link></li>
+			</ui:repeat>
 		</div>
 	</div>
 	<!--/boxbig-->
