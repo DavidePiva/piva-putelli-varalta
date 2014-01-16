@@ -40,6 +40,14 @@ public class DatiStaticiBean {
 	public void setCittaSelezionata(String cittaSelezionata) {
 		this.cittaSelezionata = cittaSelezionata;
 	}
+	
+	public String getTipoSelezionato(){
+		return tipoSelezionato;
+	}
+	
+	public void setTipoSelezionato(String tipoSelezionato){
+		this.tipoSelezionato = tipoSelezionato;
+	}
 
 	private AeroportoDTO aero;
 	
@@ -117,6 +125,9 @@ public class DatiStaticiBean {
 	public List<String> getPacchettiPerTipo(){
 		List<PacchettoDTO> l1 = datistatici.pacchettiPerTipo(tipoSelezionato);
 		pacchettiPerTipo = new ArrayList<String>();
+		for(int i = 0; i < l1.size(); i++){
+			pacchettiPerTipo.add(l1.get(i).getTitolo());
+		}
 		return pacchettiPerTipo;
 	}
 	
