@@ -34,7 +34,7 @@ public class GestioneAttivitaBean {
 		attivita.setOra(orario);
 
 		gc.creaAttivita(attivita);
-		return "/index?faces-redirect=true";
+		return "/impiegato/index?faces-redirect=true";
 	}
 
 	public GestioneComponentiLocal getGc() {

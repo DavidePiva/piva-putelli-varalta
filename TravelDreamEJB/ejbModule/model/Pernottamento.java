@@ -1,7 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import DTO.PernottamentoDTO;
+
 import java.util.List;
 
 
@@ -46,6 +50,12 @@ public class Pernottamento implements Serializable {
 	public Pernottamento() {
 	}
 
+	public Pernottamento(PernottamentoDTO p){
+		this.idPernottamento=p.getIdPernottamento();
+		this.selezionabile=p.getSelezionabile();
+		this.tipo=p.getTipo();		
+	}
+	
 	public int getIdPernottamento() {
 		return this.idPernottamento;
 	}
