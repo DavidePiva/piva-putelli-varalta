@@ -4,7 +4,7 @@ public class PernottamentoDTO {
 
 	private int idPernottamento;
 
-	private byte selezionabile;
+	private boolean selezionabile;
 
 	private String tipo;
 	
@@ -18,11 +18,11 @@ public class PernottamentoDTO {
 		this.idPernottamento = idPernottamento;
 	}
 
-	public byte getSelezionabile() {
+	public boolean getSelezionabile() {
 		return selezionabile;
 	}
 
-	public void setSelezionabile(byte selezionabile) {
+	public void setSelezionabile(boolean selezionabile) {
 		this.selezionabile = selezionabile;
 	}
 

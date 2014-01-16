@@ -9,9 +9,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import model.Attivita;
+import model.Pernottamento;
 import DTO.AttivitaDTO;
+import DTO.HotelDTO;
+import DTO.PernottamentoDTO;
 import business.InterfacciaDB;
-import entity.Hotel;
+import model.Hotel;
 import enums.TipoCamera;
 import enums.TipoComponente;
 
@@ -32,33 +35,27 @@ GestioneComponenti(){
 	}
 	//###CREAZIONE###//
 	
-	public void creaPernottamento(Hotel h, TipoCamera t) throws SQLException{
-		InterfacciaDB.creaPernottamento(h.getId(),t);
+	public void creaPernottamento(PernottamentoDTO p){
+		Pernottamento pernottamento=new Pernottamento(p);
+		em.persist(pernottamento);
 	}
 	
-	public void creaHotel(String nome,String citta,String indirizzo,String telefono,String descrizione,	TipoCamera[] tipiCamera){
-	//	InterfacciaDB.creaHotel(nome,citta,indirizzo,telefono,descrizione,tipiCamera);
+	public void creaHotel(HotelDTO h){
+		Hotel hotel=new Hotel(h);		
+		em.persist(hotel);
 	}
-	
-	
+		
 	public void creaAttivita(AttivitaDTO a)
 	{
 		Attivita attivita= new Attivita(a);
-		em.persist(attivita);
-	//	InterfacciaDB.creaAttivita(anno,mese,giorno,ora,minuti,titolo,descrizione,citta,prezzo);
-		
+		em.persist(attivita);	
 	}
-	
-	public void inserisciFoto(TipoComponente tipoComponente,int id,int numeroFoto,String url){
-//		InterfacciaDB.inserisciFotoComponente(tipoComponente,id,numeroFoto,url);
-	}
-	
 
 	
 	//###MODIFICA###//
 	
 	public void modificaPernottamento(int idPernottamento,Hotel h, TipoCamera t) throws SQLException{
-		InterfacciaDB.modificaPernottamento(idPernottamento,h.getId(),t);
+//		InterfacciaDB.modificaPernottamento(idPernottamento,h.getId(),t);
 	}
 	
 	public void modificaHotel(int idHotel, String nome,String citta,String indirizzo,String telefono,String descrizione,	TipoCamera[] tipiCamera){

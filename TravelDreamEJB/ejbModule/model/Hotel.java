@@ -1,7 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import DTO.HotelDTO;
+
 import java.util.List;
 
 
@@ -44,6 +48,19 @@ public class Hotel implements Serializable {
 	private List<TipoCamere_Hotel> tipoCamereHotels;
 
 	public Hotel() {
+	}
+	
+	public Hotel(HotelDTO h){
+		this.idHotel=h.getIdHotel();
+		this.citta=h.getCitta();
+		this.descrizione=h.getDescrizione();
+		this.indirizzo=h.getIndirizzo();
+		this.nome=h.getNome();
+		this.selezionabile=h.isSelezionabile();
+		this.telefono=h.getTelefono();
+		this.foto1=h.getFoto1();
+		this.foto2=h.getFoto2();
+		this.foto3=h.getFoto3();
 	}
 
 	public int getIdHotel() {
