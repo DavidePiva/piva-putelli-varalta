@@ -19,6 +19,8 @@ public class DatiStaticiBean {
 	private static final int SOGLIA_1 = 1000;
 	private static final int SOGLIA_2 = 2500;
 	private static final int SOGLIA_3 = 5000;
+	private int prezzoMinimo;
+	private int prezzoMassimo;
 	private String cittaSelezionata;
 	private String tipoSelezionato;
 	private List<String> citta;
@@ -27,6 +29,7 @@ public class DatiStaticiBean {
 	private List<String> pacchetti;
 	private List<String> pacchettiPerTipo;
 	private List<String> tipiPacchetto;
+	private List<String> pacchettiPerPrezzo;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
@@ -35,6 +38,22 @@ public class DatiStaticiBean {
 	public List<String> getTipiPacchetto(){
 		tipiPacchetto = tipiPacchetto();
 		return tipiPacchetto;
+	}
+	
+	public int getPrezzoMinimo(){
+		return prezzoMinimo;
+	}
+	
+	public int getPrezzoMassimo(){
+		return prezzoMassimo;
+	}
+	
+	public void setPrezzoMinimo(int prezzoMinimo){
+		this.prezzoMinimo = prezzoMinimo;
+	}
+	
+	public void setPrezzoMassimo(int prezzoMassimo){
+		this.prezzoMassimo = prezzoMassimo;
 	}
 	
 	public int getSOGLIA_1(){
@@ -149,6 +168,22 @@ public class DatiStaticiBean {
 	
 	public List<String> tipiPacchetto(){
 		return datistatici.tipiPacchetto();
+	}
+	
+	public List<String> getPacchettiPerPrezzo(){
+		List<PacchettoDTO> l1 = new ArrayList<PacchettoDTO>();
+		if(prezzoMassimo!=-1)
+		{
+			l1 = datistatici.pacchettiPerPrezzo(prezzoMinimo,prezzoMassimo);
+		}
+		else{
+			l1 = datistatici.pacchettiPerPrezzo(prezzoMinimo);
+		}
+		pacchettiPerPrezzo = new ArrayList<String>();
+		for(int i = 0; i < l1.size(); i++){
+			pacchettiPerPrezzo.add(l1.get(i).getTitolo());
+		}
+		return pacchettiPerPrezzo;
 	}
 	
 	

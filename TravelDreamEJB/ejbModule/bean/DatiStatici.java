@@ -170,4 +170,30 @@ public class DatiStatici implements DatiStaticiLocal {
 		return l1;
 	}
 
+	@Override
+	public List<PacchettoDTO> pacchettiPerPrezzo(int prezzoMinimo,int prezzoMassimo) {
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile = 1 AND prezzo BETWEEN " + prezzoMinimo+ " AND "+ prezzoMassimo);
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		List<PacchettoDTO> l1 = new ArrayList<PacchettoDTO>();
+		for(int index = 0; index < i.size(); index++){
+			Pacchetto p = em.find(Pacchetto.class, i.get(index));
+			l1.add(convertiPacchettoDTO(p));
+		}
+		return l1;
+	}
+
+	@Override
+	public List<PacchettoDTO> pacchettiPerPrezzo(int prezzoMinimo) {
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile = 1 AND prezzo > " + prezzoMinimo);
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		List<PacchettoDTO> l1 = new ArrayList<PacchettoDTO>();
+		for(int index = 0; index < i.size(); index++){
+			Pacchetto p = em.find(Pacchetto.class, i.get(index));
+			l1.add(convertiPacchettoDTO(p));
+		}
+		return l1;
+	}
+
 }
