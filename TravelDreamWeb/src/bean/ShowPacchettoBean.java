@@ -11,7 +11,16 @@ import DTO.PacchettoDTO;
 public class ShowPacchettoBean {
 	
 	private String nomePacchetto;
+	private int numeroFoto;
 	
+	public int getNumeroFoto() {
+		return numeroFoto;
+	}
+
+	public void setNumeroFoto(int numeroFoto) {
+		this.numeroFoto = numeroFoto;
+	}
+
 	@EJB
 	private ShowPacchettoLocal showPacchetto;
 	
@@ -32,4 +41,25 @@ public class ShowPacchettoBean {
 		PacchettoDTO p = getPacchettoPerParametro();
 		return p.getDescrizione();
 	}
+	
+	public String getFotoSelezionata(){
+		PacchettoDTO h = getPacchettoPerParametro();
+		switch(numeroFoto){
+		case 1:
+			return h.getFoto1();
+		case 2:
+			return h.getFoto2();
+		case 3:
+			return h.getFoto3();
+		case 4:
+			return h.getFoto4();
+		case 5:
+			return h.getFoto5();
+		case 6:
+			return h.getFoto6();
+		default:
+			return "";
+		}
+	}
+
 }

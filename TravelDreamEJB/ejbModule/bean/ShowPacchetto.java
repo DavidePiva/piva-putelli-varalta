@@ -64,6 +64,12 @@ public class ShowPacchetto implements ShowPacchettoLocal {
 		p1.setVoloRitorno(v2.getIdVolo());
 		p1.setIdPernottamento(pe.getIdPernottamento());
 		p1.setSelezionabile(selezionabile);
+		p1.setFoto1(p.getFoto1());
+		p1.setFoto2(p.getFoto2());
+		p1.setFoto3(p.getFoto3());
+		p1.setFoto4(p.getFoto4());
+		p1.setFoto5(p.getFoto5());
+		p1.setFoto6(p.getFoto6());
 		return p1;
 	}
 }
