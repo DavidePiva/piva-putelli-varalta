@@ -17,14 +17,21 @@ import DTO.PacchettoDTO;
 public class DatiStaticiBean {
 	
 	private String cittaSelezionata;
+	private String tipoSelezionato;
 	private List<String> citta;
 	private List<String> hotels;
 	private List<Integer> ids;
 	private List<String> pacchetti;
+	private List<String> pacchettiPerTipo;
+	private List<String> tipiPacchetto;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
 	
+	public List<String> getTipiPacchetto(){
+		tipiPacchetto = tipiPacchetto();
+		return tipiPacchetto;
+	}
 	
 	public String getCittaSelezionata() {
 		return cittaSelezionata;
@@ -105,6 +112,16 @@ public class DatiStaticiBean {
 			pacchetti.add(l1.get(i).getTitolo());
 		}
 		return pacchetti;
+	}
+	
+	public List<String> getPacchettiPerTipo(){
+		List<PacchettoDTO> l1 = datistatici.pacchettiPerTipo(tipoSelezionato);
+		pacchettiPerTipo = new ArrayList<String>();
+		return pacchettiPerTipo;
+	}
+	
+	public List<String> tipiPacchetto(){
+		return datistatici.tipiPacchetto();
 	}
 	
 	

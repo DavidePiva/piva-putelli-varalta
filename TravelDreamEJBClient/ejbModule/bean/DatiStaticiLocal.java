@@ -13,4 +13,6 @@ public interface DatiStaticiLocal {
 	public List<String> getDestinazioni();
 	public List<HotelDTO> hotelPerCitta(String s);
 	public List<PacchettoDTO> pacchettiPerCitta(String s);
+	public List<String> tipiPacchetto();
+	public List<PacchettoDTO> pacchettiPerTipo(String tipoSelezionato);
 }
