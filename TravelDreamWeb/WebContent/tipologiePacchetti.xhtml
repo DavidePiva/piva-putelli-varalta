@@ -9,21 +9,7 @@
 <title>TravelDream</title>
 <link href='css/application.css' media='all' rel='stylesheet'
 	type='text/css' />
-<script>
-	function start() {
-		document.getElementById('boxleft1').style.display = "none";
-		document.getElementById('boxleft2').style.display = "none";
-	}
-
-	function menuFunc(menuId) {
-		if (document.getElementById(menuId).style.display == "none") {
-			start();
-			document.getElementById(menuId).style.display = "block";
-		} else {
-			start();
-		}
-	}
-</script>
+<script type='text/javascript' src='css/menu.js' />
 </head>
 <body onload="javascript:start()">
 	<div id="boxintestazione">
@@ -32,17 +18,20 @@
 				<img src="css/v1sinistra.png" />
 			</h:link>
 		</div>
-		<div id="boxlandmarktop">
-			<h:link outcome="/user/index" value="LOGIN" id="textlandmark_left"
-				rendered="#{gp.nonLoggato()}" />
-			<h:link outcome="registrati" value="REGISTRATI"
-				id="textlandmark_right" rendered="#{gp.nonLoggato()}" />
+		<h:form id="boxlandmarktop">
+			<div id="boxlandmarktop">
+				<h:link outcome="/user/index" value="LOGIN" id="textlandmark_left"
+					rendered="#{gp.nonLoggato()}" />
+				<h:link outcome="registrati" value="REGISTRATI"
+					id="textlandmark_right" rendered="#{gp.nonLoggato()}" />
 
-			<h:link outcome="registrati" value="LOGOUT" id="textlandmark_left2"
-				rendered="#{gp.loggato()}" />
-			<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}"
-				id="textlandmark_right2" rendered="#{gp.loggato()}" />
-		</div>
+				<h:commandLink action="#{gp.logout}" value="LOGOUT"
+					id="textlandmark_left2" rendered="#{gp.loggato()}" />
+
+				<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}"
+					id="textlandmark_right2" rendered="#{gp.loggato()}" />
+			</div>
+		</h:form>
 	</div>
 	<!--/intestazione-->
 	<div id="boxlinea1"></div>

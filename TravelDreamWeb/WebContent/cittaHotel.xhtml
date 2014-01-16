@@ -9,21 +9,7 @@
 <title>TravelDream</title>
 <link href='css/application.css' media='all' rel='stylesheet'
 	type='text/css' />
-<script>
-	function start() {
-		document.getElementById('boxleft1').style.display = "none";
-		document.getElementById('boxleft2').style.display = "none";
-	}
-
-	function menuFunc(menuId) {
-		if (document.getElementById(menuId).style.display == "none") {
-			start();
-			document.getElementById(menuId).style.display = "block";
-		} else {
-			start();
-		}
-	}
-</script>
+<script type='text/javascript' src='css/menu.js' />
 </head>
 <body onload="javascript:start()">
 	<div id="boxintestazione">
@@ -32,17 +18,20 @@
 				<img src="css/v1sinistra.png" />
 			</h:link>
 		</div>
-		<div id="boxlandmarktop">
-			<h:link outcome="/user/index" value="LOGIN" id="textlandmark_left"
-				rendered="#{gp.nonLoggato()}" />
-			<h:link outcome="registrati" value="REGISTRATI"
-				id="textlandmark_right" rendered="#{gp.nonLoggato()}" />
+		<h:form id="boxlandmarktop">
+			<div id="boxlandmarktop">
+				<h:link outcome="/user/index" value="LOGIN" id="textlandmark_left"
+					rendered="#{gp.nonLoggato()}" />
+				<h:link outcome="registrati" value="REGISTRATI"
+					id="textlandmark_right" rendered="#{gp.nonLoggato()}" />
 
-			<h:link outcome="registrati" value="LOGOUT" id="textlandmark_left2"
-				rendered="#{gp.loggato()}" />
-			<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}"
-				id="textlandmark_right2" rendered="#{gp.loggato()}" />
-		</div>
+				<h:commandLink action="#{gp.logout}" value="LOGOUT"
+					id="textlandmark_left2" rendered="#{gp.loggato()}" />
+
+				<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}"
+					id="textlandmark_right2" rendered="#{gp.loggato()}" />
+			</div>
+		</h:form>
 	</div>
 	<!--/intestazione-->
 	<div id="boxlinea1"></div>
@@ -52,29 +41,25 @@
 	<div id="boxlinea5"></div>
 	<div id="boxbig">
 		<div id="boxmenu">
-			<div id="boxPacchetti">
-				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+			<div id="boxPacchetti">	
+			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="viaggiPerDestinazione"
-							value="Per Destinazione" id="p1"></h:link></li>
-					<li><h:link outcome="viaggiPerPrezzo"
-							value="Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="viaggiPerTipo"
-							value="Quello che fa per te" id="p3"></h:link></li>
+					<li><h:link outcome="cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
+					<li><h:link outcome="prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="tipologiePacchetti" value = "Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
-				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li>Tutte le città</li>
-					<li><h:link outcome="hotelPerPrezzo"
-							value="Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="cittaHotel" value = "Città"></h:link></li>
+					<li><h:link outcome="prezziHotel" value = "Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
 				<ul id="boxleft3">
-					<li><h:link outcome="chiSiamo" value="Chi siamo"></h:link></li>
-					<li><h:link outcome="contatti" value="Contatti"></h:link></li>
+					<li><h:link outcome="chiSiamo" value = "Chi siamo"></h:link></li>
+					<li><h:link outcome="contatti" value = "Contatti" id="ultimo"></h:link></li>
 				</ul>
 			</div>
 		</div>
