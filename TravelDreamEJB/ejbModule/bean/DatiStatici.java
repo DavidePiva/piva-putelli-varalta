@@ -149,4 +149,18 @@ public class DatiStatici implements DatiStaticiLocal {
 		return p1;
 	}
 
+	@Override
+	public List<String> tipiPacchetto() {
+		Query q = em.createNativeQuery("SELECT DISTINCT tipologia FROM Pacchetto WHERE selezionabile = 1");
+		List<String> l1 = new ArrayList<String>();
+		l1 = q.getResultList();
+		return l1;
+	}
+
+	@Override
+	public List<PacchettoDTO> pacchettiPerTipo(String tipoSelezionato) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
