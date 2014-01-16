@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -14,7 +16,7 @@ public class ShowHotelBean {
 	
 	private String nomeHotel;
 	private int numeroFoto;
-	
+	private String hotelSelezionato;
 	public int getNumeroFoto() {
 		return numeroFoto;
 	}
@@ -53,5 +55,17 @@ public class ShowHotelBean {
 		}
 	}
 	
+	public List<HotelDTO> listaHotel(){
+		return showHotel.listaHotel();
+	}	
 	
+	public String getHotelSelezionato() {
+		return hotelSelezionato;
+	}
+
+	public void setHotelSelezionato(String hotelSelezionato) {
+		this.hotelSelezionato = hotelSelezionato;
+	}
+
+
 }
