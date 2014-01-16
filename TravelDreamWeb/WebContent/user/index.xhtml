@@ -4,18 +4,70 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:body>
-	<h1>Hello User</h1>
-	<h:outputText value="info utente #{autenticazione.userContent}" />
-	<h:form>
-		<h:commandButton action="#{gp.logout}" value="Logout" />
-		<h:link outcome="/admin/index" value="Sezione Admin"	id="link_admin" rendered="#{gp.isAdmin()}" />
-		<h:link outcome="/impiegato/index" value="Sezione Impiegato"	id="link_impiegato" rendered="#{gp.isImpiegato()}" />
-		<h:commandButton value="Eliminati" action="#{gp.eliminaUtente()}"/>
-	</h:form>
+<head>
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+<title>TravelDream</title>
+<link href='../css/application.css' media='all' rel='stylesheet'
+	type='text/css' />
+<script type='text/javascript' src='../css/menu.js' />
+</head>
+<body onload="javascript:start()">
+	<div id="boxintestazione">
+		<div id="boxlogo">
+			<h:link outcome="/index">
+				<img src="../css/v1sinistra.png" />
+			</h:link>
+		</div>
+		<h:form id="boxlandmarktop">
+			<div id="boxlandmarktop">
 
-	<h:link outcome="/index">
-		<img src="../css/v1sinistra.png" />
-	</h:link>
-</h:body>
+				<h:commandLink action="#{gp.logout}" value="LOGOUT"
+					id="textlandmark_left2" rendered="#{gp.loggato()}" />
+
+			</div>
+		</h:form>
+	</div>
+	<!--/intestazione-->
+	<div id="boxlinea1"></div>
+	<div id="boxlinea2"></div>
+	<div id="boxlinea3"></div>
+	<div id="boxlinea4"></div>
+	<div id="boxlinea5"></div>
+	<div id="boxbig">
+		<div id="boxmenu">
+			<div id="boxPacchetti">	
+			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+				<ul id="boxleft1">
+					<li><h:link outcome="/cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
+					<li><h:link outcome="/prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="/tipologiePacchetti" value = "Quello che fa per te" id="p3"></h:link></li>
+				</ul>
+			</div>
+			<div id="boxHotel">
+			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<ul id="boxleft2">
+					<li><h:link outcome="/cittaHotel" value = "Città"></h:link></li>
+					<li><h:link outcome="/prezziHotel" value = "Per tutte le tasche"></h:link></li>
+				</ul>
+			</div>
+			<div id="boxLandmark">
+				<ul id="boxleft3">
+					<li><h:link outcome="/chiSiamo" value = "Chi siamo"></h:link></li>
+					<li><h:link outcome="/contatti" value = "Contatti" id="ultimo"></h:link></li>
+				</ul>
+			</div>
+		</div>
+		<div id="boxcontenuto">
+			<h1><h:outputLabel value="Ciao #{gp.nomeUtente}"></h:outputLabel></h1>
+			<h:form>
+				<h:link outcome="/admin/index" value="Sezione Admin" id="link_admin"
+					rendered="#{gp.isAdmin()}" />
+				<h:link outcome="/impiegato/index" value="Sezione Impiegato"
+					id="link_impiegato" rendered="#{gp.isImpiegato()}" />
+				<h:commandButton value="Eliminati" action="#{gp.eliminaUtente()}" />
+			</h:form>
+		</div>
+	</div>
+	<!--/boxbig-->
+</body>
 </html>
