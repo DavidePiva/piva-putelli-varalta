@@ -12,7 +12,6 @@
 <script type='text/javascript' src='css/menu.js' />
 <f:metadata>
 	<f:viewParam name="pacchetto" value="#{sp.nomePacchetto}" />
-	<f:viewParam name="foto" value="#{sp.numeroFoto}" />
 </f:metadata>
 </head>
 <body onload="javascript:start()">
@@ -74,56 +73,12 @@
 			<div>
 				<h1>
 					<h:outputLabel value="#{sp.pacchettoPerParametro.titolo} - "></h:outputLabel>
-					<h:link outcome="pacchettoInfo" value="Dettagli" id="url_titolo"><f:param name="pacchetto" value="#{sp.nomePacchetto}" />
+					<h:link outcome="pacchetto" value="Introduzione" id="url_titolo"><f:param name="pacchetto" value="#{sp.nomePacchetto}" /><f:param name="foto" value="1" />
 					</h:link>
 				</h1>
 
 
-				<table>
-					<tr>
-						<td align="center"><h:graphicImage width="400" height="300"
-								url="foto/#{sp.fotoSelezionata}"></h:graphicImage> <br /> <h:link
-								value="#{pacchetto}" outcome="pacchetto">
-								<f:param name="pacchetto" value="#{sp.nomePacchetto}" />
-								<f:param name="foto" value="1" />
-								<h:graphicImage width="50" height="38"
-									url="foto/#{sp.pacchettoPerParametro.foto1}"></h:graphicImage>
-							</h:link> <b> </b>
-						<h:link value="#{pacchetto}" outcome="pacchetto">
-								<f:param name="pacchetto" value="#{sp.nomePacchetto}" />
-								<f:param name="foto" value="2" />
-								<h:graphicImage width="50" height="38"
-									url="foto/#{sp.pacchettoPerParametro.foto2}"></h:graphicImage>
-							</h:link> <b> </b>
-						<h:link value="#{pacchetto}" outcome="pacchetto">
-								<f:param name="pacchetto" value="#{sp.nomePacchetto}" />
-								<f:param name="foto" value="3" />
-								<h:graphicImage width="50" height="38"
-									url="foto/#{sp.pacchettoPerParametro.foto3}"></h:graphicImage>
-							</h:link> <b> </b>
-						<h:link value="#{pacchetto}" outcome="pacchetto">
-								<f:param name="pacchetto" value="#{sp.nomePacchetto}" />
-								<f:param name="foto" value="4" />
-								<h:graphicImage width="50" height="38"
-									url="foto/#{sp.pacchettoPerParametro.foto4}"></h:graphicImage>
-							</h:link> <b> </b>
-						<h:link value="#{pacchetto}" outcome="pacchetto">
-								<f:param name="pacchetto" value="#{sp.nomePacchetto}" />
-								<f:param name="foto" value="5" />
-								<h:graphicImage width="50" height="38"
-									url="foto/#{sp.pacchettoPerParametro.foto5}"></h:graphicImage>
-							</h:link> <b> </b>
-						<h:link value="#{pacchetto}" outcome="pacchetto">
-								<f:param name="pacchetto" value="#{sp.nomePacchetto}" />
-								<f:param name="foto" value="6" />
-								<h:graphicImage width="50" height="38"
-									url="foto/#{sp.pacchettoPerParametro.foto6}"></h:graphicImage>
-							</h:link></td>
-						<td width='20px'></td>
-						<td valign="top"><h:outputLabel
-								value="#{sp.pacchettoPerParametro.descrizione}"></h:outputLabel></td>
-					</tr>
-				</table>
+				
 			</div>
 		</div>
 	</div>
