@@ -87,6 +87,12 @@ div#boxmenu{
     width:238px;
     /*height:692px;*/
 }
+
+#boxmenu a{
+	font-size: 20px;
+	color: black;
+	text-decoration: none;
+}
 div#boxlandmarkleft{
     margin-left: 20px;
     margin-right: 20px;
@@ -96,9 +102,32 @@ div#boxlinkleft{
     margin-left: 20px;
     margin-right: 20px;
 }
-ul#boxleft{
+div#boxPacchetti{
+    padding-left: 8px;
+    margin-bottom: 16px;
+    
+}
+div#boxHotel{
+    padding-left: 8px;
+    font-size: 14px;
+}
+ul#boxleft1{
     list-style:none;
     padding-left: 8px;
+}
+ul#boxleft2{
+    list-style:none;
+    padding-left: 8px;
+}
+ul#boxleft3{
+    list-style:none;
+    padding-left: 8px;
+}
+#boxleft1 a{
+	font-size: 16px;
+}
+#boxleft2 a{
+	font-size: 16px;
 }
 div#boxcontenuto{
     padding-left: 30px;
