@@ -56,19 +56,19 @@
 								<h:panelGrid columns="1" id="regGrid1">
 
 									<h:outputLabel for="titolo">Titolo</h:outputLabel>
-									<p:inputText id="titolo" value="#{gc.attivita.titolo}" />
+									<p:inputText id="titolo" value="#{ga.attivita.titolo}" />
 									<p:message for="titolo" />
 									
 									<h:outputLabel for="descrizione">Descrizione</h:outputLabel>
-									<p:inputText id="descrizione" value="#{gc.attivita.descrizione}" />
+									<p:inputText id="descrizione" value="#{ga.attivita.descrizione}" />
 									<p:message for="descrizione" />
 
 									<h:outputLabel for="citta">Città</h:outputLabel>
-									<p:inputText id="citta" value="#{gc.attivita.citta}" />
+									<p:inputText id="citta" value="#{ga.attivita.citta}" />
 									<p:message for="citta" />
 
 									<h:outputLabel for="prezzo">Prezzo</h:outputLabel>
-									<p:inputText id="prezzo" value="#{gc.attivita.prezzo}" />
+									<p:inputText id="prezzo" value="#{ga.attivita.prezzo}" />
 									<p:message for="prezzo" />
 
 
@@ -81,33 +81,33 @@
 								<h:panelGrid columns="1" id="regGrid2">
 
 									<h:outputLabel for="data">Data (giorno mese anno)</h:outputLabel>
-									<p:inputText id="giorno" value="#{gc.giorno}" size='4'/>
-									<p:inputText id="mese" value="#{gc.mese}" size='4'/>
-									<p:inputText id="anno" value="#{gc.anno}" size='4'/>
+									<p:inputText id="giorno" value="#{ga.giorno}" size='4'/>
+									<p:inputText id="mese" value="#{ga.mese}" size='4'/>
+									<p:inputText id="anno" value="#{ga.anno}" size='4'/>
 								
 									
 									<h:outputLabel for="ora">Ora</h:outputLabel>
-									<p:inputText id="ore" value="#{gc.ore}" size='4'/>
+									<p:inputText id="ore" value="#{ga.ore}" size='4'/>
 									<b> : </b>
-									<p:inputText id="minuti" value="#{gc.minuti}" size='4'/>
+									<p:inputText id="minuti" value="#{ga.minuti}" size='4'/>
 								
 
 									<h:outputLabel for="foto1">Url prima foto</h:outputLabel>
-									<p:inputText id="foto1" value="#{gc.attivita.foto1}" />
+									<p:inputText id="foto1" value="#{ga.attivita.foto1}" />
 									<p:message for="foto1" />
 
 									<h:outputLabel for="foto2">Url seconda foto</h:outputLabel>
-									<p:inputText id="foto2" value="#{gc.attivita.foto2}" />
+									<p:inputText id="foto2" value="#{ga.attivita.foto2}" />
 									<p:message for="foto2" />
 
 									<h:outputLabel for="foto3">Url terza foto</h:outputLabel>
-									<p:inputText id="foto3" value="#{gc.attivita.foto3}" />
+									<p:inputText id="foto3" value="#{ga.attivita.foto3}" />
 									<p:message for="foto3" />
 
 
 								</h:panelGrid>
 								<p:commandButton value="Salva" update="regGrid1"
-									action="#{gc.creaAttivita()}" />
+									action="#{ga.creaAttivita()}" />
 							</p:panel>
 						</td></tr>
 
