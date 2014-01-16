@@ -1,6 +1,5 @@
 package bean;
 
-import java.math.BigDecimal;
 import java.sql.Time;
 import java.util.Date;
 
@@ -9,8 +8,8 @@ import javax.faces.bean.ManagedBean;
 
 import DTO.AttivitaDTO;
 
-@ManagedBean(name = "gc")
-public class GestioneComponentiBean {
+@ManagedBean(name = "ga")
+public class GestioneAttivitaBean {
 
 	@EJB
 	private GestioneComponentiLocal gc;
@@ -22,16 +21,18 @@ public class GestioneComponentiBean {
 	private int giorno;
 	private int mese;
 	
-	public GestioneComponentiBean(){
+	public GestioneAttivitaBean(){
 		this.attivita=new AttivitaDTO();
 	}
 	
 	public String creaAttivita(){
 		AttivitaDTO pippo=new AttivitaDTO();		
 		Date data=new Date(anno,mese,giorno);
+		
 		Time orario=new Time(ore,minuti,0);
 		attivita.setData(data);
 		attivita.setOra(orario);
+
 		gc.creaAttivita(attivita);
 		return "/index?faces-redirect=true";
 	}
