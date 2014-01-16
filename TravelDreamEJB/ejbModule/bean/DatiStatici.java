@@ -159,8 +159,15 @@ public class DatiStatici implements DatiStaticiLocal {
 
 	@Override
 	public List<PacchettoDTO> pacchettiPerTipo(String tipoSelezionato) {
-		// TODO Auto-generated method stub
-		return null;
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile = 1 AND tipologia = '"+tipoSelezionato+"'");
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		List<PacchettoDTO> l1 = new ArrayList<PacchettoDTO>();
+		for(int index = 0; index < i.size(); index++){
+			Pacchetto p = em.find(Pacchetto.class, i.get(index));
+			l1.add(convertiPacchettoDTO(p));
+		}
+		return l1;
 	}
 
 }
