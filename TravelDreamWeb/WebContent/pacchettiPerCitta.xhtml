@@ -75,6 +75,7 @@
 				<ui:repeat value="#{ds.pacchetti}" var="pacchetto">
 				<li><h:link value="#{pacchetto}" outcome="pacchetto">
 						<f:param name="pacchetto" value="#{pacchetto}" />
+						<f:param name="foto" value="1" />
 					</h:link></li>
 			</ui:repeat>
 		</div>
