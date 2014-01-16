@@ -1,18 +1,24 @@
 package bean;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import model.Attivita;
+import model.Gruppo;
 import model.Pernottamento;
+import model.Utente;
 import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.PernottamentoDTO;
+import DTO.UtenteDTO;
 import business.InterfacciaDB;
 import model.Hotel;
 import enums.TipoCamera;
@@ -83,4 +89,5 @@ GestioneComponenti(){
 //		InterfacciaDB.eliminaComponente(tipo,id);
 	}
 
+			
 }

@@ -1,10 +1,12 @@
 package bean;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
-
 import DTO.HotelDTO;
+import DTO.UtenteDTO;
 
 @ManagedBean(name = "gh")
 public class GestioneHotelBean {
@@ -12,7 +14,9 @@ public class GestioneHotelBean {
 	@EJB
 	private GestioneComponentiLocal gc;
 
+
 	private HotelDTO hotel;
+
 	
 	public GestioneHotelBean(){
 		this.hotel=new HotelDTO();
@@ -39,6 +43,6 @@ public class GestioneHotelBean {
 	public void setHotel(HotelDTO hotel) {
 		this.hotel = hotel;
 	}
-	
-	
+
+
 }

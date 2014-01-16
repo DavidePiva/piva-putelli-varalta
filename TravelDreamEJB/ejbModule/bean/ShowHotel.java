@@ -1,5 +1,6 @@
 package bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -67,6 +68,19 @@ public class ShowHotel implements ShowHotelLocal {
 		h2.setFoto2(foto2);
 		h2.setFoto3(foto3);
 		return h2;
+	}
+	public List<HotelDTO> listaHotel(){
+		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel");
+		List s = new ArrayList<String>();
+
+		s = q.getResultList();
+		List<HotelDTO> list = new ArrayList<HotelDTO>();
+		for(int i=0; i<s.size(); i++){
+			Hotel h = em.find(Hotel.class, s.get(i));
+			list.add(convertiHotelDTO(h));
+		}
+	
+		return list;
 	}
 
 }

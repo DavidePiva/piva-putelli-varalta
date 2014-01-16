@@ -28,8 +28,9 @@ public class GestioneAttivitaBean {
 	public String creaAttivita(){
 		AttivitaDTO pippo=new AttivitaDTO();		
 		Date data=new Date(anno,mese,giorno);
-		
+
 		Time orario=new Time(ore,minuti,0);
+		data.setYear(getAnno()-1900);
 		attivita.setData(data);
 		attivita.setOra(orario);
 
