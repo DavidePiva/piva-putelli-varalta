@@ -41,38 +41,55 @@
 	<div id="boxlinea5"></div>
 	<div id="boxbig">
 		<div id="boxmenu">
-			<div id="boxPacchetti">	
-			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+			<div id="boxPacchetti">
+				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
-					<li><h:link outcome="prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="tipologiePacchetti" value = "Quello che fa per te" id="p3"></h:link></li>
+					<li><h:link outcome="cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
+					<li><h:link outcome="prezziPacchetti"
+							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="tipologiePacchetti"
+							value="Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
-			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="cittaHotel" value = "Città"></h:link></li>
-					<li><h:link outcome="prezziHotel" value = "Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="prezziHotel" value="Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
 				<ul id="boxleft3">
-					<li><h:link outcome="chiSiamo" value = "Chi siamo"></h:link></li>
-					<li><h:link outcome="contatti" value = "Contatti" id="ultimo"></h:link></li>
+					<li><h:link outcome="chiSiamo" value="Chi siamo"></h:link></li>
+					<li><h:link outcome="contatti" value="Contatti" id="ultimo"></h:link></li>
 				</ul>
 			</div>
 		</div>
 		<div id="boxcontenuto">
 			<h1>Fasce di prezzo</h1>
 			<ul>
-				<ui:repeat value="" var="c">
-					<li><h:link value="#{c}" outcome="pacchettiPerPrezzo">
-							<f:param name="c" value="#{c}" />
-						</h:link></li>
-				</ui:repeat>
+				<li><h:link value="Fino a #{ds.SOGLIA_1} euro"
+						outcome="pacchettiPerPrezzo">
+						<f:param name="min" value="0" />
+						<f:param name="max" value="#{ds.SOGLIA_1}" />
+					</h:link></li>
+				<li><h:link value="Da #{ds.SOGLIA_1} a #{ds.SOGLIA_2} euro"
+						outcome="pacchettiPerPrezzo">
+						<f:param name="min" value="#{ds.SOGLIA_1}" />
+						<f:param name="max" value="#{ds.SOGLIA_2}" />
+					</h:link></li>
+				<li><h:link value="Da #{ds.SOGLIA_2} a #{ds.SOGLIA_3} euro"
+						outcome="pacchettiPerPrezzo">
+						<f:param name="min" value="#{ds.SOGLIA_2}" />
+						<f:param name="max" value="#{ds.SOGLIA_3}" />
+					</h:link></li>
+				<li><h:link value="Oltre #{ds.SOGLIA_3} euro"
+						outcome="pacchettiPerPrezzo">
+						<f:param name="min" value="#{ds.SOGLIA_3}" />
+						<f:param name="max" value="-1" />
+					</h:link></li>
 			</ul>
-
 		</div>
 	</div>
 	<!--/boxbig-->
