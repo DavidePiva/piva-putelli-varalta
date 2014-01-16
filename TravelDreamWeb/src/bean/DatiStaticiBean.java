@@ -16,6 +16,9 @@ import DTO.PacchettoDTO;
 @RequestScoped
 public class DatiStaticiBean {
 	
+	private static final int SOGLIA_1 = 1000;
+	private static final int SOGLIA_2 = 2500;
+	private static final int SOGLIA_3 = 5000;
 	private String cittaSelezionata;
 	private String tipoSelezionato;
 	private List<String> citta;
@@ -28,9 +31,22 @@ public class DatiStaticiBean {
 	@EJB
 	private DatiStaticiLocal datistatici;
 	
+	
 	public List<String> getTipiPacchetto(){
 		tipiPacchetto = tipiPacchetto();
 		return tipiPacchetto;
+	}
+	
+	public int getSOGLIA_1(){
+		return SOGLIA_1;
+	}
+	
+	public int getSOGLIA_2(){
+		return SOGLIA_2;
+	}
+	
+	public int getSOGLIA_3(){
+		return SOGLIA_3;
 	}
 	
 	public String getCittaSelezionata() {
