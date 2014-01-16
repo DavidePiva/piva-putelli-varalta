@@ -28,6 +28,11 @@ function menuFunc(menuId)
 	}
 }
 </script>
+
+<f:metadata>
+	<f:viewParam name="hotel" value="#{sh.nomeHotel}" />
+	<f:viewParam name="foto" value="#{sh.numeroFoto}" />
+</f:metadata>
 </head>
 <body onload="javascript:start()">
 	<div id="boxintestazione">
@@ -90,14 +95,30 @@ function menuFunc(menuId)
 		</div>
 		<div id="boxcontenuto">
 			<div>
-				<h1>Pagina hotel</h1>
-				    <f:metadata>
-        				<f:viewParam name="hotel" value="#{sh.nomeHotel}" />			      
-  					</f:metadata>
-				<h:outputLabel value="#{sh.getDescrizione()}"></h:outputLabel>
-		</div>
+				<h1><h:outputLabel value="#{sh.hotelPerParametro.nome} - #{sh.hotelPerParametro.citta}"></h:outputLabel></h1>
+
+<table>
+<tr>
+<td align="center"> <h:graphicImage width="400" height="300" url="foto/#{sh.fotoSelezionata}"></h:graphicImage>
+<br />
+<h:link value="#{hotel}" outcome="hotel"><f:param name="hotel" value="#{sh.nomeHotel}" /><f:param name="foto" value="1" /><h:graphicImage width="100" height="75" url="foto/#{sh.hotelPerParametro.foto1}"></h:graphicImage></h:link>
+<b> </b><h:link value="#{hotel}" outcome="hotel"><f:param name="hotel" value="#{sh.nomeHotel}" /><f:param name="foto" value="2" /><h:graphicImage width="100" height="75" url="foto/#{sh.hotelPerParametro.foto2}"></h:graphicImage></h:link>
+<b> </b><h:link value="#{hotel}" outcome="hotel"><f:param name="hotel" value="#{sh.nomeHotel}" /><f:param name="foto" value="3" /><h:graphicImage width="100" height="75" url="foto/#{sh.hotelPerParametro.foto3}"></h:graphicImage></h:link>
+</td>
+<td width='20px'></td>
+<td valign="top"><h:outputLabel value="#{sh.hotelPerParametro.descrizione}"></h:outputLabel></td>
+</tr>
+</table>
+
+<br /> <br />
+<b>INFORMAZIONI:</b>
+<br />
+<h:outputLabel value="#{sh.hotelPerParametro.citta}, #{sh.hotelPerParametro.indirizzo}"></h:outputLabel><br />
+<h:outputLabel value="Telefono: #{sh.hotelPerParametro.telefono}"></h:outputLabel><br />
+				
 			</div>
 		</div>
+	</div>
 	<!--/boxbig-->
 </body>
 </html>
