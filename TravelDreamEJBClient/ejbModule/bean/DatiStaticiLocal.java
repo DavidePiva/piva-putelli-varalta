@@ -15,4 +15,7 @@ public interface DatiStaticiLocal {
 	public List<PacchettoDTO> pacchettiPerCitta(String s);
 	public List<String> tipiPacchetto();
 	public List<PacchettoDTO> pacchettiPerTipo(String tipoSelezionato);
+	public List<PacchettoDTO> pacchettiPerPrezzo(int prezzoMinimo,
+			int prezzoMassimo);
+	List<PacchettoDTO> pacchettiPerPrezzo(int prezzoMinimo);
 }
