@@ -10,9 +10,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import model.Hotel;
 import model.Pernottamento;
 import model.Volo;
 import model.Pacchetto;
+import DTO.HotelDTO;
 import DTO.PacchettoDTO;
 
 /**
@@ -71,5 +73,42 @@ public class ShowPacchetto implements ShowPacchettoLocal {
 		p1.setFoto5(p.getFoto5());
 		p1.setFoto6(p.getFoto6());
 		return p1;
+	}
+
+	@Override
+	public HotelDTO getHotelRelativo(PacchettoDTO pDTO) {
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE titolo = '"+pDTO.getTitolo()+"'");
+		List<Integer> l1 = q.getResultList();
+		int id = 0;
+		if(l1.size()==1){
+			id = l1.get(0);
+		}
+		Pacchetto p = em.find(Pacchetto.class, id);
+		return convertiHotelDTO(p.getPernottamentoBean().getHotelBean());
+	}
+	
+	public HotelDTO convertiHotelDTO(Hotel h){
+		int id = h.getIdHotel();
+		String nome = h.getNome();
+		String citta = h.getCitta();
+		String descrizione = h.getDescrizione();
+		String telefono = h.getTelefono();
+		String indirizzo = h.getIndirizzo();
+		boolean selezionabile = h.getSelezionabile();
+		String foto1 = h.getFoto1();
+		String foto2 = h.getFoto2();
+		String foto3 = h.getFoto3();
+		HotelDTO h2 = new HotelDTO();
+		h2.setIdHotel(id);
+		h2.setNome(nome);
+		h2.setCitta(citta);
+		h2.setIndirizzo(indirizzo);
+		h2.setTelefono(telefono);
+		h2.setDescrizione(descrizione);
+		h2.setSelezionabile(selezionabile);
+		h2.setFoto1(foto1);
+		h2.setFoto2(foto2);
+		h2.setFoto3(foto3);
+		return h2;
 	}
 }

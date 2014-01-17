@@ -1,9 +1,12 @@
 package bean;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import DTO.HotelDTO;
 import DTO.PacchettoDTO;
 
 @ManagedBean(name="sp")
@@ -37,11 +40,6 @@ public class ShowPacchettoBean {
 		return p;
 	}
 	
-	public String getDescrizione(){
-		PacchettoDTO p = getPacchettoPerParametro();
-		return p.getDescrizione();
-	}
-	
 	public String getFotoSelezionata(){
 		PacchettoDTO h = getPacchettoPerParametro();
 		switch(numeroFoto){
@@ -60,6 +58,11 @@ public class ShowPacchettoBean {
 		default:
 			return "";
 		}
+	}
+	
+	public HotelDTO getHotelRelativo(){
+		PacchettoDTO h = getPacchettoPerParametro();
+		return showPacchetto.getHotelRelativo(h);
 	}
 
 }
