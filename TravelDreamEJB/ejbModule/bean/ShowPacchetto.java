@@ -1,6 +1,9 @@
 package bean;
 
 import java.math.BigDecimal;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,11 +14,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.Aeroporto;
+import model.Attivita;
 import model.Hotel;
 import model.Pernottamento;
 import model.Volo;
 import model.Pacchetto;
 import DTO.AeroportoDTO;
+import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.PacchettoDTO;
 import DTO.VoloDTO;
@@ -164,5 +169,42 @@ public class ShowPacchetto implements ShowPacchettoLocal {
 		aDTO.setId(a.getIdAeroporto());
 		aDTO.setNome(a.getNome());
 		return aDTO;
+	}
+
+	@Override
+	public List<AttivitaDTO> getAttivita(int idPacchetto) {
+		Pacchetto p = em.find(Pacchetto.class, idPacchetto);
+		List<Attivita> att = p.getAttivitas();
+		List<AttivitaDTO> l = new ArrayList<AttivitaDTO>();
+		for(int i = 0; i < att.size(); i++){
+			Attivita a = att.get(i);
+			l.add(convertiAttivitaDTO(a));
+		}
+		return l;
+	}
+	
+	public AttivitaDTO convertiAttivitaDTO(Attivita a){
+		AttivitaDTO a2 = new AttivitaDTO();
+		int id = a.getIdAttivita();
+		boolean selezionabile = a.getSelezionabile();
+		String titolo = a.getTitolo();
+		String citta = a.getCitta();
+		String descrizione = a.getDescrizione();
+		String foto1 = a.getFoto1();
+		String foto2 = a.getFoto2();
+		String foto3 = a.getFoto3();
+		Date data = a.getData();
+		Time ora = a.getOra();
+		a2.setId(id);
+		a2.setDescrizione(descrizione);
+		a2.setCitta(citta);
+		a2.setFoto1(foto1);
+		a2.setFoto2(foto2);
+		a2.setFoto3(foto3);
+		a2.setTitolo(titolo);
+		a2.setOra(ora);
+		a2.setData(data);
+		a2.setSelezionabile(selezionabile);
+		return a2;
 	}
 }

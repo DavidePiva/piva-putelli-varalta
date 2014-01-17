@@ -1,5 +1,6 @@
 package bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -7,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import DTO.AeroportoDTO;
+import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.PacchettoDTO;
 import DTO.VoloDTO;
@@ -17,6 +19,7 @@ public class ShowPacchettoBean {
 	
 	private String nomePacchetto;
 	private int numeroFoto;
+	private ArrayList<String> attivitaPacchetto;
 	
 	public int getNumeroFoto() {
 		return numeroFoto;
@@ -85,5 +88,16 @@ public class ShowPacchettoBean {
 	public VoloDTO getVoloArrivo(){
 		PacchettoDTO h = getPacchettoPerParametro();
 		return showPacchetto.getVolo2(h);
+	}
+	
+	public ArrayList<String> getAttivitaPacchetto(){
+		PacchettoDTO h = getPacchettoPerParametro();
+		attivitaPacchetto = new ArrayList<String>();
+		List<AttivitaDTO> att = new ArrayList<AttivitaDTO>();
+		att = showPacchetto.getAttivita(h.getIdPacchetto());
+		for(int i = 0; i < att.size(); i++){
+			attivitaPacchetto.add(att.get(i).getTitolo());
+		}
+		return attivitaPacchetto;
 	}
 }
