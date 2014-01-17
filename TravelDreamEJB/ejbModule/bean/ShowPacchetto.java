@@ -10,12 +10,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import model.Aeroporto;
 import model.Hotel;
 import model.Pernottamento;
 import model.Volo;
 import model.Pacchetto;
+import DTO.AeroportoDTO;
 import DTO.HotelDTO;
 import DTO.PacchettoDTO;
+import DTO.VoloDTO;
 
 /**
  * Session Bean implementation class ShowPacchetto
@@ -110,5 +113,56 @@ public class ShowPacchetto implements ShowPacchettoLocal {
 		h2.setFoto2(foto2);
 		h2.setFoto3(foto3);
 		return h2;
+	}
+
+	@Override
+	public VoloDTO getVolo1(PacchettoDTO pDTO) {
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE titolo = '"+pDTO.getTitolo()+"'");
+		List<Integer> l1 = q.getResultList();
+		int id = 0;
+		if(l1.size()==1){
+			id = l1.get(0);
+		}
+		Pacchetto p = em.find(Pacchetto.class, id);
+		return convertiVoloDTO(p.getVolo1());
+	}
+
+	private VoloDTO convertiVoloDTO(Volo v) {
+		VoloDTO vDTO = new VoloDTO();
+		vDTO.setOraPartenza(v.getOraPartenza());
+		vDTO.setIdAeroportoPartenza(v.getAeroporto1().getIdAeroporto());
+		vDTO.setOraArrivo(v.getOraArrivo());
+		vDTO.setIdAeroportoArrivo(v.getAeroporto2().getIdAeroporto());
+		vDTO.setIdVolo(v.getIdVolo());
+		vDTO.setData(v.getData());
+		vDTO.setPrezzo(v.getPrezzo());
+		vDTO.setIdCompagnia(v.getCompagniaBean().getIdCompagnia());
+		return vDTO;
+	}
+
+	@Override
+	public VoloDTO getVolo2(PacchettoDTO pDTO) {
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE titolo = '"+pDTO.getTitolo()+"'");
+		List<Integer> l1 = q.getResultList();
+		int id = 0;
+		if(l1.size()==1){
+			id = l1.get(0);
+		}
+		Pacchetto p = em.find(Pacchetto.class, id);
+		return convertiVoloDTO(p.getVolo2());
+	}
+
+	@Override
+	public AeroportoDTO getAeroporto(int id) {
+		Aeroporto a = em.find(Aeroporto.class, id);
+		return convertiAeroportoDTO(a);
+	}
+
+	private AeroportoDTO convertiAeroportoDTO(Aeroporto a) {
+		AeroportoDTO aDTO = new AeroportoDTO();
+		aDTO.setCitta(a.getCitta());
+		aDTO.setId(a.getIdAeroporto());
+		aDTO.setNome(a.getNome());
+		return aDTO;
 	}
 }
