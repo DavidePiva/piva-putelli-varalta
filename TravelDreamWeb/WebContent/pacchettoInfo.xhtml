@@ -85,11 +85,16 @@
 								<f:param name="hotel" value="#{sp.hotelRelativo.nome}" />
 								<f:param name="foto" value="1" />
 							</h:link><br /></td>
+						<ui:repeat value="#{sp.attivitaPacchetto}" var="attivita">
+							<li><h:link value="#{attivita}" outcome="attivita">
+									<f:param name="attivita" value="#{attivita}" />
+									<f:param name="foto" value="1" />
+								</h:link></li>
+						</ui:repeat>
 						<td width='20px' />
 						<td><b>Andata</b><br /> <h:outputLabel
 								value="#{sp.aeroportoPartenza.nome}, #{sp.voloPartenza.dataFormattata}"></h:outputLabel>
-							<br />
-						<br /> <b>Ritorno</b><br /> <h:outputLabel
+							<br /> <br /> <b>Ritorno</b><br /> <h:outputLabel
 								value="#{sp.aeroportoArrivo.nome}, #{sp.voloArrivo.dataFormattata}"></h:outputLabel>
 						</td>
 					</tr>
