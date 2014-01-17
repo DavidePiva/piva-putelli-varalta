@@ -1,7 +1,5 @@
 package bean;
 
-import java.util.List;
-
 import javax.ejb.Local;
 
 import DTO.AeroportoDTO;
