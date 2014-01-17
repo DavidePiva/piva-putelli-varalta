@@ -68,4 +68,8 @@ public class VoloDTO {
 		this.oraPartenza = oraPartenza;
 	}
 	
+	public String getDataFormattata(){
+		return data.getDay()+"/"+data.getMonth()+" ore "+oraPartenza.getHours()+":"+(oraPartenza.getMinutes()<10 ? "0" : "")+oraPartenza.getMinutes();
+	}
+	
 }

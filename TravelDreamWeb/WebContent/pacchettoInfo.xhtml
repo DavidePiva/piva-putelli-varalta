@@ -73,16 +73,31 @@
 			<div>
 				<h1>
 					<h:outputLabel value="#{sp.pacchettoPerParametro.titolo} - "></h:outputLabel>
-					<h:link outcome="pacchetto" value="Introduzione" id="url_titolo"><f:param name="pacchetto" value="#{sp.nomePacchetto}" /><f:param name="foto" value="1" />
+					<h:link outcome="pacchetto" value="Introduzione" id="url_titolo">
+						<f:param name="pacchetto" value="#{sp.nomePacchetto}" />
+						<f:param name="foto" value="1" />
 					</h:link>
-					
-					
 				</h1>
-				<h:link value="#{sp.hotelRelativo.nome}" outcome="hotel">
-					<f:param name="hotel" value="#{sp.hotelRelativo.nome}" />
-					<f:param name="foto" value="1" />
-				</h:link>
-				
+
+				<table>
+					<tr>
+						<td><h:link value="#{sp.hotelRelativo.nome}" outcome="hotel">
+								<f:param name="hotel" value="#{sp.hotelRelativo.nome}" />
+								<f:param name="foto" value="1" />
+							</h:link><br /></td>
+						<td width='20px' />
+						<td><b>Andata</b><br /> <h:outputLabel
+								value="#{sp.aeroportoPartenza.nome}, #{sp.voloPartenza.dataFormattata}"></h:outputLabel>
+							<br />
+						<br /> <b>Ritorno</b><br /> <h:outputLabel
+								value="#{sp.aeroportoArrivo.nome}, #{sp.voloArrivo.dataFormattata}"></h:outputLabel>
+						</td>
+					</tr>
+				</table>
+
+
+
+
 			</div>
 		</div>
 	</div>

@@ -6,8 +6,10 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import DTO.AeroportoDTO;
 import DTO.HotelDTO;
 import DTO.PacchettoDTO;
+import DTO.VoloDTO;
 
 @ManagedBean(name="sp")
 @RequestScoped
@@ -64,5 +66,24 @@ public class ShowPacchettoBean {
 		PacchettoDTO h = getPacchettoPerParametro();
 		return showPacchetto.getHotelRelativo(h);
 	}
-
+	
+	public AeroportoDTO getAeroportoPartenza(){
+		PacchettoDTO h = getPacchettoPerParametro();
+		return showPacchetto.getAeroporto(showPacchetto.getVolo1(h).getIdAeroportoPartenza());
+	}
+	
+	public AeroportoDTO getAeroportoArrivo(){
+		PacchettoDTO h = getPacchettoPerParametro();
+		return showPacchetto.getAeroporto(showPacchetto.getVolo2(h).getIdAeroportoPartenza());
+	}
+	
+	public VoloDTO getVoloPartenza(){
+		PacchettoDTO h = getPacchettoPerParametro();
+		return showPacchetto.getVolo1(h);
+	}
+	
+	public VoloDTO getVoloArrivo(){
+		PacchettoDTO h = getPacchettoPerParametro();
+		return showPacchetto.getVolo2(h);
+	}
 }
