@@ -75,9 +75,13 @@
 					<h:outputLabel value="#{sp.pacchettoPerParametro.titolo} - "></h:outputLabel>
 					<h:link outcome="pacchetto" value="Introduzione" id="url_titolo"><f:param name="pacchetto" value="#{sp.nomePacchetto}" /><f:param name="foto" value="1" />
 					</h:link>
+					
+					
 				</h1>
-
-
+				<h:link value="#{sp.hotelRelativo.nome}" outcome="hotel">
+					<f:param name="hotel" value="#{sp.hotelRelativo.nome}" />
+					<f:param name="foto" value="1" />
+				</h:link>
 				
 			</div>
 		</div>
