@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import DTO.HotelDTO;
 import DTO.TipoCamere_HotelDTO;
 
 import java.math.BigDecimal;
@@ -32,14 +33,14 @@ public class TipoCamere_Hotel implements Serializable {
 	public TipoCamere_Hotel() {
 	}
 
-	public TipoCamere_Hotel(TipoCamere_HotelDTO t){
+	public TipoCamere_Hotel(TipoCamere_HotelDTO t,HotelDTO h){
 		
 		this.prezzo=t.getPrezzo();
 		this.id=new TipoCamere_HotelPK();
 		this.id.setIdHotel(t.getId());
 		this.id.setTipoCamera(t.getTipo().getString(t.getTipo()));
-		this.hotel=new Hotel();
-		this.hotel.setIdHotel(t.getId());
+		this.hotel=new Hotel(h);
+
 	}
 	
 	public TipoCamere_HotelPK getId() {

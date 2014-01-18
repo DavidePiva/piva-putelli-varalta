@@ -39,17 +39,16 @@ public class GestioneHotelBean {
 	}
 
 	public String salvaCamere(){
-			
-			lowCost.setId(getHotelPerParametro().getIdHotel());
+			HotelDTO h=getHotelPerParametro();
+			lowCost.setId(h.getIdHotel());
 			lowCost.setTipo(TipoCamera.LOWCOST);
-			dream.setId(getHotelPerParametro().getIdHotel());
+			dream.setId(h.getIdHotel());
 			dream.setTipo(TipoCamera.DREAM);
-			smart.setId(getHotelPerParametro().getIdHotel());
+			smart.setId(h.getIdHotel());
 			smart.setTipo(TipoCamera.SMART);
-			System.out.println(lowCost.getId()+"   "+lowCost.getTipo()+"   "+lowCost.getPrezzo());
-			gc.salvaCamera(lowCost);
-			gc.salvaCamera(smart);
-			gc.salvaCamera(dream);
+			gc.salvaCamera(lowCost,h);
+			gc.salvaCamera(smart,h);
+			gc.salvaCamera(dream,h);
 
 		return "/impiegato/index?faces-redirect=true";
 	}

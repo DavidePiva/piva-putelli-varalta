@@ -59,8 +59,8 @@ GestioneComponenti(){
 		em.persist(attivita);	
 	}
 	
-	public void salvaCamera(TipoCamere_HotelDTO t){
-		TipoCamere_Hotel tipoCamera=new TipoCamere_Hotel(t);
+	public void salvaCamera(TipoCamere_HotelDTO t,HotelDTO h){
+		TipoCamere_Hotel tipoCamera=new TipoCamere_Hotel(t,h);
 		em.persist(tipoCamera);
 	}
 	

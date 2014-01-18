@@ -12,6 +12,6 @@ import DTO.TipoCamere_HotelDTO;
 public interface GestioneComponentiLocal {
 	public void creaAttivita(AttivitaDTO attivita);
 	public void creaHotel(HotelDTO hotel);
-	public void salvaCamera(TipoCamere_HotelDTO tipoCamera);
+	public void salvaCamera(TipoCamere_HotelDTO tipoCamera,HotelDTO h);
 	
 }
