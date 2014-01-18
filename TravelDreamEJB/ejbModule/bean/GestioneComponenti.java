@@ -1,5 +1,6 @@
 package bean;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,9 +62,12 @@ GestioneComponenti(){
 	public void salvaCamera(TipoCamere_HotelDTO t,HotelDTO h){
 		TipoCamere_Hotel tipoCamera=new TipoCamere_Hotel(t,h);
 		em.persist(tipoCamera);
-		Hotel hotel=new Hotel(h);
-		Pernottamento p=new Pernottamento(hotel,true,t.getTipo().getString(t.getTipo()));
-		creaPernottamento(p);
+		if(t.getPrezzo().floatValue()>0){		
+			Hotel hotel=new Hotel(h);
+			Pernottamento p=new Pernottamento(hotel,true,t.getTipo().getString(t.getTipo()));
+			creaPernottamento(p);
+		}
+
 	}
 	
 	//###MODIFICA###//
