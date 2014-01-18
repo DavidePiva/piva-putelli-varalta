@@ -43,9 +43,8 @@ GestioneComponenti(){
 	}
 	//###CREAZIONE###//
 	
-	public void creaPernottamento(PernottamentoDTO p){
-		Pernottamento pernottamento=new Pernottamento(p);
-		em.persist(pernottamento);
+	private void creaPernottamento(Pernottamento p){
+		em.persist(p);
 	}
 	
 	public void creaHotel(HotelDTO h){
@@ -62,6 +61,9 @@ GestioneComponenti(){
 	public void salvaCamera(TipoCamere_HotelDTO t,HotelDTO h){
 		TipoCamere_Hotel tipoCamera=new TipoCamere_Hotel(t,h);
 		em.persist(tipoCamera);
+		Hotel hotel=new Hotel(h);
+		Pernottamento p=new Pernottamento(hotel,true,t.getTipo().getString(t.getTipo()));
+		creaPernottamento(p);
 	}
 	
 	//###MODIFICA###//
