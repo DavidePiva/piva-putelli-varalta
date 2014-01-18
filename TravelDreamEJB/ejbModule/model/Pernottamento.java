@@ -56,6 +56,12 @@ public class Pernottamento implements Serializable {
 		this.tipo=p.getTipo();		
 	}
 	
+	public Pernottamento(Hotel hotel,boolean selezionabile,String tipo){
+		this.hotelBean=hotel;
+		this.selezionabile=selezionabile;
+		this.tipo=tipo;
+	}
+	
 	public int getIdPernottamento() {
 		return this.idPernottamento;
 	}
