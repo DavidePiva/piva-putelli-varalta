@@ -2,7 +2,7 @@ package DTO;
 
 import java.math.BigDecimal;
 
-public class Viaggio {
+public class ViaggioDTO {
 	
 	private int idViaggio;
 
@@ -10,7 +10,7 @@ public class Viaggio {
 
 	private int numeroPersone;
 
-	private byte pagato;
+	private boolean pagato;
 
 	private BigDecimal prezzo;
 	
@@ -37,10 +37,10 @@ public class Viaggio {
 	public void setNumeroPersone(int numeroPersone) {
 		this.numeroPersone = numeroPersone;
 	}
-	public byte getPagato() {
+	public boolean getPagato() {
 		return pagato;
 	}
-	public void setPagato(byte pagato) {
+	public void setPagato(boolean pagato) {
 		this.pagato = pagato;
 	}
 	public BigDecimal getPrezzo() {

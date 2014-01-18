@@ -58,7 +58,9 @@
 			</div>
 		</div>
 		<div id="boxcontenuto">
-			<h1><h:outputLabel value="Ciao #{gp.nomeUtente}"></h:outputLabel></h1>
+			<h1>
+				<h:outputLabel value="Ciao #{gp.nomeUtente}"></h:outputLabel>
+			</h1>
 			<h:form>
 				<h:link outcome="/admin/index" value="Sezione Admin" id="link_admin"
 					rendered="#{gp.isAdmin()}" />
@@ -66,6 +68,10 @@
 					id="link_impiegato" rendered="#{gp.isImpiegato()}" />
 				<h:commandButton value="Eliminati" action="#{gp.eliminaUtente()}" />
 			</h:form>
+			<ui:repeat value="#{sv.getCittaViaggiUtente(gp.utenteSelezionato)}"
+				var="viaggio">
+				<li><h:outputLabel value="#{viaggio}"></h:outputLabel></li>
+			</ui:repeat>
 		</div>
 	</div>
 	<!--/boxbig-->
