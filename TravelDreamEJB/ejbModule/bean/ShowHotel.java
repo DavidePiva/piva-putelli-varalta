@@ -1,5 +1,6 @@
 package bean;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import DTO.HotelDTO;
+import DTO.TipoCamera;
+import DTO.TipoCamere_HotelDTO;
 import model.Hotel;
+import model.TipoCamere_Hotel;
+import model.TipoCamere_HotelPK;
 
 /**
  * Session Bean implementation class ShowHotel
@@ -81,6 +86,40 @@ public class ShowHotel implements ShowHotelLocal {
 		}
 	
 		return list;
+	}
+
+	@Override
+	public List<TipoCamere_HotelDTO> camereHotel(int idHotel) {
+		Hotel h = em.find(Hotel.class, idHotel);
+		List<TipoCamere_Hotel> list = h.getTipoCamereHotels();
+		List<TipoCamere_HotelDTO> l2 = new ArrayList<TipoCamere_HotelDTO>();
+		for(int i = 0; i < list.size(); i++){
+			TipoCamere_Hotel t = list.get(i);
+			l2.add(convertiTipoCamereDTO(t));
+		}
+		return l2;
+	}
+	
+	public TipoCamere_HotelDTO convertiTipoCamereDTO(TipoCamere_Hotel tc){
+		BigDecimal prezzo = tc.getPrezzo();
+		Hotel h = tc.getHotel();
+		TipoCamere_HotelPK pk = tc.getId();
+		String tipo = pk.getTipoCamera();
+		TipoCamere_HotelDTO t2 = new TipoCamere_HotelDTO();
+		t2.setId(h.getIdHotel());
+		t2.setPrezzo(prezzo);
+		TipoCamera a = null;
+		if(tipo.equals("lowcost")){
+			a = TipoCamera.LOWCOST;
+		}
+		if(tipo.equals("smart")){
+			a = TipoCamera.SMART;
+		}
+		if(tipo.equals("dream")){
+			a = TipoCamera.DREAM;
+		}
+		t2.setTipo(a);
+		return t2;
 	}
 
 }
