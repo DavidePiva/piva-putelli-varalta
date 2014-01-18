@@ -44,38 +44,47 @@
 	<div id="boxlinea5"></div>
 	<div id="boxbig">
 		<div id="boxmenu">
-			<div id="boxPacchetti">	
-			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+			<div id="boxPacchetti">
+				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
-					<li><h:link outcome="prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="tipologiePacchetti" value = "Quello che fa per te" id="p3"></h:link></li>
+					<li><h:link outcome="cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
+					<li><h:link outcome="prezziPacchetti"
+							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="tipologiePacchetti"
+							value="Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
-			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="cittaHotel" value = "Città"></h:link></li>
-					<li><h:link outcome="prezziHotel" value = "Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="prezziHotel" value="Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
 				<ul id="boxleft3">
-					<li><h:link outcome="chiSiamo" value = "Chi siamo"></h:link></li>
-					<li><h:link outcome="contatti" value = "Contatti" id="ultimo"></h:link></li>
+					<li><h:link outcome="chiSiamo" value="Chi siamo"></h:link></li>
+					<li><h:link outcome="contatti" value="Contatti" id="ultimo"></h:link></li>
 				</ul>
 			</div>
 		</div>
 		<div id="boxcontenuto">
 			<div>
 				<h1>
-				<h:outputLabel value="#{sh.hotelPerParametro.nome} - "></h:outputLabel>
-				<h:link outcome="hotel" value="Introduzione" id="url_titolo"><f:param name="hotel" value="#{sh.nomeHotel}" /><f:param name="foto" value="1" />
+					<h:outputLabel value="#{sh.hotelPerParametro.nome} - "></h:outputLabel>
+					<h:link outcome="hotel" value="Introduzione" id="url_titolo">
+						<f:param name="hotel" value="#{sh.nomeHotel}" />
+						<f:param name="foto" value="1" />
 					</h:link>
+					<ui:repeat value="#{sh.nomiCamere}" var="camera">
+						<li><h:outputLabel value="#{camera}"></h:outputLabel></li>
+					</ui:repeat>
+					<ui:repeat value="#{sh.prezziCamere}" var="prezzo">
+						<li><h:outputLabel value="#{prezzo}"></h:outputLabel></li>
+					</ui:repeat>
 				</h1>
 
-
-				
 			</div>
 		</div>
 	</div>

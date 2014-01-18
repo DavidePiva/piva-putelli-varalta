@@ -45,55 +45,76 @@
 	<div id="boxlinea5"></div>
 	<div id="boxbig">
 		<div id="boxmenu">
-			<div id="boxPacchetti">	
-			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+			<div id="boxPacchetti">
+				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
-					<li><h:link outcome="prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="tipologiePacchetti" value = "Quello che fa per te" id="p3"></h:link></li>
+					<li><h:link outcome="cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
+					<li><h:link outcome="prezziPacchetti"
+							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="tipologiePacchetti"
+							value="Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
-			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="cittaHotel" value = "Città"></h:link></li>
-					<li><h:link outcome="prezziHotel" value = "Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="prezziHotel" value="Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
 				<ul id="boxleft3">
-					<li><h:link outcome="chiSiamo" value = "Chi siamo"></h:link></li>
-					<li><h:link outcome="contatti" value = "Contatti" id="ultimo"></h:link></li>
+					<li><h:link outcome="chiSiamo" value="Chi siamo"></h:link></li>
+					<li><h:link outcome="contatti" value="Contatti" id="ultimo"></h:link></li>
 				</ul>
 			</div>
 		</div>
 		<div id="boxcontenuto">
 			<div>
 				<h1>
-				<h:outputLabel value="#{sh.hotelPerParametro.nome} - #{sh.hotelPerParametro.citta} - "></h:outputLabel>
-				<h:link outcome="hotelInfo" value="Dettagli" id="url_titolo"><f:param name="hotel" value="#{sh.nomeHotel}" />
+					<h:outputLabel
+						value="#{sh.hotelPerParametro.nome} - #{sh.hotelPerParametro.citta} - "></h:outputLabel>
+					<h:link outcome="hotelInfo" value="Le camere" id="url_titolo">
+						<f:param name="hotel" value="#{sh.nomeHotel}" />
 					</h:link>
 				</h1>
 
-<table>
-<tr>
-<td align="center"> <h:graphicImage width="400" height="300" url="foto/#{sh.fotoSelezionata}"></h:graphicImage>
-<br />
-<h:link value="#{hotel}" outcome="hotel"><f:param name="hotel" value="#{sh.nomeHotel}" /><f:param name="foto" value="1" /><h:graphicImage width="100" height="75" url="foto/#{sh.hotelPerParametro.foto1}"></h:graphicImage></h:link>
-<b> </b><h:link value="#{hotel}" outcome="hotel"><f:param name="hotel" value="#{sh.nomeHotel}" /><f:param name="foto" value="2" /><h:graphicImage width="100" height="75" url="foto/#{sh.hotelPerParametro.foto2}"></h:graphicImage></h:link>
-<b> </b><h:link value="#{hotel}" outcome="hotel"><f:param name="hotel" value="#{sh.nomeHotel}" /><f:param name="foto" value="3" /><h:graphicImage width="100" height="75" url="foto/#{sh.hotelPerParametro.foto3}"></h:graphicImage></h:link>
-</td>
-<td width='20px'></td>
-<td valign="top"><h:outputLabel value="#{sh.hotelPerParametro.descrizione}"></h:outputLabel></td>
-</tr>
-</table>
+				<table>
+					<tr>
+						<td align="center"><h:graphicImage width="400" height="300"
+								url="foto/#{sh.fotoSelezionata}"></h:graphicImage> <br /> <h:link
+								value="#{hotel}" outcome="hotel">
+								<f:param name="hotel" value="#{sh.nomeHotel}" />
+								<f:param name="foto" value="1" />
+								<h:graphicImage width="100" height="75"
+									url="foto/#{sh.hotelPerParametro.foto1}"></h:graphicImage>
+							</h:link> <b> </b>
+						<h:link value="#{hotel}" outcome="hotel">
+								<f:param name="hotel" value="#{sh.nomeHotel}" />
+								<f:param name="foto" value="2" />
+								<h:graphicImage width="100" height="75"
+									url="foto/#{sh.hotelPerParametro.foto2}"></h:graphicImage>
+							</h:link> <b> </b>
+						<h:link value="#{hotel}" outcome="hotel">
+								<f:param name="hotel" value="#{sh.nomeHotel}" />
+								<f:param name="foto" value="3" />
+								<h:graphicImage width="100" height="75"
+									url="foto/#{sh.hotelPerParametro.foto3}"></h:graphicImage>
+							</h:link></td>
+						<td width='20px'></td>
+						<td valign="top"><h:outputLabel
+								value="#{sh.hotelPerParametro.descrizione}"></h:outputLabel></td>
+					</tr>
+				</table>
 
-<br /> <br />
-<b>INFORMAZIONI:</b>
-<br />
-<h:outputLabel value="#{sh.hotelPerParametro.citta}, #{sh.hotelPerParametro.indirizzo}"></h:outputLabel><br />
-<h:outputLabel value="Telefono: #{sh.hotelPerParametro.telefono}"></h:outputLabel><br />
-				
+				<br /> <br /> <b>INFORMAZIONI:</b> <br />
+				<h:outputLabel
+					value="#{sh.hotelPerParametro.citta}, #{sh.hotelPerParametro.indirizzo}"></h:outputLabel>
+				<br />
+				<h:outputLabel value="Telefono: #{sh.hotelPerParametro.telefono}"></h:outputLabel>
+				<br />
+
 			</div>
 		</div>
 	</div>

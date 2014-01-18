@@ -1,5 +1,5 @@
 package enums;
 
 public enum TipoCamera {
-	LOWCOST,SMART,DREAM;
+	lowcost,smart,dream;
 }
