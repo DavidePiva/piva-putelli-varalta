@@ -99,10 +99,21 @@
 									<h:panelGrid columns="1" id="regGrid2">
 
 										<h:outputLabel for="data">Data (gg:mm:aaaa) </h:outputLabel>
-										<p:inputText id="giorno" value="#{ga.giorno}" size='4' />
-										<p:inputText id="mese" value="#{ga.mese}" size='4' />
-										<p:inputText id="anno" value="#{ga.anno}" size='4' />
-
+										
+										<h:selectOneMenu value="#{ga.giorno}">
+											<f:selectItems value="#{ga.giorniList}" var="c" itemLabel="#{c}"
+												itemValue="#{c}" />
+										</h:selectOneMenu>
+										
+										<h:selectOneMenu value="#{ga.mese}">
+											<f:selectItems value="#{ga.mesiList}" var="c" itemLabel="#{c}"
+												itemValue="#{c}" />
+										</h:selectOneMenu>
+										
+										<h:selectOneMenu value="#{ga.anno}">
+											<f:selectItems value="#{ga.anniList}" var="c" itemLabel="#{c}"
+												itemValue="#{c}" />
+										</h:selectOneMenu>
 
 										<h:outputLabel for="ora">Ora</h:outputLabel>
 										<h:selectOneMenu value="#{ga.ore}">
