@@ -95,7 +95,10 @@ public class ShowHotel implements ShowHotelLocal {
 		List<TipoCamere_HotelDTO> l2 = new ArrayList<TipoCamere_HotelDTO>();
 		for(int i = 0; i < list.size(); i++){
 			TipoCamere_Hotel t = list.get(i);
-			l2.add(convertiTipoCamereDTO(t));
+			BigDecimal prezzo = t.getPrezzo();
+			if(prezzo.compareTo(BigDecimal.ZERO)!=0){
+				l2.add(convertiTipoCamereDTO(t));
+			}
 		}
 		return l2;
 	}
@@ -109,13 +112,13 @@ public class ShowHotel implements ShowHotelLocal {
 		t2.setId(h.getIdHotel());
 		t2.setPrezzo(prezzo);
 		TipoCamera a = null;
-		if(tipo.equals("lowcost")){
+		if (tipo.equals("lowcost")) {
 			a = TipoCamera.LOWCOST;
 		}
-		if(tipo.equals("smart")){
+		if (tipo.equals("smart")) {
 			a = TipoCamera.SMART;
 		}
-		if(tipo.equals("dream")){
+		if (tipo.equals("dream")) {
 			a = TipoCamera.DREAM;
 		}
 		t2.setTipo(a);
