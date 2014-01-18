@@ -1,7 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import DTO.PacchettoDTO;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -81,6 +85,10 @@ public class Pacchetto implements Serializable {
 	public Pacchetto() {
 	}
 
+	public Pacchetto(PacchettoDTO p){
+		
+	}
+	
 	public int getIdPacchetto() {
 		return this.idPacchetto;
 	}

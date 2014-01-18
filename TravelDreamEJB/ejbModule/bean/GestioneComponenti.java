@@ -14,11 +14,13 @@ import javax.persistence.Query;
 
 import model.Attivita;
 import model.Gruppo;
+import model.Pacchetto;
 import model.Pernottamento;
 import model.TipoCamere_Hotel;
 import model.Utente;
 import DTO.AttivitaDTO;
 import DTO.HotelDTO;
+import DTO.PacchettoDTO;
 import DTO.PernottamentoDTO;
 import DTO.TipoCamere_HotelDTO;
 import DTO.UtenteDTO;
@@ -44,6 +46,11 @@ GestioneComponenti(){
 	}
 	//###CREAZIONE###//
 	
+	public void creaPacchetto(PacchettoDTO p){
+		Pacchetto pacchetto=new Pacchetto(p);
+		
+	}
+
 	private void creaPernottamento(Pernottamento p){
 		em.persist(p);
 	}
@@ -60,11 +67,12 @@ GestioneComponenti(){
 	}
 	
 	public void salvaCamera(TipoCamere_HotelDTO t,HotelDTO h){
-		TipoCamere_Hotel tipoCamera=new TipoCamere_Hotel(t,h);
-		em.persist(tipoCamera);
-		if(t.getPrezzo().floatValue()>0){		
-			Hotel hotel=new Hotel(h);
-			Pernottamento p=new Pernottamento(hotel,true,t.getTipo().getString(t.getTipo()));
+		
+		if (t.getPrezzo().floatValue() > 0) {
+			TipoCamere_Hotel tipoCamera = new TipoCamere_Hotel(t, h);
+			em.persist(tipoCamera);
+			Hotel hotel = new Hotel(h);
+			Pernottamento p = new Pernottamento(hotel, true, t.getTipo().getString(t.getTipo()));
 			creaPernottamento(p);
 		}
 
