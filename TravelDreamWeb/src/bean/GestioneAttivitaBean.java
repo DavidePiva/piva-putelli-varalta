@@ -1,7 +1,9 @@
 package bean;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -94,5 +96,17 @@ public class GestioneAttivitaBean {
 		this.mese = mese;
 	}
 	
+	public List<String> getOreList(){
+		List<String> s = new ArrayList<String>();
+		for(int i=0;i<24;i++)
+			s.add((i<10 ? "0" : "")+i);
+		return s;
+	}
 	
+	public List<String> getMinutiList(){
+		List<String> s = new ArrayList<String>();
+		for(int i=0;i<60;i=i+5)
+			s.add((i<10 ? "0" : "")+i);
+		return s;
+	}
 }

@@ -38,25 +38,28 @@
 	<div id="boxlinea5"></div>
 	<div id="boxbig">
 		<div id="boxmenu">
-			<div id="boxPacchetti">	
-			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+			<div id="boxPacchetti">
+				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="/cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
-					<li><h:link outcome="/prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="/tipologiePacchetti" value = "Quello che fa per te" id="p3"></h:link></li>
+					<li><h:link outcome="/cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
+					<li><h:link outcome="/prezziPacchetti"
+							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="/tipologiePacchetti"
+							value="Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
-			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="/cittaHotel" value = "Città"></h:link></li>
-					<li><h:link outcome="/prezziHotel" value = "Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="/cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="/prezziHotel" value="Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
 				<ul id="boxleft3">
-					<li><h:link outcome="/chiSiamo" value = "Chi siamo"></h:link></li>
-					<li><h:link outcome="/contatti" value = "Contatti" id="ultimo"></h:link></li>
+					<li><h:link outcome="/chiSiamo" value="Chi siamo"></h:link></li>
+					<li><h:link outcome="/contatti" value="Contatti" id="ultimo"></h:link></li>
 				</ul>
 			</div>
 		</div>
@@ -67,65 +70,72 @@
 					<br></br>
 
 					<table>
-						<tr><td>
-							<p:panel>
-								<h:panelGrid columns="1" id="regGrid1">
+						<tr>
+							<td><p:panel>
+									<h:panelGrid columns="1" id="regGrid1">
 
-									<h:outputLabel for="titolo">Titolo</h:outputLabel>
-									<p:inputText id="titolo" value="#{ga.attivita.titolo}" />
-									<p:message for="titolo" />
-									
-									<h:outputLabel for="descrizione">Descrizione</h:outputLabel>
-									<p:inputText id="descrizione" value="#{ga.attivita.descrizione}" />
-									<p:message for="descrizione" />
+										<h:outputLabel for="titolo">Titolo</h:outputLabel>
+										<p:inputText id="titolo" value="#{ga.attivita.titolo}" />
+										<p:message for="titolo" />
 
-									<h:outputLabel for="citta">Città</h:outputLabel>
-									<p:inputText id="citta" value="#{ga.attivita.citta}" />
-									<p:message for="citta" />
+										<h:outputLabel for="descrizione">Descrizione</h:outputLabel>
+										<p:inputText id="descrizione"
+											value="#{ga.attivita.descrizione}" />
+										<p:message for="descrizione" />
 
-									<h:outputLabel for="prezzo">Prezzo</h:outputLabel>
-									<p:inputText id="prezzo" value="#{ga.attivita.prezzo}" />
-									<p:message for="prezzo" />
+										<h:outputLabel for="citta">Città</h:outputLabel>
+										<p:inputText id="citta" value="#{ga.attivita.citta}" />
+										<p:message for="citta" />
 
-
-								</h:panelGrid>
-
-							</p:panel>
-						</td>
-						<td>
-							<p:panel>
-								<h:panelGrid columns="1" id="regGrid2">
-
-									<h:outputLabel for="data">Data (gg:mm:aaaa) </h:outputLabel>
-									<p:inputText id="giorno" value="#{ga.giorno}" size='4'  />
-									<p:inputText id="mese" value="#{ga.mese}" size='4'/>
-									<p:inputText id="anno" value="#{ga.anno}" size='4'/>
-								
-									
-									<h:outputLabel for="ora">Ora</h:outputLabel>
-									<p:inputText id="ore" value="#{ga.ore}" size='4'/>
-									<b> : </b>
-									<p:inputText id="minuti" value="#{ga.minuti}" size='4'/>
-								
-
-									<h:outputLabel for="foto1">Url prima foto</h:outputLabel>
-									<p:inputText id="foto1" value="#{ga.attivita.foto1}" />
-									<p:message for="foto1" />
-
-									<h:outputLabel for="foto2">Url seconda foto</h:outputLabel>
-									<p:inputText id="foto2" value="#{ga.attivita.foto2}" />
-									<p:message for="foto2" />
-
-									<h:outputLabel for="foto3">Url terza foto</h:outputLabel>
-									<p:inputText id="foto3" value="#{ga.attivita.foto3}" />
-									<p:message for="foto3" />
+										<h:outputLabel for="prezzo">Prezzo</h:outputLabel>
+										<p:inputText id="prezzo" value="#{ga.attivita.prezzo}" />
+										<p:message for="prezzo" />
 
 
-								</h:panelGrid>
-								<p:commandButton value="Salva" update="regGrid1"
-									action="#{ga.creaAttivita()}" />
-							</p:panel>
-						</td></tr>
+									</h:panelGrid>
+
+								</p:panel></td>
+							<td><p:panel>
+									<h:panelGrid columns="1" id="regGrid2">
+
+										<h:outputLabel for="data">Data (gg:mm:aaaa) </h:outputLabel>
+										<p:inputText id="giorno" value="#{ga.giorno}" size='4' />
+										<p:inputText id="mese" value="#{ga.mese}" size='4' />
+										<p:inputText id="anno" value="#{ga.anno}" size='4' />
+
+
+										<h:outputLabel for="ora">Ora</h:outputLabel>
+										<h:selectOneMenu value="#{ga.ore}">
+											<f:selectItems value="#{ga.oreList}" var="c" itemLabel="#{c}"
+												itemValue="#{c}" />
+										</h:selectOneMenu>
+										<b> : </b>
+										
+										<h:selectOneMenu value="#{ga.minuti}">
+											<f:selectItems value="#{ga.minutiList}" var="c" itemLabel="#{c}"
+												itemValue="#{c}" />
+										</h:selectOneMenu>
+										
+
+
+										<h:outputLabel for="foto1">Url prima foto</h:outputLabel>
+										<p:inputText id="foto1" value="#{ga.attivita.foto1}" />
+										<p:message for="foto1" />
+
+										<h:outputLabel for="foto2">Url seconda foto</h:outputLabel>
+										<p:inputText id="foto2" value="#{ga.attivita.foto2}" />
+										<p:message for="foto2" />
+
+										<h:outputLabel for="foto3">Url terza foto</h:outputLabel>
+										<p:inputText id="foto3" value="#{ga.attivita.foto3}" />
+										<p:message for="foto3" />
+
+
+									</h:panelGrid>
+									<p:commandButton value="Salva" update="regGrid1"
+										action="#{ga.creaAttivita()}" />
+								</p:panel></td>
+						</tr>
 
 					</table>
 				</h:form>
