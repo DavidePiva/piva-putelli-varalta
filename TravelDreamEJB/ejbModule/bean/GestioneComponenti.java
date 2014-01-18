@@ -14,10 +14,12 @@ import javax.persistence.Query;
 import model.Attivita;
 import model.Gruppo;
 import model.Pernottamento;
+import model.TipoCamere_Hotel;
 import model.Utente;
 import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.PernottamentoDTO;
+import DTO.TipoCamere_HotelDTO;
 import DTO.UtenteDTO;
 import business.InterfacciaDB;
 import model.Hotel;
@@ -56,7 +58,11 @@ GestioneComponenti(){
 		Attivita attivita= new Attivita(a);
 		em.persist(attivita);	
 	}
-
+	
+	public void salvaCamera(TipoCamere_HotelDTO t){
+		TipoCamere_Hotel tipoCamera=new TipoCamere_Hotel(t);
+		em.persist(tipoCamera);
+	}
 	
 	//###MODIFICA###//
 	
@@ -89,5 +95,6 @@ GestioneComponenti(){
 //		InterfacciaDB.eliminaComponente(tipo,id);
 	}
 
+	
 			
 }

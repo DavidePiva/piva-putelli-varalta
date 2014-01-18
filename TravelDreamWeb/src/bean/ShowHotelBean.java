@@ -14,9 +14,12 @@ import model.Hotel;
 @RequestScoped
 public class ShowHotelBean {
 	
+	@EJB
+	private ShowHotelLocal showHotel;
 	private String nomeHotel;
 	private int numeroFoto;
-	private String hotelSelezionato;
+	
+
 	public int getNumeroFoto() {
 		return numeroFoto;
 	}
@@ -25,8 +28,7 @@ public class ShowHotelBean {
 		this.numeroFoto = numeroFoto;
 	}
 
-	@EJB
-	private ShowHotelLocal showHotel;
+
 	
 	public String getNomeHotel(){
 		return nomeHotel;
@@ -57,15 +59,16 @@ public class ShowHotelBean {
 	
 	public List<HotelDTO> listaHotel(){
 		return showHotel.listaHotel();
-	}	
-	
-	public String getHotelSelezionato() {
-		return hotelSelezionato;
 	}
 
-	public void setHotelSelezionato(String hotelSelezionato) {
-		this.hotelSelezionato = hotelSelezionato;
+	public ShowHotelLocal getShowHotel() {
+		return showHotel;
 	}
+
+	public void setShowHotel(ShowHotelLocal showHotel) {
+		this.showHotel = showHotel;
+	}	
+	
 
 
 }
