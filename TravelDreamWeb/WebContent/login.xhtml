@@ -5,14 +5,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<head>
-<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
-<title>TravelDream</title>
-<link href='../css/application.css' media='all' rel='stylesheet'
-	type='text/css' />
-<script type='text/javascript' src='../css/menu.js' />
-</head>
-<body onload="javascript:start()">
+<h:head>
+	<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+	<title>TravelDream</title>
+	<link href='../css/application.css' media='all' rel='stylesheet'
+		type='text/css' />
+	<script type='text/javascript' src='../css/menu.js' />
+</h:head>
+<h:body onload="javascript:start()">
 
 
 	<div id="boxintestazione">
@@ -39,25 +39,28 @@
 	<div id="boxlinea5"></div>
 	<div id="boxbig">
 		<div id="boxmenu">
-			<div id="boxPacchetti">	
-			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+			<div id="boxPacchetti">
+				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
-					<li><h:link outcome="prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="tipologiePacchetti" value = "Quello che fa per te" id="p3"></h:link></li>
+					<li><h:link outcome="cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
+					<li><h:link outcome="prezziPacchetti"
+							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="tipologiePacchetti"
+							value="Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
-			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="cittaHotel" value = "Città"></h:link></li>
-					<li><h:link outcome="prezziHotel" value = "Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="prezziHotel" value="Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
 				<ul id="boxleft3">
-					<li><h:link outcome="chiSiamo" value = "Chi siamo"></h:link></li>
-					<li><h:link outcome="contatti" value = "Contatti" id="ultimo"></h:link></li>
+					<li><h:link outcome="chiSiamo" value="Chi siamo"></h:link></li>
+					<li><h:link outcome="contatti" value="Contatti" id="ultimo"></h:link></li>
 				</ul>
 			</div>
 		</div>
@@ -69,30 +72,8 @@
 					type="password" name="j_password" /> <br /> <input type="submit"
 					value="Login" /> <input type="reset" value="Reset" />
 			</form>
-
-
-			<!-- <div>
-				
-				<h:form onsubmit="document.getElementById('login').action='j_security_check';"
-			prependId="false">
-					<h1>Login</h1>
-					<br></br>
-					<p:panel>
-						<h:panelGrid columns="1" id="regGrid">
-							<h:outputLabel for="email">Email</h:outputLabel>
-							<p:inputText id="email" value="" />
-							<p:message for="email" />
-							<h:outputLabel for="password">Password</h:outputLabel>
-							<p:inputText id="password" value="" feedback="true" match="pwd2" label="Password"/>
-							<p:message for="password"/>
-						</h:panelGrid>
-						  <br></br>
-						  <p:commandButton value="Login" update="regGrid" ajax="false"/>
-					</p:panel>
-				</h:form>
-			</div> -->
 		</div>
 	</div>
 	<!--/boxbig-->
-</body>
+</h:body>
 </html>

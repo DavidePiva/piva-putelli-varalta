@@ -19,9 +19,6 @@ public class GestioneAttivitaBean {
 	private AttivitaDTO attivita;
 	private int ore;
 	private int minuti;
-	private int anno;
-	private int giorno;
-	private String mese;
 	
 	public GestioneAttivitaBean(){
 		this.attivita=new AttivitaDTO();
@@ -29,11 +26,8 @@ public class GestioneAttivitaBean {
 	
 	public String creaAttivita(){
 		AttivitaDTO pippo=new AttivitaDTO();		
-		Date data=new Date(anno,getMeseDaString(mese),giorno);
 
 		Time orario=new Time(ore,minuti,0);
-		data.setYear(getAnno()-1900);
-		attivita.setData(data);
 		attivita.setOra(orario);
 
 		gc.creaAttivita(attivita);
@@ -72,30 +66,6 @@ public class GestioneAttivitaBean {
 		this.minuti = minuti;
 	}
 
-	public int getAnno() {
-		return anno;
-	}
-
-	public void setAnno(int anno) {
-		this.anno = anno;
-	}
-
-	public int getGiorno() {
-		return giorno;
-	}
-
-	public void setGiorno(int giorno) {
-		this.giorno = giorno;
-	}
-
-	public String getMese() {
-		return mese;
-	}
-
-	public void setMese(String mese) {
-		this.mese = mese;
-	}
-	
 	public List<String> getOreList(){
 		List<String> s = new ArrayList<String>();
 		for(int i=0;i<24;i++)
@@ -110,7 +80,7 @@ public class GestioneAttivitaBean {
 		return s;
 	}
 	
-	public List<String> getGiorniList(){
+	/*public List<String> getGiorniList(){
 		List<String> s = new ArrayList<String>();
 		for(int i=1;i<=31;i++)
 			s.add(""+i);
@@ -170,6 +140,6 @@ public class GestioneAttivitaBean {
 				return 11;
 		}
 		return 0;
-	}
+	}*/
 
 }
