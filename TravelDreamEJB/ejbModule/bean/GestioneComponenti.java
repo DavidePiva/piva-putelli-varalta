@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.EJBContext;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
@@ -18,6 +19,7 @@ import model.Gruppo;
 import model.Pacchetto;
 import model.Pernottamento;
 import model.TipoCamere_Hotel;
+import model.TipoCamere_HotelPK;
 import model.Utente;
 import DTO.AttivitaDTO;
 import DTO.HotelDTO;
@@ -27,7 +29,7 @@ import DTO.TipoCamere_HotelDTO;
 import DTO.UtenteDTO;
 import business.InterfacciaDB;
 import model.Hotel;
-import enums.TipoCamera;
+import DTO.TipoCamera;
 import enums.TipoComponente;
 
 /**
@@ -41,7 +43,8 @@ public class GestioneComponenti implements GestioneComponentiLocal {
 
 	@Resource
 	private EJBContext context;
-
+	
+	
 	private DatiStatici ds;
 	private ShowHotel sh;
 	
@@ -65,6 +68,44 @@ GestioneComponenti(){
 		em.persist(hotel);
 
 	}
+	
+	public List<TipoCamere_HotelDTO> camereHotel(int idHotel) {
+		System.out.println("ciaoooooo00000000000000000!!!!"+idHotel);
+		Hotel h =em.find(Hotel.class, idHotel);
+		List<TipoCamere_Hotel> list = h.getTipoCamereHotels();
+		List<TipoCamere_HotelDTO> l2 = new ArrayList<TipoCamere_HotelDTO>();
+		for(int i = 0; i < list.size(); i++){
+			TipoCamere_Hotel t = list.get(i);
+			BigDecimal prezzo = t.getPrezzo();
+			if(prezzo.compareTo(BigDecimal.ZERO)!=0){
+				l2.add(convertiTipoCamereDTO(t));
+			}
+		}
+		
+		return l2;
+	}
+	
+	public TipoCamere_HotelDTO convertiTipoCamereDTO(TipoCamere_Hotel tc){
+		BigDecimal prezzo = tc.getPrezzo();
+		Hotel h = tc.getHotel();
+		TipoCamere_HotelPK pk = tc.getId();
+		String tipo = pk.getTipoCamera();
+		TipoCamere_HotelDTO t2 = new TipoCamere_HotelDTO();
+		t2.setId(h.getIdHotel());
+		t2.setPrezzo(prezzo);
+		TipoCamera a = null;
+		if (tipo.equals("lowcost")) {
+			a = TipoCamera.LOWCOST;
+		}
+		if (tipo.equals("smart")) {
+			a = TipoCamera.SMART;
+		}
+		if (tipo.equals("dream")) {
+			a = TipoCamera.DREAM;
+		}
+		t2.setTipo(a);
+		return t2;
+	}
 		
 	public void creaAttivita(AttivitaDTO a)
 	{
@@ -75,14 +116,14 @@ GestioneComponenti(){
 	public void salvaCamera(TipoCamere_HotelDTO t,HotelDTO h){
 		
 		TipoCamere_Hotel tipoCamera = new TipoCamere_Hotel(t, h);
-	/*	Hotel hotel = new Hotel(h);
+		Hotel hotel = new Hotel(h);
 		Pernottamento p = new Pernottamento(hotel, true, t.getTipo().getString(t.getTipo()));
 		
-		List<TipoCamere_HotelDTO> list=sh.camereHotel(t.getId());
+		List<TipoCamere_HotelDTO> list=camereHotel(t.getId());
 		boolean esiste=false;
 		if(list.contains(t)){
 			esiste=true;
-		}*/
+		}
 		
 		//if (!esiste && t.getPrezzo().floatValue() > 0) {
     //        em.persist(tipoCamera);         

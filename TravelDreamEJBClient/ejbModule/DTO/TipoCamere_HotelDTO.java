@@ -23,8 +23,8 @@ public class TipoCamere_HotelDTO {
 	public TipoCamera getTipo() {
 		return tipo;
 	}
-	public void setTipo(TipoCamera tipo) {
-		this.tipo = tipo;
+	public void setTipo(TipoCamera a) {
+		this.tipo = a;
 	}
 	
 	

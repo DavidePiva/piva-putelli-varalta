@@ -18,4 +18,5 @@ public interface DatiStaticiLocal {
 	public List<PacchettoDTO> pacchettiPerPrezzo(int prezzoMinimo,
 			int prezzoMassimo);
 	List<PacchettoDTO> pacchettiPerPrezzo(int prezzoMinimo);
+	public List<PacchettoDTO> pacchettiPerHotel(String hotelSelezionato);
 }
