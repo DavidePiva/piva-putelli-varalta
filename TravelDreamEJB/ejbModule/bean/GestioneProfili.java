@@ -144,7 +144,6 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		gruppi.add(g);
 		u.setGruppos(gruppi);
 		em.merge(u);
-		
 	}
 
 	@Override

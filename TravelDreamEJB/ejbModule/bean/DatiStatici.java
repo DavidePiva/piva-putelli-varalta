@@ -195,5 +195,30 @@ public class DatiStatici implements DatiStaticiLocal {
 		}
 		return l1;
 	}
+	
 
+	public int getIdPernottamento(String tipoCamera,int idHotel){
+		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento WHERE hotel = "+idHotel+" AND tipo = "+tipoCamera);
+		List<Integer> list=new ArrayList<Integer>();
+		list=q.getResultList();
+		
+		int i = list.get(0);
+		return i;
+	}
+	
+	public TipoCamere_Hotel getTipoCamere_Hotel(int idHotel,String tipoCamera){
+		Query q = em.createNativeQuery("SELECT  FROM TipoCamere_Hotel WHERE idHotel = "+idHotel+" AND tipoCamera = "+tipoCamera);
+		List<TipoCamere_Hotel> list = new ArrayList<TipoCamere_Hotel>();
+		list=q.getResultList();
+		TipoCamere_Hotel t=list.get(0);
+		return t;
+	}
+	
+	public BigDecimal getPrezzoCamera(int idHotel,String tipoCamera){
+		Query q = em.createNativeQuery("SELECT prezzo FROM TipoCamere_Hotel WHERE idHotel = "+idHotel+" AND tipoCamera = "+tipoCamera);
+		List<TipoCamere_Hotel> list = new ArrayList<TipoCamere_Hotel>();
+		list=q.getResultList();
+		BigDecimal prezzo=list.get(0).getPrezzo();
+		return prezzo;
+	}
 }

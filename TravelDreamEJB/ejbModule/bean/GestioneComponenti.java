@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ejb.EJBContext;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -40,9 +41,13 @@ public class GestioneComponenti implements GestioneComponentiLocal {
 
 	@Resource
 	private EJBContext context;
+
+	private DatiStatici ds;
+	private ShowHotel sh;
 	
 GestioneComponenti(){
-		
+		this.ds=new DatiStatici();
+		this.sh=new ShowHotel();
 	}
 	//###CREAZIONE###//
 	
@@ -58,6 +63,7 @@ GestioneComponenti(){
 	public void creaHotel(HotelDTO h){
 		Hotel hotel=new Hotel(h);		
 		em.persist(hotel);
+
 	}
 		
 	public void creaAttivita(AttivitaDTO a)
@@ -68,24 +74,73 @@ GestioneComponenti(){
 	
 	public void salvaCamera(TipoCamere_HotelDTO t,HotelDTO h){
 		
-		if (t.getPrezzo().floatValue() > 0) {
-			TipoCamere_Hotel tipoCamera = new TipoCamere_Hotel(t, h);
+		TipoCamere_Hotel tipoCamera = new TipoCamere_Hotel(t, h);
+	/*	Hotel hotel = new Hotel(h);
+		Pernottamento p = new Pernottamento(hotel, true, t.getTipo().getString(t.getTipo()));
+		
+		List<TipoCamere_HotelDTO> list=sh.camereHotel(t.getId());
+		boolean esiste=false;
+		if(list.contains(t)){
+			esiste=true;
+		}*/
+		
+		//if (!esiste && t.getPrezzo().floatValue() > 0) {
+    //        em.persist(tipoCamera);         
+          //  creaPernottamento(p);}
+        /*else if (esiste && t.getPrezzo().floatValue() > 0){
+			em.merge(tipoCamera);
+			int idPernottamento=ds.getIdPernottamento(t.getTipo().getString(t.getTipo()),hotel.getIdHotel());
+			p.setIdPernottamento(idPernottamento);
+			modificaPernottamento(p);
+		}*/
+		//	int idPernottamento=ds.getIdPernottamento(t.getTipo().getString(t.getTipo()),hotel.getIdHotel());
+		//	p.setIdPernottamento(idPernottamento);
+		//	rendiNonSelezionabilePernottamento(p);
+		
+		
+	//	TipoCamere_Hotel tipoCamera = new TipoCamere_Hotel(t, h);
+	//	List<TipoCamere_HotelDTO> list=sh.camereHotel(h.getIdHotel());
+		
+	//	TipoCamere_Hotel oldTipoCamera=ds.getTipoCamere_Hotel(h.getIdHotel(), t.getTipo().getString(t.getTipo()));
+	//	BigDecimal oldPrezzo=ds.getPrezzoCamera(h.getIdHotel(), t.getTipo().getString(t.getTipo()));
+	//	Hotel hotel = new Hotel(h);
+	//	Pernottamento p = new Pernottamento(hotel, true, t.getTipo().getString(t.getTipo()));
+		
+	/*	
+		if (!list.contains(t) && t.getPrezzo().floatValue() > 0) {		
 			em.persist(tipoCamera);
-			Hotel hotel = new Hotel(h);
-			Pernottamento p = new Pernottamento(hotel, true, t.getTipo().getString(t.getTipo()));
-			creaPernottamento(p);
+		//	creaPernottamento(p);
+		}else if (list.contains(t) && t.getPrezzo().floatValue() > 0){
+			em.merge(tipoCamera);
+		//	int idPernottamento=ds.getIdPernottamento(t.getTipo().getString(t.getTipo()),hotel.getIdHotel());
+		//	p.setIdPernottamento(idPernottamento);
+		//	modificaPernottamento(p);
+		}else if (t.getPrezzo().floatValue() == 0){
+			TipoCamere_HotelDTO oldTipoCamera=new TipoCamere_HotelDTO();
+			oldTipoCamera.setId(t.getId());
+			oldTipoCamera.setTipo(t.getTipo());
+			for(int i=0;i<list.size();i++){
+				if(list.get(i).getTipo().equals(t.getTipo().getString(t.getTipo()))){
+					oldTipoCamera.setPrezzo(t.getPrezzo());
+				}
+			}	
+			em.remove(tipoCamera);
+		//	int idPernottamento=ds.getIdPernottamento(t.getTipo().getString(t.getTipo()),hotel.getIdHotel());
+		//	p.setIdPernottamento(idPernottamento);
+		//	rendiNonSelezionabilePernottamento(p);
 		}
-
+		*/	
 	}
 	
 	//###MODIFICA###//
 	
-	public void modificaPernottamento(int idPernottamento,Hotel h, TipoCamera t) throws SQLException{
-//		InterfacciaDB.modificaPernottamento(idPernottamento,h.getId(),t);
+	private void modificaPernottamento(Pernottamento p){
+		em.merge(p);
 	}
 	
-	public void modificaHotel(int idHotel, String nome,String citta,String indirizzo,String telefono,String descrizione,	TipoCamera[] tipiCamera){
-//		InterfacciaDB.modificaHotel(idHotel,nome,citta,indirizzo,telefono,descrizione,tipiCamera);
+	public void modificaHotel(HotelDTO h){
+		Hotel hotel=new Hotel(h);		
+		em.merge(hotel);
 	}
 	
 	public void modificaAttivita(int idAttivita,int anno,int mese,int giorno,int ora,int minuti,String titolo,
@@ -101,6 +156,11 @@ GestioneComponenti(){
 	
 	//###ELIMINAZIONE###//
 	
+	private void rendiNonSelezionabilePernottamento(Pernottamento p){
+		p.setSelezionabile(false);
+		em.merge(p);
+	}
+	
 	public void eliminaFoto(TipoComponente tipoComponente,int id,int numeroFoto) throws SQLException{
 		InterfacciaDB.eliminaFotoComponente(tipoComponente,id,numeroFoto);
 	}
@@ -109,6 +169,37 @@ GestioneComponenti(){
 //		InterfacciaDB.eliminaComponente(tipo,id);
 	}
 
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
+
+	public EJBContext getContext() {
+		return context;
+	}
+
+	public void setContext(EJBContext context) {
+		this.context = context;
+	}
+
+
+	public DatiStatici getDs() {
+		return ds;
+	}
+
+	public void setDs(DatiStatici ds) {
+		this.ds = ds;
+	}
+
+	public ShowHotel getSh() {
+		return sh;
+	}
+
+	public void setSh(ShowHotel sh) {
+		this.sh = sh;
+	}
 	
-			
 }
