@@ -4,8 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	
-	
+
+
 <head>
 <meta http-equiv='content-type' content='text/html; charset=UTF-8' />
 <title>TravelDream</title>
@@ -39,48 +39,61 @@
 	<div id="boxlinea5"></div>
 	<div id="boxbig">
 		<div id="boxmenu">
-			<div id="boxPacchetti">	
-			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+			<div id="boxPacchetti">
+				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="/cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
-					<li><h:link outcome="/prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="/tipologiePacchetti" value = "Quello che fa per te" id="p3"></h:link></li>
+					<li><h:link outcome="/cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
+					<li><h:link outcome="/prezziPacchetti"
+							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="/tipologiePacchetti"
+							value="Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
-			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="/cittaHotel" value = "Città"></h:link></li>
-					<li><h:link outcome="/prezziHotel" value = "Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="/cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="/prezziHotel" value="Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
 				<ul id="boxleft3">
-					<li><h:link outcome="/chiSiamo" value = "Chi siamo"></h:link></li>
-					<li><h:link outcome="/contatti" value = "Contatti" id="ultimo"></h:link></li>
+					<li><h:link outcome="/chiSiamo" value="Chi siamo"></h:link></li>
+					<li><h:link outcome="/contatti" value="Contatti" id="ultimo"></h:link></li>
 				</ul>
 			</div>
 		</div>
 		<div id="boxcontenuto">
 			<h1>Gestione camere hotel</h1>
 			<div>
-			<b>Seleziona un hotel: </b>
-		  	<h:form>
-					<h:selectOneMenu value="#{gh.nomeHotel}">
-						<f:selectItems value="#{sh.listaHotel()}" var="h" itemLabel="#{h.nome}"
-							itemValue="#{h.nome}" />
-					</h:selectOneMenu>
-					<br /><br />
-					<h:outputLabel for="lowCost">Prezzo camere LowCost: </h:outputLabel>
-						<p:inputText id="lowCost" value="#{gh.lowCost.prezzo}"  size='4'/><br /><br />
-					<h:outputLabel for="smart">Prezzo camere Smart: </h:outputLabel>
-						<p:inputText id="smart" value="#{gh.smart.prezzo}" size='4'/><br /><br />
-					<h:outputLabel for="dream">Prezzo camere Dream: </h:outputLabel>
-						<p:inputText id="dream" value="#{gh.dream.prezzo}" size='4'/>
+				<h:form>
+					<h:panelGrid columns="3" id="regGrid1">
 					
-					<h:commandButton value="Salva" action="#{gh.salvaCamere()}" />
+						<h:outputLabel for="nome">Seleziona l'hotel: </h:outputLabel>
+						<h:selectOneMenu value="#{gh.nomeHotel}">
+							<f:selectItems value="#{sh.listaHotel()}" var="h"
+								itemLabel="#{h.nome}" itemValue="#{h.nome}" />
+						</h:selectOneMenu>
+						<h:outputLabel for="nome"></h:outputLabel>
+						
+						<h:outputLabel for="lowCost">Prezzo camere LowCost: </h:outputLabel>
+						<h:inputText id="lowCost" value="#{gh.lowCost.prezzo}" size='4' />
+						<h:outputLabel for="lowCost"></h:outputLabel>
+						
+						<h:outputLabel for="smart">Prezzo camere Smart: </h:outputLabel>
+						<h:inputText id="smart" value="#{gh.smart.prezzo}" size='4' />
+						<h:outputLabel for="smart"></h:outputLabel>
+						
+						<h:outputLabel for="dream">Prezzo camere Dream: </h:outputLabel>
+						<h:inputText id="dream" value="#{gh.dream.prezzo}" size='4' />
+						<h:outputLabel for="dream"></h:outputLabel>
+					</h:panelGrid>
+
+					<h:commandButton value="Salva" update="regGrid1" action="#{gh.salvaCamere()}" />
+
 				</h:form>
-					
+
 			</div>
 		</div>
 	</div>

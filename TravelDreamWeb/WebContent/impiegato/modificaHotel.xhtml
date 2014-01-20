@@ -66,15 +66,13 @@
 					<h1>Modifica un hotel già esistente</h1>
 					<br></br>
 
-					<table>
-						<tr><td>
-							<p:panel>
-								<h:panelGrid columns="1" id="regGrid1">
-									<h:outputLabel for="nome">Seleziona l'hotel da modificare, lasciando vuoti<br></br>i campi che non variano:</h:outputLabel>
+								<h:panelGrid columns="3" id="regGrid1">
+									<h:outputLabel for="nome">Seleziona l'hotel da modificare, lasciando vuoti i campi che non variano:</h:outputLabel>
 									<h:selectOneMenu value="#{gh.nomeHotelDaModificare}">
 										<f:selectItems value="#{sh.listaHotel()}" var="h" itemLabel="#{h.nome}"
 											itemValue="#{h.nome}" />
 									</h:selectOneMenu>
+									<h:outputLabel for="nome"></h:outputLabel>
 
 
 									<h:outputLabel for="nome">Nuovo nome</h:outputLabel>
@@ -90,14 +88,6 @@
 									<p:inputText id="telefono" value="#{gh.hotel.telefono}" />
 									<p:message for="telefono" />
 
-
-								</h:panelGrid>
-
-							</p:panel>
-						</td>
-						<td>
-							<p:panel>
-								<h:panelGrid columns="1" id="regGrid2">
 
 									<h:outputLabel for="foto1">Url prima foto</h:outputLabel>
 									<p:inputText id="foto1" value="#{gh.hotel.foto1}" />
@@ -115,10 +105,7 @@
 								</h:panelGrid>
 								<p:commandButton value="Modifica" update="regGrid1"
 									action="#{gh.modificaHotel()}" />
-							</p:panel>
-						</td></tr>
 
-					</table>
 				</h:form>
 			</div>
 		</div>

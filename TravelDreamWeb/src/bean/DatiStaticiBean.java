@@ -205,5 +205,21 @@ public class DatiStaticiBean {
 		return pacchettiPerPrezzo;
 	}
 	
+	public boolean getPrezzoMinimoSettato(){
+		if(prezzoMinimo>0)
+			return true;
+		return false;
+	}
 	
+	public boolean getPrezzoMassimoSettato(){
+		if(prezzoMassimo!=-1)
+			return true;
+		return false;
+	}
+	
+	public boolean getNotPrezzoMassimoSettato(){
+		if(prezzoMassimo!=-1)
+			return false;
+		return true;
+	}
 }

@@ -10,6 +10,9 @@
 <link href='css/application.css' media='all' rel='stylesheet'
 	type='text/css' />
 <script type='text/javascript' src='css/menu.js' />
+<f:metadata>
+	<f:viewParam name="c" value="#{ds.cittaSelezionata}" />
+</f:metadata>
 </head>
 <body onload="javascript:start()">
 	<div id="boxintestazione">
@@ -41,43 +44,41 @@
 	<div id="boxlinea5"></div>
 	<div id="boxbig">
 		<div id="boxmenu">
-			<div id="boxPacchetti">	
-			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+			<div id="boxPacchetti">
+				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
-					<li><h:link outcome="prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="tipologiePacchetti" value = "Quello che fa per te" id="p3"></h:link></li>
+					<li><h:link outcome="cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
+					<li><h:link outcome="prezziPacchetti"
+							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="tipologiePacchetti"
+							value="Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
-			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="cittaHotel" value = "Città"></h:link></li>
-					<li><h:link outcome="prezziHotel" value = "Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="prezziHotel" value="Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
 				<ul id="boxleft3">
-					<li><h:link outcome="chiSiamo" value = "Chi siamo"></h:link></li>
-					<li><h:link outcome="contatti" value = "Contatti" id="ultimo"></h:link></li>
+					<li><h:link outcome="chiSiamo" value="Chi siamo"></h:link></li>
+					<li><h:link outcome="contatti" value="Contatti" id="ultimo"></h:link></li>
 				</ul>
 			</div>
 		</div>
 		<div id="boxcontenuto">
-				<h1>Ci sono</h1>
-				
-				<!-- Codice varaltiano -->
-				    <f:metadata>
-        				<f:viewParam name="c" value="#{ds.cittaSelezionata}" />
-   					      
-  					</f:metadata>
-				<!-- Fine codice varaltiano -->
+			<h1><h:outputText value="Pacchetti di #{ds.cittaSelezionata}"/></h1>
+			<ul id="lista_principale">
 				<ui:repeat value="#{ds.pacchetti}" var="pacchetto">
-				<li><h:link value="#{pacchetto}" outcome="pacchetto">
-						<f:param name="pacchetto" value="#{pacchetto}" />
-						<f:param name="foto" value="1" />
-					</h:link></li>
-			</ui:repeat>
+					<li><h:link value="#{pacchetto}" outcome="pacchetto">
+							<f:param name="pacchetto" value="#{pacchetto}" />
+							<f:param name="foto" value="1" />
+						</h:link></li>
+				</ui:repeat>
+			</ul>
 		</div>
 	</div>
 	<!--/boxbig-->
