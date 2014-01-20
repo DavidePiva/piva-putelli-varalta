@@ -90,7 +90,9 @@ public class ShowHotel implements ShowHotelLocal {
 
 	@Override
 	public List<TipoCamere_HotelDTO> camereHotel(int idHotel) {
-		Hotel h = em.find(Hotel.class, idHotel);
+		System.out.println("ciaoooooo00000000000000000!!!!"+idHotel);
+		
+		Hotel h =em.find(Hotel.class, idHotel);
 		List<TipoCamere_Hotel> list = h.getTipoCamereHotels();
 		List<TipoCamere_HotelDTO> l2 = new ArrayList<TipoCamere_HotelDTO>();
 		for(int i = 0; i < list.size(); i++){
@@ -100,6 +102,7 @@ public class ShowHotel implements ShowHotelLocal {
 				l2.add(convertiTipoCamereDTO(t));
 			}
 		}
+		
 		return l2;
 	}
 	

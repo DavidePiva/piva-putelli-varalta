@@ -15,4 +15,6 @@ public interface GestioneComponentiLocal {
 	public void creaHotel(HotelDTO hotel);
 	public void salvaCamera(TipoCamere_HotelDTO tipoCamera,HotelDTO h);
 	public void creaPacchetto(PacchettoDTO pacchetto);
+	
+	public void modificaHotel(HotelDTO h);
 }

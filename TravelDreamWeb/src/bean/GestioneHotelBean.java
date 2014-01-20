@@ -24,6 +24,7 @@ public class GestioneHotelBean {
 	private TipoCamere_HotelDTO dream;
 	private TipoCamere_HotelDTO smart;
 	private String nomeHotel;
+	private String nomeHotelDaModificare;
 	
 	public GestioneHotelBean(){
 		this.hotel=new HotelDTO();
@@ -35,6 +36,34 @@ public class GestioneHotelBean {
 	public String creaHotel(){
 		this.hotel.setSelezionabile(true);
 		gc.creaHotel(hotel);
+		return "/impiegato/prezziCamere?faces-redirect=true";
+	}
+	
+	public String modificaHotel(){
+		this.hotel.setSelezionabile(true);
+		HotelDTO hotelDaModificare=sh.getHotel(nomeHotelDaModificare);
+		hotel.setIdHotel(hotelDaModificare.getIdHotel());
+		hotel.setCitta(hotelDaModificare.getCitta());
+		hotel.setIndirizzo(hotelDaModificare.getIndirizzo());
+		if(hotel.getDescrizione().equals("")){
+			hotel.setDescrizione(hotelDaModificare.getDescrizione());
+		}
+		if(hotel.getNome().equals("")){
+			hotel.setNome(hotelDaModificare.getNome());
+		}
+		if(hotel.getTelefono().equals("")){
+			hotel.setTelefono(hotelDaModificare.getTelefono());
+		}
+		if(hotel.getFoto1().equals("")){
+			hotel.setFoto1(hotelDaModificare.getFoto1());
+		}
+		if(hotel.getFoto2().equals("")){
+			hotel.setFoto2(hotelDaModificare.getFoto2());
+		}
+		if(hotel.getFoto3().equals("")){
+			hotel.setFoto3(hotelDaModificare.getFoto3());
+		}
+		gc.modificaHotel(hotel);
 		return "/impiegato/prezziCamere?faces-redirect=true";
 	}
 
@@ -112,6 +141,14 @@ public class GestioneHotelBean {
 
 	public void setNomeHotel(String nomeHotel) {
 		this.nomeHotel = nomeHotel;
+	}
+
+	public String getNomeHotelDaModificare() {
+		return nomeHotelDaModificare;
+	}
+
+	public void setNomeHotelDaModificare(String nomeHotelDaModificare) {
+		this.nomeHotelDaModificare = nomeHotelDaModificare;
 	}
 
 	
