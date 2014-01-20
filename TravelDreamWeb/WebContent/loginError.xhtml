@@ -64,7 +64,22 @@
 			</div>
 		</div>
   <div id="boxcontenuto">
-    <h1>HAI SBAGLITO</h1>   
+    <h1>Errore, riprovare</h1>   
+    
+    <form method="post" action="j_security_check">
+				<h:panelGrid columns="2">
+
+					<h:outputLabel for="username">Username</h:outputLabel>
+					<input type="text" name="j_username" />
+
+					<h:outputLabel for="password">Password</h:outputLabel>
+					<input type="password" name="j_password" />
+
+
+				</h:panelGrid>
+				<input type="submit" value="Login" /> <input type="reset"
+					value="Reset" />
+			</form>
 <div>
 
 

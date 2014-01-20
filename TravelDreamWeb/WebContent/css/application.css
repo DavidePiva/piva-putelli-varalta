@@ -173,3 +173,7 @@ a#url_titolo {
 	color: black;
 	text-decoration: none;
 }
+ul#lista_principale{
+	list-style: none;
+	padding-left: 18px;
+}

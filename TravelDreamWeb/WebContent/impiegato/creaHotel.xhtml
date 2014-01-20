@@ -38,25 +38,28 @@
 	<div id="boxlinea5"></div>
 	<div id="boxbig">
 		<div id="boxmenu">
-			<div id="boxPacchetti">	
-			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+			<div id="boxPacchetti">
+				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="/cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
-					<li><h:link outcome="/prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="/tipologiePacchetti" value = "Quello che fa per te" id="p3"></h:link></li>
+					<li><h:link outcome="/cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
+					<li><h:link outcome="/prezziPacchetti"
+							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="/tipologiePacchetti"
+							value="Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
-			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="/cittaHotel" value = "Città"></h:link></li>
-					<li><h:link outcome="/prezziHotel" value = "Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="/cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="/prezziHotel" value="Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
 				<ul id="boxleft3">
-					<li><h:link outcome="/chiSiamo" value = "Chi siamo"></h:link></li>
-					<li><h:link outcome="/contatti" value = "Contatti" id="ultimo"></h:link></li>
+					<li><h:link outcome="/chiSiamo" value="Chi siamo"></h:link></li>
+					<li><h:link outcome="/contatti" value="Contatti" id="ultimo"></h:link></li>
 				</ul>
 			</div>
 		</div>
@@ -65,61 +68,52 @@
 				<h:form>
 					<h1>Crea un nuovo hotel</h1>
 					<br></br>
-
-					<table>
-						<tr><td>
-							<p:panel>
-								<h:panelGrid columns="1" id="regGrid1">
-
-									<h:outputLabel for="nome">Nome</h:outputLabel>
-									<p:inputText id="nome" value="#{gh.hotel.nome}" />
-									<p:message for="nome" />
-									
-									<h:outputLabel for="descrizione">Descrizione</h:outputLabel>
-									<p:inputTextarea id="descrizione" value="#{gh.hotel.descrizione}" cols="50" rows="20" />
-									<p:message for="descrizione" />
-
-									<h:outputLabel for="citta">Città</h:outputLabel>
-									<p:inputText id="citta" value="#{gh.hotel.citta}" />
-									<p:message for="citta" />
-
-									<h:outputLabel for="indirizzo">Indirizzo</h:outputLabel>
-									<p:inputText id="indirizzo" value="#{gh.hotel.indirizzo}" />
-									<p:message for="indirizzo" />
-
-									<h:outputLabel for="telefono">Telefono</h:outputLabel>
-									<p:inputText id="telefono" value="#{gh.hotel.telefono}" />
-									<p:message for="telefono" />
+					<h:panelGrid columns="3" id="regGrid1">
 
 
-								</h:panelGrid>
+						<h:outputLabel for="nome">Nome</h:outputLabel>
+						<h:inputText id="nome" value="#{gh.hotel.nome}" />
+						<p:message for="nome" />
 
-							</p:panel>
-						</td>
-						<td>
-							<p:panel>
-								<h:panelGrid columns="1" id="regGrid2">
+						<h:outputLabel for="descrizione">Descrizione</h:outputLabel>
+						<h:inputTextarea id="descrizione" value="#{gh.hotel.descrizione}"
+							cols="50" rows="20" />
+						<p:message for="descrizione" />
 
-									<h:outputLabel for="foto1">Url prima foto</h:outputLabel>
-									<p:inputText id="foto1" value="#{gh.hotel.foto1}" />
-									<p:message for="foto1" />
+						<h:outputLabel for="citta">Città</h:outputLabel>
+						<h:selectOneMenu value="#{gh.hotel.citta}" id="citta">
+							<f:selectItems value="#{ds.citta}" var="c" itemLabel="#{c}"
+								itemValue="#{c}" />
+						</h:selectOneMenu>
+						<p:message for="citta" />
 
-									<h:outputLabel for="foto2">Url seconda foto</h:outputLabel>
-									<p:inputText id="foto2" value="#{gh.hotel.foto2}" />
-									<p:message for="foto2" />
+						<h:outputLabel for="indirizzo">Indirizzo</h:outputLabel>
+						<h:inputText id="indirizzo" value="#{gh.hotel.indirizzo}" />
+						<p:message for="indirizzo" />
 
-									<h:outputLabel for="foto3">Url terza foto</h:outputLabel>
-									<p:inputText id="foto3" value="#{gh.hotel.foto3}" />
-									<p:message for="foto3" />
+						<h:outputLabel for="telefono">Telefono</h:outputLabel>
+						<h:inputText id="telefono" value="#{gh.hotel.telefono}" />
+						<p:message for="telefono" />
 
 
-								</h:panelGrid>
-								<p:commandButton value="Salva" update="regGrid1"
-									action="#{gh.creaHotel()}" />
-							</p:panel>
-						</td></tr>
+						<h:outputLabel for="foto1">Url prima foto</h:outputLabel>
+						<h:inputText id="foto1" value="#{gh.hotel.foto1}" />
+						<p:message for="foto1" />
 
-					</table>
+						<h:outputLabel for="foto2">Url seconda foto</h:outputLabel>
+						<h:inputText id="foto2" value="#{gh.hotel.foto2}" />
+						<p:message for="foto2" />
+
+						<h:outputLabel for="foto3">Url terza foto</h:outputLabel>
+						<h:inputText id="foto3" value="#{gh.hotel.foto3}" />
+						<p:message for="foto3" />
+
+
+					</h:panelGrid>
+					<h:commandButton value="Salva" update="regGrid1"
+						action="#{gh.creaHotel()}" />
+
+
 				</h:form>
 			</div>
 		</div>
