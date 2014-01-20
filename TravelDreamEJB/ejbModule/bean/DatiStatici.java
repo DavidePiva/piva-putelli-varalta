@@ -209,6 +209,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		}
 		Query q2 = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto,Pernottamento WHERE Pacchetto.pernottamento = Pernottamento.idPernottamento AND Pernottamento.hotel = "+id);
 		List<Integer> j = new ArrayList<Integer>();
+		j = q2.getResultList();
 		for(int index = 0; index < j.size(); index++){
 			Pacchetto p = em.find(Pacchetto.class, j.get(index));
 			l1.add(convertiPacchettoDTO(p));
