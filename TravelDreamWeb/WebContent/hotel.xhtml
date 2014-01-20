@@ -114,7 +114,9 @@
 				<br />
 				<h:outputLabel value="Telefono: #{sh.hotelPerParametro.telefono}"></h:outputLabel>
 				<br />
-
+				<h:link outcome="pacchettiPerHotel" value="Offerte per questo hotel">
+					<f:param name="hotel" value = "#{sh.nomeHotel}"></f:param>
+				</h:link>
 			</div>
 		</div>
 	</div>

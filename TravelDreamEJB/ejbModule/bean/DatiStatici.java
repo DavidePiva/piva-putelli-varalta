@@ -197,7 +197,6 @@ public class DatiStatici implements DatiStaticiLocal {
 	}
 	
 
-<<<<<<< .mine
 	@Override
 	public List<PacchettoDTO> pacchettiPerHotel(String hotelSelezionato) {
 		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE nome = '"+hotelSelezionato+"'");
@@ -217,7 +216,6 @@ public class DatiStatici implements DatiStaticiLocal {
 		return l1;
 	}
 
-=======
 	public int getIdPernottamento(String tipoCamera,int idHotel){
 		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento WHERE hotel = "+idHotel+" AND tipo = "+tipoCamera);
 		List<Integer> list=new ArrayList<Integer>();
@@ -242,5 +240,5 @@ public class DatiStatici implements DatiStaticiLocal {
 		BigDecimal prezzo=list.get(0).getPrezzo();
 		return prezzo;
 	}
->>>>>>> .r161
+
 }

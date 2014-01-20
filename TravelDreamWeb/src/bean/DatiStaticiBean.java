@@ -23,6 +23,7 @@ public class DatiStaticiBean {
 	private int prezzoMassimo;
 	private String cittaSelezionata;
 	private String tipoSelezionato;
+	private String hotelSelezionato;
 	private List<String> citta;
 	private List<String> hotels;
 	private List<Integer> ids;
@@ -30,6 +31,7 @@ public class DatiStaticiBean {
 	private List<String> pacchettiPerTipo;
 	private List<String> tipiPacchetto;
 	private List<String> pacchettiPerPrezzo;
+	private List<String> pacchettiPerHotel;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
@@ -40,12 +42,29 @@ public class DatiStaticiBean {
 		return tipiPacchetto;
 	}
 	
+	public List<String> getPacchettiPerHotel(){
+		pacchettiPerHotel = new ArrayList<String>();
+		List<PacchettoDTO> l = datistatici.pacchettiPerHotel(hotelSelezionato);
+		for(int i = 0; i < l.size(); i++){
+			pacchettiPerHotel.add(l.get(i).getTitolo());
+		}
+		return pacchettiPerHotel;
+	}
+	
 	public int getPrezzoMinimo(){
 		return prezzoMinimo;
 	}
 	
 	public int getPrezzoMassimo(){
 		return prezzoMassimo;
+	}
+	
+	public void setHotelSelezionato(String hotelSelezionato){
+		this.hotelSelezionato = hotelSelezionato;
+	}
+	
+	public String getHotelSelezionato(){
+		return hotelSelezionato;
 	}
 	
 	public void setPrezzoMinimo(int prezzoMinimo){
