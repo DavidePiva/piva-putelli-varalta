@@ -68,9 +68,18 @@
 			<h1>Login</h1>
 
 			<form method="post" action="j_security_check">
-				Email <input type="text" name="j_username" /><br /> Password <input
-					type="password" name="j_password" /> <br /> <input type="submit"
-					value="Login" /> <input type="reset" value="Reset" />
+				<h:panelGrid columns="2">
+
+					<h:outputLabel for="username">Username</h:outputLabel>
+					<input type="text" name="j_username" />
+
+					<h:outputLabel for="password">Password</h:outputLabel>
+					<input type="password" name="j_password" />
+
+
+				</h:panelGrid>
+				<input type="submit" value="Login" /> <input type="reset"
+					value="Reset" />
 			</form>
 		</div>
 	</div>
