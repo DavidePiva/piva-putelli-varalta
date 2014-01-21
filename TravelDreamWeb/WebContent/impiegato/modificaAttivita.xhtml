@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <head>
 <meta http-equiv='content-type' content='text/html; charset=UTF-8' />
@@ -21,12 +21,13 @@
 		</div>
 		<h:form id="boxlandmarktop">
 			<div id="boxlandmarktop">
+
 				<h:commandLink action="#{gp.logout}" value="LOGOUT"
 					id="textlandmark_left2" rendered="#{gp.loggato()}" />
+
 				<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}"
 					id="textlandmark_right2" rendered="#{gp.loggato()}" />
 			</div>
-			
 		</h:form>
 	</div>
 	<!--/intestazione-->
@@ -65,34 +66,59 @@
 		<div id="boxcontenuto">
 			<div>
 				<h:form>
-					<h1>Inserisci i nuovi dati</h1>
+					<h1>Modifica una attivita già esistente (WORK IN PROGRESS, NON FUNZIONA ANCORA)</h1>
 					<br></br>
-					<p:panel>
-						<h:panelGrid columns="1" id="regGrid">
 
-							<h:outputLabel for="nome">Nome</h:outputLabel>
-							<p:inputText id="nome" value="#{gp.utente.nome}" />
-							<p:message for="nome" />
-
-							<h:outputLabel for="cognome">Cognome</h:outputLabel>
-							<p:inputText id="cognome" value="#{gp.utente.cognome}" />
-							<p:message for="cognome" />
-
-							<h:outputLabel for="password">Password</h:outputLabel>
-							<p:password id="password" value="#{gp.utente.password}"
-								feedback="true" match="pwd2" label="Password" />
-							<p:message for="password" />
-
-							<h:outputLabel for="pwd2">Conferma Password</h:outputLabel>
-							<p:password id="pwd2" label="Conferma Password"
-								value="#{gp.utente.password}" />
+					<h:panelGrid columns="3" id="regGrid1">
+						<h:outputLabel for="nome">Seleziona l'attività da modificare, lasciando vuoti i campi che non variano:</h:outputLabel>
+						<h:selectOneMenu value="#{ga.nomeAttivitaDaModificare}">
+							<f:selectItems value="#{sa.getListaTitoliAttivita()}" var="a"
+								itemLabel="#{a}" itemValue="#{a}" />
+						</h:selectOneMenu>
+						<h:outputLabel for="nome"></h:outputLabel>
 
 
-						</h:panelGrid>
-						<br></br>
-						<p:commandButton value="Salva" update="regGrid"
-							action="#{gp.aggiorna()}" />
-					</p:panel>
+						<h:outputLabel for="titolo">Nuovo Titolo</h:outputLabel>
+						<h:inputText id="titolo" value="#{ga.attivita.titolo}" />
+						<p:message for="titolo" />
+
+						<h:outputLabel for="descrizione">Nuova Descrizione</h:outputLabel>
+						<h:inputTextarea id="descrizione"
+							value="#{ga.attivita.descrizione}" cols="50" rows="20" />
+						<p:message for="descrizione" />
+
+						<h:outputLabel for="prezzo">Nuovo Prezzo</h:outputLabel>
+						<h:inputText id="prezzo" value="#{ga.attivita.prezzo}" />
+						<p:message for="prezzo" />
+
+						<h:outputLabel for="ora">Ora</h:outputLabel>
+						<h:panelGroup>
+							<h:selectOneMenu value="#{ga.ore}">
+								<f:selectItems value="#{ga.oreList}" var="c" itemLabel="#{c}"
+									itemValue="#{c}" />
+							</h:selectOneMenu> : <h:selectOneMenu value="#{ga.minuti}">
+								<f:selectItems value="#{ga.minutiList}" var="c" itemLabel="#{c}"
+									itemValue="#{c}" />
+							</h:selectOneMenu>
+						</h:panelGroup>
+						<h:outputLabel for="ora"></h:outputLabel>
+
+						<h:outputLabel for="foto1">Url prima foto</h:outputLabel>
+						<h:inputText id="foto1" value="#{ga.attivita.foto1}" />
+						<p:message for="foto1" />
+
+						<h:outputLabel for="foto2">Url seconda foto</h:outputLabel>
+						<h:inputText id="foto2" value="#{ga.attivita.foto2}" />
+						<p:message for="foto2" />
+
+						<h:outputLabel for="foto3">Url terza foto</h:outputLabel>
+						<h:inputText id="foto3" value="#{ga.attivita.foto3}" />
+						<p:message for="foto3" />
+
+					</h:panelGrid>
+					<p:commandButton value="Modifica" update="regGrid1"
+						action="#{ga.modificaAttivita()}" />
+
 				</h:form>
 			</div>
 		</div>

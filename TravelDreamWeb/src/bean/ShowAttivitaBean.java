@@ -1,10 +1,13 @@
 package bean;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import DTO.AttivitaDTO;
+import DTO.HotelDTO;
 
 
 @ManagedBean(name="sa")
@@ -40,5 +43,9 @@ public class ShowAttivitaBean {
 	public String descrizioneAttivita(){
 		AttivitaDTO a = getAttivitaPerParametro();
 		return a.getDescrizione();
+	}
+	
+	public List<String> getListaTitoliAttivita(){
+		return showAttivita.getListaTitoliAttivita();
 	}
 }

@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import DTO.AttivitaDTO;
@@ -8,5 +10,5 @@ import DTO.AttivitaDTO;
 public interface ShowAttivitaLocal {
 
 	public AttivitaDTO getAttivita(String nomeAttivita);
-
+	public List<String> getListaTitoliAttivita();
 }

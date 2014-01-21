@@ -45,12 +45,10 @@ public class GestioneComponenti implements GestioneComponentiLocal {
 	private EJBContext context;
 	
 	
-	private DatiStatici ds;
-	private ShowHotel sh;
+
 	
 GestioneComponenti(){
-		this.ds=new DatiStatici();
-		this.sh=new ShowHotel();
+
 	}
 	//###CREAZIONE###//
 	
@@ -257,20 +255,5 @@ GestioneComponenti(){
 	}
 
 
-	public DatiStatici getDs() {
-		return ds;
-	}
-
-	public void setDs(DatiStatici ds) {
-		this.ds = ds;
-	}
-
-	public ShowHotel getSh() {
-		return sh;
-	}
-
-	public void setSh(ShowHotel sh) {
-		this.sh = sh;
-	}
 	
 }

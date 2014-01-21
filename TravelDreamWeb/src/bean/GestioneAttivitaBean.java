@@ -9,16 +9,20 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
 import DTO.AttivitaDTO;
+import DTO.HotelDTO;
 
 @ManagedBean(name = "ga")
 public class GestioneAttivitaBean {
 
 	@EJB
 	private GestioneComponentiLocal gc;
+	@EJB
+	private ShowAttivitaLocal sa;
 	
 	private AttivitaDTO attivita;
 	private int ore;
 	private int minuti;
+	private String nomeAttivitaDaModificare;
 	
 	public GestioneAttivitaBean(){
 		this.attivita=new AttivitaDTO();
@@ -80,66 +84,48 @@ public class GestioneAttivitaBean {
 		return s;
 	}
 	
-	/*public List<String> getGiorniList(){
-		List<String> s = new ArrayList<String>();
-		for(int i=1;i<=31;i++)
-			s.add(""+i);
-		return s;
-	}
-	
-	public List<String> getAnniList(){
-		List<String> s = new ArrayList<String>();
-		for(int i=2010;i<=2025;i++)
-			s.add(""+i);
-		return s;
-	}
-	
-	public List<String> getMesiList(){
-		List<String> s = new ArrayList<String>();
-		s.add("Gennaio");
-		s.add("Febbraio");
-		s.add("Marzo");
-		s.add("Aprile");
-		s.add("Maggio");
-		s.add("Giugno");
-		s.add("Luglio");
-		s.add("Agosto");
-		s.add("Settembre");
-		s.add("Ottobre");
-		s.add("Novembre");
-		s.add("Dicembre");
-		return s;
-	}
-	
-	public int getMeseDaString(String s){
-		switch(s){
-		//Non so perche', ma vuole un numero in meno per il mese...
-			case "Gennaio":
-				return 0;
-			case "Febbraio":
-				return 1;
-			case "Marzo":
-				return 2;
-			case "Aprile":
-				return 3;
-			case "Maggio":
-				return 4;
-			case "Giugno":
-				return 5;
-			case "Luglio":
-				return 6;
-			case "Agosto":
-				return 7;
-			case "Settembre":
-				return 8;
-			case "Ottobre":
-				return 9;
-			case "Novembre":
-				return 10;
-			case "Dicembre":
-				return 11;
+	public String modificaAttivita(){
+	/*	this.attivita.setSelezionabile(true);
+		AttivitaDTO attivitaDaModificare=sa.getAttivita();
+		hotel.setIdHotel(hotelDaModificare.getIdHotel());
+		hotel.setCitta(hotelDaModificare.getCitta());
+		hotel.setIndirizzo(hotelDaModificare.getIndirizzo());
+		if(hotel.getDescrizione().equals("")){
+			hotel.setDescrizione(hotelDaModificare.getDescrizione());
 		}
-		return 0;
-	}*/
+		if(hotel.getNome().equals("")){
+			hotel.setNome(hotelDaModificare.getNome());
+		}
+		if(hotel.getTelefono().equals("")){
+			hotel.setTelefono(hotelDaModificare.getTelefono());
+		}
+		if(hotel.getFoto1().equals("")){
+			hotel.setFoto1(hotelDaModificare.getFoto1());
+		}
+		if(hotel.getFoto2().equals("")){
+			hotel.setFoto2(hotelDaModificare.getFoto2());
+		}
+		if(hotel.getFoto3().equals("")){
+			hotel.setFoto3(hotelDaModificare.getFoto3());
+		}
+		gc.modificaHotel(hotel);*/
+		return "/impiegato/index?faces-redirect=true";
+	}
+
+	public ShowAttivitaLocal getSa() {
+		return sa;
+	}
+
+	public void setSa(ShowAttivitaLocal sa) {
+		this.sa = sa;
+	}
+
+	public String getNomeAttivitaDaModificare() {
+		return nomeAttivitaDaModificare;
+	}
+
+	public void setNomeAttivitaDaModificare(String nomeAttivitaDaModificare) {
+		this.nomeAttivitaDaModificare = nomeAttivitaDaModificare;
+	}
 
 }

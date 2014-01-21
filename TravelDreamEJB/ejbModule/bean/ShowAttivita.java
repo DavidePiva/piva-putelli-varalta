@@ -44,7 +44,12 @@ public class ShowAttivita implements ShowAttivitaLocal {
 		}
 		return null;
 	}
-
+	
+	public List<String> getListaTitoliAttivita(){
+		Query q = em.createNativeQuery("SELECT distinct titolo FROM Attivita");
+		List<String> list=q.getResultList();
+		return list;
+	}
 
 	private AttivitaDTO convertiAttivitaDTO(Attivita a) {
 		int id = a.getIdAttivita();
