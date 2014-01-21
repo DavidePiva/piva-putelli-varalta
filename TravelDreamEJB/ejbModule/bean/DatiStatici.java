@@ -1,8 +1,10 @@
 package bean;
 
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -16,6 +18,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.Aeroporto;
+import model.Compagnia;
 import model.Hotel;
 import model.Pacchetto;
 import model.Pernottamento;
@@ -24,6 +27,7 @@ import model.Volo;
 import DTO.AeroportoDTO;
 import DTO.HotelDTO;
 import DTO.PacchettoDTO;
+import DTO.VoloDTO;
 
 
 /**
@@ -240,6 +244,41 @@ public class DatiStatici implements DatiStaticiLocal {
 		list=q.getResultList();
 		BigDecimal prezzo=list.get(0).getPrezzo();
 		return prezzo;
+	}
+
+	@Override
+	public List<VoloDTO> getVoliPossibili(String cittaPartenza, String cittaArrivo, int anno, int mese, int giorno) {
+		Query q = em.createNativeQuery("SELECT idVolo FROM Volo,Aeroporto WHERE (Aeroporto.idAeroporto = Volo.aeroportoPartenza AND Aeroporto.citta = '"+cittaPartenza+"') AND Volo.idVolo IN (SELECT idVolo FROM Volo, Aeroporto WHERE Aeroporto.idAeroporto = Volo.aeroportoArrivo AND Aeroporto.citta = '"+cittaArrivo+"')AND data = '"+anno+"-"+mese+"-"+giorno+"'");
+		List<Integer> i = new ArrayList<Integer>();
+		List<VoloDTO> l = new ArrayList<VoloDTO>();
+		i = q.getResultList();
+		for(int j = 0; j < i.size(); j++){
+			Volo v = em.find(Volo.class, i.get(j));
+			VoloDTO v2 = convertiVoloDTO(v);
+			l.add(v2);
+		}
+		return l;
+	}
+
+	private VoloDTO convertiVoloDTO(Volo v) {
+		VoloDTO v2 = new VoloDTO();
+		int idVolo = v.getIdVolo();
+		Aeroporto a1 = v.getAeroporto1();
+		Aeroporto a2 = v.getAeroporto2();
+		BigDecimal prezzo = v.getPrezzo();
+		Compagnia c = v.getCompagniaBean();
+		Date data = v.getData();
+		Time oraPartenza = v.getOraPartenza();
+		Time oraArrivo = v.getOraArrivo();
+		v2.setIdVolo(idVolo);
+		v2.setData(data);
+		v2.setIdAeroportoPartenza(a1.getIdAeroporto());
+		v2.setIdAeroportoArrivo(a2.getIdAeroporto());
+		v2.setIdCompagnia(c.getIdCompagnia());
+		v2.setPrezzo(prezzo);
+		v2.setOraArrivo(oraArrivo);
+		v2.setOraPartenza(oraPartenza);
+		return v2;
 	}
 
 }
