@@ -2,6 +2,7 @@ package bean;
 //ManageBean statico
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -11,6 +12,7 @@ import javax.faces.bean.RequestScoped;
 import DTO.AeroportoDTO;
 import DTO.HotelDTO;
 import DTO.PacchettoDTO;
+import DTO.VoloDTO;
 
 @ManagedBean(name="ds")
 @RequestScoped
@@ -32,6 +34,7 @@ public class DatiStaticiBean {
 	private List<String> tipiPacchetto;
 	private List<String> pacchettiPerPrezzo;
 	private List<String> pacchettiPerHotel;
+	private List<String> voliPossibili;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
@@ -221,5 +224,15 @@ public class DatiStaticiBean {
 		if(prezzoMassimo!=-1)
 			return false;
 		return true;
+	}
+	
+	public List<String> getVoliPossibili(String cittaPartenza, String cittaArrivo, int anno, int mese, int giorno){
+		List<VoloDTO> l = datistatici.getVoliPossibili(cittaPartenza, cittaArrivo, anno, mese, giorno);
+		voliPossibili = new ArrayList<String>();
+		for(int i = 0; i < l.size(); i++){
+			VoloDTO v = l.get(i);
+			voliPossibili.add(v.toString());
+		}
+		return voliPossibili;
 	}
 }

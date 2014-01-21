@@ -1,5 +1,6 @@
 package bean;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -19,4 +20,5 @@ public interface DatiStaticiLocal {
 			int prezzoMassimo);
 	List<PacchettoDTO> pacchettiPerPrezzo(int prezzoMinimo);
 	public List<PacchettoDTO> pacchettiPerHotel(String hotelSelezionato);
+	public List<VoloDTO> getVoliPossibili(String cittaPartenza, String cittaArrivo, int anno, int mese, int giorno);
 }
