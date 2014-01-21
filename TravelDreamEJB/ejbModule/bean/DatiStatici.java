@@ -227,7 +227,7 @@ public class DatiStatici implements DatiStaticiLocal {
 	}
 	
 	public TipoCamere_Hotel getTipoCamere_Hotel(int idHotel,String tipoCamera){
-		Query q = em.createNativeQuery("SELECT  FROM TipoCamere_Hotel WHERE idHotel = "+idHotel+" AND tipoCamera = "+tipoCamera);
+		Query q = em.createNativeQuery("SELECT  FROM TipoCamere_Hotel WHERE idHotel = "+idHotel+" AND tipoCamera = '"+tipoCamera+"'");
 		List<TipoCamere_Hotel> list = new ArrayList<TipoCamere_Hotel>();
 		list=q.getResultList();
 		TipoCamere_Hotel t=list.get(0);
@@ -235,7 +235,7 @@ public class DatiStatici implements DatiStaticiLocal {
 	}
 	
 	public BigDecimal getPrezzoCamera(int idHotel,String tipoCamera){
-		Query q = em.createNativeQuery("SELECT prezzo FROM TipoCamere_Hotel WHERE idHotel = "+idHotel+" AND tipoCamera = "+tipoCamera);
+		Query q = em.createNativeQuery("SELECT prezzo FROM TipoCamere_Hotel WHERE idHotel = "+idHotel+" AND tipoCamera = '"+tipoCamera+"'");
 		List<TipoCamere_Hotel> list = new ArrayList<TipoCamere_Hotel>();
 		list=q.getResultList();
 		BigDecimal prezzo=list.get(0).getPrezzo();
