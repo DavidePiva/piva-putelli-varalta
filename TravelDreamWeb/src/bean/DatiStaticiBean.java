@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import DTO.AeroportoDTO;
+import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.PacchettoDTO;
 import DTO.VoloDTO;
@@ -35,6 +36,7 @@ public class DatiStaticiBean {
 	private List<String> pacchettiPerPrezzo;
 	private List<String> pacchettiPerHotel;
 	private List<String> voliPossibili;
+	private List<String> attivitaPossibili;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
@@ -234,5 +236,14 @@ public class DatiStaticiBean {
 			voliPossibili.add(v.toString());
 		}
 		return voliPossibili;
+	}
+	
+	public List<String> getAttivitaPossibili(String citta, int anno1, int mese1, int giorno1, int anno2, int mese2, int giorno2){
+		List<AttivitaDTO> l = datistatici.getAttivitaPossibili(citta,anno1,mese1,giorno1,anno2,mese2,giorno2);
+		attivitaPossibili = new ArrayList<String>();
+		for(int i = 0; i < l.size(); i++){
+			attivitaPossibili.add(l.get(i).getTitolo());
+		}
+		return attivitaPossibili;
 	}
 }
