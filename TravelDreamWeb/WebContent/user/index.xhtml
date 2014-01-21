@@ -72,7 +72,8 @@
 					rendered="#{gp.isAdmin()}" />
 				<h:link outcome="/impiegato/index" value="Sezione Impiegato"
 					id="link_impiegato" rendered="#{gp.isImpiegato()}" />
-				<h:commandButton value="Eliminati" action="#{gp.eliminaUtente()}" />
+					<br></br><br></br>
+				<h:commandButton value="Eliminati" action="#{gp.eliminaUtente()}" /><br></br>
 			</h:form>
 			<ul>
 				<ui:repeat value="#{sv.getCittaViaggiUtente(gp.emailUtente)}"
