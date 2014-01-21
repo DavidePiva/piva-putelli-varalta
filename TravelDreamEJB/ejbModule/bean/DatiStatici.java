@@ -29,6 +29,7 @@ import DTO.AeroportoDTO;
 import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.PacchettoDTO;
+import DTO.PernottamentoDTO;
 import DTO.VoloDTO;
 
 
@@ -304,6 +305,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		String foto1 = a.getFoto1();
 		String foto2 = a.getFoto2();
 		String foto3 = a.getFoto3();
+		boolean selezionabile = a.getSelezionabile();
 		Date data = a.getData();
 		Time ora = a.getOra();
 		BigDecimal prezzo = a.getPrezzo();
@@ -318,7 +320,33 @@ public class DatiStatici implements DatiStaticiLocal {
 		a2.setFoto2(foto2);
 		a2.setFoto3(foto3);
 		a2.setPrezzo(prezzo);
+		a2.setSelezionabile(selezionabile);
 		return a2;
+	}
+
+	@Override
+	public List<PernottamentoDTO> getPernottamentiPossibili(String citta) {
+		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento,Hotel WHERE Pernottamento.hotel = Hotel.idHotel AND citta = '"+citta+"'");
+		List<Integer> l = q.getResultList();
+		List<PernottamentoDTO> l1 = new ArrayList<PernottamentoDTO>();
+		for(int i = 0; i < l.size(); i++){
+			Pernottamento p = em.find(Pernottamento.class, l.get(i));
+			l1.add(convertiPernottamentoDTO(p));
+		}
+		return l1;
+	}
+
+	private PernottamentoDTO convertiPernottamentoDTO(Pernottamento p) {
+		PernottamentoDTO p2 = new PernottamentoDTO();
+		int id = p.getIdPernottamento();
+		Hotel h = p.getHotelBean();
+		String tipo = p.getTipo();
+		boolean selezionabile = p.getSelezionabile();
+		p2.setIdHotel(h.getIdHotel());
+		p2.setTipo(tipo);
+		p2.setIdPernottamento(id);
+		p2.setSelezionabile(selezionabile);
+		return p2;
 	}
 
 }

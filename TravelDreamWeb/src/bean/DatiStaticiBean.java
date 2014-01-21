@@ -13,6 +13,7 @@ import DTO.AeroportoDTO;
 import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.PacchettoDTO;
+import DTO.PernottamentoDTO;
 import DTO.VoloDTO;
 
 @ManagedBean(name="ds")
@@ -37,6 +38,7 @@ public class DatiStaticiBean {
 	private List<String> pacchettiPerHotel;
 	private List<String> voliPossibili;
 	private List<String> attivitaPossibili;
+	private List<String> pernottamentiPossibili;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
@@ -246,4 +248,21 @@ public class DatiStaticiBean {
 		}
 		return attivitaPossibili;
 	}
+	
+	public List<String> getPernottamentiPossibili(String citta){
+		List<PernottamentoDTO> l = datistatici.getPernottamentiPossibili(citta);
+		pernottamentiPossibili = new ArrayList<String>();
+		List<HotelDTO> h = hotelPerCitta(citta);
+		for(int i = 0; i < l.size(); i++){
+			for(int j = 0; j < h.size(); j++){
+				int idHotel = h.get(j).getIdHotel();
+				if(l.get(i).getIdHotel()==idHotel){
+					String nome = h.get(j).getNome();
+					pernottamentiPossibili.add(nome);
+				}
+			}
+		}
+		return pernottamentiPossibili;
+	}
+
 }
