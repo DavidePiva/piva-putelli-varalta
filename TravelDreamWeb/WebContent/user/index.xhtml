@@ -34,25 +34,28 @@
 	<div id="boxlinea5"></div>
 	<div id="boxbig">
 		<div id="boxmenu">
-			<div id="boxPacchetti">	
-			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+			<div id="boxPacchetti">
+				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="/cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
-					<li><h:link outcome="/prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="/tipologiePacchetti" value = "Quello che fa per te" id="p3"></h:link></li>
+					<li><h:link outcome="/cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
+					<li><h:link outcome="/prezziPacchetti"
+							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="/tipologiePacchetti"
+							value="Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
-			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="/cittaHotel" value = "Città"></h:link></li>
-					<li><h:link outcome="/prezziHotel" value = "Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="/cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="/prezziHotel" value="Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
 				<ul id="boxleft3">
-					<li><h:link outcome="/chiSiamo" value = "Chi siamo"></h:link></li>
-					<li><h:link outcome="/contatti" value = "Contatti" id="ultimo"></h:link></li>
+					<li><h:link outcome="/chiSiamo" value="Chi siamo"></h:link></li>
+					<li><h:link outcome="/contatti" value="Contatti" id="ultimo"></h:link></li>
 				</ul>
 			</div>
 		</div>
@@ -67,10 +70,12 @@
 					id="link_impiegato" rendered="#{gp.isImpiegato()}" />
 				<h:commandButton value="Eliminati" action="#{gp.eliminaUtente()}" />
 			</h:form>
-			<ui:repeat value="#{sv.getCittaViaggiUtente(gp.utenteSelezionato)}"
-				var="viaggio">
-				<li><h:outputLabel value="#{viaggio}"></h:outputLabel></li>
-			</ui:repeat>
+			<ul>
+				<ui:repeat value="#{sv.getCittaViaggiUtente(gp.emailUtente)}"
+					var="viaggio">
+					<li><h:outputLabel value="#{viaggio}"></h:outputLabel></li>
+				</ui:repeat>
+			</ul>
 		</div>
 	</div>
 	<!--/boxbig-->

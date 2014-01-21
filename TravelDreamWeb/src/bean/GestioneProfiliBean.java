@@ -66,6 +66,11 @@ public class GestioneProfiliBean {
 		//return "BOE!";
 	}
 	
+	public String getEmailUtente(){
+		return gestioneprofili.getUtenteDTO().getEmail();
+		//return "BOE!";
+	}
+	
 	public boolean isAdmin(){
 		return gestioneprofili.isAdmin();
 	}
