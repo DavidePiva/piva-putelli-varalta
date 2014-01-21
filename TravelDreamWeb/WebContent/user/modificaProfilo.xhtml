@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <head>
@@ -60,26 +61,38 @@
 			</div>
 		</div>
 		<div id="boxcontenuto">
-			<h1>
-				<h:outputLabel value="Ciao #{gp.nomeUtente}"></h:outputLabel>
-			</h1>
-			
-			<h:link outcome="modificaProfilo" value = "Modifica profilo personale"></h:link>
-			<br></br>
-			
-			<h:form>
-				<h:link outcome="/admin/index" value="Sezione Admin" id="link_admin"
-					rendered="#{gp.isAdmin()}" />
-				<h:link outcome="/impiegato/index" value="Sezione Impiegato"
-					id="link_impiegato" rendered="#{gp.isImpiegato()}" />
-				<h:commandButton value="Eliminati" action="#{gp.eliminaUtente()}" />
-			</h:form>
-			<ul>
-				<ui:repeat value="#{sv.getCittaViaggiUtente(gp.emailUtente)}"
-					var="viaggio">
-					<li><h:outputLabel value="#{viaggio}"></h:outputLabel></li>
-				</ui:repeat>
-			</ul>
+			<div>
+				<h:form>
+					<h1>Inserisci i nuovi dati</h1>
+					<br></br>
+					<p:panel>
+						<h:panelGrid columns="1" id="regGrid">
+
+							<h:outputLabel for="nome">Nome</h:outputLabel>
+							<p:inputText id="nome" value="#{gp.utente.nome}" />
+							<p:message for="nome" />
+
+							<h:outputLabel for="cognome">Cognome</h:outputLabel>
+							<p:inputText id="cognome" value="#{gp.utente.cognome}" />
+							<p:message for="cognome" />
+
+							<h:outputLabel for="password">Password</h:outputLabel>
+							<p:password id="password" value="#{gp.utente.password}"
+								feedback="true" match="pwd2" label="Password" />
+							<p:message for="password" />
+
+							<h:outputLabel for="pwd2">Conferma Password</h:outputLabel>
+							<p:password id="pwd2" label="Conferma Password"
+								value="#{gp.utente.password}" />
+
+
+						</h:panelGrid>
+						<br></br>
+						<p:commandButton value="Salva" update="regGrid"
+							action="#{gp.aggiorna()}" />
+					</p:panel>
+				</h:form>
+			</div>
 		</div>
 	</div>
 	<!--/boxbig-->

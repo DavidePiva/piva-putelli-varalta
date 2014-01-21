@@ -52,6 +52,12 @@ public class GestioneProfiliBean {
 			gestioneprofili.salva(utente);
 			return "/index?faces-redirect=true";
 	}
+	public String aggiorna() {
+		this.utente.setAttivo(true);
+		gestioneprofili.aggiorna(utente);
+		return "/index?faces-redirect=true";
+	}
+	
 	
 	public boolean loggato(){
 		return gestioneprofili.loggato();

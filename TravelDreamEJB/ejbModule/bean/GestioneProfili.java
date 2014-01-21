@@ -52,9 +52,16 @@ public class GestioneProfili implements GestioneProfiliLocal {
 	}
 
 	@Override
-	public void aggiorna(UtenteDTO utente) {
-		// TODO Auto-generated method stub
-
+	public void aggiorna(UtenteDTO utente){
+		
+		Utente newUtente=new Utente(utente);
+		
+		Utente u=em.find(Utente.class, getUtenteAttuale().getEmail());
+		u.setCognome(newUtente.getCognome());
+		u.setNome(newUtente.getNome());
+		u.setPassword(newUtente.getPassword());
+		
+		em.merge(u);
 	}
 
 	@Override
@@ -85,6 +92,7 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		return context.getCallerPrincipal().getName();
 	}
 
+	
 	private UtenteDTO convertiInDTO(Utente u) {
 		UtenteDTO uDTO = new UtenteDTO();
 		uDTO.setEmail(u.getEmail());
