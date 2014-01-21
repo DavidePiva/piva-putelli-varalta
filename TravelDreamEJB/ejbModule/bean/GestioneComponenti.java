@@ -59,9 +59,7 @@ GestioneComponenti(){
 		
 	}
 
-	private void creaPernottamento(Pernottamento p){
-		em.persist(p);
-	}
+
 	
 	public void creaHotel(HotelDTO h){
 		Hotel hotel=new Hotel(h);		
@@ -70,7 +68,6 @@ GestioneComponenti(){
 	}
 	
 	public List<TipoCamere_HotelDTO> camereHotel(int idHotel) {
-		System.out.println("ciaoooooo00000000000000000!!!!"+idHotel);
 		Hotel h =em.find(Hotel.class, idHotel);
 		List<TipoCamere_Hotel> list = h.getTipoCamereHotels();
 		List<TipoCamere_HotelDTO> l2 = new ArrayList<TipoCamere_HotelDTO>();
@@ -114,65 +111,98 @@ GestioneComponenti(){
 	}
 	
 	public void salvaCamera(TipoCamere_HotelDTO t,HotelDTO h){
-		
-		TipoCamere_Hotel tipoCamera = new TipoCamere_Hotel(t, h);
+		em.flush();
+		TipoCamere_Hotel t1 = new TipoCamere_Hotel(t, h);
 		Hotel hotel = new Hotel(h);
 		Pernottamento p = new Pernottamento(hotel, true, t.getTipo().getString(t.getTipo()));
 		
 		List<TipoCamere_HotelDTO> list=camereHotel(t.getId());
 		boolean esiste=false;
-		if(list.contains(t)){
-			esiste=true;
+		TipoCamere_HotelDTO newTipo=new TipoCamere_HotelDTO();
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getId()==t.getId() && list.get(i).getTipo().equals(t.getTipo())){
+				esiste=true;
+				newTipo=list.get(i);
+			}
+		}
+		newTipo.setTipo(t.getTipo());
+    	TipoCamere_HotelPK pk=new TipoCamere_HotelPK() ;
+    	pk.setIdHotel(hotel.getIdHotel());
+    	pk.setTipoCamera(t.getTipo().getString(t.getTipo()));
+		TipoCamere_Hotel t2=new TipoCamere_Hotel();
+		
+		t2.setId(pk);
+		t2.setHotel(hotel);
+		t2.setPrezzo(t.getPrezzo());
+		
+		if (!esiste) {
+			
+			em.persist(t1);  
+			em.flush();
+			if(t.getPrezzo().compareTo(BigDecimal.ZERO) == 0){
+				p.setSelezionabile(false);
+			}
+			em.persist(p);
+		  	em.flush();
+        }else if (esiste && t.getPrezzo().compareTo(BigDecimal.ZERO) != 0){
+
+        	TipoCamere_Hotel t3=em.find(TipoCamere_Hotel.class,pk);  
+        	em.remove(t3);        	
+        	em.flush();
+    
+        	em.persist(t2);   
+        	em.flush();
+        	
+			int idPernottamento=getIdPernottamento(t.getTipo().getString(t.getTipo()),hotel.getIdHotel());
+			Pernottamento p1=new Pernottamento();
+			p1=em.find(Pernottamento.class, idPernottamento);
+			em.flush();
+			if (p1.getSelezionabile() == false) {
+				Pernottamento p2 = new Pernottamento();
+				p2.setHotelBean(p1.getHotelBean());
+				p2.setIdPernottamento(p1.getIdPernottamento());
+				p2.setSelezionabile(true);
+				p2.setTipo(p1.getTipo());
+				em.remove(p1);
+				em.flush();
+				em.persist(p2);
+				em.flush();
+			}
+		}else if(esiste && t.getPrezzo().compareTo(BigDecimal.ZERO) == 0){
+
+        	TipoCamere_Hotel t3=em.getReference(TipoCamere_Hotel.class,pk);
+        	em.remove(t3);
+        	em.flush();
+   
+        	em.persist(t2);
+        	em.flush();
+
+			int idPernottamento=getIdPernottamento(t.getTipo().getString(t.getTipo()),hotel.getIdHotel());
+			Pernottamento p1=new Pernottamento();
+			p1=em.find(Pernottamento.class, idPernottamento);
+			em.flush();
+			if (p1.getSelezionabile() == true) {
+				Pernottamento p2 = new Pernottamento();
+				p2.setHotelBean(p1.getHotelBean());
+				p2.setIdPernottamento(p1.getIdPernottamento());
+				p2.setSelezionabile(false);
+				p2.setTipo(p1.getTipo());
+				em.remove(p1);
+				em.flush();
+				em.persist(p2);
+				em.flush();
+			}
 		}
 		
-		//if (!esiste && t.getPrezzo().floatValue() > 0) {
-    //        em.persist(tipoCamera);         
-          //  creaPernottamento(p);}
-        /*else if (esiste && t.getPrezzo().floatValue() > 0){
-			em.merge(tipoCamera);
-			int idPernottamento=ds.getIdPernottamento(t.getTipo().getString(t.getTipo()),hotel.getIdHotel());
-			p.setIdPernottamento(idPernottamento);
-			modificaPernottamento(p);
-		}*/
-		//	int idPernottamento=ds.getIdPernottamento(t.getTipo().getString(t.getTipo()),hotel.getIdHotel());
-		//	p.setIdPernottamento(idPernottamento);
-		//	rendiNonSelezionabilePernottamento(p);
-		
-		
-	//	TipoCamere_Hotel tipoCamera = new TipoCamere_Hotel(t, h);
-	//	List<TipoCamere_HotelDTO> list=sh.camereHotel(h.getIdHotel());
-		
-	//	TipoCamere_Hotel oldTipoCamera=ds.getTipoCamere_Hotel(h.getIdHotel(), t.getTipo().getString(t.getTipo()));
-	//	BigDecimal oldPrezzo=ds.getPrezzoCamera(h.getIdHotel(), t.getTipo().getString(t.getTipo()));
-	//	Hotel hotel = new Hotel(h);
-	//	Pernottamento p = new Pernottamento(hotel, true, t.getTipo().getString(t.getTipo()));
-		
-	/*	
-		if (!list.contains(t) && t.getPrezzo().floatValue() > 0) {		
-			em.persist(tipoCamera);
-		//	creaPernottamento(p);
-		}else if (list.contains(t) && t.getPrezzo().floatValue() > 0){
-			em.merge(tipoCamera);
-		//	int idPernottamento=ds.getIdPernottamento(t.getTipo().getString(t.getTipo()),hotel.getIdHotel());
-		//	p.setIdPernottamento(idPernottamento);
-		//	modificaPernottamento(p);
-		}else if (t.getPrezzo().floatValue() == 0){
-			TipoCamere_HotelDTO oldTipoCamera=new TipoCamere_HotelDTO();
-			oldTipoCamera.setId(t.getId());
-			oldTipoCamera.setTipo(t.getTipo());
-			for(int i=0;i<list.size();i++){
-				if(list.get(i).getTipo().equals(t.getTipo().getString(t.getTipo()))){
-					oldTipoCamera.setPrezzo(t.getPrezzo());
-				}
-			}	
-			em.remove(tipoCamera);
-		//	int idPernottamento=ds.getIdPernottamento(t.getTipo().getString(t.getTipo()),hotel.getIdHotel());
-		//	p.setIdPernottamento(idPernottamento);
-		//	rendiNonSelezionabilePernottamento(p);
-		}
-		*/	
 	}
 	
+	public int getIdPernottamento(String tipoCamera,int idHotel){
+		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento WHERE hotel = "+idHotel+" AND tipo = '"+tipoCamera+"'");
+		List<Integer> list= new ArrayList<Integer>();
+		list=q.getResultList();
+		int i=list.get(0);
+		return i;
+	}
 	//###MODIFICA###//
 	
 	private void modificaPernottamento(Pernottamento p){
@@ -197,10 +227,8 @@ GestioneComponenti(){
 	
 	//###ELIMINAZIONE###//
 	
-	private void rendiNonSelezionabilePernottamento(Pernottamento p){
-		p.setSelezionabile(false);
-		em.merge(p);
-	}
+
+
 	
 	public void eliminaFoto(TipoComponente tipoComponente,int id,int numeroFoto) throws SQLException{
 		InterfacciaDB.eliminaFotoComponente(tipoComponente,id,numeroFoto);
