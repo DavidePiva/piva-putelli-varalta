@@ -41,38 +41,34 @@
 	<div id="boxlinea5"></div>
 	<div id="boxbig">
 		<div id="boxmenu">
-			<div id="boxPacchetti">
-				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+			<div id="boxPacchetti">	
+			<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
 				<ul id="boxleft1">
-					<li><h:link outcome="cittaPacchetti" value="Per Destinazione"
-							id="p1"></h:link></li>
-					<li><h:link outcome="prezziPacchetti"
-							value="Per tutte le tasche" id="p2"></h:link></li>
-					<li><h:link outcome="tipologiePacchetti"
-							value="Quello che fa per te" id="p3"></h:link></li>
-					<li><h:link outcome="targetPacchetti" value = "Da solo o con altri"></h:link></li>
+					<li><h:link outcome="cittaPacchetti" value = "Per Destinazione" id="p1"></h:link></li>
+					<li><h:link outcome="prezziPacchetti" value = "Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="tipologiePacchetti" value = "Quello che fa per te" id="p3"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
-				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+			<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
 				<ul id="boxleft2">
-					<li><h:link outcome="cittaHotel" value="Città"></h:link></li>
-					<li><h:link outcome="prezziHotel" value="Per tutte le tasche"></h:link></li>
+					<li><h:link outcome="cittaHotel" value = "Città"></h:link></li>
+					<li><h:link outcome="prezziHotel" value = "Per tutte le tasche"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxLandmark">
 				<ul id="boxleft3">
-					<li><h:link outcome="chiSiamo" value="Chi siamo"></h:link></li>
-					<li><h:link outcome="contatti" value="Contatti" id="ultimo"></h:link></li>
+					<li><h:link outcome="chiSiamo" value = "Chi siamo"></h:link></li>
+					<li><h:link outcome="contatti" value = "Contatti" id="ultimo"></h:link></li>
 				</ul>
 			</div>
 		</div>
 		<div id="boxcontenuto">
-			<h1>Tutte le tipologie</h1>
+			<h1>Pacchetti per città</h1>
 			<ul id="lista_principale">
-				<ui:repeat value="#{ds.tipiPacchetto}" var="t">
-					<li><h:link value="#{t}" outcome="pacchettiPerTipo">
-							<f:param name="t" value="#{t}" />
+				<ui:repeat value="#{ds.target}" var="c">
+					<li><h:link value="#{c}" outcome="pacchettiPerTarget">
+							<f:param name="c" value="#{c}" />
 						</h:link></li>
 				</ui:repeat>
 			</ul>

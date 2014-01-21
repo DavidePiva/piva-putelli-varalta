@@ -10,6 +10,9 @@
 <link href='css/application.css' media='all' rel='stylesheet'
 	type='text/css' />
 <script type='text/javascript' src='css/menu.js' />
+<f:metadata>
+	<f:viewParam name="c" value="#{ds.targetSelezionato}" />
+</f:metadata>
 </head>
 <body onload="javascript:start()">
 	<div id="boxintestazione">
@@ -50,7 +53,6 @@
 							value="Per tutte le tasche" id="p2"></h:link></li>
 					<li><h:link outcome="tipologiePacchetti"
 							value="Quello che fa per te" id="p3"></h:link></li>
-					<li><h:link outcome="targetPacchetti" value = "Da solo o con altri"></h:link></li>
 				</ul>
 			</div>
 			<div id="boxHotel">
@@ -68,15 +70,15 @@
 			</div>
 		</div>
 		<div id="boxcontenuto">
-			<h1>Tutte le tipologie</h1>
+			<h1><h:outputText value="Pacchetti di #{ds.targetSelezionato}"/></h1>
 			<ul id="lista_principale">
-				<ui:repeat value="#{ds.tipiPacchetto}" var="t">
-					<li><h:link value="#{t}" outcome="pacchettiPerTipo">
-							<f:param name="t" value="#{t}" />
+				<ui:repeat value="#{ds.pacchettiPerTarget}" var="pacchetto">
+					<li><h:link value="#{pacchetto}" outcome="pacchetto">
+							<f:param name="pacchetto" value="#{pacchetto}" />
+							<f:param name="foto" value="1" />
 						</h:link></li>
 				</ui:repeat>
 			</ul>
-
 		</div>
 	</div>
 	<!--/boxbig-->
