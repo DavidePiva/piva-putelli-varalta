@@ -65,6 +65,7 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		v.setPernottamentoBean(pe);
 		v.setPrezzo(prezzo);
 		v.setUtente(u);
+		v.setNumeroPersone(1);
 		em.persist(v);
 		em.flush();
 		for(int i = 0; i < a.size(); i++){
@@ -104,7 +105,7 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		v2.setId(vv2);
 		v2.setRegalabile(false);
 		v2.setViaggio(v);
-		v2.setVolo(andata);
+		v2.setVolo(ritorno);
 		v.addViaggioVolo(v2);
 		em.merge(v);
 	}
