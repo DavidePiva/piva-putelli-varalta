@@ -17,7 +17,7 @@ public class Viaggio_Attivita implements Serializable {
 	@EmbeddedId
 	private Viaggio_AttivitaPK id;
 
-	private byte regalabile;
+	private boolean regalabile;
 
 	//bi-directional many-to-one association to Attivita
 	@ManyToOne
@@ -40,11 +40,11 @@ public class Viaggio_Attivita implements Serializable {
 		this.id = id;
 	}
 
-	public byte getRegalabile() {
+	public boolean getRegalabile() {
 		return this.regalabile;
 	}
 
-	public void setRegalabile(byte regalabile) {
+	public void setRegalabile(boolean regalabile) {
 		this.regalabile = regalabile;
 	}
 

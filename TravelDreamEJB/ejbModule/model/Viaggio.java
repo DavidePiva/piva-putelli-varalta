@@ -1,8 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,6 +20,8 @@ public class Viaggio implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name="idViaggio")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idViaggio;
 
 	private String citta;
@@ -69,6 +74,7 @@ public class Viaggio implements Serializable {
 	private List<Viaggio_Volo> viaggioVolos;
 
 	public Viaggio() {
+		viaggioAttivitas = new ArrayList<Viaggio_Attivita>();
 	}
 
 	public int getIdViaggio() {
