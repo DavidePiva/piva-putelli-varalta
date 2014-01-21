@@ -122,7 +122,7 @@ public class DatiStatici implements DatiStaticiLocal {
 
 	@Override
 	public List<PacchettoDTO> pacchettiPerCitta(String s) {
-		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE citta = '"+s+"'");
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile = 1 AND citta = '"+s+"'");
 		List<Integer> i = new ArrayList<Integer>();
 		i = q.getResultList();
 		List<PacchettoDTO> l1 = new ArrayList<PacchettoDTO>();
@@ -347,6 +347,26 @@ public class DatiStatici implements DatiStaticiLocal {
 		p2.setIdPernottamento(id);
 		p2.setSelezionabile(selezionabile);
 		return p2;
+	}
+
+	@Override
+	public List<String> getTarget() {
+		Query q = em.createNativeQuery("SELECT DISTINCT target FROM Pacchetto");
+		List<String> l = q.getResultList();
+		return l;
+	}
+
+	@Override
+	public List<PacchettoDTO> pacchettiPerTarget(String targetSelezionato) {
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile = 1 AND target = '"+targetSelezionato+"'");
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		List<PacchettoDTO> l1 = new ArrayList<PacchettoDTO>();
+		for(int index = 0; index < i.size(); index++){
+			Pacchetto p = em.find(Pacchetto.class, i.get(index));
+			l1.add(convertiPacchettoDTO(p));
+		}
+		return l1;
 	}
 
 }

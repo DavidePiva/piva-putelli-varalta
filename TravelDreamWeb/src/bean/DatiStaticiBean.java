@@ -28,6 +28,7 @@ public class DatiStaticiBean {
 	private String cittaSelezionata;
 	private String tipoSelezionato;
 	private String hotelSelezionato;
+	private String targetSelezionato;
 	private List<String> citta;
 	private List<String> hotels;
 	private List<Integer> ids;
@@ -39,6 +40,8 @@ public class DatiStaticiBean {
 	private List<String> voliPossibili;
 	private List<String> attivitaPossibili;
 	private List<String> pernottamentiPossibili;
+	private List<String> target;
+	private List<String> pacchettiPerTarget;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
@@ -72,6 +75,14 @@ public class DatiStaticiBean {
 	
 	public String getHotelSelezionato(){
 		return hotelSelezionato;
+	}
+	
+	public void setTargetSelezionato(String targetSelezionato){
+		this.targetSelezionato = targetSelezionato;
+	}
+	
+	public String getTargetSelezionato(){
+		return targetSelezionato;
 	}
 	
 	public void setPrezzoMinimo(int prezzoMinimo){
@@ -263,6 +274,20 @@ public class DatiStaticiBean {
 			}
 		}
 		return pernottamentiPossibili;
+	}
+	
+	public List<String> getTarget(){
+		target = datistatici.getTarget();
+		return target;
+	}
+	
+	public List<String> getPacchettiPerTarget(){
+		List<PacchettoDTO> l1 = datistatici.pacchettiPerTarget(targetSelezionato);
+		pacchettiPerTarget = new ArrayList<String>();
+		for(int i = 0; i < l1.size(); i++){
+			pacchettiPerTarget.add(l1.get(i).getTitolo());
+		}
+		return pacchettiPerTarget;
 	}
 
 }
