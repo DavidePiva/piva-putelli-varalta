@@ -17,6 +17,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import model.Attivita;
 import model.Aeroporto;
 import model.Compagnia;
 import model.Hotel;
@@ -25,6 +26,7 @@ import model.Pernottamento;
 import model.TipoCamere_Hotel;
 import model.Volo;
 import DTO.AeroportoDTO;
+import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.PacchettoDTO;
 import DTO.VoloDTO;
@@ -279,6 +281,44 @@ public class DatiStatici implements DatiStaticiLocal {
 		v2.setOraArrivo(oraArrivo);
 		v2.setOraPartenza(oraPartenza);
 		return v2;
+	}
+
+	@Override
+	public List<AttivitaDTO> getAttivitaPossibili(String citta, int anno1,
+			int mese1, int giorno1, int anno2, int mese2, int giorno2) {
+		Query q = em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE citta = '"+citta+"' AND data BETWEEN '"+anno1+"-"+mese1+"-"+giorno1+"' AND '"+anno2+"-"+mese2+"-"+giorno2+"'");
+		List<Integer> l = q.getResultList();
+		List<AttivitaDTO> l1 = new ArrayList<AttivitaDTO>();
+		for(int i = 0; i < l.size(); i++){
+			Attivita a = em.find(Attivita.class, l.get(i));
+			l1.add(convertiAttivitaDTO(a));
+		}
+		return l1;
+	}
+
+	private AttivitaDTO convertiAttivitaDTO(Attivita a) {
+		int id = a.getIdAttivita();
+		String titolo = a.getTitolo();
+		String citta = a.getCitta();
+		String descrizione = a.getDescrizione();
+		String foto1 = a.getFoto1();
+		String foto2 = a.getFoto2();
+		String foto3 = a.getFoto3();
+		Date data = a.getData();
+		Time ora = a.getOra();
+		BigDecimal prezzo = a.getPrezzo();
+		AttivitaDTO a2 = new AttivitaDTO();
+		a2.setId(id);
+		a2.setCitta(citta);
+		a2.setTitolo(titolo);
+		a2.setDescrizione(descrizione);
+		a2.setData(data);
+		a2.setOra(ora);
+		a2.setFoto1(foto1);
+		a2.setFoto2(foto2);
+		a2.setFoto3(foto3);
+		a2.setPrezzo(prezzo);
+		return a2;
 	}
 
 }

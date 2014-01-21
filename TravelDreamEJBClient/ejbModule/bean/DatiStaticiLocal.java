@@ -21,4 +21,6 @@ public interface DatiStaticiLocal {
 	List<PacchettoDTO> pacchettiPerPrezzo(int prezzoMinimo);
 	public List<PacchettoDTO> pacchettiPerHotel(String hotelSelezionato);
 	public List<VoloDTO> getVoliPossibili(String cittaPartenza, String cittaArrivo, int anno, int mese, int giorno);
+	public List<AttivitaDTO> getAttivitaPossibili(String citta, int anno1,
+			int mese1, int giorno1, int anno2, int mese2, int giorno2);
 }
