@@ -111,7 +111,7 @@ GestioneComponenti(){
 	}
 	
 	public void salvaCamera(TipoCamere_HotelDTO t,HotelDTO h){
-		em.flush();
+		em.clear();
 		TipoCamere_Hotel t1 = new TipoCamere_Hotel(t, h);
 		Hotel hotel = new Hotel(h);
 		Pernottamento p = new Pernottamento(hotel, true, t.getTipo().getString(t.getTipo()));
@@ -147,9 +147,10 @@ GestioneComponenti(){
         }else if (esiste && t.getPrezzo().compareTo(BigDecimal.ZERO) != 0){
 
         	TipoCamere_Hotel t3=em.find(TipoCamere_Hotel.class,pk);  
+        	System.out.println("PIZZAAAAAAAAAAAAAAAAAAAAAAAAAA:   "+t3.getPrezzo());
         	em.remove(t3);        	
         	em.flush();
-    
+        	t2.setPrezzo(t.getPrezzo());
         	em.persist(t2);   
         	em.flush();
         	
@@ -165,15 +166,16 @@ GestioneComponenti(){
 				p2.setTipo(p1.getTipo());
 				em.remove(p1);
 				em.flush();
+				
 				em.persist(p2);
 				em.flush();
 			}
 		}else if(esiste && t.getPrezzo().compareTo(BigDecimal.ZERO) == 0){
 
-        	TipoCamere_Hotel t3=em.getReference(TipoCamere_Hotel.class,pk);
+        	TipoCamere_Hotel t3=em.find(TipoCamere_Hotel.class,pk);
         	em.remove(t3);
         	em.flush();
-   
+        	t2.setPrezzo(BigDecimal.ZERO);
         	em.persist(t2);
         	em.flush();
 
