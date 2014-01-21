@@ -124,6 +124,9 @@
 								value="#{sp.pacchettoPerParametro.descrizione}"></h:outputLabel></td>
 					</tr>
 				</table>
+				<h:form>
+					<h:commandButton value="Compra" update="regGrid1" action="#{gh.creaHotel()}" rendered="#{gp.loggato()}" />
+				</h:form>
 			</div>
 		</div>
 	</div>
