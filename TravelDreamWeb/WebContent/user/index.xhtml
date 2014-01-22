@@ -79,10 +79,9 @@
 			</h:form>
 			<ul>
 				<ui:repeat value="#{sv.getInfoViaggi(gp.emailUtente)}" var="viaggio">
-					<li><h:outputLabel value="#{viaggio.toString()}"></h:outputLabel></li>
-					<h:form>
-						<h:commandButton update="regGrid1" value="Modifica" action="#{gv.modificaViaggio(viaggio.idViaggio)}"></h:commandButton>
-					</h:form>
+					<li><h:link value="#{viaggio.toString()}" outcome="modificaViaggio">
+						<f:param name = "id" value = "#{viaggio.idViaggio}"></f:param>
+					</h:link></li>
 				</ui:repeat>
 			</ul>
 		</div>

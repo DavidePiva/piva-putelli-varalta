@@ -1,7 +1,7 @@
 package bean;
 
 public class InfoViaggio {
-	
+
 	private int idViaggio;
 	private int numeroPersone;
 	private String citta;
