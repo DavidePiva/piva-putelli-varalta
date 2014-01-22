@@ -323,5 +323,10 @@ public class DatiStaticiBean {
 		}
 		return hotelPerPrezzo;
 	}
+	
+	public HotelDTO getHotelPerId(int idHotel){
+		HotelDTO h = datistatici.getHotelPerId(idHotel);
+		return h;
+	}
 
 }
