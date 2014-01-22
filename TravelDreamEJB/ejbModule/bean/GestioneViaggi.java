@@ -1,6 +1,9 @@
 package bean;
 
 import java.math.BigDecimal;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,8 +14,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.ViaggioDTO;
+import DTO.VoloDTO;
 import model.Hotel;
 import model.Utente;
 import model.Attivita;
@@ -179,5 +184,70 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		h2.setFoto3(foto3);
 		return h2;
 	}
+
+	@Override
+	public List<AttivitaDTO> getAttivitaViaggio(int idViaggio) {
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		List<Viaggio_Attivita> l = v.getViaggioAttivitas();
+		List<AttivitaDTO> lista = new ArrayList<AttivitaDTO>();
+		for(int i = 0; i < l.size(); i++){
+			Attivita a = l.get(i).getAttivita();
+			lista.add(convertiAttivitaDTO(a));
+		}
+		return lista;
+	}
+	
+	private AttivitaDTO convertiAttivitaDTO(Attivita a) {
+		int id = a.getIdAttivita();
+		String titolo = a.getTitolo();
+		String citta = a.getCitta();
+		String descrizione = a.getDescrizione();
+		String foto1 = a.getFoto1();
+		String foto2 = a.getFoto2();
+		String foto3 = a.getFoto3();
+		Date data = a.getData();
+		Time ora = a.getOra();
+		BigDecimal prezzo = a.getPrezzo();
+		AttivitaDTO a2 = new AttivitaDTO();
+		a2.setId(id);
+		a2.setCitta(citta);
+		a2.setTitolo(titolo);
+		a2.setDescrizione(descrizione);
+		a2.setData(data);
+		a2.setOra(ora);
+		a2.setFoto1(foto1);
+		a2.setFoto2(foto2);
+		a2.setFoto3(foto3);
+		a2.setPrezzo(prezzo);
+		return a2;
+	}
+
+	@Override
+	public VoloDTO getAndataViaggio(int idViaggio) {
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		Volo andata = v.getVolo1();
+		return convertiVoloDTO(andata);
+	}
+
+	@Override
+	public VoloDTO getRitornoViaggio(int idViaggio) {
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		Volo ritorno = v.getVolo2();
+		return convertiVoloDTO(ritorno);
+	}
+	
+	private VoloDTO convertiVoloDTO(Volo v) {
+		VoloDTO vDTO = new VoloDTO();
+		vDTO.setOraPartenza(v.getOraPartenza());
+		vDTO.setIdAeroportoPartenza(v.getAeroporto1().getIdAeroporto());
+		vDTO.setOraArrivo(v.getOraArrivo());
+		vDTO.setIdAeroportoArrivo(v.getAeroporto2().getIdAeroporto());
+		vDTO.setIdVolo(v.getIdVolo());
+		vDTO.setData(v.getData());
+		vDTO.setPrezzo(v.getPrezzo());
+		vDTO.setIdCompagnia(v.getCompagniaBean().getIdCompagnia());
+		return vDTO;
+	}
+
 
 }

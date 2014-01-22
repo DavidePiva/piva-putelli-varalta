@@ -92,5 +92,9 @@ public class AttivitaDTO {
 		this.ora = ora;
 	}
 	
+	public String toString(){
+		return titolo;
+	}
+	
 	
 }
