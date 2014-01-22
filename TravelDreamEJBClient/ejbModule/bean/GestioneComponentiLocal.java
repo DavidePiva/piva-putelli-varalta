@@ -18,4 +18,6 @@ public interface GestioneComponentiLocal {
 	
 	public void modificaHotel(HotelDTO h);
 	public void modificaAttivita(AttivitaDTO h);
+	public void eliminaAttivita(int id);
+	public void eliminaHotel(int id);
 }

@@ -18,6 +18,8 @@ public class GestioneHotelBean {
 	private GestioneComponentiLocal gc;
 	@EJB
 	private ShowHotelLocal sh;
+	@EJB
+	private DatiStaticiLocal ds;
 
 	private HotelDTO hotel;
 	private TipoCamere_HotelDTO lowCost;
@@ -79,6 +81,12 @@ public class GestioneHotelBean {
 			smart.setTipo(TipoCamera.SMART);
 			gc.salvaCamera(smart,h);
 
+		return "/impiegato/index?faces-redirect=true";
+	}
+	
+	public String eliminaHotel(){
+		HotelDTO h=ds.getHotelPerNome(nomeHotelDaModificare);
+		gc.eliminaHotel(h.getIdHotel());
 		return "/impiegato/index?faces-redirect=true";
 	}
 	

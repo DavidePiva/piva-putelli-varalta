@@ -72,7 +72,8 @@
 										<f:selectItems value="#{sh.listaHotel()}" var="h" itemLabel="#{h.nome}"
 											itemValue="#{h.nome}" />
 									</h:selectOneMenu>
-									<h:outputLabel for="nome"></h:outputLabel>
+									<h:commandButton value="Elimina" update="regGrid1"
+									action="#{gh.eliminaHotel()}" />
 
 
 									<h:outputLabel for="nome">Nuovo nome</h:outputLabel>
@@ -103,7 +104,7 @@
 
 
 								</h:panelGrid>
-								<p:commandButton value="Modifica" update="regGrid1"
+								<h:commandButton value="Modifica" update="regGrid1"
 									action="#{gh.modificaHotel()}" />
 
 				</h:form>

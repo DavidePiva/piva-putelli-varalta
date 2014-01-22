@@ -21,11 +21,12 @@ public class GestioneAttivitaBean {
 	@EJB 
 	private DatiStaticiLocal ds;
 	
+	
 	private AttivitaDTO attivita;
 	private int ore;
 	private int minuti;
 	private String nomeAttivitaDaModificare;
-	
+	private int idAttivitaDaEliminare;
 	public GestioneAttivitaBean(){
 		this.attivita=new AttivitaDTO();
 	}
@@ -86,6 +87,11 @@ public class GestioneAttivitaBean {
 		return s;
 	}
 	
+	public String eliminaAttivita(){
+		gc.eliminaAttivita(idAttivitaDaEliminare);
+		return "/impiegato/index?faces-redirect=true";
+	}
+	
 	public String modificaAttivitaUguali(){
 		
 		List<AttivitaDTO> list=new ArrayList<AttivitaDTO>();
@@ -95,6 +101,11 @@ public class GestioneAttivitaBean {
 		}
 		
 		return "/impiegato/index?faces-redirect=true";
+	}
+	
+	public List<AttivitaDTO> getListaAttivita(){
+		return ds.attivitaDTO();
+		
 	}
 	
 	private void modificaAttivita(AttivitaDTO attivitaDaModificare){
@@ -148,6 +159,18 @@ public class GestioneAttivitaBean {
 	}
 
 	public void setDs(DatiStatici ds) {
+		this.ds = ds;
+	}
+
+	public int getIdAttivitaDaEliminare() {
+		return idAttivitaDaEliminare;
+	}
+
+	public void setIdAttivitaDaEliminare(int idAttivitaDaEliminare) {
+		this.idAttivitaDaEliminare = idAttivitaDaEliminare;
+	}
+
+	public void setDs(DatiStaticiLocal ds) {
 		this.ds = ds;
 	}
 	

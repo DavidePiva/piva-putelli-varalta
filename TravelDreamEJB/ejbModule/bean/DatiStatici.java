@@ -408,11 +408,34 @@ public class DatiStatici implements DatiStaticiLocal {
 		}	
 		return listDTO;
 	}
+	@Override
+	public List<AttivitaDTO> attivitaDTO() {
+		Query q=em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE selezionabile = 1");
+		List<Integer> list=new ArrayList<Integer>();
+		list=q.getResultList();
+		List<AttivitaDTO> listDTO=new ArrayList<AttivitaDTO>();
+		for(int i=0;i<list.size();i++){
+			Attivita a = em.find(Attivita.class, list.get(i));
+			listDTO.add(convertiAttivitaDTO(a));
+		}	
+		return listDTO;
+	}
 
 	@Override
 	public HotelDTO getHotelPerId(int idHotel) {
 		Hotel h = em.find(Hotel.class, idHotel);
 		return convertiHotelDTO(h);
+	}
+	
+	@Override
+	public HotelDTO getHotelPerNome(String nome){
+		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE nome = '"+nome+"'");
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		HotelDTO l1 = new HotelDTO();
+		Hotel h = em.find(Hotel.class, i.get(0));
+		l1=convertiHotelDTO(h);
+		return l1;
 	}
 
 }

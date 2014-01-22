@@ -33,25 +33,25 @@ public class ShowAttivita implements ShowAttivitaLocal {
     public ShowAttivita() {
     }
 
-
+//////////////////////DAAAAAAAAAAAAAAAAA SISTEMAREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 	@Override
 	public AttivitaDTO getAttivita(String nomeAttivita) {
 		Query q = em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE titolo = \""+nomeAttivita+"\"");
 		List<Integer> l = q.getResultList();
-		if(l.size()==1){
+	
 			Attivita a = em.find(Attivita.class, l.get(0));
 			return convertiAttivitaDTO(a);
-		}
-		return null;
 	}
-	
-	
+		
+	@Override
 	
 	public List<String> getListaTitoliAttivita(){
 		Query q = em.createNativeQuery("SELECT distinct titolo FROM Attivita");
 		List<String> list=q.getResultList();
 		return list;
 	}
+	
+
 
 	private AttivitaDTO convertiAttivitaDTO(Attivita a) {
 		int id = a.getIdAttivita();

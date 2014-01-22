@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+<title>TravelDream</title>
+<link href='../css/application.css' media='all' rel='stylesheet'
+	type='text/css' />
+<script type='text/javascript' src='../css/menu.js' />
+</head>
+<body onload="javascript:start()">
+	<div id="boxintestazione">
+		<div id="boxlogo">
+			<h:link outcome="/index">
+				<img src="../css/v1sinistra.png" />
+			</h:link>
+		</div>
+		<h:form id="boxlandmarktop">
+			<div id="boxlandmarktop">
+
+				<h:commandLink action="#{gp.logout}" value="LOGOUT"
+					id="textlandmark_left2" rendered="#{gp.loggato()}" />
+
+				<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}"
+					id="textlandmark_right2" rendered="#{gp.loggato()}" />
+			</div>
+		</h:form>
+	</div>
+	<!--/intestazione-->
+	<div id="boxlinea1"></div>
+	<div id="boxlinea2"></div>
+	<div id="boxlinea3"></div>
+	<div id="boxlinea4"></div>
+	<div id="boxlinea5"></div>
+	<div id="boxbig">
+		<div id="boxmenu">
+			<div id="boxPacchetti">
+				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+				<ul id="boxleft1">
+					<li><h:link outcome="/cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
+					<li><h:link outcome="/prezziPacchetti"
+							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="/tipologiePacchetti"
+							value="Quello che fa per te" id="p3"></h:link></li>
+				</ul>
+			</div>
+			<div id="boxHotel">
+				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<ul id="boxleft2">
+					<li><h:link outcome="/cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="/prezziHotel" value="Per tutte le tasche"></h:link></li>
+				</ul>
+			</div>
+			<div id="boxLandmark">
+				<ul id="boxleft3">
+					<li><h:link outcome="/chiSiamo" value="Chi siamo"></h:link></li>
+					<li><h:link outcome="/contatti" value="Contatti" id="ultimo"></h:link></li>
+				</ul>
+			</div>
+		</div>
+		<div id="boxcontenuto">
+			<div>
+				<h:form>
+					<h1>Elimina un'attivita già esistente</h1>
+					<br></br>
+
+					<h:panelGrid columns="3" id="regGrid1">
+						<h:outputLabel for="nome">Seleziona l'attività da eliminare: essa non sarà più selezionabile in fase di creazione e modifica di pacchetti e viaggi, ma sarà comunque presente nello storico viaggio nell'area personale degli utenti.</h:outputLabel>
+						<h:selectOneMenu value="#{ga.idAttivitaDaEliminare}">
+							<f:selectItems value="#{ga.getListaAttivita()}" var="a"
+								itemLabel="#{a.titolo}" itemValue="#{a.id}" />
+						</h:selectOneMenu>
+
+					
+					</h:panelGrid>
+					<p:commandButton value="Elimina" update="regGrid1"
+						action="#{ga.eliminaAttivita()}" />
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+	<!--/boxbig-->
+</body>
+</html>

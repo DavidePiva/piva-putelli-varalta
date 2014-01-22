@@ -29,5 +29,7 @@ public interface DatiStaticiLocal {
 	public List<HotelDTO> getHotelPerPrezzo(int prezzoMinimo, int prezzoMassimo);
 	public List<HotelDTO> getHotelPerPrezzo(int prezzoMinimo);
 	public List<AttivitaDTO> attivitaPerTitolo(String titolo);
+	public List<AttivitaDTO> attivitaDTO();
 	public HotelDTO getHotelPerId(int idHotel);
+	HotelDTO getHotelPerNome(String nome);
 }
