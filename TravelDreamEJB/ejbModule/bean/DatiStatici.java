@@ -327,7 +327,7 @@ public class DatiStatici implements DatiStaticiLocal {
 
 	@Override
 	public List<PernottamentoDTO> getPernottamentiPossibili(String citta) {
-		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento,Hotel WHERE Pernottamento.hotel = Hotel.idHotel AND Pernottamento.selezionabile = 1 AND Hotel.citta = '"+citta+"'");
+		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento,Hotel WHERE Pernottamento.hotel = Hotel.idHotel AND Pernottamento.selezionabile = 1 AND Hotel.citta = \""+citta+"\"");
 		List<Integer> l = q.getResultList();
 		List<PernottamentoDTO> l1 = new ArrayList<PernottamentoDTO>();
 		for(int i = 0; i < l.size(); i++){
