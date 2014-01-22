@@ -442,9 +442,24 @@ public class DatiStatici implements DatiStaticiLocal {
 	
 	@Override
 	public ViaggioDTO getViaggioDTO(int id){
-		Viaggio v=em.find(Viaggio.class, id);
-	//	ViaggioDTO vDTO=
-		return null;
+		Viaggio v=new Viaggio();
+		v=em.find(Viaggio.class, id);
+		ViaggioDTO vDTO=convertiViaggioInDTO(v);
+		return vDTO;
 	}
-
+	
+	private ViaggioDTO convertiViaggioInDTO(Viaggio v) {
+		ViaggioDTO viaggio=new ViaggioDTO();
+		viaggio.setIdViaggio(v.getIdViaggio());
+		viaggio.setCitta(v.getCitta());
+		viaggio.setIdPacchettoPadre(v.getPacchetto().getIdPacchetto());
+		viaggio.setIdPernottamento(v.getPernottamentoBean().getIdPernottamento());
+		viaggio.setIdVoloAndata(v.getVolo1().getIdVolo());
+		viaggio.setIdVoloRitorno(v.getVolo2().getIdVolo());
+		viaggio.setPagato(v.getPagato());
+		viaggio.setNumeroPersone(v.getNumeroPersone());
+		viaggio.setTitolare(v.getUtente().getEmail());
+		viaggio.setPrezzo(v.getPrezzo());
+		return viaggio;
+	}
 }

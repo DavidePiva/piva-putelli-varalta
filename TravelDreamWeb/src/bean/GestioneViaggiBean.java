@@ -8,36 +8,30 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import DTO.ViaggioDTO;
-
 @ManagedBean(name="gv")
 @RequestScoped
 public class GestioneViaggiBean {
-	
-	@EJB
-	private GestioneViaggiLocal gestioneViaggi;
-	
-	@ManagedProperty("#{param.id}")
-	private int idViaggio;
-	private ViaggioDTO viaggio;
-	
-	public GestioneViaggiBean(){
-		this.viaggio=new ViaggioDTO();
-		
-	}
-	
-	public void setIdViaggio(int idViaggio){
-		this.idViaggio = idViaggio;
-	}
-	
-	public int getIdViaggio(){
-		return idViaggio;
-	}
-	
-	public String creaViaggio(String nomePacchetto, String emailUtente){
-		gestioneViaggi.creaViaggio(nomePacchetto, emailUtente);
-		return "/user/index?faces-redirect=true";
-	}
-	
-	
+       
+        @EJB
+        private GestioneViaggiLocal gestioneViaggi;
+       
+        @ManagedProperty("#{param.id}")
+        private int idViaggio;
+       
+        public void setIdViaggio(int idViaggio){
+                this.idViaggio = idViaggio;
+        }
+       
+        public int getIdViaggio(){
+                return idViaggio;
+        }
+       
+        public String creaViaggio(String nomePacchetto, String emailUtente){
+                gestioneViaggi.creaViaggio(nomePacchetto, emailUtente);
+                return "/user/index?faces-redirect=true";
+        }
+       
+        public String modificaViaggio(int id){
+                return "/user/modificaViaggio?faces-redirect=true";
+        }
 }
