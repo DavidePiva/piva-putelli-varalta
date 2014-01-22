@@ -86,7 +86,20 @@ public class Pacchetto implements Serializable {
 	}
 
 	public Pacchetto(PacchettoDTO p){
-		
+		this.titolo = p.getTitolo();
+		this.citta = p.getCitta();
+		this.descrizione = p.getDescrizione();
+		this.foto1 = p.getFoto1();
+		this.foto2 = p.getFoto2();
+		this.foto3 = p.getFoto3();
+		this.foto4 = p.getFoto4();
+		this.foto5 = p.getFoto5();
+		this.foto6 = p.getFoto6();
+		this.idPacchetto = p.getIdPacchetto();
+		this.prezzo = p.getPrezzo();
+		this.selezionabile = p.getSelezionabile();
+		this.target = p.getTarget();
+		this.tipologia = p.getTipologia();
 	}
 	
 	public int getIdPacchetto() {
