@@ -60,30 +60,8 @@
 			</div>
 		</div>
 		<div id="boxcontenuto">
-			<h1>
-				<h:outputLabel value="Ciao #{gp.nomeUtente}"></h:outputLabel>
-			</h1>
-
-			<h:link outcome="modificaProfilo" value="Modifica profilo personale"></h:link>
-			<br></br>
-
-			<h:form>
-				<h:link outcome="/admin/index" value="Sezione Admin" id="link_admin"
-					rendered="#{gp.isAdmin()}" />
-				<h:link outcome="/impiegato/index" value="Sezione Impiegato"
-					id="link_impiegato" rendered="#{gp.isImpiegato()}" />
-				<br></br>
-				<br></br>
-				<h:commandButton value="Eliminati" action="#{gp.eliminaUtente()}" />
-				<br></br>
-			</h:form>
 			<ul>
-				<ui:repeat value="#{sv.getInfoViaggi(gp.emailUtente)}" var="viaggio">
-					<li><h:outputLabel value="#{viaggio.toString()}"></h:outputLabel></li>
-					<h:form>
-						<h:commandButton update="regGrid1" value="Modifica" action="#{gv.modificaViaggio(viaggio.idViaggio)}"></h:commandButton>
-					</h:form>
-				</ui:repeat>
+				<h:outputLabel value = "Pagina di modifica del viaggio numero #{gv.idViaggio}"></h:outputLabel>
 			</ul>
 		</div>
 	</div>
