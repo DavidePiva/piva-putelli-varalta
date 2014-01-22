@@ -71,13 +71,13 @@ public class GestioneHotelBean {
 			HotelDTO h=getHotelPerParametro();
 			lowCost.setId(h.getIdHotel());
 			lowCost.setTipo(TipoCamera.LOWCOST);
+			gc.salvaCamera(lowCost,h);
 			dream.setId(h.getIdHotel());
 			dream.setTipo(TipoCamera.DREAM);
 			smart.setId(h.getIdHotel());
-			smart.setTipo(TipoCamera.SMART);
-			gc.salvaCamera(lowCost,h);
-			gc.salvaCamera(smart,h);
 			gc.salvaCamera(dream,h);
+			smart.setTipo(TipoCamera.SMART);
+			gc.salvaCamera(smart,h);
 
 		return "/impiegato/index?faces-redirect=true";
 	}

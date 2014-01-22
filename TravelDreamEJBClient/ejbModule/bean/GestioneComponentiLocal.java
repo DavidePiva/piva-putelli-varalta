@@ -17,4 +17,5 @@ public interface GestioneComponentiLocal {
 	public void creaPacchetto(PacchettoDTO pacchetto);
 	
 	public void modificaHotel(HotelDTO h);
+	public void modificaAttivita(AttivitaDTO h);
 }

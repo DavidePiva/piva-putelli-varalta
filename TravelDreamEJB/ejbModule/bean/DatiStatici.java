@@ -369,4 +369,17 @@ public class DatiStatici implements DatiStaticiLocal {
 		return l1;
 	}
 
+	@Override
+	public List<AttivitaDTO> attivitaPerTitolo(String titolo) {
+		Query q=em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE titolo = '"+titolo+"'");
+		List<Integer> list=new ArrayList<Integer>();
+		list=q.getResultList();
+		List<AttivitaDTO> listDTO=new ArrayList<AttivitaDTO>();
+		for(int i=0;i<list.size();i++){
+			Attivita a = em.find(Attivita.class, list.get(i));
+			listDTO.add(convertiAttivitaDTO(a));
+		}	
+		return listDTO;
+	}
+
 }
