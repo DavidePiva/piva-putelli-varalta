@@ -437,5 +437,6 @@ public class DatiStatici implements DatiStaticiLocal {
 		l1=convertiHotelDTO(h);
 		return l1;
 	}
+	
 
 }
