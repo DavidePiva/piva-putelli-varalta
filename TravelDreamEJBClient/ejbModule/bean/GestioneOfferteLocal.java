@@ -2,11 +2,16 @@ package bean;
 
 import javax.ejb.Local;
 
+import DTO.AttivitaDTO;
+import DTO.PacchettoDTO;
+
 @Local
 public interface GestioneOfferteLocal {
 
-	void setCitta(String citta);
+	public String getCittaSelezionata();
 
-	String getCitta();
+	public int getPaginaSelezionata();
+	public void setPaginaSelezionata(int paginaSelezionata);
 
+	public void salvaTutto(PacchettoDTO p, AttivitaDTO a1, AttivitaDTO a2, AttivitaDTO a3, AttivitaDTO a4, AttivitaDTO a5);
 }

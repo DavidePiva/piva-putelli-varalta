@@ -252,6 +252,7 @@ public class DatiStatici implements DatiStaticiLocal {
 	@Override
 	public List<VoloDTO> getVoliPossibili(String cittaPartenza, String cittaArrivo, int anno, int mese, int giorno) {
 		Query q = em.createNativeQuery("SELECT idVolo FROM Volo,Aeroporto WHERE (Aeroporto.idAeroporto = Volo.aeroportoPartenza AND Aeroporto.citta = '"+cittaPartenza+"') AND Volo.idVolo IN (SELECT idVolo FROM Volo, Aeroporto WHERE Aeroporto.idAeroporto = Volo.aeroportoArrivo AND Aeroporto.citta = '"+cittaArrivo+"')AND data = '"+anno+"-"+mese+"-"+giorno+"'");
+		System.out.println("ECCO: SELECT idVolo FROM Volo,Aeroporto WHERE (Aeroporto.idAeroporto = Volo.aeroportoPartenza AND Aeroporto.citta = '"+cittaPartenza+"') AND Volo.idVolo IN (SELECT idVolo FROM Volo, Aeroporto WHERE Aeroporto.idAeroporto = Volo.aeroportoArrivo AND Aeroporto.citta = '"+cittaArrivo+"')AND data = '"+anno+"-"+mese+"-"+giorno+"'");
 		List<Integer> i = new ArrayList<Integer>();
 		List<VoloDTO> l = new ArrayList<VoloDTO>();
 		i = q.getResultList();
