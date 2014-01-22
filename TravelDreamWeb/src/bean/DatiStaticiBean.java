@@ -318,6 +318,9 @@ public class DatiStaticiBean {
 		else{
 			l = datistatici.getHotelPerPrezzo(prezzoMinimo);
 		}
+		for(int i = 0; i < l.size(); i++){
+			hotelPerPrezzo.add(l.get(i).getNome());
+		}
 		return hotelPerPrezzo;
 	}
 
