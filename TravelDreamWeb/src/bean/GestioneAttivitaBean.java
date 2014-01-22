@@ -18,6 +18,8 @@ public class GestioneAttivitaBean {
 	private GestioneComponentiLocal gc;
 	@EJB
 	private ShowAttivitaLocal sa;
+	@EJB 
+	private DatiStaticiLocal ds;
 	
 	private AttivitaDTO attivita;
 	private int ore;
@@ -84,32 +86,45 @@ public class GestioneAttivitaBean {
 		return s;
 	}
 	
-	public String modificaAttivita(){
-	/*	this.attivita.setSelezionabile(true);
-		AttivitaDTO attivitaDaModificare=sa.getAttivita();
-		hotel.setIdHotel(hotelDaModificare.getIdHotel());
-		hotel.setCitta(hotelDaModificare.getCitta());
-		hotel.setIndirizzo(hotelDaModificare.getIndirizzo());
-		if(hotel.getDescrizione().equals("")){
-			hotel.setDescrizione(hotelDaModificare.getDescrizione());
+	public String modificaAttivitaUguali(){
+		
+		List<AttivitaDTO> list=new ArrayList<AttivitaDTO>();
+		list=ds.attivitaPerTitolo(nomeAttivitaDaModificare);
+		for(int i=0;i<list.size();i++){
+			modificaAttivita(list.get(i));
 		}
-		if(hotel.getNome().equals("")){
-			hotel.setNome(hotelDaModificare.getNome());
-		}
-		if(hotel.getTelefono().equals("")){
-			hotel.setTelefono(hotelDaModificare.getTelefono());
-		}
-		if(hotel.getFoto1().equals("")){
-			hotel.setFoto1(hotelDaModificare.getFoto1());
-		}
-		if(hotel.getFoto2().equals("")){
-			hotel.setFoto2(hotelDaModificare.getFoto2());
-		}
-		if(hotel.getFoto3().equals("")){
-			hotel.setFoto3(hotelDaModificare.getFoto3());
-		}
-		gc.modificaHotel(hotel);*/
+		
 		return "/impiegato/index?faces-redirect=true";
+	}
+	
+	private void modificaAttivita(AttivitaDTO attivitaDaModificare){
+		this.attivita.setSelezionabile(true);
+		attivita.setId(attivitaDaModificare.getId());
+		attivita.setCitta(attivitaDaModificare.getCitta());
+		attivita.setData(attivitaDaModificare.getData());
+		Time orario=new Time(ore,minuti,0);
+		attivita.setOra(orario);
+		if(attivita.getDescrizione().equals("")){
+			attivita.setDescrizione(attivitaDaModificare.getDescrizione());
+		}
+		if(attivita.getPrezzo().equals("")){
+			attivita.setPrezzo(attivitaDaModificare.getPrezzo());
+		}
+		if(attivita.getTitolo().equals("")){
+			attivita.setTitolo(attivitaDaModificare.getTitolo());
+		}
+
+		if(attivita.getFoto1().equals("")){
+			attivita.setFoto1(attivitaDaModificare.getFoto1());
+		}
+		if(attivita.getFoto2().equals("")){
+			attivita.setFoto2(attivitaDaModificare.getFoto2());
+		}
+		if(attivita.getFoto3().equals("")){
+			attivita.setFoto3(attivitaDaModificare.getFoto3());
+		}
+		gc.modificaAttivita(attivita);
+	
 	}
 
 	public ShowAttivitaLocal getSa() {
@@ -128,4 +143,12 @@ public class GestioneAttivitaBean {
 		this.nomeAttivitaDaModificare = nomeAttivitaDaModificare;
 	}
 
+	public DatiStaticiLocal getDs() {
+		return ds;
+	}
+
+	public void setDs(DatiStatici ds) {
+		this.ds = ds;
+	}
+	
 }
