@@ -65,18 +65,18 @@
 					
 					<h1>
 						<h:outputLabel
-							value="Pagina di modifica del viaggio numero #{gv.idViaggio}"></h:outputLabel><br></br>
+							value="Pagina di modifica del viaggio numero #{gv.idViaggio} a #{gv.citta}"></h:outputLabel><br></br>
 							<h:commandButton value="Acquista" update="regGrid1" /><h:commandButton value="Rimuovi" update="regGrid1" />
 					</h1>
 					<br></br>
 					<h:panelGrid columns="3" id="regGrid1">
-					<h:outputLabel for="numeroPersone" value="Viaggio per N°PERSONE"></h:outputLabel>
-					<h:outputLabel for="numeroPersone" value="PREZZO euro a testa"></h:outputLabel>
+					<h:outputLabel for="numeroPersone" value="Viaggio per #{gv.numeroPersone} persone"></h:outputLabel>
+					<h:outputLabel for="numeroPersone" value="#{gv.prezzo} euro a testa"></h:outputLabel>
 					<h:commandButton value="Modifica" update="regGrid1" />
 					
 					<h:outputLabel for="hotel" value="Informazioni Hotel:"></h:outputLabel>
 					
-					<h:outputLabel for="hotel" value="Qui richiamerei un toString o qualcosa del genere dell'hotel"></h:outputLabel>
+					<h:outputLabel for="hotel" value="#{gv.hotel}"></h:outputLabel>
 					<h:commandButton value="Modifica" update="regGrid1" />
 								
 					<h:outputLabel for="attivita" value="Attività:"></h:outputLabel>

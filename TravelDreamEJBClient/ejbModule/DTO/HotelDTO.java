@@ -81,6 +81,11 @@ public class HotelDTO {
 		this.foto3 = foto3;
 	}
 	
+	public String toString(){
+		return nome + " - "+indirizzo;
+		
+	}
+	
 	
 	
 }
