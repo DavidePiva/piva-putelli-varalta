@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 
 import DTO.AttivitaDTO;
 import DTO.PacchettoDTO;
+import DTO.PernottamentoDTO;
 import DTO.VoloDTO;
 
 @ManagedBean(name = "go")
@@ -69,10 +70,10 @@ public class GestioneOfferteBean {
 			return true;
 		return false;
 	}
-
+	public List<PernottamentoDTO> pernottamentiPossibili(){
+		return datistatici.getPernottamentiPossibili(pDTO.getCitta());
+	}
 	public List<VoloDTO> voliPossibiliAndata(){
-		//System.out.println("CEEEEEEEEEEEEEEEEEEEEEEEEEERCO VOLI DA "+cittaPartenza+" A "+pDTO.getCitta()+" IL GIORNO "+dataAndata.getYear()+"-"+dataAndata.getMonth()+"-"+dataAndata.getDay());
-		//System.out.println("Mese "+meseInt(dataAndata));
 		return datistatici.getVoliPossibili(cittaPartenza, pDTO.getCitta(), Integer.parseInt(dataAndata.toString().substring(24, 28)), meseInt(dataAndata), Integer.parseInt(dataAndata.toString().substring(8, 10)));
 	}
 	public List<VoloDTO> voliPossibiliRitorno(){

@@ -120,22 +120,22 @@
 					<h:panelGrid columns="3" id="regGrid2">
 						<h:outputLabel for="voloAndata">Volo andata</h:outputLabel>
 						<h:selectOneMenu value="#{go.pDTO.voloAndata}" id="voloAndata">
-							<f:selectItems value="#{go.voliPossibiliAndata()}" var="c" itemLabel="#{c.idVolo} - #{c.data}"
+							<f:selectItems value="#{go.voliPossibiliAndata()}" var="c" itemLabel="#{c.dataFormattata}"
 								itemValue="#{c.idVolo}" />
 						</h:selectOneMenu>
 						<p:message for="voloAndata" />
 				
 						<h:outputLabel for="voloRitorno">Volo ritorno</h:outputLabel>
 						<h:selectOneMenu value="#{go.pDTO.voloRitorno}" id="voloRitorno">
-							<f:selectItems value="#{go.voliPossibiliRitorno()}" var="c" itemLabel="#{c}"
+							<f:selectItems value="#{go.voliPossibiliRitorno()}" var="c" itemLabel="#{c.dataFormattata}"
 								itemValue="#{c}" />
 						</h:selectOneMenu>
 						<p:message for="voloRitorno" />
 						
 						<h:outputLabel for="pernottamento">Pernottamento</h:outputLabel>
 						<h:selectOneMenu value="#{go.pDTO.idPernottamento}" id="pernottamento">
-							<f:selectItems value="#{ds.tipiPacchetto}" var="c" itemLabel="#{c}"
-								itemValue="#{c}" />
+							<f:selectItems value="#{go.pernottamentiPossibili()}" var="c" itemLabel="#{c.idPernottamento} - #{ds.getHotelPerId(c.idHotel)}"
+								itemValue="#{c.idPernottamento}" />
 						</h:selectOneMenu>
 						<p:message for="pernottamento" />
 						<!-- 
