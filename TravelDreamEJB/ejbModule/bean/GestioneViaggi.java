@@ -11,6 +11,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import DTO.HotelDTO;
+import DTO.ViaggioDTO;
+import model.Hotel;
 import model.Utente;
 import model.Attivita;
 import model.Pacchetto;
@@ -108,6 +111,73 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		v2.setVolo(ritorno);
 		v.addViaggioVolo(v2);
 		em.merge(v);
+	}
+
+	@Override
+	public ViaggioDTO getViaggio(int idViaggio) {
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		return convertiViaggioDTO(v);
+	}
+
+	private ViaggioDTO convertiViaggioDTO(Viaggio v) {
+		ViaggioDTO v2 = new ViaggioDTO();
+		int idViaggio = v.getIdViaggio();
+		int numeroPersone = v.getNumeroPersone();
+		Volo volo1 = v.getVolo1();
+		Volo volo2 = v.getVolo2();
+		String citta = v.getCitta();
+		Utente utente = v.getUtente();
+		BigDecimal prezzo = v.getPrezzo();
+		boolean pagato = v.getPagato();
+		Pacchetto pacchettoPadre = v.getPacchetto();
+		Pernottamento pe = v.getPernottamentoBean();
+		v2.setIdViaggio(idViaggio);
+		v2.setCitta(citta);
+		v2.setNumeroPersone(numeroPersone);
+		v2.setIdVoloAndata(volo1.getIdVolo());
+		v2.setIdVoloRitorno(volo2.getIdVolo());
+		v2.setPrezzo(prezzo);
+		v2.setTitolare(utente.getEmail());
+		v2.setPagato(pagato);
+		v2.setIdPernottamento(pe.getIdPernottamento());
+		v2.setIdPacchettoPadre(pacchettoPadre.getIdPacchetto());
+		return v2;
+	}
+
+	@Override
+	public HotelDTO getHotelViaggio(int idViaggio) {
+		Query q = em.createNativeQuery("SELECT Pernottamento.hotel FROM Pernottamento,Viaggio WHERE Pernottamento.idPernottamento = Viaggio.pernottamento AND Viaggio.idViaggio = "+idViaggio);
+		List<Integer> l = q.getResultList();
+		Hotel h = new Hotel();
+		if(l.size()==1){
+			h = em.find(Hotel.class, l.get(0));
+		}
+		return convertiHotelDTO(h);
+	}
+	
+	public HotelDTO convertiHotelDTO(Hotel h){
+		int id = h.getIdHotel();
+		String nome = h.getNome();
+		String citta = h.getCitta();
+		String descrizione = h.getDescrizione();
+		String telefono = h.getTelefono();
+		String indirizzo = h.getIndirizzo();
+		boolean selezionabile = h.getSelezionabile();
+		String foto1 = h.getFoto1();
+		String foto2 = h.getFoto2();
+		String foto3 = h.getFoto3();
+		HotelDTO h2 = new HotelDTO();
+		h2.setIdHotel(id);
+		h2.setNome(nome);
+		h2.setCitta(citta);
+		h2.setIndirizzo(indirizzo);
+		h2.setTelefono(telefono);
+		h2.setDescrizione(descrizione);
+		h2.setSelezionabile(selezionabile);
+		h2.setFoto1(foto1);
+		h2.setFoto2(foto2);
+		h2.setFoto3(foto3);
+		return h2;
 	}
 
 }
