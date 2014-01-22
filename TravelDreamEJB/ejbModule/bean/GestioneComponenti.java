@@ -227,29 +227,24 @@ GestioneComponenti(){
 		em.merge(hotel);
 	}
 	
-	public void modificaAttivita(int idAttivita,int anno,int mese,int giorno,int ora,int minuti,String titolo,
-			String descrizione,String citta,float prezzo) throws SQLException
-	{
-		InterfacciaDB.modificaAttivita(idAttivita,anno,mese,giorno,ora,minuti,titolo,descrizione,citta,prezzo);
 
-	}
-	
-	public void modificaFoto(TipoComponente tipoComponente,int id,int numeroFoto,String url) throws SQLException{
-		InterfacciaDB.modificaFotoComponente(tipoComponente,id,numeroFoto,url);
-	}
 	
 	//###ELIMINAZIONE###//
 	
+	public void eliminaAttivita(int id){
+		Attivita a=em.find(Attivita.class, id);
+		a.setSelezionabile(false);
+		em.merge(a);
+	}
 
-
-	
-	public void eliminaFoto(TipoComponente tipoComponente,int id,int numeroFoto) throws SQLException{
-		InterfacciaDB.eliminaFotoComponente(tipoComponente,id,numeroFoto);
+	@Override
+	public void eliminaHotel(int id){
+		Hotel h=em.find(Hotel.class, id);
+		h.setSelezionabile(false);
+		em.merge(h);
 	}
 	
-	public void	eliminaComponente(TipoComponente tipo,int id){
-//		InterfacciaDB.eliminaComponente(tipo,id);
-	}
+
 
 	public EntityManager getEm() {
 		return em;
@@ -267,7 +262,7 @@ GestioneComponenti(){
 		this.context = context;
 	}
 
-
+	
 
 
 	
