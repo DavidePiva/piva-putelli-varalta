@@ -23,6 +23,8 @@ public class DatiStaticiBean {
 	private static final int SOGLIA_1 = 1000;
 	private static final int SOGLIA_2 = 2500;
 	private static final int SOGLIA_3 = 5000;
+	private static final int SOGLIAH_1 = 100;
+	private static final int SOGLIAH_2 = 200;
 	private int prezzoMinimo;
 	private int prezzoMassimo;
 	private String cittaSelezionata;
@@ -42,6 +44,7 @@ public class DatiStaticiBean {
 	private List<String> pernottamentiPossibili;
 	private List<String> target;
 	private List<String> pacchettiPerTarget;
+	private List<String> hotelPerPrezzo;
 	
 	@EJB
 	private DatiStaticiLocal datistatici;
@@ -50,6 +53,14 @@ public class DatiStaticiBean {
 	public List<String> getTipiPacchetto(){
 		tipiPacchetto = tipiPacchetto();
 		return tipiPacchetto;
+	}
+	
+	public List<String> getVoliPossibili() {
+		return voliPossibili;
+	}
+
+	public List<String> getPernottamentiPossibili() {
+		return pernottamentiPossibili;
 	}
 	
 	public List<String> getPacchettiPerHotel(){
@@ -103,6 +114,14 @@ public class DatiStaticiBean {
 	
 	public int getSOGLIA_3(){
 		return SOGLIA_3;
+	}
+	
+	public int getSOGLIAH_1() {
+		return SOGLIAH_1;
+	}
+
+	public int getSOGLIAH_2() {
+		return SOGLIAH_2;
 	}
 	
 	public String getCittaSelezionata() {
@@ -288,6 +307,18 @@ public class DatiStaticiBean {
 			pacchettiPerTarget.add(l1.get(i).getTitolo());
 		}
 		return pacchettiPerTarget;
+	}
+	
+	public List<String> getHotelPerPrezzo(){
+		hotelPerPrezzo = new ArrayList<String>();
+		List<HotelDTO> l;
+		if(prezzoMassimo!=-1){
+			l = datistatici.getHotelPerPrezzo(prezzoMinimo,prezzoMassimo);
+		}
+		else{
+			l = datistatici.getHotelPerPrezzo(prezzoMinimo);
+		}
+		return hotelPerPrezzo;
 	}
 
 }

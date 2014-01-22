@@ -287,7 +287,7 @@ public class DatiStatici implements DatiStaticiLocal {
 	@Override
 	public List<AttivitaDTO> getAttivitaPossibili(String citta, int anno1,
 			int mese1, int giorno1, int anno2, int mese2, int giorno2) {
-		Query q = em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE citta = '"+citta+"' AND data BETWEEN '"+anno1+"-"+mese1+"-"+giorno1+"' AND '"+anno2+"-"+mese2+"-"+giorno2+"'");
+		Query q = em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE selezionabile = 1 AND citta = '"+citta+"' AND data BETWEEN '"+anno1+"-"+mese1+"-"+giorno1+"' AND '"+anno2+"-"+mese2+"-"+giorno2+"'");
 		List<Integer> l = q.getResultList();
 		List<AttivitaDTO> l1 = new ArrayList<AttivitaDTO>();
 		for(int i = 0; i < l.size(); i++){
@@ -326,7 +326,7 @@ public class DatiStatici implements DatiStaticiLocal {
 
 	@Override
 	public List<PernottamentoDTO> getPernottamentiPossibili(String citta) {
-		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento,Hotel WHERE Pernottamento.hotel = Hotel.idHotel AND citta = '"+citta+"'");
+		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento,Hotel WHERE Pernottamento.hotel = Hotel.idHotel AND selezionabile = 1 AND citta = '"+citta+"'");
 		List<Integer> l = q.getResultList();
 		List<PernottamentoDTO> l1 = new ArrayList<PernottamentoDTO>();
 		for(int i = 0; i < l.size(); i++){
@@ -365,6 +365,32 @@ public class DatiStatici implements DatiStaticiLocal {
 		for(int index = 0; index < i.size(); index++){
 			Pacchetto p = em.find(Pacchetto.class, i.get(index));
 			l1.add(convertiPacchettoDTO(p));
+		}
+		return l1;
+	}
+
+	@Override
+	public List<HotelDTO> getHotelPerPrezzo(int prezzoMinimo, int prezzoMassimo) {
+		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE prezzo BETWEEN "+prezzoMinimo+" AND "+prezzoMassimo);
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		List<HotelDTO> l1 = new ArrayList<HotelDTO>();
+		for(int index = 0; index < i.size(); index++){
+			Hotel h = em.find(Hotel.class, i.get(index));
+			l1.add(convertiHotelDTO(h));
+		}
+		return l1;
+	}
+
+	@Override
+	public List<HotelDTO> getHotelPerPrezzo(int prezzoMinimo) {
+		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE prezzo > "+prezzoMinimo);
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		List<HotelDTO> l1 = new ArrayList<HotelDTO>();
+		for(int index = 0; index < i.size(); index++){
+			Hotel h = em.find(Hotel.class, i.get(index));
+			l1.add(convertiHotelDTO(h));
 		}
 		return l1;
 	}
