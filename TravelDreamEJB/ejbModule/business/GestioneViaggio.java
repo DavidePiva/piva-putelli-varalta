@@ -2,16 +2,10 @@ package business;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import entity.*;
 
 public class GestioneViaggio {
-	
-	Viaggio viaggio;
-	
-	public GestioneViaggio (){
-		viaggio=new Viaggio();
-	}
-	
+	/*
+
 	public void nuovoViaggio(Pacchetto p,Utente u) throws SQLException{
 		
 		Viaggio v=new Viaggio();
@@ -171,5 +165,5 @@ public class GestioneViaggio {
 		}else{
 			return false;
 		}
-	}	
+	}	*/
 }

@@ -24,12 +24,14 @@ import model.Hotel;
 import model.Pacchetto;
 import model.Pernottamento;
 import model.TipoCamere_Hotel;
+import model.Viaggio;
 import model.Volo;
 import DTO.AeroportoDTO;
 import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.PacchettoDTO;
 import DTO.PernottamentoDTO;
+import DTO.ViaggioDTO;
 import DTO.VoloDTO;
 
 
@@ -438,5 +440,11 @@ public class DatiStatici implements DatiStaticiLocal {
 		return l1;
 	}
 	
+	@Override
+	public ViaggioDTO getViaggioDTO(int id){
+		Viaggio v=em.find(Viaggio.class, id);
+	//	ViaggioDTO vDTO=
+		return null;
+	}
 
 }

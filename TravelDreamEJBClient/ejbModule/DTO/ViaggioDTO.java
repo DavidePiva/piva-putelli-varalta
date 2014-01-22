@@ -17,7 +17,7 @@ public class ViaggioDTO {
 	private int idVoloAndata;
 	private int idVoloRitorno;
 	private int idPernottamento;
-	private int idTitolare;
+	private String titolare;
 	private int idPacchettoPadre;
 	public int getIdViaggio() {
 		return idViaggio;
@@ -67,17 +67,19 @@ public class ViaggioDTO {
 	public void setIdPernottamento(int idPernottamento) {
 		this.idPernottamento = idPernottamento;
 	}
-	public int getIdTitolare() {
-		return idTitolare;
-	}
-	public void setIdTitolare(int idTitolare) {
-		this.idTitolare = idTitolare;
-	}
+
 	public int getIdPacchettoPadre() {
 		return idPacchettoPadre;
 	}
 	public void setIdPacchettoPadre(int idPacchettoPadre) {
 		this.idPacchettoPadre = idPacchettoPadre;
 	}
+	public String getTitolare() {
+		return titolare;
+	}
+	public void setTitolare(String titolare) {
+		this.titolare = titolare;
+	}
+	
 	
 }
