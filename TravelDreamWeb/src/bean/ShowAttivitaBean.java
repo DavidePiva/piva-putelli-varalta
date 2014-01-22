@@ -35,15 +35,15 @@ public class ShowAttivitaBean {
 		return numeroFoto;
 	}
 	
-	public AttivitaDTO getAttivitaPerParametro(){
+	/*public AttivitaDTO getAttivitaPerParametro(){
 		AttivitaDTO a = showAttivita.getAttivita(nomeAttivita);
 		return a;
-	}
+	}*/
 	
-	public String descrizioneAttivita(){
+	/*public String descrizioneAttivita(){
 		AttivitaDTO a = getAttivitaPerParametro();
 		return a.getDescrizione();
-	}
+	}*/
 	
 	public List<String> getListaTitoliAttivita(){
 		return showAttivita.getListaTitoliAttivita();

@@ -31,7 +31,4 @@ public class GestioneViaggiBean {
 		return "/user/index?faces-redirect=true";
 	}
 	
-	public String modificaViaggio(int id){
-		return "/user/modificaViaggio?faces-redirect=true";
-	}
 }
