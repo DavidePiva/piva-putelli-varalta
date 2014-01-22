@@ -73,6 +73,6 @@ public class VoloDTO {
 	}
 	
 	public String toString(){
-		return oraPartenza.toString()+" - "+oraArrivo.toString();
+		return "Partenza: "+oraPartenza.toString()+" - Arrivo: "+oraArrivo.toString();
 	}
 }

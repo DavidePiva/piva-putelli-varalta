@@ -1,6 +1,8 @@
 package bean;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
@@ -11,7 +13,9 @@ import javax.faces.context.FacesContext;
 
 import DTO.HotelDTO;
 import DTO.ViaggioDTO;
+import DTO.VoloDTO;
 import model.Viaggio;
+import DTO.AttivitaDTO;
 
 @ManagedBean(name="gv")
 @RequestScoped
@@ -28,6 +32,10 @@ public class GestioneViaggiBean {
         private int numeroPersone;
         private BigDecimal prezzo;
         private HotelDTO hotel;
+        private List<AttivitaDTO> attivita;
+        private VoloDTO andata;
+        private VoloDTO ritorno;
+        private List<VoloDTO> voli;
         
        
         public void setIdViaggio(int idViaggio){
@@ -69,5 +77,28 @@ public class GestioneViaggiBean {
         	return hotel;
         }
         
+        public List<AttivitaDTO> getAttivita(){
+        	attivita = gestioneViaggi.getAttivitaViaggio(idViaggio);
+        	return attivita;
+        }
+        
+        public VoloDTO getAndata(){
+        	voli = new ArrayList<VoloDTO>();
+        	andata = gestioneViaggi.getAndataViaggio(idViaggio);
+        	voli.add(andata);
+        	return andata;
+        }
+        
+        public VoloDTO getRitorno(){
+        	ritorno = gestioneViaggi.getRitornoViaggio(idViaggio);
+        	voli.add(ritorno);
+        	return ritorno;
+        }
+        
+        public List<VoloDTO> getVoli(){
+        	getAndata();
+        	getRitorno();
+        	return voli;
+        }
         
 }
