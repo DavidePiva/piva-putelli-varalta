@@ -27,7 +27,6 @@ import DTO.PacchettoDTO;
 import DTO.PernottamentoDTO;
 import DTO.TipoCamere_HotelDTO;
 import DTO.UtenteDTO;
-import business.InterfacciaDB;
 import model.Hotel;
 import DTO.TipoCamera;
 import enums.TipoComponente;

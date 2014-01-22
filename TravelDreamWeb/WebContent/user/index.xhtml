@@ -79,7 +79,7 @@
 			</h:form>
 			<ul>
 				<ui:repeat value="#{sv.getInfoViaggi(gp.emailUtente)}" var="viaggio">
-					<li><h:link value="#{viaggio.toString()}" outcome="modificaViaggio">
+					<li><h:link value="#{viaggio.toString()}" outcome="modificaViaggio"> 
 						<f:param name = "id" value = "#{viaggio.idViaggio}"></f:param>
 					</h:link></li>
 				</ui:repeat>

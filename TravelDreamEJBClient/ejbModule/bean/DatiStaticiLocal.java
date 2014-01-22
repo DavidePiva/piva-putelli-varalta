@@ -32,4 +32,5 @@ public interface DatiStaticiLocal {
 	public List<AttivitaDTO> attivitaDTO();
 	public HotelDTO getHotelPerId(int idHotel);
 	HotelDTO getHotelPerNome(String nome);
+	ViaggioDTO getViaggioDTO(int id);
 }

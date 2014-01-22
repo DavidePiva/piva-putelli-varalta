@@ -38,5 +38,6 @@ public class GestioneViaggiBean {
 		gestioneViaggi.creaViaggio(nomePacchetto, emailUtente);
 		return "/user/index?faces-redirect=true";
 	}
-
+	
+	
 }

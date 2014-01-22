@@ -67,7 +67,7 @@
 					<br></br>
 
 								<h:panelGrid columns="3" id="regGrid1">
-									<h:outputLabel for="nome">Seleziona l'hotel da modificare, lasciando vuoti i campi che non variano:</h:outputLabel>
+									<h:outputLabel for="nome">Seleziona l'hotel da modificare, lasciando vuoti i campi che non variano. Eliminando l'hotel, non sarà più possibile utilizzarlo in fase di creazione e modifica di viaggi e pacchetti, ma sarà sempre presente nello storico viaggi degli utenti.</h:outputLabel>
 									<h:selectOneMenu value="#{gh.nomeHotelDaModificare}">
 										<f:selectItems value="#{sh.listaHotel()}" var="h" itemLabel="#{h.nome}"
 											itemValue="#{h.nome}" />
