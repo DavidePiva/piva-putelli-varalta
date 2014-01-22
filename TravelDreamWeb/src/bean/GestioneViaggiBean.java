@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import DTO.ViaggioDTO;
+
 @ManagedBean(name="gv")
 @RequestScoped
 public class GestioneViaggiBean {
@@ -17,6 +19,12 @@ public class GestioneViaggiBean {
 	
 	@ManagedProperty("#{param.id}")
 	private int idViaggio;
+	private ViaggioDTO viaggio;
+	
+	public GestioneViaggiBean(){
+		this.viaggio=new ViaggioDTO();
+		
+	}
 	
 	public void setIdViaggio(int idViaggio){
 		this.idViaggio = idViaggio;
@@ -30,5 +38,5 @@ public class GestioneViaggiBean {
 		gestioneViaggi.creaViaggio(nomePacchetto, emailUtente);
 		return "/user/index?faces-redirect=true";
 	}
-	
+
 }
