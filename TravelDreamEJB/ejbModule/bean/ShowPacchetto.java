@@ -172,7 +172,7 @@ public class ShowPacchetto implements ShowPacchettoLocal {
 	}
 
 	@Override
-	public List<AttivitaDTO> getAttivita(int idPacchetto) {
+	public List<AttivitaDTO> getListaAttivita(int idPacchetto) {
 		Pacchetto p = em.find(Pacchetto.class, idPacchetto);
 		List<Attivita> att = p.getAttivitas();
 		List<AttivitaDTO> l = new ArrayList<AttivitaDTO>();

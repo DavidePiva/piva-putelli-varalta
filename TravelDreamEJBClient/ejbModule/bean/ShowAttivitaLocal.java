@@ -8,7 +8,6 @@ import DTO.AttivitaDTO;
 
 @Local
 public interface ShowAttivitaLocal {
-
-	public AttivitaDTO getAttivita(String nomeAttivita);
+	
 	public List<String> getListaTitoliAttivita();
 }

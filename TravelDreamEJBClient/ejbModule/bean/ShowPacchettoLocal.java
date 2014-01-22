@@ -18,5 +18,5 @@ public interface ShowPacchettoLocal {
 	public VoloDTO getVolo1(PacchettoDTO pDTO);
 	public VoloDTO getVolo2(PacchettoDTO pDTO);
 	public AeroportoDTO getAeroporto(int id);
-	public List<AttivitaDTO> getAttivita(int idPacchetto);
+	public List<AttivitaDTO> getListaAttivita(int idPacchetto);
 }

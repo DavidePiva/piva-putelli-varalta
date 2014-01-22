@@ -94,7 +94,7 @@ public class ShowPacchettoBean {
 		PacchettoDTO h = getPacchettoPerParametro();
 		attivitaPacchetto = new ArrayList<String>();
 		List<AttivitaDTO> att = new ArrayList<AttivitaDTO>();
-		att = showPacchetto.getAttivita(h.getIdPacchetto());
+		att = showPacchetto.getListaAttivita(h.getIdPacchetto());
 		for(int i = 0; i < att.size(); i++){
 			attivitaPacchetto.add(att.get(i).getTitolo());
 		}
