@@ -26,5 +26,7 @@ public interface DatiStaticiLocal {
 	public List<PernottamentoDTO> getPernottamentiPossibili(String citta);
 	public List<String> getTarget();
 	public List<PacchettoDTO> pacchettiPerTarget(String targetSelezionato);
+	public List<HotelDTO> getHotelPerPrezzo(int prezzoMinimo, int prezzoMassimo);
+	public List<HotelDTO> getHotelPerPrezzo(int prezzoMinimo);
 	public List<AttivitaDTO> attivitaPerTitolo(String titolo);
 }
