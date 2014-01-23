@@ -80,8 +80,10 @@ public class GestioneOfferte implements GestioneOfferteLocal {
 		
 		em.persist(pacchetto);
 		em.flush();
+		em.clear();
 		
 		System.out.println("ID PACCK: "+pacchetto.getIdPacchetto());
+		
 		List<Attivita> attivitas = new ArrayList<Attivita>();
 		if(a1.getId()!=0)
 			attivitas.add(em.find(Attivita.class, a1.getId()));
