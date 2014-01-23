@@ -6,11 +6,11 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
-<title>TravelDream</title>
-<link href='../css/application.css' media='all' rel='stylesheet'
-	type='text/css' />
-<script type='text/javascript' src='../css/menu.js' />
+	<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+	<title>TravelDream</title>
+	<link href='../css/application.css' media='all' rel='stylesheet'
+		type='text/css' />
+	<script type='text/javascript' src='../css/menu.js' />
 
 
 </h:head>
@@ -68,121 +68,136 @@
 		<div id="boxcontenuto">
 			<div>
 				<h1>Crea un nuovo pacchetto</h1>
-				<h:form rendered="#{go.primaPaginaVisibile()}">
-					<h:panelGrid columns="3" id="regGrid1">
+				<h:form>
+					<h:panelGrid columns="3" id="regGrid1"
+						rendered="#{go.primaPaginaVisibile()}">
 						<h:outputLabel for="titolo">Titolo</h:outputLabel>
-						<h:inputText id="titolo" value="#{go.pDTO.titolo}" />
+						<h:inputText id="titolo" value="#{go.titolo}" />
 						<p:message for="titolo" />
 
 						<h:outputLabel for="descrizione">Descrizione</h:outputLabel>
-						<h:inputTextarea id="descrizione" value="#{go.pDTO.descrizione}"
+						<h:inputTextarea id="descrizione" value="#{go.descrizione}"
 							cols="50" rows="20" />
 						<p:message for="descrizione" />
 
 						<h:outputLabel for="citta">Città del pacchetto</h:outputLabel>
-						<h:selectOneMenu value="#{go.pDTO.citta}" id="citta">
+						<h:selectOneMenu value="#{go.citta}" id="citta">
 							<f:selectItems value="#{ds.citta}" var="c" itemLabel="#{c}"
 								itemValue="#{c}" />
 						</h:selectOneMenu>
 						<p:message for="citta" />
-						
+
 						<h:outputLabel for="cittaPartenza">Città partenza</h:outputLabel>
 						<h:selectOneMenu value="#{go.cittaPartenza}" id="cittaPartenza">
 							<f:selectItems value="#{ds.citta}" var="c" itemLabel="#{c}"
 								itemValue="#{c}" />
 						</h:selectOneMenu>
 						<p:message for="cittaPartenza" />
-						
+
 						<h:outputLabel for="dataAndata">Data andata</h:outputLabel>
 						<p:calendar value="#{go.dataAndata}" id="dataAndata" />
 						<p:message for="dataAndata" />
-						
+
 						<h:outputLabel for="dataRitorno">Data ritorno</h:outputLabel>
 						<p:calendar value="#{go.dataRitorno}" id="dataRitorno" />
 						<p:message for="dataRitorno" />
-						
+
 						<h:outputLabel for="target">Target</h:outputLabel>
-						<h:selectOneMenu value="#{go.pDTO.tipologia}" id="target">
-							<f:selectItems value="#{ds.tipiPacchetto}" var="c" itemLabel="#{c}"
-								itemValue="#{c}" />
+						<h:selectOneMenu value="#{go.target}" id="target">
+							<f:selectItem itemLabel="singolo" itemValue="singolo" />
+							<f:selectItem itemLabel="coppia" itemValue="coppia" />
+							<f:selectItem itemLabel="gruppo" itemValue="gruppo" />
 						</h:selectOneMenu>
 						<p:message for="target" />
+
+						<h:outputLabel for="tipologia">Tipologia</h:outputLabel>
+						<h:selectOneMenu value="#{go.tipologia}" id="tipologia">
+							<f:selectItems value="#{ds.tipiPacchetto}" var="c"
+								itemLabel="#{c}" itemValue="#{c}" />
+						</h:selectOneMenu>
+						<p:message for="tipologia" />
+
+						<h:commandButton value="Continua" action="#{go.continua()}"
+							rendered="true" />
 					</h:panelGrid>
-					<h:commandButton value="Continua" update="regGrid1"
-						action="#{go.continua()}" />
-				</h:form>
-				
-				
-				
-				
-				
-				<h:form rendered="#{go.secondaPaginaVisibile()}">
-					<h:panelGrid columns="3" id="regGrid2">
+
+
+					<h:panelGrid columns="3" id="regGrid2"
+						rendered="#{go.secondaPaginaVisibile()}">
 						<h:outputLabel for="voloAndata">Volo andata</h:outputLabel>
 						<h:selectOneMenu value="#{go.pDTO.voloAndata}" id="voloAndata">
-							<f:selectItems value="#{go.voliPossibiliAndata()}" var="c" itemLabel="#{c.dataFormattata}"
-								itemValue="#{c.idVolo}" />
+							<f:selectItems value="#{go.voliPossibiliAndata()}" var="c"
+								itemLabel="#{c.dataFormattata}" itemValue="#{c.idVolo}" />
 						</h:selectOneMenu>
 						<p:message for="voloAndata" />
-				
+
 						<h:outputLabel for="voloRitorno">Volo ritorno</h:outputLabel>
 						<h:selectOneMenu value="#{go.pDTO.voloRitorno}" id="voloRitorno">
-							<f:selectItems value="#{go.voliPossibiliRitorno()}" var="c" itemLabel="#{c.dataFormattata}"
-								itemValue="#{c}" />
+							<f:selectItems value="#{go.voliPossibiliRitorno()}" var="c"
+								itemLabel="#{c.dataFormattata}" itemValue="#{c.idVolo}" />
 						</h:selectOneMenu>
 						<p:message for="voloRitorno" />
-						
+
 						<h:outputLabel for="pernottamento">Pernottamento</h:outputLabel>
-						<h:selectOneMenu value="#{go.pDTO.idPernottamento}" id="pernottamento">
-							<f:selectItems value="#{go.pernottamentiPossibili()}" var="c" itemLabel="#{c.idPernottamento} - #{ds.getHotelPerId(c.idHotel)}"
+						<h:selectOneMenu value="#{go.pDTO.idPernottamento}"
+							id="pernottamento">
+							<f:selectItems value="#{go.pernottamentiPossibili()}" var="c"
+								itemLabel="#{c.tipo} - #{ds.getHotelPerId(c.idHotel).nome}, #{ds.getHotelPerId(c.idHotel).indirizzo}"
 								itemValue="#{c.idPernottamento}" />
 						</h:selectOneMenu>
 						<p:message for="pernottamento" />
-						<!-- 
+
+
 						<h:outputLabel for="attivita1">Attivita1</h:outputLabel>
-						<h:selectOneMenu value="#{attivita1.id}" id="attivita1">
+						<h:selectOneMenu value="#{go.attivita1.id}" id="attivita1">
 							<f:selectItem itemLabel="NESSUNA" itemValue="0" />
-							<f:selectItems value="#{ds.tipiPacchetto}" var="c" itemLabel="#{c}"
-								itemValue="#{c}" />
+							<f:selectItems value="#{go.attivitaPossibili}" var="c1"
+								itemLabel="#{c1.titolo} - #{c1.prezzo} euro"
+								itemValue="#{c1.id}" />
 						</h:selectOneMenu>
 						<p:message for="attivita1" />
-						
+
+
 						<h:outputLabel for="attivita2">Attivita2</h:outputLabel>
-						<h:selectOneMenu value="#{attivita2.id}" id="attivita2">
+						<h:selectOneMenu value="#{go.attivita2.id}" id="attivita2">
 							<f:selectItem itemLabel="NESSUNA" itemValue="0" />
-							<f:selectItems value="#{ds.tipiPacchetto}" var="c" itemLabel="#{c}"
-								itemValue="#{c}" />
+							<f:selectItems value="#{go.attivitaPossibili}" var="c2"
+								itemLabel="#{c2.titolo} - #{c2.prezzo} euro"
+								itemValue="#{c2.id}" />
 						</h:selectOneMenu>
 						<p:message for="attivita2" />
-						
+
 						<h:outputLabel for="attivita3">Attivita3</h:outputLabel>
-						<h:selectOneMenu value="#{attivita3.id}" id="attivita3">
+						<h:selectOneMenu value="#{go.attivita3.id}" id="attivita3">
 							<f:selectItem itemLabel="NESSUNA" itemValue="0" />
-							<f:selectItems value="#{ds.tipiPacchetto}" var="c" itemLabel="#{c}"
-								itemValue="#{c}" />
+							<f:selectItems value="#{go.attivitaPossibili}" var="c3"
+								itemLabel="#{c3.titolo} - #{c3.prezzo} euro"
+								itemValue="#{c3.id}" />
 						</h:selectOneMenu>
 						<p:message for="attivita3" />
-						
+
 						<h:outputLabel for="attivita4">Attivita4</h:outputLabel>
-						<h:selectOneMenu value="#{attivita4.id}" id="attivita4">
+						<h:selectOneMenu value="#{go.attivita4.id}" id="attivita4">
 							<f:selectItem itemLabel="NESSUNA" itemValue="0" />
-							<f:selectItems value="#{ds.tipiPacchetto}" var="c" itemLabel="#{c}"
-								itemValue="#{c}" />
+							<f:selectItems value="#{go.attivitaPossibili}" var="c4"
+								itemLabel="#{c4.titolo} - #{c4.prezzo} euro"
+								itemValue="#{c4.id}" />
 						</h:selectOneMenu>
 						<p:message for="attivita4" />
-						
+
 						<h:outputLabel for="attivita5">Attivita5</h:outputLabel>
-						<h:selectOneMenu value="#{attivita5.id}" id="attivita5">
+						<h:selectOneMenu value="#{go.attivita5.id}" id="attivita5">
 							<f:selectItem itemLabel="NESSUNA" itemValue="0" />
-							<f:selectItems value="#{ds.tipiPacchetto}" var="c" itemLabel="#{c}"
-								itemValue="#{c}" />
+							<f:selectItems value="#{go.attivitaPossibili}" var="c5"
+								itemLabel="#{c5.titolo} - #{c5.prezzo} euro"
+								itemValue="#{c5.id}" />
 						</h:selectOneMenu>
 						<p:message for="attivita5" />
-						 -->
+
 						<h:outputLabel for="prezzo">Prezzo</h:outputLabel>
 						<h:inputText id="prezzo" value="#{go.pDTO.prezzo}" />
 						<p:message for="prezzo" />
-						
+
 						<h:outputLabel for="foto1">Foto1</h:outputLabel>
 						<h:inputText id="foto1" value="#{go.pDTO.foto1}" />
 						<p:message for="foto1" />
@@ -190,26 +205,28 @@
 						<h:outputLabel for="foto2">Foto2</h:outputLabel>
 						<h:inputText id="foto2" value="#{go.pDTO.foto2}" />
 						<p:message for="foto2" />
-						
+
 						<h:outputLabel for="foto3">Foto3</h:outputLabel>
 						<h:inputText id="foto3" value="#{go.pDTO.foto3}" />
 						<p:message for="foto3" />
-						
+
 						<h:outputLabel for="foto4">Foto4</h:outputLabel>
 						<h:inputText id="foto4" value="#{go.pDTO.foto4}" />
 						<p:message for="foto4" />
-						
+
 						<h:outputLabel for="foto5">Foto5</h:outputLabel>
 						<h:inputText id="foto5" value="#{go.pDTO.foto5}" />
 						<p:message for="foto5" />
-						
+
 						<h:outputLabel for="foto6">Foto6</h:outputLabel>
 						<h:inputText id="foto6" value="#{go.pDTO.foto6}" />
 						<p:message for="foto6" />
+
+						<h:inputText value="#{go.paginaSelezionata}" readonly="true" />
 					</h:panelGrid>
-					
-					<h:commandButton value="Salva" update="regGrid2"
-						action="#{go.salva()}" />
+
+					<h:commandButton value="Salva" action="#{go.salva()}"
+						rendered="true" />
 				</h:form>
 			</div>
 		</div>

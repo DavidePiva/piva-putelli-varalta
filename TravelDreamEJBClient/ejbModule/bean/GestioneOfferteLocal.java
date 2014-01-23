@@ -12,6 +12,7 @@ public interface GestioneOfferteLocal {
 
 	public int getPaginaSelezionata();
 	public void setPaginaSelezionata(int paginaSelezionata);
+	public void setDescrizione(String descr);
 
 	public void salvaTutto(PacchettoDTO p, AttivitaDTO a1, AttivitaDTO a2, AttivitaDTO a3, AttivitaDTO a4, AttivitaDTO a5);
 }
