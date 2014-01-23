@@ -69,7 +69,7 @@
 				<h1>Scegli il tuo hotel</h1>
 				<h:selectOneMenu value="#{gv.idHotelScelto}" id="hotel">
 					<f:selectItems value="#{gv.hotelPossibili}" var="h" itemLabel="#{h}"
-						itemValue="#{h}" />
+						itemValue="#{h.idHotel}" />
 				</h:selectOneMenu>
 			</div>
 		</div>
