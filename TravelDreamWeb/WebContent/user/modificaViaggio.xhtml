@@ -70,7 +70,7 @@
 							value="Pagina di modifica del viaggio a #{gv.citta}"></h:outputLabel>
 						<br></br>
 						<h:commandButton value="Acquista" action="#{gv.acquista()}" update="regGrid1" />
-						<h:commandButton value="Rimuovi" update="regGrid1" />
+						<h:commandButton value="Rimuovi" action="#{gv.rimuovi()}" update="regGrid1" />
 					</h1>
 					<br></br>
 					<h:panelGrid columns="3" id="regGrid1">

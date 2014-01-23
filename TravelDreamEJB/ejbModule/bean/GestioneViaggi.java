@@ -250,5 +250,24 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		return vDTO;
 	}
 
+	@Override
+	public void rimuoviViaggio(int idViaggio) {
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		List<Viaggio_Attivita> l1 = v.getViaggioAttivitas();
+		for(int i = 0; i < l1.size(); i++){
+			em.remove(l1.get(i));
+		}
+		List<Viaggio_Pernottamento> vp = v.getViaggioPernottamentos();
+		for(int i = 0; i < vp.size(); i++){
+			em.remove(vp.get(i));
+		}
+		List<Viaggio_Volo> vv = v.getViaggioVolos();
+		for(int i = 0; i < vv.size(); i++){
+			em.remove(vv.get(i));
+		}
+		em.flush();
+		em.remove(v);
+	}
+
 
 }
