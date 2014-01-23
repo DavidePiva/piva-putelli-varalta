@@ -75,7 +75,7 @@ public class ShowHotel implements ShowHotelLocal {
 		return h2;
 	}
 	public List<HotelDTO> listaHotel(){
-		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel");
+		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE selezionabile = 1");
 		List s = new ArrayList<String>();
 
 		s = q.getResultList();

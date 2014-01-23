@@ -76,18 +76,21 @@
 								itemLabel="#{h.nome}" itemValue="#{h.nome}" />
 						</h:selectOneMenu>
 						<h:outputLabel for="nome"></h:outputLabel>
-						
+										
 						<h:outputLabel for="lowCost">Prezzo camere LowCost: </h:outputLabel>
-						<h:inputText id="lowCost" value="#{gh.lowCost.prezzo}" size='4' />
-						<h:outputLabel for="lowCost"></h:outputLabel>
+						<p:inputText id="lowCost" value="#{gh.p1}" size='4' />
+						<p:message for="lowCost" />
+					
 						
 						<h:outputLabel for="smart">Prezzo camere Smart: </h:outputLabel>
-						<h:inputText id="smart" value="#{gh.smart.prezzo}" size='4' />
-						<h:outputLabel for="smart"></h:outputLabel>
+						<p:inputText id="smart" value="#{gh.p2}" size='4' />
+						<p:message for="smart" />
+				
 						
 						<h:outputLabel for="dream">Prezzo camere Dream: </h:outputLabel>
-						<h:inputText id="dream" value="#{gh.dream.prezzo}" size='4' />
-						<h:outputLabel for="dream"></h:outputLabel>
+						<p:inputText id="dream" value="#{gh.p3}" size='4' />
+						<p:message for="dream" />
+
 					</h:panelGrid>
 
 					<h:commandButton value="Salva" update="regGrid1" action="#{gh.salvaCamere()}" />
