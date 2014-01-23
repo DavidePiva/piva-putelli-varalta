@@ -43,7 +43,7 @@ public class PagamentoBean {
     }
     
     public String paga(){
-    	 return "/user/index?faces-redirect=true&id=";
+    	 return "/user/index?faces-redirect=true";
     }
 
 	public int getNumeroPersoneSelezionato() {
@@ -53,5 +53,8 @@ public class PagamentoBean {
 	public void setNumeroPersoneSelezionato(int numeroPersoneSelezionato) {
 		this.numeroPersoneSelezionato = numeroPersoneSelezionato;
 	}
-    
+    public String setPersone(){
+    	gestioneViaggi.setNumeroPersone(numeroPersoneSelezionato, idViaggio);
+    	return "/user/modificaViaggio?faces-redirect=true&id="+idViaggio;
+    }
 }
