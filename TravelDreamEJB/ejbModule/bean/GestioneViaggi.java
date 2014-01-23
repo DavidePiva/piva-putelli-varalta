@@ -277,5 +277,27 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		
 	}
 
+	@Override
+	public void sostituisciHotel(int idViaggio, int idHotelScelto) {
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		Pernottamento p = v.getPernottamentoBean();
+		Hotel h = em.find(Hotel.class, idHotelScelto);
+		p.setHotelBean(h);
+		em.merge(p);
+		em.flush();
+		BigDecimal prezzo = ricalcolaPrezzo(idViaggio);
+		v.setPrezzo(prezzo);
+		em.merge(v);
+	}
+
+	private BigDecimal ricalcolaPrezzo(int idViaggio) {
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		BigDecimal nuovoPrezzo = v.getPrezzo();
+		Float f = nuovoPrezzo.floatValue();
+		f+=100;
+		nuovoPrezzo = BigDecimal.valueOf(f);
+		return nuovoPrezzo;
+	}
+
 
 }
