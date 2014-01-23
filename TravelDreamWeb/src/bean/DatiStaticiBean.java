@@ -270,14 +270,7 @@ public class DatiStaticiBean {
 		return voliPossibili;
 	}
 	
-	public List<String> getAttivitaPossibili(String citta, int anno1, int mese1, int giorno1, int anno2, int mese2, int giorno2){
-		List<AttivitaDTO> l = datistatici.getAttivitaPossibili(citta,anno1,mese1,giorno1,anno2,mese2,giorno2);
-		attivitaPossibili = new ArrayList<String>();
-		for(int i = 0; i < l.size(); i++){
-			attivitaPossibili.add(l.get(i).getTitolo());
-		}
-		return attivitaPossibili;
-	}
+
 	
 	public List<String> getPernottamentiPossibili(String citta){
 		List<PernottamentoDTO> l = datistatici.getPernottamentiPossibili(citta);

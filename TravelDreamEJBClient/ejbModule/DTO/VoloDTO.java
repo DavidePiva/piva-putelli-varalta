@@ -69,7 +69,7 @@ public class VoloDTO {
 	}
 	
 	public String getDataFormattata(){
-		return data.toString().substring(8, 10)+"/"+data.toString().substring(4, 7)+"/"+data.toString().substring(24, 28)+" ore "+oraPartenza.getHours()+":"+(oraPartenza.getMinutes()<10 ? "0" : "")+oraPartenza.getMinutes();
+		return data.toString().substring(8, 10)+"/"+data.toString().substring(4, 7)+"/"+(data.getYear()+1900)+" ore "+oraPartenza.getHours()+":"+(oraPartenza.getMinutes()<10 ? "0" : "")+oraPartenza.getMinutes();
 	}
 	
 	public String toString(){

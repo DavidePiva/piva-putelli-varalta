@@ -1,10 +1,12 @@
 package bean;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import DTO.AttivitaDTO;
 import DTO.PacchettoDTO;
@@ -12,6 +14,7 @@ import DTO.PernottamentoDTO;
 import DTO.VoloDTO;
 
 @ManagedBean(name = "go")
+@ViewScoped
 public class GestioneOfferteBean {
 
 	@EJB
@@ -22,6 +25,12 @@ public class GestioneOfferteBean {
 	private Date dataAndata;
 	private Date dataRitorno;
 	private PacchettoDTO pDTO;
+	private String titolo;
+	private String descrizione;
+	private String citta;
+	private String target;
+	private String tipologia;
+	
 	private String cittaPartenza;
 	private AttivitaDTO attivita1;
 	private AttivitaDTO attivita2;
@@ -30,15 +39,17 @@ public class GestioneOfferteBean {
 	private AttivitaDTO attivita5;
 	
 	
+	
 	public GestioneOfferteBean() {
+		paginaSelezionata=0;
 		pDTO = new PacchettoDTO();
+		dataAndata = new Date();
+		dataRitorno = new Date();
 		attivita1 = new AttivitaDTO();
 		attivita2 = new AttivitaDTO();
 		attivita3 = new AttivitaDTO();
 		attivita4 = new AttivitaDTO();
 		attivita5 = new AttivitaDTO();
-		dataAndata = new Date();
-		dataRitorno = new Date();
 	}
 	
 	
@@ -49,16 +60,23 @@ public class GestioneOfferteBean {
 
 
 	public void continua(){
-		System.out.println("OOOOOOOOOOK, BUONA!");
-		gestioneOfferte.setPaginaSelezionata(1);
+		gestioneOfferte.setPaginaSelezionata(gestioneOfferte.getPaginaSelezionata()+1);
 		this.setPaginaSelezionata(gestioneOfferte.getPaginaSelezionata());
-		System.out.println("OOOOOOOOOOK, SI RIPARTE!"+this.getPaginaSelezionata());
+		gestioneOfferte.setDescrizione(descrizione+" DESCRIZZZ!");
+		System.out.println("OOOOOOOOOOK, SI RIPARTE!PAGINA: "+this.getPaginaSelezionata());
 	}
 	public String salva(){
-		System.out.println("RICHIAMATA SALVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!");
+		System.out.println("RICHIAMATA SALVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA! Nel pDTO foto4: "+pDTO.getFoto4());
+		//gestioneOfferte.setPaginaSelezionata(2);
+		//paginaSelezionata=gestioneOfferte.getPaginaSelezionata();
 		pDTO.setSelezionabile(true);
+		pDTO.setTitolo(titolo);
+		pDTO.setCitta(citta);
+		pDTO.setDescrizione(descrizione);
+		pDTO.setTarget(target);
+		pDTO.setTipologia(tipologia);
 		gestioneOfferte.salvaTutto(pDTO, attivita1, attivita2, attivita3, attivita4, attivita5);
-		return "/impiegato/index?faces-redirect=true";
+		return "/index?faces-redirect=true";
 	}
 	public boolean primaPaginaVisibile(){
 		if(paginaSelezionata==0)
@@ -70,15 +88,22 @@ public class GestioneOfferteBean {
 			return true;
 		return false;
 	}
+	public boolean terzaPaginaVisibile(){
+		if(paginaSelezionata==2)
+			return true;
+		return false;
+	}
 	public List<PernottamentoDTO> pernottamentiPossibili(){
-		return datistatici.getPernottamentiPossibili(pDTO.getCitta());
+		return datistatici.getPernottamentiPossibili(getCitta());
 	}
 	public List<VoloDTO> voliPossibiliAndata(){
-		return datistatici.getVoliPossibili(cittaPartenza, pDTO.getCitta(), Integer.parseInt(dataAndata.toString().substring(24, 28)), meseInt(dataAndata), Integer.parseInt(dataAndata.toString().substring(8, 10)));
+		return datistatici.getVoliPossibili(cittaPartenza, getCitta(), dataAndata.getYear()+1900, meseInt(dataAndata), Integer.parseInt(dataAndata.toString().substring(8, 10)));
 	}
 	public List<VoloDTO> voliPossibiliRitorno(){
-		//return datistatici.getVoliPossibili(pDTO.getCitta(), cittaPartenza, dataAndata.getYear(), dataAndata.getMonth(), dataAndata.getDay());
-		return datistatici.getVoliPossibili(pDTO.getCitta(), cittaPartenza, Integer.parseInt(dataRitorno.toString().substring(24, 28)), meseInt(dataRitorno), Integer.parseInt(dataRitorno.toString().substring(8, 10)));
+		return datistatici.getVoliPossibili(getCitta(), cittaPartenza, dataRitorno.getYear()+1900, meseInt(dataRitorno), Integer.parseInt(dataRitorno.toString().substring(8, 10)));
+	}
+	public List<AttivitaDTO> getAttivitaPossibili(){
+		return datistatici.getAttivitaPossibili(getCitta(),dataAndata.getYear()+1900,meseInt(dataAndata),Integer.parseInt(dataAndata.toString().substring(8, 10)),dataRitorno.getYear()+1900,meseInt(dataRitorno),Integer.parseInt(dataRitorno.toString().substring(8, 10)));
 	}
 	public int meseInt(Date d){
 		String s=d.toString().substring(4, 7);
@@ -173,5 +198,35 @@ public class GestioneOfferteBean {
 	}
 	public void setAttivita5(AttivitaDTO attivita5) {
 		this.attivita5 = attivita5;
+	}
+	public String getDescrizione() {
+		return descrizione;
+	}
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+	public String getCitta() {
+		return citta;
+	}
+	public void setCitta(String citta) {
+		this.citta = citta;
+	}
+	public String getTarget() {
+		return target;
+	}
+	public void setTarget(String target) {
+		this.target = target;
+	}
+	public String getTipologia() {
+		return tipologia;
+	}
+	public void setTipologia(String tipologia) {
+		this.tipologia = tipologia;
+	}
+	public String getTitolo() {
+		return titolo;
+	}
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
 	}
 }
