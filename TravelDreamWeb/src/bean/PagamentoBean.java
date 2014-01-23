@@ -13,12 +13,12 @@ import DTO.ViaggioDTO;
 @ManagedBean(name="pb")
 @RequestScoped
 public class PagamentoBean {
-	
+		
 	@EJB
 	private GestioneViaggiLocal gestioneViaggi;
 	
 	private int idViaggio;
-	
+	private int numeroPersoneSelezionato;
 	private ViaggioDTO viaggio;
 	
 	public void setIdViaggio(int idViaggio){
@@ -46,4 +46,12 @@ public class PagamentoBean {
     	 return "/user/index?faces-redirect=true&id=";
     }
 
+	public int getNumeroPersoneSelezionato() {
+		return numeroPersoneSelezionato;
+	}
+
+	public void setNumeroPersoneSelezionato(int numeroPersoneSelezionato) {
+		this.numeroPersoneSelezionato = numeroPersoneSelezionato;
+	}
+    
 }
