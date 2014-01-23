@@ -111,5 +111,13 @@ public class GestioneOfferte implements GestioneOfferteLocal {
 		System.out.println("JAVAAAAAAAAAAAAAAAAAAAA, descrizione settata: "+descrizione);
 	}
 
+	@Override
+	public void eliminaPacchetto(int idPacchetto) {
+		Pacchetto p=em.find(Pacchetto.class, idPacchetto);
+		p.setSelezionabile(false);
+		em.merge(p);
+		System.out.println("MERGIATO SIMPSON");
+	}
+
 
 }

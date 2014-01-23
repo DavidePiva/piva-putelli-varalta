@@ -30,6 +30,7 @@ public class GestioneOfferteBean {
 	private String citta;
 	private String target;
 	private String tipologia;
+	private int idPacchettoModificare;
 	
 	private String cittaPartenza;
 	private AttivitaDTO attivita1;
@@ -40,6 +41,14 @@ public class GestioneOfferteBean {
 	
 	
 	
+	
+
+
+
+
+
+
+
 	public GestioneOfferteBean() {
 		paginaSelezionata=0;
 		pDTO = new PacchettoDTO();
@@ -104,6 +113,11 @@ public class GestioneOfferteBean {
 	}
 	public List<AttivitaDTO> getAttivitaPossibili(){
 		return datistatici.getAttivitaPossibili(getCitta(),dataAndata.getYear()+1900,meseInt(dataAndata),Integer.parseInt(dataAndata.toString().substring(8, 10)),dataRitorno.getYear()+1900,meseInt(dataRitorno),Integer.parseInt(dataRitorno.toString().substring(8, 10)));
+	}
+	public String eliminaPacchetto(){
+		System.out.println("ELIMINO PACCHETTO id: "+idPacchettoModificare);
+		gestioneOfferte.eliminaPacchetto(idPacchettoModificare);
+		return "/index?faces-redirect=true";
 	}
 	public int meseInt(Date d){
 		String s=d.toString().substring(4, 7);
@@ -229,4 +243,11 @@ public class GestioneOfferteBean {
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;
 	}
+	public int getIdPacchettoModificare() {
+		return idPacchettoModificare;
+	}
+	public void setIdPacchettoModificare(int idPacchettoModificare) {
+		this.idPacchettoModificare = idPacchettoModificare;
+	}
+
 }

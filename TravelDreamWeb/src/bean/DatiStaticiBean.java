@@ -204,6 +204,10 @@ public class DatiStaticiBean {
 		return datistatici.pacchettiPerCitta(s);
 	}
 	
+	public List<PacchettoDTO> pacchettiTutti(){
+		return datistatici.pacchettiTutti();
+	}
+	
 	public List<String> getPacchetti(){
 		List<PacchettoDTO> l1 = pacchettiPerCitta(cittaSelezionata);
 		pacchetti = new ArrayList<String>();
