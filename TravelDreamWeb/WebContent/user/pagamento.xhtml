@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <head>
@@ -66,8 +67,28 @@
 		</div>
 		<div id="boxcontenuto">
 			<div>
-				<h1>Sono qua</h1>
-				<h:outputLabel value = "#{pb.idViaggio}"></h:outputLabel>
+	
+				<h:form>
+
+						<h1><h:outputLabel value = "Effettua il pagamento"></h:outputLabel></h1>
+						<h:outputLabel value = "L'importo totale è di: #{pb.getPrezzo()} €"></h:outputLabel>
+						<br></br><br></br>
+						<h:outputLabel value = "Inserisci il numero e la data di scadenza della carta:"></h:outputLabel>
+						<br></br>
+						<p:inputText    />						<h:outputLabel value = " - "></h:outputLabel>
+						
+						<p:inputText   size='4' />
+						<h:outputLabel value = " / "></h:outputLabel>
+						<p:inputText   size='4' />
+						<br></br>
+						<h:outputLabel value = "Inserisci il codice a tre cifre sul retro della carta:"></h:outputLabel>
+						<br></br>
+						<p:inputText   size='4' />
+						<br></br>
+						<br></br>
+						<p:commandButton value="Completa il pagamento" 	action="#{pb.paga()}" />
+				</h:form>
+				
 			</div>
 		</div>
 	</div>
