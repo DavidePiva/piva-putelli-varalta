@@ -132,6 +132,9 @@ public class GestioneViaggiBean {
         	gestioneViaggi.rimuoviViaggio(idViaggio);
         	return "/user/index?faces-redirect=true";
         }
+        public String modificaNumeroPersone(){
+        	return "/user/numeroPersone?faces-redirect=true&id="+idViaggio;
+        }
         
         public String scegliHotel(){
         	return "/user/scegliHotel?faces-redirect=true&id="+idViaggio;

@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <head>
@@ -10,6 +11,9 @@
 <link href='../css/application.css' media='all' rel='stylesheet'
 	type='text/css' />
 <script type='text/javascript' src='../css/menu.js' />
+<f:metadata>
+	<f:viewParam name="id" value="#{pb.idViaggio}" />
+</f:metadata>
 </head>
 <body onload="javascript:start()">
 	<div id="boxintestazione">
@@ -63,59 +67,28 @@
 		</div>
 		<div id="boxcontenuto">
 			<div>
+	
 				<h:form>
 
-					<h1>
-						<h:outputLabel
-							value="Pagina di modifica del viaggio a #{gv.citta}"></h:outputLabel>
+						<h1><h:outputLabel value = "Modifica il numero di persone per il viaggio a #{pb.viaggio.citta}]"></h:outputLabel></h1>
+						<h:outputLabel value = "L'importo totale è di: #{pb.getPrezzo()} €"></h:outputLabel>
+						<br></br><br></br>
+						<h:outputLabel value = "Inserisci il numero e la data di scadenza della carta:"></h:outputLabel>
 						<br></br>
-						<h:commandButton value="Acquista" action="#{gv.acquista()}" update="regGrid1" />
-						<h:commandButton value="Rimuovi" action="#{gv.rimuovi()}" update="regGrid1" />
-					</h1>
-					<br></br>
-					<h:panelGrid columns="3" id="regGrid1">
-						<h:outputLabel for="numeroPersone"
-							value="Viaggio per #{gv.numeroPersone} persone"></h:outputLabel>
-						<h:outputLabel for="numeroPersone"
-							value="#{gv.prezzo} euro a testa"></h:outputLabel>
-						<h:commandButton value="Modifica" action="#{gv.modificaNumeroPersone()}" update="regGrid1" />
-
-						<h:outputLabel for="hotel" value="Informazioni Hotel:"></h:outputLabel>
-
-						<h:outputLabel for="hotel" value="#{gv.hotel}"></h:outputLabel>
-						<h:commandButton value="Modifica" action="#{gv.scegliHotel()}" update="regGrid1" />
-
-						<h:outputLabel for="attivita" value="Attività:"></h:outputLabel>
-
-						<ui:repeat  value="#{gv.attivita}" var="a">
-							<li><h:outputLabel value = "#{a}"></h:outputLabel></li>
-						</ui:repeat>	
-						<h:commandButton value="Modifica" update="regGrid1" />
+						<p:inputText    />						<h:outputLabel value = " - "></h:outputLabel>
 						
-						<h:outputLabel for="voli" value="Informazioni voli e date:"></h:outputLabel>
-						<ui:repeat value="#{gv.voli}" var="v">
-							<li><h:outputLabel value = "#{v}"></h:outputLabel></li>
-						</ui:repeat>	
-						<h:commandButton value="Modifica" update="regGrid1" />
+						<p:inputText   size='4' />
+						<h:outputLabel value = " / "></h:outputLabel>
+						<p:inputText   size='4' />
+						<br></br>
+						<h:outputLabel value = "Inserisci il codice a tre cifre sul retro della carta:"></h:outputLabel>
+						<br></br>
+						<p:inputText   size='4' />
 						<br></br>
 						<br></br>
-						<br></br>
-						<br></br>
-						<h:outputLabel for="regalo"
-							value="Se vuoi che qualcuno te lo regali clicca su:"></h:outputLabel>
-						<h:commandButton value="Vorrei..." update="regGrid1" />
-
-						<br></br>
-						<br></br>
-						<h:outputLabel for="invito"
-							value="Se invece vuoi partire in compagnia:"></h:outputLabel>
-						<h:commandButton value="Invita" update="regGrid1" />
-
-
-					</h:panelGrid>
+						<p:commandButton value="Completa il pagamento" 	action="#{pb.paga()}" />
 				</h:form>
-
-
+				
 			</div>
 		</div>
 	</div>
