@@ -140,4 +140,9 @@ public class GestioneViaggiBean {
         	return "/user/scegliHotel?faces-redirect=true&id="+idViaggio;
         }
         
+        public String sostituisciHotel(){
+        	int a = idHotelScelto;
+        	return "/user/modificaViaggio?faces-redirect=true&id="+idViaggio;
+        }
+        
 }

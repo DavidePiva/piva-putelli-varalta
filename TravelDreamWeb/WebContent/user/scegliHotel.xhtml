@@ -67,10 +67,14 @@
 		<div id="boxcontenuto">
 			<div>
 				<h1>Scegli il tuo hotel</h1>
+				<h:form>
 				<h:selectOneMenu value="#{gv.idHotelScelto}" id="hotel">
 					<f:selectItems value="#{gv.hotelPossibili}" var="h" itemLabel="#{h}"
 						itemValue="#{h.idHotel}" />
 				</h:selectOneMenu>
+				<br></br>
+				<h:commandButton value="Conferma la scelta" action="#{gv.sostituisciHotel()}" />
+				</h:form>
 			</div>
 		</div>
 	</div>
