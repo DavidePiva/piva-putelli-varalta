@@ -475,4 +475,11 @@ public class DatiStatici implements DatiStaticiLocal {
 		}
 		return l1;
 	}
+
+	@Override
+	public PacchettoDTO getPacchettoDTO(int id) {
+		Pacchetto p = new Pacchetto();
+		p = em.find(Pacchetto.class, id);
+		return convertiPacchettoDTO(p);
+	}
 }

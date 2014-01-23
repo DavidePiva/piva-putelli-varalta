@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+	<title>TravelDream</title>
+	<link href='../css/application.css' media='all' rel='stylesheet'
+		type='text/css' />
+	<script type='text/javascript' src='../css/menu.js' />
+
+<f:metadata>
+	<f:viewParam name="id" value="#{go.idPacchettoModificare}" />
+</f:metadata>
+</h:head>
+<h:body onload="javascript:start()">
+	<div id="boxintestazione">
+		<div id="boxlogo">
+			<h:link outcome="/index">
+				<img src="../css/v1sinistra.png" />
+			</h:link>
+		</div>
+		<h:form id="boxlandmarktop">
+			<div id="boxlandmarktop">
+
+				<h:commandLink action="#{gp.logout}" value="LOGOUT"
+					id="textlandmark_left2" rendered="#{gp.loggato()}" />
+
+				<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}"
+					id="textlandmark_right2" rendered="#{gp.loggato()}" />
+			</div>
+		</h:form>
+	</div>
+	<!--/intestazione-->
+	<div id="boxlinea1"></div>
+	<div id="boxlinea2"></div>
+	<div id="boxlinea3"></div>
+	<div id="boxlinea4"></div>
+	<div id="boxlinea5"></div>
+	<div id="boxbig">
+		<div id="boxmenu">
+			<div id="boxPacchetti">
+				<a href="javaScript:menuFunc('boxleft1')">Viaggi</a>
+				<ul id="boxleft1">
+					<li><h:link outcome="/cittaPacchetti" value="Per Destinazione"
+							id="p1"></h:link></li>
+					<li><h:link outcome="/prezziPacchetti"
+							value="Per tutte le tasche" id="p2"></h:link></li>
+					<li><h:link outcome="/tipologiePacchetti"
+							value="Quello che fa per te" id="p3"></h:link></li>
+				</ul>
+			</div>
+			<div id="boxHotel">
+				<a href="javaScript:menuFunc('boxleft2')">Hotel</a>
+				<ul id="boxleft2">
+					<li><h:link outcome="/cittaHotel" value="Città"></h:link></li>
+					<li><h:link outcome="/prezziHotel" value="Per tutte le tasche"></h:link></li>
+				</ul>
+			</div>
+			<div id="boxLandmark">
+				<ul id="boxleft3">
+					<li><h:link outcome="/chiSiamo" value="Chi siamo"></h:link></li>
+					<li><h:link outcome="/contatti" value="Contatti" id="ultimo"></h:link></li>
+				</ul>
+			</div>
+		</div>
+		<div id="boxcontenuto">
+			<div>
+				<h1><h:outputLabel value="Modifica di #{go.getPacchettoSelezionato().titolo}" /></h1>
+				<h:form>
+					<h:panelGrid columns="3" id="regGrid1"
+						rendered="#{go.primaPaginaVisibile()}">
+						<h:outputLabel for="titolo">Titolo</h:outputLabel>
+						<h:inputText id="titolo" value="#{go.pDTO.titolo}" ></h:inputText>
+						<p:message for="titolo" />
+
+						<h:outputLabel for="descrizione">Descrizione</h:outputLabel>
+						<h:inputTextarea id="descrizione" value="#{go.descrizione}"
+							cols="50" rows="20" />
+						<p:message for="descrizione" />
+
+						<h:outputLabel for="dataAndata">Data andata</h:outputLabel>
+						<p:calendar value="#{go.dataAndata}" id="dataAndata" />
+						<p:message for="dataAndata" />
+
+						<h:outputLabel for="dataRitorno">Data ritorno</h:outputLabel>
+						<p:calendar value="#{go.dataRitorno}" id="dataRitorno" />
+						<p:message for="dataRitorno" />
+
+						<h:outputLabel for="target">Target</h:outputLabel>
+						<h:selectOneMenu value="#{go.target}" id="target">
+							<f:selectItem itemLabel="singolo" itemValue="singolo" />
+							<f:selectItem itemLabel="coppia" itemValue="coppia" />
+							<f:selectItem itemLabel="gruppo" itemValue="gruppo" />
+						</h:selectOneMenu>
+						<p:message for="target" />
+
+						<h:outputLabel for="tipologia">Tipologia</h:outputLabel>
+						<h:selectOneMenu value="#{go.tipologia}" id="tipologia">
+							<f:selectItems value="#{ds.tipiPacchetto}" var="c"
+								itemLabel="#{c}" itemValue="#{c}" />
+						</h:selectOneMenu>
+						<p:message for="tipologia" />
+
+						<h:commandButton value="Continua" action="#{go.continua()}"
+							rendered="true" />
+					</h:panelGrid>
+
+
+					<h:panelGrid columns="3" id="regGrid2"
+						rendered="#{go.secondaPaginaVisibile()}">
+						<h:outputLabel for="voloAndata">Volo andata</h:outputLabel>
+						<h:selectOneMenu value="#{go.pDTO.voloAndata}" id="voloAndata">
+							<f:selectItems value="#{go.voliPossibiliAndata()}" var="c"
+								itemLabel="#{c.dataFormattata}" itemValue="#{c.idVolo}" />
+						</h:selectOneMenu>
+						<p:message for="voloAndata" />
+
+						<h:outputLabel for="voloRitorno">Volo ritorno</h:outputLabel>
+						<h:selectOneMenu value="#{go.pDTO.voloRitorno}" id="voloRitorno">
+							<f:selectItems value="#{go.voliPossibiliRitorno()}" var="c"
+								itemLabel="#{c.dataFormattata}" itemValue="#{c.idVolo}" />
+						</h:selectOneMenu>
+						<p:message for="voloRitorno" />
+
+						<h:outputLabel for="pernottamento">Pernottamento</h:outputLabel>
+						<h:selectOneMenu value="#{go.pDTO.idPernottamento}"
+							id="pernottamento">
+							<f:selectItems value="#{go.pernottamentiPossibili()}" var="c"
+								itemLabel="#{c.tipo} - #{ds.getHotelPerId(c.idHotel).nome}, #{ds.getHotelPerId(c.idHotel).indirizzo}"
+								itemValue="#{c.idPernottamento}" />
+						</h:selectOneMenu>
+						<p:message for="pernottamento" />
+
+						<h:outputLabel for="prezzo">Prezzo</h:outputLabel>
+						<h:inputText id="prezzo" value="#{go.pDTO.prezzo}" />
+						<p:message for="prezzo" />
+
+						<h:outputLabel for="foto1">Foto1</h:outputLabel>
+						<h:inputText id="foto1" value="#{go.pDTO.foto1}" />
+						<p:message for="foto1" />
+
+						<h:outputLabel for="foto2">Foto2</h:outputLabel>
+						<h:inputText id="foto2" value="#{go.pDTO.foto2}" />
+						<p:message for="foto2" />
+
+						<h:outputLabel for="foto3">Foto3</h:outputLabel>
+						<h:inputText id="foto3" value="#{go.pDTO.foto3}" />
+						<p:message for="foto3" />
+
+						<h:outputLabel for="foto4">Foto4</h:outputLabel>
+						<h:inputText id="foto4" value="#{go.pDTO.foto4}" />
+						<p:message for="foto4" />
+
+						<h:outputLabel for="foto5">Foto5</h:outputLabel>
+						<h:inputText id="foto5" value="#{go.pDTO.foto5}" />
+						<p:message for="foto5" />
+
+						<h:outputLabel for="foto6">Foto6</h:outputLabel>
+						<h:inputText id="foto6" value="#{go.pDTO.foto6}" />
+						<p:message for="foto6" />
+
+						<h:inputText value="#{go.paginaSelezionata}" readonly="true" />
+					</h:panelGrid>
+
+					<h:commandButton value="Salva" action="#{go.salva()}"
+						rendered="true" />
+				</h:form>
+			</div>
+		</div>
+	</div>
+	<!--/boxbig-->
+</h:body>
+</html>

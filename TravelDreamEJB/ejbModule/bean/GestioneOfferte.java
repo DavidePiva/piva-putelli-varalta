@@ -1,6 +1,9 @@
 package bean;
 
+import java.math.BigDecimal;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,6 +13,7 @@ import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import model.Attivita;
 import model.Pacchetto;
@@ -108,7 +112,6 @@ public class GestioneOfferte implements GestioneOfferteLocal {
 	@Override
 	public void setDescrizione(String descr) {
 		descrizione = descr;
-		System.out.println("JAVAAAAAAAAAAAAAAAAAAAA, descrizione settata: "+descrizione);
 	}
 
 	@Override
@@ -116,7 +119,86 @@ public class GestioneOfferte implements GestioneOfferteLocal {
 		Pacchetto p=em.find(Pacchetto.class, idPacchetto);
 		p.setSelezionabile(false);
 		em.merge(p);
-		System.out.println("MERGIATO SIMPSON");
+	}
+
+	@Override
+	public List<AttivitaDTO> attivitaAggiungibili(int idPacchetto) { //!!!!!
+		Pacchetto p=em.find(Pacchetto.class, idPacchetto);
+		
+		Query q = em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE selezionabile = 1 AND citta = '"+p.getCitta()+"' AND data BETWEEN '"+(p.getVolo1().getData().getYear()+1900)+"-"+(p.getVolo1().getData().getMonth()+1)+"-"+(p.getVolo1().getData().getDate())+"' AND '"+(p.getVolo2().getData().getYear()+1900)+"-"+(p.getVolo2().getData().getMonth()+1)+"-"+(p.getVolo2().getData().getDate())+"'");
+		List<Integer> list=new ArrayList<Integer>();
+		list=q.getResultList();
+		List<AttivitaDTO> listDTO=new ArrayList<AttivitaDTO>();
+		for(int i=0;i<list.size();i++){
+			Attivita a = em.find(Attivita.class, list.get(i));
+			if(!p.getAttivitas().contains(a))
+				listDTO.add(convertiAttivitaDTO(a));
+		}	
+		return listDTO;
+	}
+
+	@Override
+	public List<AttivitaDTO> attivitaEliminabili(int idPacchetto) {
+		Pacchetto p=em.find(Pacchetto.class, idPacchetto);
+		List<AttivitaDTO> listDTO=new ArrayList<AttivitaDTO>();
+		for(int i=0;i<p.getAttivitas().size();i++){
+			listDTO.add(convertiAttivitaDTO(p.getAttivitas().get(i)));
+		}	
+		return listDTO;
+	}
+
+	
+	private AttivitaDTO convertiAttivitaDTO(Attivita a) {
+		int id = a.getIdAttivita();
+		String titolo = a.getTitolo();
+		String citta = a.getCitta();
+		String descrizione = a.getDescrizione();
+		String foto1 = a.getFoto1();
+		String foto2 = a.getFoto2();
+		String foto3 = a.getFoto3();
+		boolean selezionabile = a.getSelezionabile();
+		Date data = a.getData();
+		Time ora = a.getOra();
+		BigDecimal prezzo = a.getPrezzo();
+		AttivitaDTO a2 = new AttivitaDTO();
+		a2.setId(id);
+		a2.setCitta(citta);
+		a2.setTitolo(titolo);
+		a2.setDescrizione(descrizione);
+		a2.setData(data);
+		a2.setOra(ora);
+		a2.setFoto1(foto1);
+		a2.setFoto2(foto2);
+		a2.setFoto3(foto3);
+		a2.setPrezzo(prezzo);
+		a2.setSelezionabile(selezionabile);
+		return a2;
+	}
+
+	@Override
+	public void eliminaAttivitaDaPacchetto(int idPacchetto, int idAttivita) {
+		Pacchetto p=em.find(Pacchetto.class, idPacchetto);
+		Attivita a=em.find(Attivita.class, idAttivita);
+		System.out.println("ATTIVITÀ ELIMINATA "+a.getTitolo());
+		List<Attivita> lAtt=p.getAttivitas();
+		lAtt.remove(a);
+		p.setAttivitas(lAtt);
+
+		em.merge(p);
+		
+	}
+
+	@Override
+	public void aggiungiAttivitaAlPacchetto(int idPacchetto, int idAttivita) {
+		Pacchetto p=em.find(Pacchetto.class, idPacchetto);
+		Attivita a=em.find(Attivita.class, idAttivita);
+
+		List<Attivita> lAtt=p.getAttivitas();
+		lAtt.add(a);
+		p.setAttivitas(lAtt);
+
+		em.merge(p);
+
 	}
 
 

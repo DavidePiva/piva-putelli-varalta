@@ -31,6 +31,8 @@ public class GestioneOfferteBean {
 	private String target;
 	private String tipologia;
 	private int idPacchettoModificare;
+	private int idAttivitaDaAggiungere;
+	private int idAttivitaDaEliminare;
 	
 	private String cittaPartenza;
 	private AttivitaDTO attivita1;
@@ -59,6 +61,9 @@ public class GestioneOfferteBean {
 		attivita3 = new AttivitaDTO();
 		attivita4 = new AttivitaDTO();
 		attivita5 = new AttivitaDTO();
+		if(idPacchettoModificare>0){
+			titolo=datistatici.getPacchettoDTO(idPacchettoModificare).getTitolo();
+		}
 	}
 	
 	
@@ -114,11 +119,35 @@ public class GestioneOfferteBean {
 	public List<AttivitaDTO> getAttivitaPossibili(){
 		return datistatici.getAttivitaPossibili(getCitta(),dataAndata.getYear()+1900,meseInt(dataAndata),Integer.parseInt(dataAndata.toString().substring(8, 10)),dataRitorno.getYear()+1900,meseInt(dataRitorno),Integer.parseInt(dataRitorno.toString().substring(8, 10)));
 	}
+	public List<AttivitaDTO> getAttivitaEliminabili(){
+		return gestioneOfferte.attivitaEliminabili(idPacchettoModificare);
+	}
+	public List<AttivitaDTO> getAttivitaAggiungibili(){
+		return gestioneOfferte.attivitaAggiungibili(idPacchettoModificare);
+	}
+	public String eliminaAttivitaDaPacchetto(){
+		gestioneOfferte.eliminaAttivitaDaPacchetto(idPacchettoModificare, idAttivitaDaEliminare);
+		return "/index?faces-redirect=true";
+	}
+	public String aggiungiAttivitaAlPacchetto(){
+		gestioneOfferte.aggiungiAttivitaAlPacchetto(idPacchettoModificare, idAttivitaDaAggiungere);
+		return "/index?faces-redirect=true";
+	}
 	public String eliminaPacchetto(){
-		System.out.println("ELIMINO PACCHETTO id: "+idPacchettoModificare);
 		gestioneOfferte.eliminaPacchetto(idPacchettoModificare);
 		return "/index?faces-redirect=true";
 	}
+	public String modificaPacchetto(){
+    	return "/impiegato/modificaPacchetto2?faces-redirect=true&id="+idPacchettoModificare;
+    }
+	public String modificaAttivitaPacchetto(){
+    	return "/impiegato/modificaAttivitaPacchetto?faces-redirect=true&id="+idPacchettoModificare;
+    }
+	
+	public PacchettoDTO getPacchettoSelezionato(){
+		return datistatici.getPacchettoDTO(idPacchettoModificare);
+	}
+	
 	public int meseInt(Date d){
 		String s=d.toString().substring(4, 7);
 		switch(s){
@@ -248,6 +277,18 @@ public class GestioneOfferteBean {
 	}
 	public void setIdPacchettoModificare(int idPacchettoModificare) {
 		this.idPacchettoModificare = idPacchettoModificare;
+	}
+	public int getIdAttivitaDaAggiungere() {
+		return idAttivitaDaAggiungere;
+	}
+	public void setIdAttivitaDaAggiungere(int idAttivitaDaAggiungere) {
+		this.idAttivitaDaAggiungere = idAttivitaDaAggiungere;
+	}
+	public int getIdAttivitaDaEliminare() {
+		return idAttivitaDaEliminare;
+	}
+	public void setIdAttivitaDaEliminare(int idAttivitaDaEliminare) {
+		this.idAttivitaDaEliminare = idAttivitaDaEliminare;
 	}
 
 }
