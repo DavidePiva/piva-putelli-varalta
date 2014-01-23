@@ -24,6 +24,10 @@ public class GestioneViaggiBean {
        
         @EJB
         private GestioneViaggiLocal gestioneViaggi;
+        
+        @EJB
+        private DatiStaticiLocal datistatici;
+        
         private int idViaggio;
         
         private ViaggioDTO viaggio;
@@ -35,8 +39,18 @@ public class GestioneViaggiBean {
         private VoloDTO andata;
         private VoloDTO ritorno;
         private List<VoloDTO> voli;
+        private int idHotelScelto;
+        private List<HotelDTO> hotelPossibili;
         
-       
+        public void setIdHotelScelto(int idHotelScelto){
+        	this.idHotelScelto = idHotelScelto;
+        }
+        
+        public int getIdHotelScelto(){
+        	return idHotelScelto;
+        }
+        
+        
         public void setIdViaggio(int idViaggio){
                 this.idViaggio = idViaggio;
         }
@@ -105,6 +119,11 @@ public class GestioneViaggiBean {
         	return voli;
         }
         
+        public List<HotelDTO> getHotelPossibili(){
+        	hotelPossibili = datistatici.hotelPerCitta(getCitta());
+        	return hotelPossibili;
+        }
+        
         public String acquista(){
         	return "/user/pagamento?faces-redirect=true&id="+idViaggio;
         }
@@ -112,6 +131,10 @@ public class GestioneViaggiBean {
         public String rimuovi(){
         	gestioneViaggi.rimuoviViaggio(idViaggio);
         	return "/user/index?faces-redirect=true";
+        }
+        
+        public String scegliHotel(){
+        	return "/user/scegliHotel?faces-redirect=true&id="+idViaggio;
         }
         
 }
