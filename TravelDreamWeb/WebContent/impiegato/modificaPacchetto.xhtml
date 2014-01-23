@@ -77,8 +77,14 @@
 						</h:selectOneMenu>
 						<h:outputLabel for="pacchetto"></h:outputLabel>
 					</h:panelGrid>
-					<p:commandButton value="Elimina" update="regGrid1"
+					<h:commandButton value="Elimina" update="regGrid1"
 						action="#{go.eliminaPacchetto()}" />
+						
+					<h:commandButton value="Aggiungi/elimina attività" update="regGrid1"
+						action="#{go.modificaAttivitaPacchetto()}" />
+						
+					<h:commandButton value="Modifica Pacchetto" update="regGrid1"
+						action="#{go.modificaPacchetto()}" />
 
 				</h:form>
 			</div>
