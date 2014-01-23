@@ -283,6 +283,7 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		Pernottamento p = v.getPernottamentoBean();
 		Hotel h = em.find(Hotel.class, idHotelScelto);
 		p.setHotelBean(h);
+		p.setTipo(tipoCameraScelto);
 		em.merge(p);
 		em.flush();
 		BigDecimal prezzo = ricalcolaPrezzo(idViaggio);

@@ -71,7 +71,7 @@
 				<h:form>
 				<h:selectOneMenu value="#{gv.tipoCameraScelto}" id="hotel">
 					<f:selectItems value="#{gv.camerePossibili}" var="c" itemLabel="#{c}"
-						itemValue="#{c}" />
+						itemValue="#{c.tipo}" />
 				</h:selectOneMenu>
 				<br></br>
 				<h:commandButton value="Conferma la scelta" action="#{gv.sostituisciHotel()}" />

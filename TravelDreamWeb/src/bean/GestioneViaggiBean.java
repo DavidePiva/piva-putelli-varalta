@@ -163,7 +163,7 @@ public class GestioneViaggiBean {
         }
         
         public String sostituisciHotel(){
-        	gestioneViaggi.sostituisciHotel(idViaggio,idHotelScelto,tipoCameraScelto);
+        	gestioneViaggi.sostituisciHotel(idViaggio,idHotelScelto,tipoCameraScelto.toLowerCase());
         	return "/user/modificaViaggio?faces-redirect=true&id="+idViaggio;
         }
         
