@@ -15,4 +15,6 @@ public interface GestioneOfferteLocal {
 	public void setDescrizione(String descr);
 
 	public void salvaTutto(PacchettoDTO p, AttivitaDTO a1, AttivitaDTO a2, AttivitaDTO a3, AttivitaDTO a4, AttivitaDTO a5);
+	
+	public void eliminaPacchetto(int idPacchetto);
 }

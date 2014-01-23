@@ -462,4 +462,17 @@ public class DatiStatici implements DatiStaticiLocal {
 		viaggio.setPrezzo(v.getPrezzo());
 		return viaggio;
 	}
+
+	@Override
+	public List<PacchettoDTO> pacchettiTutti() {
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile=1");
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		List<PacchettoDTO> l1 = new ArrayList<PacchettoDTO>();
+		for(int index = 0; index < i.size(); index++){
+			Pacchetto p = em.find(Pacchetto.class, i.get(index));
+			l1.add(convertiPacchettoDTO(p));
+		}
+		return l1;
+	}
 }
