@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.EJBContext;
 import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -35,7 +36,7 @@ import model.Volo;
 /**
  * Session Bean implementation class GestioneViaggi
  */
-@Stateless
+@Stateful
 @LocalBean
 public class GestioneViaggi implements GestioneViaggiLocal {
 	
