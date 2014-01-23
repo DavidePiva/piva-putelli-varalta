@@ -2,10 +2,16 @@ package DTO;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class TipoCamere_HotelDTO {
 	
 	private int id;
+
 	private BigDecimal prezzo;
+	
 	TipoCamera tipo;
 	
 	public int getId() {

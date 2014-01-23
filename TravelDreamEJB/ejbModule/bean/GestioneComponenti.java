@@ -108,7 +108,6 @@ GestioneComponenti(){
 	}
 	@Override
 	public void salvaCamera(TipoCamere_HotelDTO t,HotelDTO h){
-		em.clear();
 		
 		Hotel hotel = new Hotel(h);
 		Pernottamento p = new Pernottamento(hotel, true, t.getTipo().getString(t.getTipo()));
@@ -117,7 +116,7 @@ GestioneComponenti(){
 		boolean esiste=false;
 		TipoCamere_HotelDTO newTipo=new TipoCamere_HotelDTO();
 		for(int i=0;i<list.size();i++){
-			if(list.get(i).getId()==t.getId() && list.get(i).getTipo().equals(t.getTipo())){
+			if(list.get(i).getId()==t.getId() && list.get(i).getTipo().getString(list.get(i).getTipo())==t.getTipo().getString(t.getTipo())){
 				esiste=true;
 				newTipo=list.get(i);
 			}
@@ -135,69 +134,17 @@ GestioneComponenti(){
 		if (!esiste) {
 			
 			em.persist(t1);  
-		//	em.flush();
-			if(t.getPrezzo().compareTo(BigDecimal.ZERO) == 0){
-				p.setSelezionabile(false);
-			}
+			em.flush();
 			em.persist(p);
-		//  	em.flush();
-        }else if (esiste && t.getPrezzo().compareTo(BigDecimal.ZERO) != 0){
+        }else{
 
         	TipoCamere_Hotel t3=em.find(TipoCamere_Hotel.class,pk);  
         	em.remove(t3);        	
-        //	em.flush();
-        	em.clear();
+    		em.flush();
         	t2.setPrezzo(t.getPrezzo());
         	em.persist(t2);   
-        	em.flush();
-        	
-			int idPernottamento=getIdPernottamento(t.getTipo().getString(t.getTipo()),hotel.getIdHotel());
-			Pernottamento p1=new Pernottamento();
-			p1=em.find(Pernottamento.class, idPernottamento);
-			if (p1.getSelezionabile() == false) {
-			/*	Pernottamento p2 = new Pernottamento();
-				p2.setHotelBean(p1.getHotelBean());
-				p2.setIdPernottamento(p1.getIdPernottamento());
-				p2.setSelezionabile(true);
-				p2.setTipo(p1.getTipo());
-				em.remove(p1);
-			//	em.flush();
-				em.clear();
-				
-				em.persist(p2);
-			//	em.flush();*/
-				
-				p1.setSelezionabile(true);
-				em.merge(p1);
-			}
-		}else if(esiste && t.getPrezzo().compareTo(BigDecimal.ZERO) == 0){
-
-        	TipoCamere_Hotel t3=em.find(TipoCamere_Hotel.class,pk);
-        	em.remove(t3);
-        //	em.flush();
-        	em.clear();
-        	t2.setPrezzo(BigDecimal.ZERO);
-        	em.persist(t2);
-        //	em.flush();
-
-			int idPernottamento=getIdPernottamento(t.getTipo().getString(t.getTipo()),hotel.getIdHotel());
-			Pernottamento p1=new Pernottamento();
-			p1=em.find(Pernottamento.class, idPernottamento);
-			if (p1.getSelezionabile() == true) {
-				/*Pernottamento p2 = new Pernottamento();
-				p2.setHotelBean(p1.getHotelBean());
-				p2.setIdPernottamento(p1.getIdPernottamento());
-				p2.setSelezionabile(false);
-				p2.setTipo(p1.getTipo());
-				em.remove(p1);
-			//	em.flush();
-				em.clear();
-				em.persist(p2);
-			//	em.flush();*/
-				p1.setSelezionabile(false);
-				em.merge(p1);
-			}
 		}
+		
 		
 	}
 	
@@ -230,6 +177,12 @@ GestioneComponenti(){
 	
 	//###ELIMINAZIONE###//
 	
+	private void eliminaPernottamento(int id){
+		Pernottamento p=em.find(Pernottamento.class, id);
+		p.setSelezionabile(false);
+		em.merge(p);
+	}
+	
 	public void eliminaAttivita(int id){
 		Attivita a=em.find(Attivita.class, id);
 		a.setSelezionabile(false);
@@ -241,6 +194,16 @@ GestioneComponenti(){
 		Hotel h=em.find(Hotel.class, id);
 		h.setSelezionabile(false);
 		em.merge(h);
+		em.flush();
+		int id1=getIdPernottamento("lowcost",id);
+		eliminaPernottamento(id1);
+		em.flush();
+		int id2=getIdPernottamento("smart",id);
+		eliminaPernottamento(id2);
+		em.flush();
+		int id3=getIdPernottamento("dream",id);
+		eliminaPernottamento(id3);
+			
 	}
 	
 
