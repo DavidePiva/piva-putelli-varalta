@@ -46,8 +46,8 @@ public class GestioneViaggiBean {
         private List<HotelDTO> hotelPossibili;
         private List<TipoCamere_HotelDTO> camerePossibili;
         
-        public void setTipoCameraScelto(String a){
-        	tipoCameraScelto = a;
+        public void setTipoCameraScelto(String tipoCameraScelto){
+        	this.tipoCameraScelto = tipoCameraScelto;
         }
         
         public String getTipoCameraScelto(){
@@ -159,11 +159,11 @@ public class GestioneViaggiBean {
         }
         
         public String scegliCamera(){
-        	return "/user/scegliCamera?faces-redirect=true&idHotel="+idHotelScelto;
+        	return "/user/scegliCamera?faces-redirect=true&id="+idViaggio+"&idHotel="+idHotelScelto;
         }
         
         public String sostituisciHotel(){
-        	gestioneViaggi.sostituisciHotel(idViaggio,idHotelScelto);
+        	gestioneViaggi.sostituisciHotel(idViaggio,idHotelScelto,tipoCameraScelto);
         	return "/user/modificaViaggio?faces-redirect=true&id="+idViaggio;
         }
         

@@ -278,7 +278,7 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 	}
 
 	@Override
-	public void sostituisciHotel(int idViaggio, int idHotelScelto) {
+	public void sostituisciHotel(int idViaggio, int idHotelScelto, String tipoCameraScelto) {
 		Viaggio v = em.find(Viaggio.class, idViaggio);
 		Pernottamento p = v.getPernottamentoBean();
 		Hotel h = em.find(Hotel.class, idHotelScelto);
