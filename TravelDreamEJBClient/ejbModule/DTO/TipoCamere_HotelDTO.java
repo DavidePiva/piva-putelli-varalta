@@ -2,10 +2,6 @@ package DTO;
 
 import java.math.BigDecimal;
 
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
 public class TipoCamere_HotelDTO {
 	
 	private int id;
@@ -31,6 +27,10 @@ public class TipoCamere_HotelDTO {
 	}
 	public void setTipo(TipoCamera a) {
 		this.tipo = a;
+	}
+	
+	public String toString(){
+		return tipo.toString() +" (" + prezzo+" euro )";
 	}
 	
 	

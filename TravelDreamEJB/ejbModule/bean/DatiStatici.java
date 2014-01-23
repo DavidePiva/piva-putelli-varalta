@@ -24,6 +24,7 @@ import model.Hotel;
 import model.Pacchetto;
 import model.Pernottamento;
 import model.TipoCamere_Hotel;
+import model.TipoCamere_HotelPK;
 import model.Viaggio;
 import model.Volo;
 import DTO.AeroportoDTO;
@@ -31,6 +32,8 @@ import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.PacchettoDTO;
 import DTO.PernottamentoDTO;
+import DTO.TipoCamera;
+import DTO.TipoCamere_HotelDTO;
 import DTO.ViaggioDTO;
 import DTO.VoloDTO;
 
@@ -481,5 +484,28 @@ public class DatiStatici implements DatiStaticiLocal {
 		Pacchetto p = new Pacchetto();
 		p = em.find(Pacchetto.class, id);
 		return convertiPacchettoDTO(p);
+	}
+
+	@Override
+	public List<TipoCamere_HotelDTO> camerePerHotel(int idHotelScelto) {
+		Hotel h = em.find(Hotel.class, idHotelScelto);
+		List<TipoCamere_Hotel> l = h.getTipoCamereHotels();
+		List<TipoCamere_HotelDTO> lista = new ArrayList<TipoCamere_HotelDTO>();
+		for(int i = 0; i < l.size(); i++){
+			lista.add(convertiTipoCamere_HotelDTO(l.get(i)));
+		}
+		return lista;
+	}
+
+	private TipoCamere_HotelDTO convertiTipoCamere_HotelDTO(TipoCamere_Hotel t) {
+		TipoCamere_HotelPK pk = t.getId();
+		int idHotel = pk.getIdHotel();
+		String tipoCamera = pk.getTipoCamera();
+		BigDecimal prezzo = t.getPrezzo();
+		TipoCamere_HotelDTO t2 = new TipoCamere_HotelDTO();
+		t2.setId(idHotel);
+		t2.setPrezzo(prezzo);
+		t2.setTipo(TipoCamera.valueOf(tipoCamera.toUpperCase()));
+		return t2;
 	}
 }

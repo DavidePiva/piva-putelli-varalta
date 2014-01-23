@@ -11,7 +11,7 @@
 	type='text/css' />
 <script type='text/javascript' src='../css/menu.js' />
 <f:metadata>
-	<f:viewParam name="id" value="#{gv.idViaggio}" />
+	<f:viewParam name="idHotel" value="#{gv.idHotelScelto}" />
 </f:metadata>
 </head>
 <body onload="javascript:start()">
@@ -68,12 +68,12 @@
 			<div>
 				<h1>Scegli il tuo hotel</h1>
 				<h:form>
-				<h:selectOneMenu value="#{gv.idHotelScelto}" id="hotel">
-					<f:selectItems value="#{gv.hotelPossibili}" var="h" itemLabel="#{h}"
-						itemValue="#{h.idHotel}" />
+				<h:selectOneMenu value="#{gv.tipoCameraScelto}" id="hotel">
+					<f:selectItems value="#{gv.camerePossibili}" var="c" itemLabel="#{c}"
+						itemValue="#{c}" />
 				</h:selectOneMenu>
 				<br></br>
-				<h:commandButton value="Conferma la scelta" action="#{gv.scegliCamera()}" />
+				<h:commandButton value="Conferma la scelta" action="#{gv.sostituisciHotel()}" />
 				</h:form>
 			</div>
 		</div>

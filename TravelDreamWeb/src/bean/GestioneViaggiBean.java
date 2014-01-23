@@ -13,8 +13,10 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import DTO.HotelDTO;
+import DTO.TipoCamere_HotelDTO;
 import DTO.ViaggioDTO;
 import DTO.VoloDTO;
+import model.TipoCamere_Hotel;
 import model.Viaggio;
 import DTO.AttivitaDTO;
 
@@ -40,7 +42,17 @@ public class GestioneViaggiBean {
         private VoloDTO ritorno;
         private List<VoloDTO> voli;
         private int idHotelScelto;
+        private String tipoCameraScelto;
         private List<HotelDTO> hotelPossibili;
+        private List<TipoCamere_HotelDTO> camerePossibili;
+        
+        public void setTipoCameraScelto(String a){
+        	tipoCameraScelto = a;
+        }
+        
+        public String getTipoCameraScelto(){
+        	return tipoCameraScelto;
+        }
         
         public void setIdHotelScelto(int idHotelScelto){
         	this.idHotelScelto = idHotelScelto;
@@ -124,6 +136,11 @@ public class GestioneViaggiBean {
         	return hotelPossibili;
         }
         
+        public List<TipoCamere_HotelDTO> getCamerePossibili(){
+        	camerePossibili = datistatici.camerePerHotel(idHotelScelto);
+        	return camerePossibili;
+        }
+        
         public String acquista(){
         	return "/user/pagamento?faces-redirect=true&id="+idViaggio;
         }
@@ -132,6 +149,7 @@ public class GestioneViaggiBean {
         	gestioneViaggi.rimuoviViaggio(idViaggio);
         	return "/user/index?faces-redirect=true";
         }
+        
         public String modificaNumeroPersone(){
         	return "/user/numeroPersone?faces-redirect=true&id="+idViaggio;
         }
@@ -140,8 +158,12 @@ public class GestioneViaggiBean {
         	return "/user/scegliHotel?faces-redirect=true&id="+idViaggio;
         }
         
+        public String scegliCamera(){
+        	return "/user/scegliCamera?faces-redirect=true&idHotel="+idHotelScelto;
+        }
+        
         public String sostituisciHotel(){
-        	int a = idHotelScelto;
+        	gestioneViaggi.sostituisciHotel(idViaggio,idHotelScelto);
         	return "/user/modificaViaggio?faces-redirect=true&id="+idViaggio;
         }
         
