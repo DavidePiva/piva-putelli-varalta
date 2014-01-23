@@ -269,5 +269,13 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		em.remove(v);
 	}
 
+	@Override
+	public void setNumeroPersone(int n, int idViaggio) {
+		Viaggio v=em.find(Viaggio.class, idViaggio);
+		v.setNumeroPersone(n);
+		em.merge(v);
+		
+	}
+
 
 }

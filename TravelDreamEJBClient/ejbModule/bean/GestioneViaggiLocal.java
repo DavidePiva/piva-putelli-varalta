@@ -19,5 +19,5 @@ public interface GestioneViaggiLocal {
 	public VoloDTO getAndataViaggio(int idViaggio);
 	public VoloDTO getRitornoViaggio(int idViaggio);
 	public void rimuoviViaggio(int idViaggio);
-
+	public void setNumeroPersone(int n,int idViaggio);
 }
