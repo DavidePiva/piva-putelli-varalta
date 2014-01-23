@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import DTO.HotelDTO;
@@ -18,13 +19,11 @@ import model.Viaggio;
 import DTO.AttivitaDTO;
 
 @ManagedBean(name="gv")
-@RequestScoped
+@ViewScoped
 public class GestioneViaggiBean {
        
         @EJB
         private GestioneViaggiLocal gestioneViaggi;
-       
-        @ManagedProperty("#{param.id}")
         private int idViaggio;
         
         private ViaggioDTO viaggio;
@@ -52,6 +51,11 @@ public class GestioneViaggiBean {
         }
         
         public ViaggioDTO getViaggio(){
+        	if(idViaggio==0)
+        	{
+        		String a = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+        		idViaggio=Integer.parseInt(a);
+        	}
         	viaggio = gestioneViaggi.getViaggio(idViaggio);
         	return viaggio;
         }
@@ -99,6 +103,10 @@ public class GestioneViaggiBean {
         	getAndata();
         	getRitorno();
         	return voli;
+        }
+        
+        public String acquista(){
+        	return "/user/pagamento?faces-redirect=true&id="+idViaggio;
         }
         
 }

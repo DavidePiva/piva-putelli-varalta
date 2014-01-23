@@ -10,6 +10,9 @@
 <link href='../css/application.css' media='all' rel='stylesheet'
 	type='text/css' />
 <script type='text/javascript' src='../css/menu.js' />
+<f:metadata>
+	<f:viewParam name="id" value="#{pb.idViaggio}" />
+</f:metadata>
 </head>
 <body onload="javascript:start()">
 	<div id="boxintestazione">
@@ -63,59 +66,8 @@
 		</div>
 		<div id="boxcontenuto">
 			<div>
-				<h:form>
-
-					<h1>
-						<h:outputLabel
-							value="Pagina di modifica del viaggio a #{gv.citta}"></h:outputLabel>
-						<br></br>
-						<h:commandButton value="Acquista" action="#{gv.acquista()}" update="regGrid1" />
-						<h:commandButton value="Rimuovi" update="regGrid1" />
-					</h1>
-					<br></br>
-					<h:panelGrid columns="3" id="regGrid1">
-						<h:outputLabel for="numeroPersone"
-							value="Viaggio per #{gv.numeroPersone} persone"></h:outputLabel>
-						<h:outputLabel for="numeroPersone"
-							value="#{gv.prezzo} euro a testa"></h:outputLabel>
-						<h:commandButton value="Modifica" update="regGrid1" />
-
-						<h:outputLabel for="hotel" value="Informazioni Hotel:"></h:outputLabel>
-
-						<h:outputLabel for="hotel" value="#{gv.hotel}"></h:outputLabel>
-						<h:commandButton value="Modifica" update="regGrid1" />
-
-						<h:outputLabel for="attivita" value="Attività:"></h:outputLabel>
-
-						<ui:repeat  value="#{gv.attivita}" var="a">
-							<li><h:outputLabel value = "#{a}"></h:outputLabel></li>
-						</ui:repeat>	
-						<h:commandButton value="Modifica" update="regGrid1" />
-						
-						<h:outputLabel for="voli" value="Informazioni voli e date:"></h:outputLabel>
-						<ui:repeat value="#{gv.voli}" var="v">
-							<li><h:outputLabel value = "#{v}"></h:outputLabel></li>
-						</ui:repeat>	
-						<h:commandButton value="Modifica" update="regGrid1" />
-						<br></br>
-						<br></br>
-						<br></br>
-						<br></br>
-						<h:outputLabel for="regalo"
-							value="Se vuoi che qualcuno te lo regali clicca su:"></h:outputLabel>
-						<h:commandButton value="Vorrei..." update="regGrid1" />
-
-						<br></br>
-						<br></br>
-						<h:outputLabel for="invito"
-							value="Se invece vuoi partire in compagnia:"></h:outputLabel>
-						<h:commandButton value="Invita" update="regGrid1" />
-
-
-					</h:panelGrid>
-				</h:form>
-
-
+				<h1>Sono qua</h1>
+				<h:outputLabel value = "#{pb.idViaggio}"></h:outputLabel>
 			</div>
 		</div>
 	</div>
