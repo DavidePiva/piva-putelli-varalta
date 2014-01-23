@@ -109,4 +109,9 @@ public class GestioneViaggiBean {
         	return "/user/pagamento?faces-redirect=true&id="+idViaggio;
         }
         
+        public String rimuovi(){
+        	gestioneViaggi.rimuoviViaggio(idViaggio);
+        	return "/user/index?faces-redirect=true";
+        }
+        
 }
