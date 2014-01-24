@@ -72,6 +72,7 @@ public class ShowViaggioBean {
 			a.setCitta(viaggiUtente.get(i).getCitta());
 			a.setIdViaggio(viaggiUtente.get(i).getIdViaggio());
 			a.setNumeroPersone(viaggiUtente.get(i).getNumeroPersone());
+			a.setTitolare(viaggiUtente.get(i).getTitolare());
 			infoViaggi.add(a);
 		}
 		return infoViaggi;

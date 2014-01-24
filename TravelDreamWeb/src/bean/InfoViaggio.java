@@ -5,9 +5,18 @@ public class InfoViaggio {
 	private int idViaggio;
 	private int numeroPersone;
 	private String citta;
+	private String titolare;
 	
 	public InfoViaggio(){
 		
+	}
+	
+	public void setTitolare(String email){
+		titolare = email;
+	}
+	
+	public String getTitolare(){
+		return titolare;
 	}
 	
 	public int getIdViaggio() {
@@ -31,5 +40,9 @@ public class InfoViaggio {
 	
 	public String toString(){
 		return "Viaggio a "+citta+" per "+numeroPersone+" persone";
+	}
+	
+	public String riepilogo(){
+		return titolare + " ti ha invitato a " + citta;
 	}
 }
