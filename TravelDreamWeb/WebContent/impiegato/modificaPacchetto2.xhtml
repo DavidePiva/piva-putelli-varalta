@@ -73,37 +73,36 @@
 				<h:form>
 					<h:panelGrid columns="3" id="regGrid1"
 						rendered="#{go.primaPaginaVisibile()}">
-						<h:outputLabel for="titolo">Titolo</h:outputLabel>
-						<h:inputText id="titolo" value="#{go.pDTO.titolo}" ></h:inputText>
-						<p:message for="titolo" />
+						<h:outputLabel for="titoloMod">Titolo</h:outputLabel>
+						<h:inputText id="titoloMod" value="#{go.titoloMod}" ></h:inputText>
+						<p:message for="titoloMod" />
 
-						<h:outputLabel for="descrizione">Descrizione</h:outputLabel>
-						<h:inputTextarea id="descrizione" value="#{go.descrizione}"
+						<h:outputLabel for="descrizioneMod">Descrizione</h:outputLabel>
+						<h:inputTextarea id="descrizioneMod" value="#{go.descrizioneMod}"
 							cols="50" rows="20" />
-						<p:message for="descrizione" />
+						<p:message for="descrizioneMod" />
 
-						<h:outputLabel for="dataAndataMod">Data andata (mod)</h:outputLabel>
+						<h:outputLabel for="dataAndataMod">Data andata</h:outputLabel>
 						<p:calendar value="#{go.dataAndataMod}" id="dataAndataMod" />
 						<p:message for="dataAndataMod" />
 
-						<h:outputLabel for="dataRitorno">Data ritorno</h:outputLabel>
-						<p:calendar value="#{go.dataRitorno}" id="dataRitorno" />
-						<p:message for="dataRitorno" />
+						<h:outputLabel for="dataRitornoMod">Data ritorno</h:outputLabel>
+						<p:calendar value="#{go.dataRitornoMod}" id="dataRitornoMod" />
+						<p:message for="dataRitornoMod" />
 
-						<h:outputLabel for="target">Target</h:outputLabel>
-						<h:selectOneMenu value="#{go.target}" id="target">
-							<f:selectItem itemLabel="singolo" itemValue="singolo" />
-							<f:selectItem itemLabel="coppia" itemValue="coppia" />
-							<f:selectItem itemLabel="gruppo" itemValue="gruppo" />
-						</h:selectOneMenu>
-						<p:message for="target" />
-
-						<h:outputLabel for="tipologia">Tipologia</h:outputLabel>
-						<h:selectOneMenu value="#{go.tipologia}" id="tipologia">
-							<f:selectItems value="#{ds.tipiPacchetto}" var="c"
+						<h:outputLabel for="targetMod">Target</h:outputLabel>
+						<h:selectOneMenu value="#{go.targetMod}" id="targetMod">
+							<f:selectItems value="#{go.targetColPrimoSelezionato()}" var="c"
 								itemLabel="#{c}" itemValue="#{c}" />
 						</h:selectOneMenu>
-						<p:message for="tipologia" />
+						<p:message for="targetMod" />
+
+						<h:outputLabel for="tipologiaMod">Tipologia</h:outputLabel>
+						<h:selectOneMenu value="#{go.tipologiaMod}" id="tipologiaMod">
+							<f:selectItems value="#{go.tipologiaColPrimoSelezionato()}" var="c"
+								itemLabel="#{c}" itemValue="#{c}" />
+						</h:selectOneMenu>
+						<p:message for="tipologiaMod" />
 
 						<h:commandButton value="Continua" action="#{go.continua()}"
 							rendered="true" />

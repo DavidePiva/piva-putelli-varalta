@@ -158,6 +158,8 @@ public class DatiStatici implements DatiStaticiLocal {
 		p1.setVoloRitorno(v2.getIdVolo());
 		p1.setIdPernottamento(pe.getIdPernottamento());
 		p1.setSelezionabile(selezionabile);
+		p1.setTarget(p.getTarget());
+		p1.setTipologia(p.getTipologia());
 		return p1;
 	}
 
