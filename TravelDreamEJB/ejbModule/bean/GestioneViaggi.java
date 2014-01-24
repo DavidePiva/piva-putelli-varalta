@@ -321,7 +321,20 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 
 	@Override
 	public void rendiRegalabile(int idViaggio) {
-		// TODO Auto-generated method stub
+		Viaggio v=em.find(Viaggio.class, idViaggio);
+		List<Viaggio_Pernottamento> pernottamenti=v.getViaggioPernottamentos();
+		List<Viaggio_Volo> voli=v.getViaggioVolos();
+		List<Viaggio_Attivita> attivita=v.getViaggioAttivitas();
+		
+		for(Viaggio_Pernottamento p : pernottamenti){
+			p.setRegalabile(true);
+		}
+		for(Viaggio_Volo vo : voli){
+			vo.setRegalabile(true);
+		}
+		for(Viaggio_Attivita a : attivita){
+			a.setRegalabile(true);
+		}
 		
 	}
 
