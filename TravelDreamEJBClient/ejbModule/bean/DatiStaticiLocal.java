@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
+
 import DTO.*;
 
 @Local
@@ -36,4 +37,5 @@ public interface DatiStaticiLocal {
 	PacchettoDTO getPacchettoDTO(int id);
 	public List<TipoCamere_HotelDTO> camerePerHotel(int idHotelScelto);
 	public VoloDTO getVoloDTO(int id);
+	AeroportoDTO getAeroportoDTO(int id);
 }

@@ -111,61 +111,59 @@
 
 					<h:panelGrid columns="3" id="regGrid2"
 						rendered="#{go.secondaPaginaVisibile()}">
-						<h:outputLabel for="voloAndata">Volo andata</h:outputLabel>
-						<h:selectOneMenu value="#{go.pDTO.voloAndata}" id="voloAndata">
-							<f:selectItems value="#{go.voliPossibiliAndata()}" var="c"
+						<h:outputLabel for="voloAndataMod">Volo andata</h:outputLabel>
+						<h:selectOneMenu value="#{go.pDTO.voloAndata}" id="voloAndataMod">
+							<f:selectItems value="#{go.voliPossibiliAndataMod()}" var="c"
 								itemLabel="#{c.dataFormattata}" itemValue="#{c.idVolo}" />
 						</h:selectOneMenu>
-						<p:message for="voloAndata" />
+						<p:message for="voloAndataMod" />
 
-						<h:outputLabel for="voloRitorno">Volo ritorno</h:outputLabel>
-						<h:selectOneMenu value="#{go.pDTO.voloRitorno}" id="voloRitorno">
-							<f:selectItems value="#{go.voliPossibiliRitorno()}" var="c"
+						<h:outputLabel for="voloRitornoMod">Volo ritorno</h:outputLabel>
+						<h:selectOneMenu value="#{go.pDTO.voloRitorno}" id="voloRitornoMod">
+							<f:selectItems value="#{go.voliPossibiliRitornoMod()}" var="c"
 								itemLabel="#{c.dataFormattata}" itemValue="#{c.idVolo}" />
 						</h:selectOneMenu>
-						<p:message for="voloRitorno" />
+						<p:message for="voloRitornoMod" />
 
-						<h:outputLabel for="pernottamento">Pernottamento</h:outputLabel>
+						<h:outputLabel for="pernottamentoMod">Pernottamento</h:outputLabel>
 						<h:selectOneMenu value="#{go.pDTO.idPernottamento}"
-							id="pernottamento">
-							<f:selectItems value="#{go.pernottamentiPossibili()}" var="c"
+							id="pernottamentoMod">
+							<f:selectItems value="#{go.pernottamentiPossibiliMod()}" var="c"
 								itemLabel="#{c.tipo} - #{ds.getHotelPerId(c.idHotel).nome}, #{ds.getHotelPerId(c.idHotel).indirizzo}"
 								itemValue="#{c.idPernottamento}" />
 						</h:selectOneMenu>
-						<p:message for="pernottamento" />
+						<p:message for="pernottamentoMod" />
 
-						<h:outputLabel for="prezzo">Prezzo</h:outputLabel>
-						<h:inputText id="prezzo" value="#{go.pDTO.prezzo}" />
-						<p:message for="prezzo" />
+						<h:outputLabel for="prezzoMod">Prezzo</h:outputLabel>
+						<h:inputText id="prezzoMod" value="#{go.prezzoMod}" />
+						<p:message for="prezzoMod" />
 
-						<h:outputLabel for="foto1">Foto1</h:outputLabel>
-						<h:inputText id="foto1" value="#{go.pDTO.foto1}" />
-						<p:message for="foto1" />
+						<h:outputLabel for="foto1Mod">Foto1</h:outputLabel>
+						<h:inputText id="foto1Mod" value="#{go.foto1Mod}" />
+						<p:message for="foto1Mod" />
 
-						<h:outputLabel for="foto2">Foto2</h:outputLabel>
-						<h:inputText id="foto2" value="#{go.pDTO.foto2}" />
-						<p:message for="foto2" />
+						<h:outputLabel for="foto2Mod">Foto2</h:outputLabel>
+						<h:inputText id="foto2Mod" value="#{go.foto2Mod}" />
+						<p:message for="foto2Mod" />
 
-						<h:outputLabel for="foto3">Foto3</h:outputLabel>
-						<h:inputText id="foto3" value="#{go.pDTO.foto3}" />
-						<p:message for="foto3" />
+						<h:outputLabel for="foto3Mod">Foto3</h:outputLabel>
+						<h:inputText id="foto3Mod" value="#{go.foto3Mod}" />
+						<p:message for="foto3Mod" />
 
-						<h:outputLabel for="foto4">Foto4</h:outputLabel>
-						<h:inputText id="foto4" value="#{go.pDTO.foto4}" />
-						<p:message for="foto4" />
+						<h:outputLabel for="foto4Mod">Foto4</h:outputLabel>
+						<h:inputText id="foto4Mod" value="#{go.foto4Mod}" />
+						<p:message for="foto4Mod" />
 
-						<h:outputLabel for="foto5">Foto5</h:outputLabel>
-						<h:inputText id="foto5" value="#{go.pDTO.foto5}" />
-						<p:message for="foto5" />
+						<h:outputLabel for="foto5Mod">Foto5</h:outputLabel>
+						<h:inputText id="foto5Mod" value="#{go.foto5Mod}" />
+						<p:message for="foto5Mod" />
 
-						<h:outputLabel for="foto6">Foto6</h:outputLabel>
-						<h:inputText id="foto6" value="#{go.pDTO.foto6}" />
-						<p:message for="foto6" />
-
-						<h:inputText value="#{go.paginaSelezionata}" readonly="true" />
+						<h:outputLabel for="foto6Mod">Foto6</h:outputLabel>
+						<h:inputText id="foto6Mod" value="#{go.foto6Mod}" />
+						<p:message for="foto6Mod" />
 					</h:panelGrid>
 
-					<h:commandButton value="Salva" action="#{go.salva()}"
+					<h:commandButton value="Modifica e salva" action="#{go.salvaMod()}"
 						rendered="true" />
 				</h:form>
 			</div>
