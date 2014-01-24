@@ -7,12 +7,13 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import DTO.UtenteDTO;
 import DTO.ViaggioDTO;
 
 @ManagedBean(name = "par")
-@RequestScoped
+@ViewScoped
 public class PartecipazioniBean {
 	
 	
@@ -30,6 +31,7 @@ public class PartecipazioniBean {
 	private List<UtenteDTO> utentiInvitati;
 	private String utenteSelezionato;
 	private List<UtenteDTO> utentiConfermati;
+	private String emailInvito;
 	
 	
 	public void setIdViaggio(int idViaggio){
@@ -46,6 +48,14 @@ public class PartecipazioniBean {
 	
 	public String getUtenteSelezionato(){
 		return utenteSelezionato;
+	}
+	
+	public void setEmailInvito(String emailInvito){
+		this.emailInvito = emailInvito;
+	}
+	
+	public String getEmailInvito(){
+		return emailInvito;
 	}
 	
 	public List<UtenteDTO> getUtentiInvitati(){
@@ -87,6 +97,11 @@ public class PartecipazioniBean {
     	BigDecimal p= this.viaggio.getPrezzo();
     	BigDecimal totale=p.multiply(new BigDecimal(viaggio.getNumeroPersone()));
     	return totale;
+    }
+    
+    public String aggiungiPartecipazione(){
+    	gestioneViaggi.aggiungiPartecipazione(idViaggio, emailInvito);
+    	return "/user/inviti?faces-redirect=true&id="+idViaggio;
     }
 	
 }
