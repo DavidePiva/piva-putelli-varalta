@@ -23,4 +23,5 @@ public interface GestioneOfferteLocal {
 	public List<AttivitaDTO> attivitaEliminabili(int idPacchetto);
 	public void eliminaAttivitaDaPacchetto(int idPacchetto, int idAttivita);
 	public void aggiungiAttivitaAlPacchetto(int idPacchetto, int idAttivita);
+	public void modificaSalva(PacchettoDTO pDTO);
 }

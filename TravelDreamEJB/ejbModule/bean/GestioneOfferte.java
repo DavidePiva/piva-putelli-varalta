@@ -201,5 +201,37 @@ public class GestioneOfferte implements GestioneOfferteLocal {
 
 	}
 
+	@Override
+	public void modificaSalva(PacchettoDTO pDTO) {
+		Pacchetto p=em.find(Pacchetto.class, pDTO.getIdPacchetto());
+		p.setDescrizione(pDTO.getDescrizione());
+		p.setPrezzo(pDTO.getPrezzo());
+		p.setSelezionabile(pDTO.getSelezionabile());
+		p.setTarget(pDTO.getTarget());
+		p.setTipologia(pDTO.getTipologia());
+		p.setTitolo(pDTO.getTitolo());
+		p.setFoto1(pDTO.getFoto1());
+		p.setFoto2(pDTO.getFoto2());
+		p.setFoto3(pDTO.getFoto3());
+		p.setFoto4(pDTO.getFoto4());
+		p.setFoto5(pDTO.getFoto5());
+		p.setFoto6(pDTO.getFoto6());
+		
+		Volo v1 = em.find(Volo.class, pDTO.getVoloAndata());
+		p.setVolo1(v1);
+		
+		Volo v2 = em.find(Volo.class, pDTO.getVoloRitorno());
+		p.setVolo2(v2);
+		
+		Pernottamento pernott = em.find(Pernottamento.class, pDTO.getIdPernottamento());
+		p.setPernottamentoBean(pernott);
+		
+		
+		System.out.println("Pacchetto "+p.getTitolo()+" aggiornato!");
+		em.merge(p);
+
+		
+	}
+
 
 }
