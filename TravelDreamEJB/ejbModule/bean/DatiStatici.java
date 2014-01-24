@@ -160,6 +160,12 @@ public class DatiStatici implements DatiStaticiLocal {
 		p1.setSelezionabile(selezionabile);
 		p1.setTarget(p.getTarget());
 		p1.setTipologia(p.getTipologia());
+		p1.setFoto1(p.getFoto1());
+		p1.setFoto2(p.getFoto2());
+		p1.setFoto3(p.getFoto3());
+		p1.setFoto4(p.getFoto4());
+		p1.setFoto5(p.getFoto5());
+		p1.setFoto6(p.getFoto6());
 		return p1;
 	}
 
@@ -516,5 +522,19 @@ public class DatiStatici implements DatiStaticiLocal {
 		Volo v = new Volo();
 		v = em.find(Volo.class, id);
 		return convertiVoloDTO(v);
+	}
+	
+	@Override
+	public AeroportoDTO getAeroportoDTO(int id) {
+		Aeroporto a = em.find(Aeroporto.class, id);
+		return convertiAeroportoDTO(a);
+	}
+
+	private AeroportoDTO convertiAeroportoDTO(Aeroporto a) {
+		AeroportoDTO aDTO = new AeroportoDTO();
+		aDTO.setCitta(a.getCitta());
+		aDTO.setId(a.getIdAeroporto());
+		aDTO.setNome(a.getNome());
+		return aDTO;
 	}
 }

@@ -1,5 +1,6 @@
 package bean;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -312,21 +313,21 @@ public class GestioneOfferteBean {
 	
 	
 	//Pagina di modifica
-	@SuppressWarnings("unused")
 	private Date dataAndataMod;
-	@SuppressWarnings("unused")
 	private Date dataRitornoMod;
 	private PacchettoDTO pDTOMod;
-	@SuppressWarnings("unused")
 	private String titoloMod;
-	@SuppressWarnings("unused")
 	private String descrizioneMod;
-	@SuppressWarnings("unused")
-	private String cittaMod;
-	@SuppressWarnings("unused")
 	private String targetMod;
-	@SuppressWarnings("unused")
 	private String tipologiaMod;
+	private BigDecimal prezzoMod;
+	private String foto1Mod;
+	private String foto2Mod;
+	private String foto3Mod;
+	private String foto4Mod;
+	private String foto5Mod;
+	private String foto6Mod;
+	
 	
 	
 	//Metodi ad hoc per la pagina di modifica
@@ -361,6 +362,38 @@ public class GestioneOfferteBean {
 		
 		return c;
 	}
+	public List<VoloDTO> voliPossibiliAndataMod(){
+		return datistatici.getVoliPossibili(datistatici.getAeroportoDTO(datistatici.getVoloDTO(datistatici.getPacchettoDTO(idPacchettoModificare).getVoloAndata()).getIdAeroportoPartenza()).getCitta(), datistatici.getPacchettoDTO(idPacchettoModificare).getCitta(), dataAndataMod.getYear()+1900, meseInt(dataAndataMod), Integer.parseInt(dataAndataMod.toString().substring(8, 10)));
+	}
+	public List<VoloDTO> voliPossibiliRitornoMod(){
+		return datistatici.getVoliPossibili(datistatici.getPacchettoDTO(idPacchettoModificare).getCitta(), datistatici.getAeroportoDTO(datistatici.getVoloDTO(datistatici.getPacchettoDTO(idPacchettoModificare).getVoloAndata()).getIdAeroportoPartenza()).getCitta(), dataRitornoMod.getYear()+1900, meseInt(dataRitornoMod), Integer.parseInt(dataRitornoMod.toString().substring(8, 10)));
+	}
+	public List<PernottamentoDTO> pernottamentiPossibiliMod(){
+		return datistatici.getPernottamentiPossibili(datistatici.getPacchettoDTO(idPacchettoModificare).getCitta());
+	}
+	public String salvaMod(){
+		System.out.println("RICHIAMATA SALVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmod! Nel pDTO foto4: "+pDTO.getFoto4());
+		//gestioneOfferte.setPaginaSelezionata(2);
+		//paginaSelezionata=gestioneOfferte.getPaginaSelezionata();
+		pDTO.setSelezionabile(true);
+		pDTO.setTitolo(titoloMod);
+		pDTO.setDescrizione(descrizioneMod);
+		pDTO.setTarget(targetMod);
+		pDTO.setTipologia(tipologiaMod);
+		pDTO.setFoto1(foto1Mod);
+		pDTO.setFoto2(foto2Mod);
+		pDTO.setFoto3(foto3Mod);
+		pDTO.setFoto4(foto4Mod);
+		pDTO.setFoto5(foto5Mod);
+		pDTO.setFoto6(foto6Mod);
+		//gestioneOfferte.salvaTutto(pDTO, attivita1, attivita2, attivita3, attivita4, attivita5);
+		return "/impiegato/index?faces-redirect=true";
+	}
+
+	
+	
+	
+	
 	
 	
 
@@ -394,12 +427,6 @@ public class GestioneOfferteBean {
 	public void setDescrizioneMod(String descrizioneMod) {
 		this.descrizioneMod = descrizioneMod;
 	}
-	public String getCittaMod() {
-		return datistatici.getPacchettoDTO(idPacchettoModificare).getCitta();
-	}
-	public void setCittaMod(String cittaMod) {
-		this.cittaMod = cittaMod;
-	}
 	public String getTargetMod() {
 		return datistatici.getPacchettoDTO(idPacchettoModificare).getTarget();
 	}
@@ -412,4 +439,48 @@ public class GestioneOfferteBean {
 	public void setTipologiaMod(String tipologiaMod) {
 		this.tipologiaMod = tipologiaMod;
 	}
+	public BigDecimal getPrezzoMod() {
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getPrezzo();
+	}
+	public void setPrezzoMod(BigDecimal prezzoMod) {
+		this.prezzoMod = prezzoMod;
+	}
+	public String getFoto1Mod() {
+		System.out.println("La foto 1 è : "+datistatici.getPacchettoDTO(idPacchettoModificare).getFoto1());
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getFoto1();
+	}
+	public void setFoto1Mod(String foto1Mod) {
+		this.foto1Mod = foto1Mod;
+	}
+	public String getFoto2Mod() {
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getFoto2();
+	}
+	public void setFoto2Mod(String foto2Mod) {
+		this.foto2Mod = foto2Mod;
+	}
+	public String getFoto3Mod() {
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getFoto3();
+	}
+	public void setFoto3Mod(String foto3Mod) {
+		this.foto3Mod = foto3Mod;
+	}
+	public String getFoto4Mod() {
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getFoto4();
+	}
+	public void setFoto4Mod(String foto4Mod) {
+		this.foto4Mod = foto4Mod;
+	}
+	public String getFoto5Mod() {
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getFoto5();
+	}
+	public void setFoto5Mod(String foto5Mod) {
+		this.foto5Mod = foto5Mod;
+	}
+	public String getFoto6Mod() {
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getFoto6();
+	}
+	public void setFoto6Mod(String foto6Mod) {
+		this.foto6Mod = foto6Mod;
+	}
+	
 }
