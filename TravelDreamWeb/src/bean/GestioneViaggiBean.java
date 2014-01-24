@@ -172,8 +172,12 @@ public class GestioneViaggiBean {
         }
         
         public String regali(){
-        	gestioneViaggi.rendiRegalabile(idViaggio);
         	return "/user/regali?faces-redirect=true&id="+idViaggio;
+        }
+        
+        public String rendiRegalabile(){
+        	gestioneViaggi.rendiRegalabile(idViaggio);
+        	return "/user/modificaViaggio?faces-redirect=true&id="+idViaggio;
         }
         
        
