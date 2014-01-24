@@ -171,4 +171,8 @@ public class GestioneViaggiBean {
         	return "/user/inviti?faces-redirect=true&id="+idViaggio;
         }
         
+        public String regali(){
+        	return "/user/regali?faces-redirect=true&id="+idViaggio;
+        }
+        
 }
