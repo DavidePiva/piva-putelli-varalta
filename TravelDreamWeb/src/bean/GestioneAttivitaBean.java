@@ -1,15 +1,17 @@
 package bean;
 
+import java.math.BigDecimal;
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import DTO.AttivitaDTO;
-import DTO.HotelDTO;
 
 @ManagedBean(name = "ga")
 public class GestioneAttivitaBean {
@@ -21,7 +23,9 @@ public class GestioneAttivitaBean {
 	@EJB 
 	private DatiStaticiLocal ds;
 	
-	
+	@Pattern(regexp="^(?!^0)\\d{1,9}$", message="Inserisci un valore positivo")
+	@NotEmpty(message="Inserisci un prezzo")
+	String prezzo;
 	private AttivitaDTO attivita;
 	private int ore;
 	private int minuti;
@@ -31,9 +35,10 @@ public class GestioneAttivitaBean {
 		this.attivita=new AttivitaDTO();
 	}
 	
-	public String creaAttivita(){
-		AttivitaDTO pippo=new AttivitaDTO();		
-
+	public String creaAttivita(){		
+		
+		attivita.setPrezzo(new BigDecimal(prezzo));
+		@SuppressWarnings("deprecation")
 		Time orario=new Time(ore,minuti,0);
 		attivita.setOra(orario);
 
@@ -113,6 +118,7 @@ public class GestioneAttivitaBean {
 		attivita.setId(attivitaDaModificare.getId());
 		attivita.setCitta(attivitaDaModificare.getCitta());
 		attivita.setData(attivitaDaModificare.getData());
+		@SuppressWarnings("deprecation")
 		Time orario=new Time(ore,minuti,0);
 		attivita.setOra(orario);
 		if(attivita.getDescrizione().equals("")){
@@ -172,6 +178,14 @@ public class GestioneAttivitaBean {
 
 	public void setDs(DatiStaticiLocal ds) {
 		this.ds = ds;
+	}
+
+	public String getPrezzo() {
+		return prezzo;
+	}
+
+	public void setPrezzo(String prezzo) {
+		this.prezzo = prezzo;
 	}
 	
 }
