@@ -94,7 +94,7 @@
 						
 						<h:outputLabel for="voli" value="Informazioni voli e date:"></h:outputLabel>
 						<ui:repeat value="#{gv.voli}" var="v">
-							<li><h:outputLabel value = "#{v}"></h:outputLabel></li>
+							<li><h:outputLabel value = "#{v.getDataFormattata()}"></h:outputLabel></li>
 						</ui:repeat>	
 						<h:commandButton value="Modifica" update="regGrid1" />
 						<br></br>
@@ -104,7 +104,6 @@
 						<h:outputLabel for="regalo"
 							value="Se vuoi che qualcuno te lo regali clicca su:"></h:outputLabel>
 						<h:commandButton value="Vorrei..." update="regGrid1" />
-
 						<br></br>
 						<br></br>
 						<h:outputLabel for="invito"
