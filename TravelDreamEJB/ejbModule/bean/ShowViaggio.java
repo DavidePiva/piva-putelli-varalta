@@ -51,12 +51,15 @@ public class ShowViaggio implements ShowViaggioLocal {
 		int id = v.getIdViaggio();
 		int numeroPersone = v.getNumeroPersone();
 		Pernottamento p = v.getPernottamentoBean();
+		Utente utente = v.getUtente();
 		Volo a = v.getVolo1();
 		Volo b = v.getVolo2();
 		String citta = v.getCitta();
 		BigDecimal prezzo = v.getPrezzo();
 		boolean pagato = v.getPagato();
 		Pacchetto pa = v.getPacchetto();
+		v2.setTitolare(utente.getEmail());
+		v2.setNomeTitolare(utente.getNome(), utente.getCognome());
 		v2.setCitta(citta);
 		v2.setIdPacchettoPadre(pa.getIdPacchetto());
 		v2.setIdPernottamento(p.getIdPernottamento());

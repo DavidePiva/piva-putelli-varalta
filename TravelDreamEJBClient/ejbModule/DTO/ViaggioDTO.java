@@ -18,7 +18,10 @@ public class ViaggioDTO {
 	private int idVoloRitorno;
 	private int idPernottamento;
 	private String titolare;
+	private String nomeTitolare;
 	private int idPacchettoPadre;
+	
+	
 	public int getIdViaggio() {
 		return idViaggio;
 	}
@@ -81,5 +84,11 @@ public class ViaggioDTO {
 		this.titolare = titolare;
 	}
 	
+	public void setNomeTitolare(String nome, String cognome){
+		nomeTitolare = nome + " "+cognome;
+	}
 	
+	public String getNomeTitolare(){
+		return nomeTitolare;
+	}
 }
