@@ -16,6 +16,7 @@ import model.Pernottamento;
 import model.Utente;
 import model.Viaggio;
 import model.Volo;
+import DTO.UtenteDTO;
 import DTO.ViaggioDTO;
 
 /**
@@ -83,6 +84,12 @@ public class ShowViaggio implements ShowViaggioLocal {
 			lista.add(convertiViaggioDTO(v));
 		}
 		return lista;
+	}
+
+	@Override
+	public List<UtenteDTO> getUtentiInvitati(int idViaggio) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
