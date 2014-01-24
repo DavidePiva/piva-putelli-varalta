@@ -74,9 +74,11 @@ public class GestioneOfferteBean {
 
 
 	public void continua(){
-		gestioneOfferte.setPaginaSelezionata(gestioneOfferte.getPaginaSelezionata()+1);
-		this.setPaginaSelezionata(gestioneOfferte.getPaginaSelezionata());
-		gestioneOfferte.setDescrizione(descrizione+" DESCRIZZZ!");
+		//gestioneOfferte.setPaginaSelezionata(gestioneOfferte.getPaginaSelezionata()+1);
+		//@deprecatedthis.setPaginaSelezionata(gestioneOfferte.getPaginaSelezionata());
+		this.setPaginaSelezionata(1);
+		
+		//gestioneOfferte.setDescrizione(descrizione+" DESCRIZZZ!");
 		System.out.println("OOOOOOOOOOK, SI RIPARTE!PAGINA: "+this.getPaginaSelezionata());
 	}
 	public String salva(){
@@ -312,13 +314,55 @@ public class GestioneOfferteBean {
 	//Pagina di modifica
 	@SuppressWarnings("unused")
 	private Date dataAndataMod;
+	@SuppressWarnings("unused")
 	private Date dataRitornoMod;
 	private PacchettoDTO pDTOMod;
+	@SuppressWarnings("unused")
 	private String titoloMod;
+	@SuppressWarnings("unused")
 	private String descrizioneMod;
+	@SuppressWarnings("unused")
 	private String cittaMod;
+	@SuppressWarnings("unused")
 	private String targetMod;
+	@SuppressWarnings("unused")
 	private String tipologiaMod;
+	
+	
+	//Metodi ad hoc per la pagina di modifica
+	public List<String> targetColPrimoSelezionato()
+	{
+		List<String> l = new ArrayList<String>();
+		System.out.println(datistatici.getPacchettoDTO(idPacchettoModificare).getCitta()+"   "+datistatici.getPacchettoDTO(idPacchettoModificare).getTarget());
+		String t = datistatici.getPacchettoDTO(idPacchettoModificare).getTarget();
+		l.add(t);
+		System.out.println("AGGiunta a lista "+t);
+		if(!t.equals("singolo"))
+			l.add("singolo");
+		if(!t.equals("coppia"))
+			l.add("coppia");
+		if(!t.equals("gruppo"))
+			l.add("gruppo");
+		
+		return l;
+	}
+	
+	public List<String> tipologiaColPrimoSelezionato(){
+		List<String> l = datistatici.tipiPacchetto();
+		List<String> c = new ArrayList<String>();
+		String t = datistatici.getPacchettoDTO(idPacchettoModificare).getTipologia();
+		c.add(t);
+		
+		for(int i=0; i<l.size();i++){
+			if(!l.get(i).equals(t)){
+				c.add(l.get(i));
+			}
+		}
+		
+		return c;
+	}
+	
+	
 
 	public Date getDataAndataMod() {
 		return datistatici.getVoloDTO(datistatici.getPacchettoDTO(idPacchettoModificare).getVoloAndata()).getData();
@@ -327,7 +371,7 @@ public class GestioneOfferteBean {
 		this.dataAndataMod = dataAndataMod;
 	}
 	public Date getDataRitornoMod() {
-		return dataRitornoMod;
+		return datistatici.getVoloDTO(datistatici.getPacchettoDTO(idPacchettoModificare).getVoloRitorno()).getData();
 	}
 	public void setDataRitornoMod(Date dataRitornoMod) {
 		this.dataRitornoMod = dataRitornoMod;
@@ -339,31 +383,31 @@ public class GestioneOfferteBean {
 		this.pDTOMod = pDTOMod;
 	}
 	public String getTitoloMod() {
-		return titoloMod;
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getTitolo();
 	}
 	public void setTitoloMod(String titoloMod) {
 		this.titoloMod = titoloMod;
 	}
 	public String getDescrizioneMod() {
-		return descrizioneMod;
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getDescrizione();
 	}
 	public void setDescrizioneMod(String descrizioneMod) {
 		this.descrizioneMod = descrizioneMod;
 	}
 	public String getCittaMod() {
-		return cittaMod;
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getCitta();
 	}
 	public void setCittaMod(String cittaMod) {
 		this.cittaMod = cittaMod;
 	}
 	public String getTargetMod() {
-		return targetMod;
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getTarget();
 	}
 	public void setTargetMod(String targetMod) {
 		this.targetMod = targetMod;
 	}
 	public String getTipologiaMod() {
-		return tipologiaMod;
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getTipologia();
 	}
 	public void setTipologiaMod(String tipologiaMod) {
 		this.tipologiaMod = tipologiaMod;
