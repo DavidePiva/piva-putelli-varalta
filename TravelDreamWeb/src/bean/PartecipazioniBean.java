@@ -13,10 +13,21 @@ import DTO.ViaggioDTO;
 @RequestScoped
 public class PartecipazioniBean {
 	
+	
+	
 	@EJB
 	private ShowViaggioLocal showViaggio;
 	private List<ViaggioDTO> partecipazioni;
 	public List<InfoViaggio> infoPartecipazioni;
+	private int idViaggio;
+	
+	public void setIdViaggio(int idViaggio){
+		this.idViaggio = idViaggio;
+	}
+	
+	public int getIdViaggio(){
+		return idViaggio;
+	}
 	
 	public List<ViaggioDTO> getPartecipazioni(String emailUtente){
 		partecipazioni = showViaggio.getPartecipazioni(emailUtente);
@@ -36,6 +47,5 @@ public class PartecipazioniBean {
 		}
 		return infoPartecipazioni;
 	}
-	
 	
 }
