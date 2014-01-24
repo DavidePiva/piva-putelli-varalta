@@ -291,4 +291,81 @@ public class GestioneOfferteBean {
 		this.idAttivitaDaEliminare = idAttivitaDaEliminare;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//Pagina di modifica
+	@SuppressWarnings("unused")
+	private Date dataAndataMod;
+	private Date dataRitornoMod;
+	private PacchettoDTO pDTOMod;
+	private String titoloMod;
+	private String descrizioneMod;
+	private String cittaMod;
+	private String targetMod;
+	private String tipologiaMod;
+
+	public Date getDataAndataMod() {
+		return datistatici.getVoloDTO(datistatici.getPacchettoDTO(idPacchettoModificare).getVoloAndata()).getData();
+	}
+	public void setDataAndataMod(Date dataAndataMod) {
+		this.dataAndataMod = dataAndataMod;
+	}
+	public Date getDataRitornoMod() {
+		return dataRitornoMod;
+	}
+	public void setDataRitornoMod(Date dataRitornoMod) {
+		this.dataRitornoMod = dataRitornoMod;
+	}
+	public PacchettoDTO getpDTOMod() {
+		return pDTOMod;
+	}
+	public void setpDTOMod(PacchettoDTO pDTOMod) {
+		this.pDTOMod = pDTOMod;
+	}
+	public String getTitoloMod() {
+		return titoloMod;
+	}
+	public void setTitoloMod(String titoloMod) {
+		this.titoloMod = titoloMod;
+	}
+	public String getDescrizioneMod() {
+		return descrizioneMod;
+	}
+	public void setDescrizioneMod(String descrizioneMod) {
+		this.descrizioneMod = descrizioneMod;
+	}
+	public String getCittaMod() {
+		return cittaMod;
+	}
+	public void setCittaMod(String cittaMod) {
+		this.cittaMod = cittaMod;
+	}
+	public String getTargetMod() {
+		return targetMod;
+	}
+	public void setTargetMod(String targetMod) {
+		this.targetMod = targetMod;
+	}
+	public String getTipologiaMod() {
+		return tipologiaMod;
+	}
+	public void setTipologiaMod(String tipologiaMod) {
+		this.tipologiaMod = tipologiaMod;
+	}
 }

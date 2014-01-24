@@ -508,4 +508,11 @@ public class DatiStatici implements DatiStaticiLocal {
 		t2.setTipo(TipoCamera.valueOf(tipoCamera.toUpperCase()));
 		return t2;
 	}
+
+	@Override
+	public VoloDTO getVoloDTO(int id) {
+		Volo v = new Volo();
+		v = em.find(Volo.class, id);
+		return convertiVoloDTO(v);
+	}
 }
