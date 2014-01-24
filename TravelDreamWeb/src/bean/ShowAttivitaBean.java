@@ -17,35 +17,44 @@ public class ShowAttivitaBean {
 	@EJB
 	private ShowAttivitaLocal showAttivita;
 	private int numeroFoto;
-	private String nomeAttivita;
+	private int idAttivita;
 	
 	public void setNumeroFoto(int numeroFoto){
 		this.numeroFoto = numeroFoto;
-	}
-	
-	public void setNomeAttivita(String nomeAttivita){
-		this.nomeAttivita = nomeAttivita;
-	}
-	
-	public String getNomeAttivita(){
-		return nomeAttivita;
 	}
 	
 	public int getNumeroFoto(){
 		return numeroFoto;
 	}
 	
-	/*public AttivitaDTO getAttivitaPerParametro(){
-		AttivitaDTO a = showAttivita.getAttivita(nomeAttivita);
-		return a;
-	}*/
-	
-	/*public String descrizioneAttivita(){
-		AttivitaDTO a = getAttivitaPerParametro();
-		return a.getDescrizione();
-	}*/
-	
 	public List<String> getListaTitoliAttivita(){
 		return showAttivita.getListaTitoliAttivita();
 	}
+
+	public int getIdAttivita() {
+		return idAttivita;
+	}
+
+	public void setIdAttivita(int idAttivita) {
+		this.idAttivita = idAttivita;
+	}
+	
+	public AttivitaDTO getAttivita(){
+		return showAttivita.getAttivita(idAttivita);
+	}
+	
+	public String getFotoSelezionata(){
+		AttivitaDTO aDTO = getAttivita();
+		switch(numeroFoto){
+		case 1:
+			return aDTO.getFoto1();
+		case 2:
+			return aDTO.getFoto2();
+		case 3:
+			return aDTO.getFoto3();
+		default:
+			return "";
+		}
+	}
+
 }

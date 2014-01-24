@@ -90,14 +90,8 @@ public class ShowPacchettoBean {
 		return showPacchetto.getVolo2(h);
 	}
 	
-	public ArrayList<String> getAttivitaPacchetto(){
+	public List<AttivitaDTO> getAttivitaPacchetto(){
 		PacchettoDTO h = getPacchettoPerParametro();
-		attivitaPacchetto = new ArrayList<String>();
-		List<AttivitaDTO> att = new ArrayList<AttivitaDTO>();
-		att = showPacchetto.getListaAttivita(h.getIdPacchetto());
-		for(int i = 0; i < att.size(); i++){
-			attivitaPacchetto.add(att.get(i).getTitolo());
-		}
-		return attivitaPacchetto;
+		return showPacchetto.getListaAttivita(h.getIdPacchetto());
 	}
 }
