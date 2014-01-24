@@ -31,7 +31,7 @@ public class PartecipazioniBean {
 			a.setCitta(partecipazioni.get(i).getCitta());
 			a.setIdViaggio(partecipazioni.get(i).getIdViaggio());
 			a.setNumeroPersone(partecipazioni.get(i).getNumeroPersone());
-			a.setTitolare(partecipazioni.get(i).getTitolare());
+			a.setTitolare(partecipazioni.get(i).getNomeTitolare());
 			infoPartecipazioni.add(a);
 		}
 		return infoPartecipazioni;
