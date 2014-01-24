@@ -11,4 +11,6 @@ public interface ShowViaggioLocal {
 
 	public List<ViaggioDTO> getViaggiUtente(String email);
 
+	public List<ViaggioDTO> getPartecipazioni(String emailUtente);
+
 }
