@@ -70,8 +70,7 @@
 				<h:form>
 
 					<h1>
-						<h:outputLabel
-							value="I viaggiatori"></h:outputLabel>
+						<h:outputLabel value="I viaggiatori"></h:outputLabel>
 					</h1>
 					<br></br>
 					<h:panelGrid columns="3" id="regGrid1">
@@ -80,24 +79,26 @@
 						<br></br>
 						<h:outputLabel for="numeroPersone"
 							value="#{par.viaggio.prezzo} euro a testa. Il tuo totale è di #{par.totale}"></h:outputLabel>
-						
+
 
 						<h:outputLabel for="inviti" value="In più hai invitato:"></h:outputLabel>
 						<br></br>
-						<h:outputLabel for="invitiConfermati" value="Hanno già confermato:"></h:outputLabel>
-						<h:selectOneMenu  id="listaInviti" value = "#{par.utenteSelezionato}">
-								<f:selectItems  value="#{par.utentiInvitati}" var="u" itemLabel="#{u.email}"
-										itemValue="#{u.email}" />
+						<h:outputLabel for="invitiConfermati"
+							value="Hanno già confermato:"></h:outputLabel>
+						<h:selectOneMenu id="listaInviti" value="#{par.utenteSelezionato}">
+							<f:selectItems value="#{par.utentiInvitati}" var="u"
+								itemLabel="#{u.email}" itemValue="#{u.email}" />
 						</h:selectOneMenu>
-						<h:commandButton value="Rimuovi"   />
-						<h:selectOneMenu  id="listaInvitiConfermati">
-								<f:selectItems  
-													 />
-						</h:selectOneMenu>
-						
-						<h:outputLabel for="email" value="Vuoi invitare qualcuno?"></h:outputLabel><br></br><br></br>
-						<h:outputLabel for="invitiConfermati" ></h:outputLabel>
-						<p:inputText id="email"  /> <h:commandButton value="Invita"   />
+						<h:commandButton value="Rimuovi" />
+						<ui:repeat  value="#{par.utentiConfermati}" var="u">
+							<li><h:outputLabel value = "#{u.email}"></h:outputLabel></li>
+						</ui:repeat>	
+						<h:outputLabel for="email" value="Vuoi invitare qualcuno?"></h:outputLabel>
+						<br></br>
+						<br></br>
+						<h:outputLabel for="invitiConfermati"></h:outputLabel>
+						<p:inputText id="email" />
+						<h:commandButton value="Invita" />
 
 					</h:panelGrid>
 				</h:form>

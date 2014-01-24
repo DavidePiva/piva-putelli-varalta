@@ -29,6 +29,7 @@ public class PartecipazioniBean {
 	private BigDecimal totale;
 	private List<UtenteDTO> utentiInvitati;
 	private String utenteSelezionato;
+	private List<UtenteDTO> utentiConfermati;
 	
 	
 	public void setIdViaggio(int idViaggio){
@@ -50,6 +51,11 @@ public class PartecipazioniBean {
 	public List<UtenteDTO> getUtentiInvitati(){
 		utentiInvitati = showViaggio.getUtentiInvitati(idViaggio);
 		return utentiInvitati;
+	}
+	
+	public List<UtenteDTO> getUtentiConfermati(){
+		utentiConfermati = showViaggio.getUtentiConfermati(idViaggio);
+		return utentiConfermati;
 	}
 	
 	public List<ViaggioDTO> getPartecipazioni(String emailUtente){

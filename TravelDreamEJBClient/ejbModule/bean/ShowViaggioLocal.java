@@ -16,4 +16,6 @@ public interface ShowViaggioLocal {
 
 	public List<UtenteDTO> getUtentiInvitati(int idViaggio);
 
+	public List<UtenteDTO> getUtentiConfermati(int idViaggio);
+
 }
