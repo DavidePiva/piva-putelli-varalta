@@ -88,8 +88,24 @@ public class ShowViaggio implements ShowViaggioLocal {
 
 	@Override
 	public List<UtenteDTO> getUtentiInvitati(int idViaggio) {
-		// TODO Auto-generated method stub
-		return null;
+		Query q = em.createNativeQuery("SELECT emailPartecipante FROM Partecipazione WHERE pagato = 0  AND idViaggio = "+idViaggio);
+		List<UtenteDTO> lista = new ArrayList<UtenteDTO>();
+		List<String> emails = q.getResultList();
+		for(int i = 0; i < emails.size(); i++){
+			String email = emails.get(i);
+			Utente u = em.find(Utente.class, email);
+			lista.add(convertiInDTO(u));
+		}
+		return lista;
+	}
+	
+	private UtenteDTO convertiInDTO(Utente u) {
+		UtenteDTO uDTO = new UtenteDTO();
+		uDTO.setEmail(u.getEmail());
+		uDTO.setNome(u.getNome());
+		uDTO.setCognome(u.getCognome());
+		uDTO.setAttivo(u.getAttivo());
+		return uDTO;
 	}
 
 }
