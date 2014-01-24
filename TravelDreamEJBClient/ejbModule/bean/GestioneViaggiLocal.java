@@ -21,4 +21,5 @@ public interface GestioneViaggiLocal {
 	public void rimuoviViaggio(int idViaggio);
 	public void setNumeroPersone(int n,int idViaggio);
 	public void sostituisciHotel(int idViaggio, int idHotelScelto, String tipoCameraScelto);
+	public void rendiRegalabile(int idViaggio);
 }
