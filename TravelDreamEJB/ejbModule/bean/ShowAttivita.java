@@ -78,4 +78,11 @@ public class ShowAttivita implements ShowAttivitaLocal {
 		return a2;
 	}
 
+	@Override
+	public AttivitaDTO getAttivita(int id) {
+		Attivita a = new Attivita();
+		a = em.find(Attivita.class, id);
+		return convertiAttivitaDTO(a);
+	}
+
 }

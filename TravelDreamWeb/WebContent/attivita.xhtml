@@ -10,7 +10,7 @@
 <link href='css/application.css' media='all' rel='stylesheet' type='text/css' />
 <script type='text/javascript' src='css/menu.js' />
 <f:metadata>
-	<f:viewParam name="attivita" value="#{sa.nomeAttivita}" />
+	<f:viewParam name="attivita" value="#{sa.idAttivita}" />
 	<f:viewParam name="foto" value="#{sa.numeroFoto}" />
 </f:metadata>
 </head>
@@ -68,10 +68,46 @@
 			</div>
 		</div>
 		<div id="boxcontenuto">
-			<h1>Attivita</h1>
-			<div>
-				<h:outputLabel value = "#{sa.descrizioneAttivita()}"></h:outputLabel>
-			</div>
+			<h1><h:outputLabel value = "#{sa.attivita.titolo}"></h:outputLabel></h1>
+			
+			<table>
+					<tr>
+						<td align="center"><h:graphicImage width="400" height="300"
+								url="foto/#{sa.fotoSelezionata}"></h:graphicImage> <br />
+								
+						<h:link
+								value="#{attivita}" outcome="attivita">
+								<f:param name="attivita" value="#{sa.idAttivita}" />
+								<f:param name="foto" value="1" />
+								<h:graphicImage width="100" height="75"
+									url="foto/#{sa.attivita.foto1}"></h:graphicImage>
+							</h:link> <b> </b>
+						<h:link
+								value="#{attivita}" outcome="attivita">
+								<f:param name="attivita" value="#{sa.idAttivita}" />
+								<f:param name="foto" value="2" />
+								<h:graphicImage width="100" height="75"
+									url="foto/#{sa.attivita.foto2}"></h:graphicImage>
+							</h:link> <b> </b>
+						<h:link
+								value="#{attivita}" outcome="attivita">
+								<f:param name="attivita" value="#{sa.idAttivita}" />
+								<f:param name="foto" value="3" />
+								<h:graphicImage width="100" height="75"
+									url="foto/#{sa.attivita.foto3}"></h:graphicImage>
+							</h:link></td>
+						<td width='20px'></td>
+						<td valign="top"><h:outputLabel value = "#{sa.attivita.descrizione}"></h:outputLabel></td>
+					</tr>
+				</table>
+			
+			
+							<br /> <br /> <b>INFORMAZIONI:</b> <br />
+				<h:outputLabel value="#{sa.attivita.data}"></h:outputLabel><br />
+				<h:outputLabel value="#{sa.attivita.ora}"></h:outputLabel><br  />
+				<h:outputLabel value="#{sa.attivita.citta}"></h:outputLabel> <br />
+				<h:outputLabel value="#{sa.attivita.prezzo} euro"></h:outputLabel>
+			
 		</div>
 	</div>
 	<!--/boxbig-->

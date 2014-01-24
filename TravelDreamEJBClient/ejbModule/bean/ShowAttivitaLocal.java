@@ -10,4 +10,5 @@ import DTO.AttivitaDTO;
 public interface ShowAttivitaLocal {
 	
 	public List<String> getListaTitoliAttivita();
+	public AttivitaDTO getAttivita(int id);
 }

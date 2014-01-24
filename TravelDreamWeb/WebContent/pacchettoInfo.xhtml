@@ -87,8 +87,8 @@
 								<f:param name="foto" value="1" />
 							</h:link><br /></td>
 						<ui:repeat value="#{sp.attivitaPacchetto}" var="attivita">
-							<li><h:link value="#{attivita}" outcome="attivita">
-									<f:param name="attivita" value="#{attivita}" />
+							<li><h:link value="#{attivita.titolo} - #{attivita.prezzo}" outcome="attivita">
+									<f:param name="attivita" value="#{attivita.id}" />
 									<f:param name="foto" value="1" />
 								</h:link></li>
 						</ui:repeat>
