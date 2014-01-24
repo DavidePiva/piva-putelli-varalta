@@ -112,21 +112,21 @@
 					<h:panelGrid columns="3" id="regGrid2"
 						rendered="#{go.secondaPaginaVisibile()}">
 						<h:outputLabel for="voloAndataMod">Volo andata</h:outputLabel>
-						<h:selectOneMenu value="#{go.pDTO.voloAndata}" id="voloAndataMod">
+						<h:selectOneMenu value="#{go.voloAndataMod}" id="voloAndataMod">
 							<f:selectItems value="#{go.voliPossibiliAndataMod()}" var="c"
 								itemLabel="#{c.dataFormattata}" itemValue="#{c.idVolo}" />
 						</h:selectOneMenu>
 						<p:message for="voloAndataMod" />
 
 						<h:outputLabel for="voloRitornoMod">Volo ritorno</h:outputLabel>
-						<h:selectOneMenu value="#{go.pDTO.voloRitorno}" id="voloRitornoMod">
+						<h:selectOneMenu value="#{go.voloRitornoMod}" id="voloRitornoMod">
 							<f:selectItems value="#{go.voliPossibiliRitornoMod()}" var="c"
 								itemLabel="#{c.dataFormattata}" itemValue="#{c.idVolo}" />
 						</h:selectOneMenu>
 						<p:message for="voloRitornoMod" />
 
 						<h:outputLabel for="pernottamentoMod">Pernottamento</h:outputLabel>
-						<h:selectOneMenu value="#{go.pDTO.idPernottamento}"
+						<h:selectOneMenu value="#{go.idPernottamentoMod}"
 							id="pernottamentoMod">
 							<f:selectItems value="#{go.pernottamentiPossibiliMod()}" var="c"
 								itemLabel="#{c.tipo} - #{ds.getHotelPerId(c.idHotel).nome}, #{ds.getHotelPerId(c.idHotel).indirizzo}"

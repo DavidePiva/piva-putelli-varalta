@@ -55,6 +55,7 @@ public class GestioneOfferteBean {
 	public GestioneOfferteBean() {
 		paginaSelezionata=0;
 		pDTO = new PacchettoDTO();
+		pDTOMod = new PacchettoDTO();
 		dataAndata = new Date();
 		dataRitorno = new Date();
 		attivita1 = new AttivitaDTO();
@@ -327,6 +328,9 @@ public class GestioneOfferteBean {
 	private String foto4Mod;
 	private String foto5Mod;
 	private String foto6Mod;
+	private int voloAndataMod;
+	private int voloRitornoMod;
+	private int idPernottamentoMod;
 	
 	
 	
@@ -372,20 +376,26 @@ public class GestioneOfferteBean {
 		return datistatici.getPernottamentiPossibili(datistatici.getPacchettoDTO(idPacchettoModificare).getCitta());
 	}
 	public String salvaMod(){
-		System.out.println("RICHIAMATA SALVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmod! Nel pDTO foto4: "+pDTO.getFoto4());
+		System.out.println("RICHIAMATA SALVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmod! Nel pDTO foto1: "+foto1Mod+" e voloandata "+voloAndataMod);
 		//gestioneOfferte.setPaginaSelezionata(2);
 		//paginaSelezionata=gestioneOfferte.getPaginaSelezionata();
-		pDTO.setSelezionabile(true);
-		pDTO.setTitolo(titoloMod);
-		pDTO.setDescrizione(descrizioneMod);
-		pDTO.setTarget(targetMod);
-		pDTO.setTipologia(tipologiaMod);
-		pDTO.setFoto1(foto1Mod);
-		pDTO.setFoto2(foto2Mod);
-		pDTO.setFoto3(foto3Mod);
-		pDTO.setFoto4(foto4Mod);
-		pDTO.setFoto5(foto5Mod);
-		pDTO.setFoto6(foto6Mod);
+		pDTOMod.setIdPacchetto(idPacchettoModificare);
+		pDTOMod.setSelezionabile(true);
+		pDTOMod.setTitolo(titoloMod);
+		pDTOMod.setDescrizione(descrizioneMod);
+		pDTOMod.setTarget(targetMod);
+		pDTOMod.setTipologia(tipologiaMod);
+		pDTOMod.setFoto1(foto1Mod);
+		pDTOMod.setFoto2(foto2Mod);
+		pDTOMod.setFoto3(foto3Mod);
+		pDTOMod.setFoto4(foto4Mod);
+		pDTOMod.setFoto5(foto5Mod);
+		pDTOMod.setFoto6(foto6Mod);
+		pDTOMod.setPrezzo(prezzoMod);
+		pDTOMod.setVoloAndata(voloAndataMod);
+		pDTOMod.setVoloRitorno(voloRitornoMod);
+		pDTOMod.setIdPernottamento(idPernottamentoMod);
+		gestioneOfferte.modificaSalva(pDTOMod);
 		//gestioneOfferte.salvaTutto(pDTO, attivita1, attivita2, attivita3, attivita4, attivita5);
 		return "/impiegato/index?faces-redirect=true";
 	}
@@ -482,5 +492,23 @@ public class GestioneOfferteBean {
 	public void setFoto6Mod(String foto6Mod) {
 		this.foto6Mod = foto6Mod;
 	}
-	
+	public int getVoloAndataMod() {
+		return voloAndataMod;
+	}
+	public void setVoloAndataMod(int voloAndataMod) {
+		this.voloAndataMod = voloAndataMod;
+	}
+	public int getVoloRitornoMod() {
+		return voloRitornoMod;
+	}
+	public void setVoloRitornoMod(int voloRitornoMod) {
+		this.voloRitornoMod = voloRitornoMod;
+	}
+	public int getIdPernottamentoMod() {
+		return idPernottamentoMod;
+	}
+	public void setIdPernottamentoMod(int idPernottamentoMod) {
+		this.idPernottamentoMod = idPernottamentoMod;
+	}
+
 }
