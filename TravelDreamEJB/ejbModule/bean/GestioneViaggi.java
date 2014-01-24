@@ -300,5 +300,11 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		return nuovoPrezzo;
 	}
 
+	@Override
+	public void rendiRegalabile(int idViaggio) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
