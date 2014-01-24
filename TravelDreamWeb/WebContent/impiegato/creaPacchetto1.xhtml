@@ -112,8 +112,10 @@
 
 						<h:outputLabel for="tipologia">Tipologia</h:outputLabel>
 						<h:selectOneMenu value="#{go.tipologia}" id="tipologia">
-							<f:selectItems value="#{ds.tipiPacchetto}" var="c"
-								itemLabel="#{c}" itemValue="#{c}" />
+							<f:selectItem itemLabel="culturale" itemValue="culturale" />
+							<f:selectItem itemLabel="romantico" itemValue="romantico" />
+							<f:selectItem itemLabel="relax" itemValue="relax" />
+							<f:selectItem itemLabel="avventura" itemValue="avventura" />
 						</h:selectOneMenu>
 						<p:message for="tipologia" />
 
@@ -222,11 +224,11 @@
 						<h:inputText id="foto6" value="#{go.pDTO.foto6}" />
 						<p:message for="foto6" />
 
-						<h:inputText value="#{go.paginaSelezionata}" readonly="true" />
+						<h:commandButton value="Salva" action="#{go.salva()}"
+						rendered="true" />
 					</h:panelGrid>
 
-					<h:commandButton value="Salva" action="#{go.salva()}"
-						rendered="true" />
+					
 				</h:form>
 			</div>
 		</div>

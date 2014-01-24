@@ -353,7 +353,7 @@ public class GestioneOfferteBean {
 	}
 	
 	public List<String> tipologiaColPrimoSelezionato(){
-		List<String> l = datistatici.tipiPacchetto();
+		/*List<String> l = datistatici.tipiPacchetto();
 		List<String> c = new ArrayList<String>();
 		String t = datistatici.getPacchettoDTO(idPacchettoModificare).getTipologia();
 		c.add(t);
@@ -363,6 +363,21 @@ public class GestioneOfferteBean {
 				c.add(l.get(i));
 			}
 		}
+		
+		return c;*/
+		
+		List<String> c = new ArrayList<String>();
+		String t = datistatici.getPacchettoDTO(idPacchettoModificare).getTipologia();
+		
+		c.add(t);
+		if(!t.equals("culturale"))
+			c.add("culturale");
+		if(!t.equals("romantico"))
+			c.add("romantico");
+		if(!t.equals("relax"))
+			c.add("relax");
+		if(!t.equals("avventura"))
+			c.add("avventura");
 		
 		return c;
 	}

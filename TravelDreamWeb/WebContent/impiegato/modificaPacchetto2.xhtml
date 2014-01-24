@@ -161,10 +161,12 @@
 						<h:outputLabel for="foto6Mod">Foto6</h:outputLabel>
 						<h:inputText id="foto6Mod" value="#{go.foto6Mod}" />
 						<p:message for="foto6Mod" />
+						
+						<h:commandButton value="Modifica e salva" action="#{go.salvaMod()}"
+						rendered="true" />
 					</h:panelGrid>
 
-					<h:commandButton value="Modifica e salva" action="#{go.salvaMod()}"
-						rendered="true" />
+					
 				</h:form>
 			</div>
 		</div>
