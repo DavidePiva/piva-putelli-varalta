@@ -97,8 +97,8 @@
 						<br></br>
 						<br></br>
 						<h:outputLabel for="invitiConfermati"></h:outputLabel>
-						<p:inputText id="email" />
-						<h:commandButton value="Invita" />
+						<p:inputText id="email" value="#{par.emailInvito}"/>
+						<h:commandButton value="Invita" action = "#{par.aggiungiPartecipazione()}" />
 
 					</h:panelGrid>
 				</h:form>

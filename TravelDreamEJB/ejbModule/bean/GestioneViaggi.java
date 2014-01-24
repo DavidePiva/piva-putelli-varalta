@@ -20,6 +20,8 @@ import DTO.HotelDTO;
 import DTO.ViaggioDTO;
 import DTO.VoloDTO;
 import model.Hotel;
+import model.Partecipazione;
+import model.PartecipazionePK;
 import model.Utente;
 import model.Attivita;
 import model.Pacchetto;
@@ -298,6 +300,23 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		f+=100;
 		nuovoPrezzo = BigDecimal.valueOf(f);
 		return nuovoPrezzo;
+	}
+
+	@Override
+	public void aggiungiPartecipazione(int idViaggio, String emailInvito) {
+		Utente utente = em.find(Utente.class, emailInvito);
+		Viaggio viaggio = em.find(Viaggio.class, idViaggio);
+		PartecipazionePK pk = new PartecipazionePK();
+		pk.setEmailPartecipante(emailInvito);
+		pk.setIdViaggio(idViaggio);
+		Partecipazione p = new Partecipazione();
+		p.setId(pk);
+		p.setPagato(false);
+		p.setUtente(utente);
+		p.setViaggio(viaggio);
+		em.merge(p);
+		viaggio.addPartecipazione(p);
+		em.merge(viaggio);
 	}
 
 	@Override
