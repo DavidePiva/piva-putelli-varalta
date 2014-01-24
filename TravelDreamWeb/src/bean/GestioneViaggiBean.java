@@ -167,4 +167,8 @@ public class GestioneViaggiBean {
         	return "/user/modificaViaggio?faces-redirect=true&id="+idViaggio;
         }
         
+        public String invita(){
+        	return "/user/inviti?faces-redirect=true&id="+idViaggio;
+        }
+        
 }
