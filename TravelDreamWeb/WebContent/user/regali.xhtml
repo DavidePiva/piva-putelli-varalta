@@ -82,9 +82,9 @@
 						<p:inputText id="email" value="#{rb.emailSelezionata}" />
 						<h:commandButton value="Aggiungi alla lista" action = "#{rb.aggiungiDonatore()}"/>
 						<br></br>
-						<h:selectOneMenu  id="listaInviti">
-								<f:selectItems  
-													 />
+						<h:selectOneMenu  id="listaDonatori" value="#{rb.utenteSelezionato}">
+								<f:selectItems value="#{rb.listaDonatori}" var="d" itemLabel = "#{d.email}"
+									itemValue = "#{d.email}"/>
 						</h:selectOneMenu>
 						<h:commandButton value="Rimuovi"/>
 						<br></br>

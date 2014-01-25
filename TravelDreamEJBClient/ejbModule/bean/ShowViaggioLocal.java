@@ -18,4 +18,6 @@ public interface ShowViaggioLocal {
 
 	public List<UtenteDTO> getUtentiConfermati(int idViaggio);
 
+	public List<UtenteDTO> getDonatori(int idViaggio);
+
 }

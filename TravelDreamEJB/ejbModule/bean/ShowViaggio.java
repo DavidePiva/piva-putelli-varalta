@@ -121,4 +121,18 @@ public class ShowViaggio implements ShowViaggioLocal {
 		return lista;
 	}
 
+	@Override
+	public List<UtenteDTO> getDonatori(int idViaggio) {
+		List<UtenteDTO> lista = new ArrayList<UtenteDTO>();
+		Query q = em.createNativeQuery("SELECT DISTINCT emailDonatore FROM Donazione_Attivita WHERE donato = 0 AND idViaggio = "+idViaggio);
+		List<String> emails = q.getResultList();
+		for(int i = 0; i < emails.size(); i++){
+			String email = emails.get(i);
+			Utente u = em.find(Utente.class, email);
+			UtenteDTO u1 = convertiInDTO(u);
+			lista.add(u1);
+		}
+		return lista;
+	}
+
 }
