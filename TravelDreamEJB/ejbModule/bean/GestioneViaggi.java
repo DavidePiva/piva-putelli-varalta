@@ -19,6 +19,9 @@ import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.ViaggioDTO;
 import DTO.VoloDTO;
+import model.Donazione_AttivitaPK;
+import model.Donazione_Pernottamento;
+import model.Donazione_PernottamentoPK;
 import model.Hotel;
 import model.Partecipazione;
 import model.PartecipazionePK;
@@ -345,6 +348,22 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		pk.setIdViaggio(idViaggio);
 		Partecipazione p = em.find(Partecipazione.class, pk);
 		em.remove(p);
+	}
+
+	@Override
+	public void aggiungiDonatore(int idViaggio, String emailSelezionata) {
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		Utente utente = em.find(Utente.class, emailSelezionata);
+		int idPernottamento = v.getPernottamentoBean().getIdPernottamento();
+		Donazione_PernottamentoPK pk1 = new Donazione_PernottamentoPK();
+		pk1.setEmailDonatore(emailSelezionata);
+		pk1.setIdPernottamento(idPernottamento);
+		Donazione_Pernottamento dp = new Donazione_Pernottamento();
+		dp.setId(pk1);
+		dp.setPernottamento(v.getPernottamentoBean());
+		dp.setUtente(utente);
+		dp.setDonato(false);
+		em.merge(dp);
 	}
 
 	@Override
