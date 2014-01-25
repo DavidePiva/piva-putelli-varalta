@@ -3,12 +3,9 @@ package bean;
 import java.math.BigDecimal;
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+
 
 import javax.annotation.Resource;
 import javax.ejb.EJBContext;
@@ -80,14 +77,17 @@ public class DatiStatici implements DatiStaticiLocal {
 		return a;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getDestinazioni() {
 		Query q = em.createNativeQuery("SELECT DISTINCT citta FROM Aeroporto ORDER BY citta ASC");
+		@SuppressWarnings("rawtypes")
 		List a = new ArrayList<String>();
 		a = q.getResultList();
 		return a;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<HotelDTO> hotelPerCitta(String s){
 		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE citta = '"+s+"'");
 		List<Integer> i = new ArrayList<Integer>();
@@ -125,6 +125,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return h2;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PacchettoDTO> pacchettiPerCitta(String s) {
 		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile = 1 AND citta = '"+s+"'");
@@ -169,6 +170,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return p1;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> tipiPacchetto() {
 		Query q = em.createNativeQuery("SELECT DISTINCT tipologia FROM Pacchetto WHERE selezionabile = 1");
@@ -177,6 +179,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return l1;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PacchettoDTO> pacchettiPerTipo(String tipoSelezionato) {
 		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile = 1 AND tipologia = '"+tipoSelezionato+"'");
@@ -190,6 +193,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return l1;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PacchettoDTO> pacchettiPerPrezzo(int prezzoMinimo,int prezzoMassimo) {
 		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile = 1 AND prezzo BETWEEN " + prezzoMinimo+ " AND "+ prezzoMassimo);
@@ -203,6 +207,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return l1;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PacchettoDTO> pacchettiPerPrezzo(int prezzoMinimo) {
 		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile = 1 AND prezzo > " + prezzoMinimo);
@@ -217,6 +222,7 @@ public class DatiStatici implements DatiStaticiLocal {
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PacchettoDTO> pacchettiPerHotel(String hotelSelezionato) {
 		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE nome = '"+hotelSelezionato+"'");
@@ -237,6 +243,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return l1;
 	}
 
+	@SuppressWarnings("unchecked")
 	public int getIdPernottamento(String tipoCamera,int idHotel){
 		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento WHERE hotel = "+idHotel+" AND tipo = "+tipoCamera);
 		List<Integer> list=new ArrayList<Integer>();
@@ -246,6 +253,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return i;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public TipoCamere_Hotel getTipoCamere_Hotel(int idHotel,String tipoCamera){
 		Query q = em.createNativeQuery("SELECT  FROM TipoCamere_Hotel WHERE idHotel = "+idHotel+" AND tipoCamera = '"+tipoCamera+"'");
 		List<TipoCamere_Hotel> list = new ArrayList<TipoCamere_Hotel>();
@@ -254,6 +262,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return t;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public BigDecimal getPrezzoCamera(int idHotel,String tipoCamera){
 		Query q = em.createNativeQuery("SELECT prezzo FROM TipoCamere_Hotel WHERE idHotel = "+idHotel+" AND tipoCamera = '"+tipoCamera+"'");
 		List<TipoCamere_Hotel> list = new ArrayList<TipoCamere_Hotel>();
@@ -262,6 +271,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return prezzo;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<VoloDTO> getVoliPossibili(String cittaPartenza, String cittaArrivo, int anno, int mese, int giorno) {
 		Query q = em.createNativeQuery("SELECT idVolo FROM Volo,Aeroporto WHERE (Aeroporto.idAeroporto = Volo.aeroportoPartenza AND Aeroporto.citta = '"+cittaPartenza+"') AND Volo.idVolo IN (SELECT idVolo FROM Volo, Aeroporto WHERE Aeroporto.idAeroporto = Volo.aeroportoArrivo AND Aeroporto.citta = '"+cittaArrivo+"')AND data = '"+anno+"-"+mese+"-"+giorno+"'");
@@ -302,6 +312,7 @@ public class DatiStatici implements DatiStaticiLocal {
 	public List<AttivitaDTO> getAttivitaPossibili(String citta, int anno1,
 			int mese1, int giorno1, int anno2, int mese2, int giorno2) {
 		Query q = em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE selezionabile = 1 AND citta = '"+citta+"' AND data BETWEEN '"+anno1+"-"+mese1+"-"+giorno1+"' AND '"+anno2+"-"+mese2+"-"+giorno2+"'");
+		@SuppressWarnings("unchecked")
 		List<Integer> l = q.getResultList();
 		List<AttivitaDTO> l1 = new ArrayList<AttivitaDTO>();
 		for(int i = 0; i < l.size(); i++){
@@ -341,6 +352,7 @@ public class DatiStatici implements DatiStaticiLocal {
 	@Override
 	public List<PernottamentoDTO> getPernottamentiPossibili(String citta) {
 		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento,Hotel WHERE Pernottamento.hotel = Hotel.idHotel AND Pernottamento.selezionabile = 1 AND Hotel.citta = \""+citta+"\"");
+		@SuppressWarnings("unchecked")
 		List<Integer> l = q.getResultList();
 		List<PernottamentoDTO> l1 = new ArrayList<PernottamentoDTO>();
 		for(int i = 0; i < l.size(); i++){
@@ -366,10 +378,12 @@ public class DatiStatici implements DatiStaticiLocal {
 	@Override
 	public List<String> getTarget() {
 		Query q = em.createNativeQuery("SELECT DISTINCT target FROM Pacchetto");
+		@SuppressWarnings("unchecked")
 		List<String> l = q.getResultList();
 		return l;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PacchettoDTO> pacchettiPerTarget(String targetSelezionato) {
 		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile = 1 AND target = '"+targetSelezionato+"'");
@@ -383,6 +397,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return l1;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<HotelDTO> getHotelPerPrezzo(int prezzoMinimo, int prezzoMassimo) {
 		Query q = em.createNativeQuery("SELECT Hotel.idHotel FROM Hotel, TipoCamere_Hotel WHERE Hotel.idHotel = TipoCamere_Hotel.idHotel AND prezzo<>0 GROUP BY Hotel.idHotel HAVING AVG(prezzo) BETWEEN "+prezzoMinimo+" AND "+prezzoMassimo);
@@ -396,6 +411,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return l1;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<HotelDTO> getHotelPerPrezzo(int prezzoMinimo) {
 		Query q = em.createNativeQuery("SELECT Hotel.idHotel FROM Hotel, TipoCamere_Hotel WHERE Hotel.idHotel = TipoCamere_Hotel.idHotel AND prezzo<>0 GROUP BY Hotel.idHotel HAVING AVG(prezzo) > "+prezzoMinimo);
@@ -409,6 +425,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return l1;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AttivitaDTO> attivitaPerTitolo(String titolo) {
 		Query q=em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE titolo = '"+titolo+"'");
@@ -421,6 +438,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		}	
 		return listDTO;
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AttivitaDTO> attivitaDTO() {
 		Query q=em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE selezionabile = 1");
@@ -440,6 +458,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return convertiHotelDTO(h);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public HotelDTO getHotelPerNome(String nome){
 		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE nome = '"+nome+"'");
@@ -474,6 +493,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return viaggio;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PacchettoDTO> pacchettiTutti() {
 		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile=1");
@@ -538,6 +558,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		return aDTO;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getListaUtenti() {
 		Query q = em.createNativeQuery("SELECT email FROM Utente");
