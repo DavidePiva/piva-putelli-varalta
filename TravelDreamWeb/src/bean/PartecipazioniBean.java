@@ -6,8 +6,10 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import DTO.UtenteDTO;
 import DTO.ViaggioDTO;
@@ -35,6 +37,8 @@ public class PartecipazioniBean {
 	private List<UtenteDTO> utentiInvitati;
 	private String utenteSelezionato;
 	private List<UtenteDTO> utentiConfermati;
+	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+            message="Email non valida")
 	private String emailInvito;
 	
 	

@@ -85,6 +85,7 @@
 						<br></br>
 						<h:outputLabel for="invitiConfermati"
 							value="Hanno già confermato:"></h:outputLabel>
+						<h:outputLabel ></h:outputLabel>		<h:outputLabel ></h:outputLabel>		<h:outputLabel ></h:outputLabel>
 						<h:selectOneMenu id="listaInviti" value="#{par.utenteSelezionato}">
 							<f:selectItems value="#{par.utentiInvitati}" var="u"
 								itemLabel="#{u.email}" itemValue="#{u.email}" />
@@ -99,7 +100,7 @@
 						<h:outputLabel for="invitiConfermati"></h:outputLabel>
 						<p:inputText id="email" value="#{par.emailInvito}"/>
 						<h:commandButton value="Invita" action = "#{par.aggiungiPartecipazione()}" />
-
+						<p:message for="email" />
 					</h:panelGrid>
 				</h:form>
 
