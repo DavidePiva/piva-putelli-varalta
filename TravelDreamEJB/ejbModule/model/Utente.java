@@ -1,7 +1,12 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import DTO.UtenteDTO;
+import business.SHA256;
+
 import java.util.List;
 
 
@@ -10,6 +15,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="Utente")
 @NamedQuery(name="Utente.findAll", query="SELECT u FROM Utente u")
 public class Utente implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -17,7 +23,7 @@ public class Utente implements Serializable {
 	@Id
 	private String email;
 
-	private byte attivo;
+	private boolean attivo;
 
 	private String cognome;
 
@@ -99,7 +105,16 @@ public class Utente implements Serializable {
 
 	public Utente() {
 	}
+	public Utente(UtenteDTO user){
+	        this.email=user.getEmail();
+	        this.nome=user.getNome();
+	        this.cognome=user.getCognome();
+	 
+	     	String criptoPassword=SHA256.sha256(user.getPassword());
+	     	this.password=criptoPassword;
+	     	this.attivo=user.getAttivo();
 
+	}
 	public String getEmail() {
 		return this.email;
 	}
@@ -108,11 +123,11 @@ public class Utente implements Serializable {
 		this.email = email;
 	}
 
-	public byte getAttivo() {
+	public boolean getAttivo() {
 		return this.attivo;
 	}
 
-	public void setAttivo(byte attivo) {
+	public void setAttivo(boolean attivo) {
 		this.attivo = attivo;
 	}
 

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="Donazione_Volo")
 @NamedQuery(name="Donazione_Volo.findAll", query="SELECT d FROM Donazione_Volo d")
 public class Donazione_Volo implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -16,7 +18,7 @@ public class Donazione_Volo implements Serializable {
 	@EmbeddedId
 	private Donazione_VoloPK id;
 
-	private byte donato;
+	private boolean donato;
 
 	//bi-directional many-to-one association to Utente
 	@ManyToOne
@@ -39,11 +41,11 @@ public class Donazione_Volo implements Serializable {
 		this.id = id;
 	}
 
-	public byte getDonato() {
+	public boolean getDonato() {
 		return this.donato;
 	}
 
-	public void setDonato(byte donato) {
+	public void setDonato(boolean donato) {
 		this.donato = donato;
 	}
 

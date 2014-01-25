@@ -9,6 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="Donazione_Attivita")
 @NamedQuery(name="Donazione_Attivita.findAll", query="SELECT d FROM Donazione_Attivita d")
 public class Donazione_Attivita implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -16,7 +17,7 @@ public class Donazione_Attivita implements Serializable {
 	@EmbeddedId
 	private Donazione_AttivitaPK id;
 
-	private byte donato;
+	private boolean donato;
 
 	//bi-directional many-to-one association to Attivita
 	@ManyToOne
@@ -39,11 +40,11 @@ public class Donazione_Attivita implements Serializable {
 		this.id = id;
 	}
 
-	public byte getDonato() {
+	public boolean getDonato() {
 		return this.donato;
 	}
 
-	public void setDonato(byte donato) {
+	public void setDonato(boolean donato) {
 		this.donato = donato;
 	}
 
