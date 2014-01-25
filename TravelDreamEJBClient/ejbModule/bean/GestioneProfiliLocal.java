@@ -22,4 +22,5 @@ public interface GestioneProfiliLocal {
         public void rendiImpiegato(String email);
         public List<UtenteDTO> listaImpiegati();
         public void rendiUtente(String email);
+		public void salvaUtenteProvvisorio(String emailInvito);
 }

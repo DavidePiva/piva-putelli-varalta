@@ -186,5 +186,22 @@ public class GestioneProfili implements GestioneProfiliLocal {
 		em.merge(u);
 	}
 
+	@Override
+	public void salvaUtenteProvvisorio(String emailInvito) {
+		UtenteDTO utente = new UtenteDTO();
+		utente.setEmail(emailInvito);
+		utente.setAttivo(false);
+		utente.setNome("temp");
+		utente.setCognome("temp");
+		utente.setPassword("temp");
+		Utente utenteProvvisorio = new Utente(utente);
+		List<Gruppo> gruppi = new ArrayList<Gruppo>();
+		Gruppo g = new Gruppo();
+		g.setIdGruppo("USER");
+		gruppi.add(g);
+		utenteProvvisorio.setGruppos(gruppi);
+		em.persist(utenteProvvisorio);
+	}
+
 	
 }
