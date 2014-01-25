@@ -82,7 +82,7 @@
 
 
 						<h:outputLabel for="inviti" value="In più hai invitato:"></h:outputLabel>
-						<br></br>
+						<h:outputLabel ></h:outputLabel>
 						<h:outputLabel for="invitiConfermati"
 							value="Hanno già confermato:"></h:outputLabel>
 						<h:outputLabel ></h:outputLabel>		<h:outputLabel ></h:outputLabel>		<h:outputLabel ></h:outputLabel>
@@ -98,13 +98,16 @@
 						<ui:repeat  value="#{par.utentiConfermati}" var="u">
 							<li><h:outputLabel value = "#{u.email}"></h:outputLabel></li>
 						</ui:repeat>	
-						<h:outputLabel for="email" value="Vuoi invitare qualcuno?"></h:outputLabel>
+						<br></br>
+						<h:outputLabel  value="Vuoi invitare qualcuno?"></h:outputLabel>
 						<br></br>
 						<br></br>
-						<h:outputLabel for="invitiConfermati"></h:outputLabel>
-						<p:inputText id="email" value="#{par.emailInvito}"/>
-						<h:commandButton value="Invita" action = "#{par.aggiungiPartecipazione()}" />
-						<p:message for="email" />
+						<h:outputLabel ></h:outputLabel>
+						
+						<p:inputText for="email" id="email" value="#{par.emailInvito}"/>
+						<h:commandButton  value="Invita" action = "#{par.aggiungiPartecipazione()}" />
+		
+						
 					</h:panelGrid>
 				</h:form>
 
