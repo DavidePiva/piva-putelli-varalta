@@ -29,6 +29,11 @@ public class Donazione_Pernottamento implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="emailDonatore")
 	private Utente utente;
+	
+	//bi-directional many-to-one association to Viaggio
+	@ManyToOne
+	@JoinColumn(name="idViaggio")
+	private Viaggio viaggio;
 
 	public Donazione_Pernottamento() {
 	}
@@ -63,6 +68,14 @@ public class Donazione_Pernottamento implements Serializable {
 
 	public void setUtente(Utente utente) {
 		this.utente = utente;
+	}
+
+	public Viaggio getViaggio() {
+		return viaggio;
+	}
+
+	public void setViaggio(Viaggio viaggio) {
+		this.viaggio = viaggio;
 	}
 
 }

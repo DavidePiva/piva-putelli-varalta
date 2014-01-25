@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 
+
 /**
  * The persistent class for the Donazione_Volo database table.
  * 
@@ -30,6 +31,10 @@ public class Donazione_Volo implements Serializable {
 	@JoinColumn(name="idVolo")
 	private Volo volo;
 
+	//bi-directional many-to-one association to Viaggio
+	@ManyToOne
+	@JoinColumn(name="idViaggio")
+	private Viaggio viaggio;
 	public Donazione_Volo() {
 	}
 
@@ -63,6 +68,14 @@ public class Donazione_Volo implements Serializable {
 
 	public void setVolo(Volo volo) {
 		this.volo = volo;
+	}
+
+	public Viaggio getViaggio() {
+		return viaggio;
+	}
+
+	public void setViaggio(Viaggio viaggio) {
+		this.viaggio = viaggio;
 	}
 
 }
