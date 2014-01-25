@@ -361,29 +361,35 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		Donazione_PernottamentoPK pk1 = new Donazione_PernottamentoPK();
 		pk1.setEmailDonatore(emailSelezionata);
 		pk1.setIdPernottamento(idPernottamento);
+		pk1.setIdViaggio(idViaggio);
 		Donazione_Pernottamento dp = new Donazione_Pernottamento();
 		dp.setId(pk1);
 		dp.setPernottamento(v.getPernottamentoBean());
 		dp.setUtente(utente);
 		dp.setDonato(false);
+		dp.setViaggio(v);
 		em.merge(dp);
 		Donazione_VoloPK pk2 = new Donazione_VoloPK();
 		pk2.setEmailDonatore(emailSelezionata);
 		pk2.setIdVolo(v.getVolo1().getIdVolo());
+		pk2.setIdViaggio(idViaggio);
 		Donazione_Volo dv1 = new Donazione_Volo();
 		dv1.setId(pk2);
 		dv1.setUtente(utente);
 		dv1.setVolo(v.getVolo1());
 		dv1.setDonato(false);
+		dv1.setViaggio(v);
 		em.merge(dv1);
 		Donazione_VoloPK pk3 = new Donazione_VoloPK();
 		pk3.setEmailDonatore(emailSelezionata);
 		pk3.setIdVolo(v.getVolo2().getIdVolo());
+		pk3.setIdViaggio(idViaggio);
 		Donazione_Volo dv2 = new Donazione_Volo();
 		dv2.setId(pk3);
 		dv2.setUtente(utente);
 		dv2.setVolo(v.getVolo2());
 		dv2.setDonato(false);
+		dv2.setViaggio(v);
 		em.merge(dv2);
 		List<Viaggio_Attivita> l = v.getViaggioAttivitas();
 		for(int i = 0; i < l.size(); i++){
@@ -392,11 +398,13 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 			Donazione_AttivitaPK pki = new Donazione_AttivitaPK();
 			pk1.setEmailDonatore(emailSelezionata);
 			pki.setIdAttivita(a.getIdAttivita());
+			pki.setIdViaggio(idViaggio);
 			Donazione_Attivita dai = new Donazione_Attivita();
 			dai.setId(pki);
 			dai.setAttivita(a);
 			dai.setDonato(false);
 			dai.setUtente(utente);
+			dai.setViaggio(v);
 			em.merge(dai);
 		}
 	}
