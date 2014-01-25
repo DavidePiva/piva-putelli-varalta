@@ -385,7 +385,7 @@ public class DatiStatici implements DatiStaticiLocal {
 
 	@Override
 	public List<HotelDTO> getHotelPerPrezzo(int prezzoMinimo, int prezzoMassimo) {
-		Query q = em.createNativeQuery("SELECT Hotel.idHotel FROM Hotel, tipocamere_hotel WHERE Hotel.idHotel = TipoCamere_Hotel.idHotel AND prezzo<>0 GROUP BY Hotel.idHotel HAVING AVG(prezzo) BETWEEN "+prezzoMinimo+" AND "+prezzoMassimo);
+		Query q = em.createNativeQuery("SELECT Hotel.idHotel FROM Hotel, TipoCamere_Hotel WHERE Hotel.idHotel = TipoCamere_Hotel.idHotel AND prezzo<>0 GROUP BY Hotel.idHotel HAVING AVG(prezzo) BETWEEN "+prezzoMinimo+" AND "+prezzoMassimo);
 		List<Integer> i = new ArrayList<Integer>();
 		i = q.getResultList();
 		List<HotelDTO> l1 = new ArrayList<HotelDTO>();
@@ -398,7 +398,7 @@ public class DatiStatici implements DatiStaticiLocal {
 
 	@Override
 	public List<HotelDTO> getHotelPerPrezzo(int prezzoMinimo) {
-		Query q = em.createNativeQuery("SELECT Hotel.idHotel FROM Hotel, tipocamere_hotel WHERE Hotel.idHotel = TipoCamere_Hotel.idHotel AND prezzo<>0 GROUP BY Hotel.idHotel HAVING AVG(prezzo) > "+prezzoMinimo);
+		Query q = em.createNativeQuery("SELECT Hotel.idHotel FROM Hotel, TipoCamere_Hotel WHERE Hotel.idHotel = TipoCamere_Hotel.idHotel AND prezzo<>0 GROUP BY Hotel.idHotel HAVING AVG(prezzo) > "+prezzoMinimo);
 		List<Integer> i = new ArrayList<Integer>();
 		i = q.getResultList();
 		List<HotelDTO> l1 = new ArrayList<HotelDTO>();
