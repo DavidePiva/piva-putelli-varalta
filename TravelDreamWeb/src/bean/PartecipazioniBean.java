@@ -119,5 +119,10 @@ public class PartecipazioniBean {
     	}
     	return "/user/inviti?faces-redirect=true&id="+idViaggio;
     }
+    
+    public String rimuoviPartecipazione(){
+    	gestioneViaggi.rimuoviPartecipazione(idViaggio, utenteSelezionato);
+    	return "/user/inviti?faces-redirect=true&id="+idViaggio;
+    }
 	
 }

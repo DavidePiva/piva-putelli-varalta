@@ -338,5 +338,14 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		
 	}
 
+	@Override
+	public void rimuoviPartecipazione(int idViaggio, String emailInvito) {
+		PartecipazionePK pk = new PartecipazionePK();
+		pk.setEmailPartecipante(emailInvito);
+		pk.setIdViaggio(idViaggio);
+		Partecipazione p = em.find(Partecipazione.class, pk);
+		em.remove(p);
+	}
+
 
 }
