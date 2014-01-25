@@ -139,10 +139,12 @@ GestioneComponenti(){
         }else{
 
         	TipoCamere_Hotel t3=em.find(TipoCamere_Hotel.class,pk);  
-        	em.remove(t3);        	
+        	t3.setPrezzo(t.getPrezzo());
+        	em.merge(t3);
+ /*       	em.remove(t3);        	
     		em.flush();
         	t2.setPrezzo(t.getPrezzo());
-        	em.persist(t2);   
+        	em.persist(t2);   */
 		}
 		
 		

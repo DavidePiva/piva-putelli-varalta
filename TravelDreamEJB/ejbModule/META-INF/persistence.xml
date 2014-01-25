@@ -5,6 +5,12 @@
 		<class>model.Aeroporto</class>
 		<class>model.Attivita</class>
 		<class>model.Compagnia</class>
+		<class>model.Donazione_Attivita</class>
+		<class>model.Donazione_AttivitaPK</class>
+		<class>model.Donazione_Pernottamento</class>
+		<class>model.Donazione_PernottamentoPK</class>
+		<class>model.Donazione_Volo</class>
+		<class>model.Donazione_VoloPK</class>
 		<class>model.Gruppo</class>
 		<class>model.Hotel</class>
 		<class>model.Pacchetto</class>
