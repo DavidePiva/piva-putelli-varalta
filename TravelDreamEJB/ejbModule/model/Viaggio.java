@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -28,6 +31,18 @@ public class Viaggio implements Serializable {
 	private boolean pagato;
 
 	private BigDecimal prezzo;
+	
+	//bi-directional many-to-one association to Donazione_Attivita
+	@OneToMany(mappedBy="viaggio")
+	private List<Donazione_Attivita> donazioneAttivitas;
+
+	//bi-directional many-to-one association to Donazione_Pernottamento
+	@OneToMany(mappedBy="viaggio")
+	private List<Donazione_Pernottamento> donazionePernottamentos;
+
+	//bi-directional many-to-one association to Donazione_Volo
+	@OneToMany(mappedBy="viaggio")
+	private List<Donazione_Volo> donazioneVolos;
 
 	//bi-directional many-to-one association to Partecipazione
 	@OneToMany(mappedBy="viaggio")
@@ -239,6 +254,31 @@ public class Viaggio implements Serializable {
 		viaggioVolo.setViaggio(null);
 
 		return viaggioVolo;
+	}
+
+	public List<Donazione_Attivita> getDonazioneAttivitas() {
+		return donazioneAttivitas;
+	}
+
+	public void setDonazioneAttivitas(List<Donazione_Attivita> donazioneAttivitas) {
+		this.donazioneAttivitas = donazioneAttivitas;
+	}
+
+	public List<Donazione_Pernottamento> getDonazionePernottamentos() {
+		return donazionePernottamentos;
+	}
+
+	public void setDonazionePernottamentos(
+			List<Donazione_Pernottamento> donazionePernottamentos) {
+		this.donazionePernottamentos = donazionePernottamentos;
+	}
+
+	public List<Donazione_Volo> getDonazioneVolos() {
+		return donazioneVolos;
+	}
+
+	public void setDonazioneVolos(List<Donazione_Volo> donazioneVolos) {
+		this.donazioneVolos = donazioneVolos;
 	}
 
 }

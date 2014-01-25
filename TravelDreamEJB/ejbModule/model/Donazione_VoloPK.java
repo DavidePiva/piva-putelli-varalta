@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 /**
@@ -18,6 +19,9 @@ public class Donazione_VoloPK implements Serializable {
 	@Column(insertable=false, updatable=false)
 	private int idVolo;
 
+	@Column(insertable=false, updatable=false)
+	private int idViaggio;
+
 	public Donazione_VoloPK() {
 	}
 	public String getEmailDonatore() {
@@ -33,6 +37,12 @@ public class Donazione_VoloPK implements Serializable {
 		this.idVolo = idVolo;
 	}
 
+	public int getIdViaggio() {
+		return idViaggio;
+	}
+	public void setIdViaggio(int idViaggio) {
+		this.idViaggio = idViaggio;
+	}
 	public boolean equals(Object other) {
 		if (this == other) {
 			return true;
