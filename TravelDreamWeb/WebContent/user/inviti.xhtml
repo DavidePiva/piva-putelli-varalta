@@ -67,7 +67,7 @@
 		</div>
 		<div id="boxcontenuto">
 			<div>
-				<h:form>
+				
 
 					<h1>
 						<h:outputLabel value="I viaggiatori"></h:outputLabel>
@@ -103,13 +103,14 @@
 						<br></br>
 						<br></br>
 						<h:outputLabel ></h:outputLabel>
-						
+						<h:form>
 						<p:inputText for="email" id="email" value="#{par.emailInvito}"/>
 						<h:commandButton  value="Invita" action = "#{par.aggiungiPartecipazione()}" />
-		
+						<p:message for="email"></p:message>
+						</h:form>
 						
 					</h:panelGrid>
-				</h:form>
+				
 
 
 			</div>
