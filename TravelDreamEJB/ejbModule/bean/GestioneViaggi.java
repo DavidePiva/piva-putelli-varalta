@@ -19,9 +19,12 @@ import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.ViaggioDTO;
 import DTO.VoloDTO;
+import model.Donazione_Attivita;
 import model.Donazione_AttivitaPK;
 import model.Donazione_Pernottamento;
 import model.Donazione_PernottamentoPK;
+import model.Donazione_Volo;
+import model.Donazione_VoloPK;
 import model.Hotel;
 import model.Partecipazione;
 import model.PartecipazionePK;
@@ -364,6 +367,38 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		dp.setUtente(utente);
 		dp.setDonato(false);
 		em.merge(dp);
+		Donazione_VoloPK pk2 = new Donazione_VoloPK();
+		pk2.setEmailDonatore(emailSelezionata);
+		pk2.setIdVolo(v.getVolo1().getIdVolo());
+		Donazione_Volo dv1 = new Donazione_Volo();
+		dv1.setId(pk2);
+		dv1.setUtente(utente);
+		dv1.setVolo(v.getVolo1());
+		dv1.setDonato(false);
+		em.merge(dv1);
+		Donazione_VoloPK pk3 = new Donazione_VoloPK();
+		pk3.setEmailDonatore(emailSelezionata);
+		pk3.setIdVolo(v.getVolo2().getIdVolo());
+		Donazione_Volo dv2 = new Donazione_Volo();
+		dv2.setId(pk3);
+		dv2.setUtente(utente);
+		dv2.setVolo(v.getVolo2());
+		dv2.setDonato(false);
+		em.merge(dv2);
+		List<Viaggio_Attivita> l = v.getViaggioAttivitas();
+		for(int i = 0; i < l.size(); i++){
+			Viaggio_Attivita va = l.get(i);
+			Attivita a = va.getAttivita();
+			Donazione_AttivitaPK pki = new Donazione_AttivitaPK();
+			pk1.setEmailDonatore(emailSelezionata);
+			pki.setIdAttivita(a.getIdAttivita());
+			Donazione_Attivita dai = new Donazione_Attivita();
+			dai.setId(pki);
+			dai.setAttivita(a);
+			dai.setDonato(false);
+			dai.setUtente(utente);
+			em.merge(dai);
+		}
 	}
 
 	@Override
