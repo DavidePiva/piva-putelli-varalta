@@ -78,32 +78,32 @@
 							value="Viaggio per #{gv.numeroPersone} persone"></h:outputLabel>
 						<h:outputLabel for="numeroPersone"
 							value="#{gv.prezzo} euro a testa"></h:outputLabel>
-						<h:commandButton value="Modifica" action="#{gv.modificaNumeroPersone()}" update="regGrid1" />
+						<h:commandButton value="Modifica" action="#{gv.modificaNumeroPersone()}" update="regGrid1" rendered="#{gv.nonRegalabile()}" />
 
 						<h:outputLabel for="hotel" value="Informazioni Hotel:"></h:outputLabel>
 
 						<h:outputLabel for="hotel" value="#{gv.hotel}"></h:outputLabel>
-						<h:commandButton value="Modifica" action="#{gv.scegliHotel()}" update="regGrid1" />
+						<h:commandButton value="Modifica" action="#{gv.scegliHotel()}" update="regGrid1" rendered="#{gv.nonRegalabile()}"/>
 
 						<h:outputLabel for="attivita" value="Attività:"></h:outputLabel>
 
 						<ui:repeat  value="#{gv.attivita}" var="a">
 							<li><h:outputLabel value = "#{a}"></h:outputLabel></li>
 						</ui:repeat>	
-						<h:commandButton value="Modifica" update="regGrid1" />
+						<h:commandButton value="Modifica" update="regGrid1" rendered="#{gv.nonRegalabile()}"/>
 						
 						<h:outputLabel for="voli" value="Informazioni voli e date:"></h:outputLabel>
 						<ui:repeat value="#{gv.voli}" var="v">
 							<li><h:outputLabel value = "#{v.getDataFormattata()}"></h:outputLabel></li>
 						</ui:repeat>	
-						<h:commandButton value="Modifica" update="regGrid1" />
+						<h:commandButton value="Modifica" update="regGrid1" rendered="#{gv.nonRegalabile()}"/>
 						<br></br>
 						<br></br>
 						<br></br>
 						<br></br>
 						<h:outputLabel for="regalo"
-							value="Se vuoi che qualcuno te lo regali clicca su:"></h:outputLabel>
-						<h:commandButton value="Vorrei..." action = "#{gv.regali()}" update="regGrid1" />
+							value="Se vuoi che qualcuno te lo regali clicca su:" rendered="#{gv.nonRegalabile()}"></h:outputLabel>
+						<h:commandButton value="Vorrei..." action = "#{gv.regali()}" update="regGrid1" rendered="#{gv.nonRegalabile()}"/>
 						<br></br>
 						<br></br>
 						<h:outputLabel for="invito"

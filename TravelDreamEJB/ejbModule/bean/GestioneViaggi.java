@@ -347,5 +347,14 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		em.remove(p);
 	}
 
+	@Override
+	public boolean isRegalabile(int idViaggio) {
+		Viaggio v=em.find(Viaggio.class, idViaggio);
+		if(v.getViaggioPernottamentos().get(0).getRegalabile()){
+			return true;
+		}else{			
+			return false;	
+		}
+	}
 
 }

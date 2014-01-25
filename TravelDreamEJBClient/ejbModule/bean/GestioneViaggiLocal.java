@@ -24,5 +24,6 @@ public interface GestioneViaggiLocal {
 	public void aggiungiPartecipazione(int idViaggio, String emailInvito);
 	public void rendiRegalabile(int idViaggio);
 	public void rimuoviPartecipazione(int idViaggio, String emailInvito);
+	public boolean isRegalabile(int idViaggio);
 
 }

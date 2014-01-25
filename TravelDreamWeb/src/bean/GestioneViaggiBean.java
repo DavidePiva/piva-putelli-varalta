@@ -180,6 +180,10 @@ public class GestioneViaggiBean {
         	return "/user/modificaViaggio?faces-redirect=true&id="+idViaggio;
         }
         
+        public boolean nonRegalabile(){
+        	boolean regalabile=gestioneViaggi.isRegalabile(idViaggio);
+        	return !regalabile;
+        }
        
         
 }
