@@ -13,6 +13,7 @@
 <script type='text/javascript' src='../css/menu.js' />
 <f:metadata>
 	<f:viewParam name="id" value="#{gv.idViaggio}" />
+	<f:viewParam name="id" value = "#{rb.idViaggio}"/>
 </f:metadata>
 </head>
 <body onload="javascript:start()">
@@ -78,8 +79,8 @@
 						<h:outputLabel for="numeroPersone"
 							value="Travel Dream ti offre la possibilità di permettere a chi vuoi tu di regalarti il viaggio che desideri! Inserisci gli indirizzi e-mail dei tuoi amici e parenti e al termine dell'operazione clicca su Conferma."></h:outputLabel>
 						<br></br>
-						<p:inputText id="email"  />
-						<h:commandButton value="Aggiungi alla lista"/>
+						<p:inputText id="email" value="#{rb.emailSelezionata}" />
+						<h:commandButton value="Aggiungi alla lista" action = "#{rb.aggiungiDonatore()}"/>
 						<br></br>
 						<h:selectOneMenu  id="listaInviti">
 								<f:selectItems  
