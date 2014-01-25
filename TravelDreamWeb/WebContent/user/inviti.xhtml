@@ -87,11 +87,13 @@
 							value="Hanno già confermato:"></h:outputLabel>
 						<h:outputLabel ></h:outputLabel>		<h:outputLabel ></h:outputLabel>		<h:outputLabel ></h:outputLabel>
 						<h:form>
-						<h:selectOneMenu id="listaInviti" value="#{par.utenteSelezionato}">
-							<f:selectItems value="#{par.utentiInvitati}" var="u"
-								itemLabel="#{u.email}" itemValue="#{u.email}" />
-						</h:selectOneMenu>
-						<h:commandButton value="Rimuovi" action = "#{par.rimuoviPartecipazione()}"/>
+							<h:selectOneMenu id="listaInviti"
+								value="#{par.utenteSelezionato}">
+								<f:selectItems value="#{par.utentiInvitati}" var="u"
+									itemLabel="#{u.email}" itemValue="#{u.email}" />
+							</h:selectOneMenu>
+							<h:commandButton value="Rimuovi"
+								action="#{par.rimuoviPartecipazione()}" />
 						</h:form>
 						<ui:repeat  value="#{par.utentiConfermati}" var="u">
 							<li><h:outputLabel value = "#{u.email}"></h:outputLabel></li>
