@@ -537,4 +537,10 @@ public class DatiStatici implements DatiStaticiLocal {
 		aDTO.setNome(a.getNome());
 		return aDTO;
 	}
+
+	@Override
+	public List<String> getListaUtenti() {
+		Query q = em.createNativeQuery("SELECT email FROM Utente");
+		return q.getResultList();
+	}
 }

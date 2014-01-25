@@ -38,4 +38,5 @@ public interface DatiStaticiLocal {
 	public List<TipoCamere_HotelDTO> camerePerHotel(int idHotelScelto);
 	public VoloDTO getVoloDTO(int id);
 	AeroportoDTO getAeroportoDTO(int id);
+	public List<String> getListaUtenti();
 }

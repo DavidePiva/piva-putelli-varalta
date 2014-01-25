@@ -22,6 +22,10 @@ public class PartecipazioniBean {
 	private ShowViaggioLocal showViaggio;
 	@EJB
 	private GestioneViaggiLocal gestioneViaggi;
+	@EJB
+	private DatiStaticiLocal datistatici;
+	@EJB
+	private GestioneProfiliLocal gestioneProfili;
 	
 	private List<ViaggioDTO> partecipazioni;
 	public List<InfoViaggio> infoPartecipazioni;
@@ -100,7 +104,15 @@ public class PartecipazioniBean {
     }
     
     public String aggiungiPartecipazione(){
-    	gestioneViaggi.aggiungiPartecipazione(idViaggio, emailInvito);
+    	List<String> utenti = datistatici.getListaUtenti();
+    	if(utenti.contains(emailInvito))
+    	{
+    		gestioneViaggi.aggiungiPartecipazione(idViaggio, emailInvito);
+    	}
+    	else{
+    		gestioneProfili.salvaUtenteProvvisorio(emailInvito);
+    		gestioneViaggi.aggiungiPartecipazione(idViaggio, emailInvito);
+    	}
     	return "/user/inviti?faces-redirect=true&id="+idViaggio;
     }
 	
