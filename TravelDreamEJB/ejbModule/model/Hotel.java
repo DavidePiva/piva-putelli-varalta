@@ -1,7 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import DTO.HotelDTO;
+
 import java.util.List;
 
 
@@ -10,6 +14,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="Hotel")
 @NamedQuery(name="Hotel.findAll", query="SELECT h FROM Hotel h")
 public class Hotel implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -32,7 +37,7 @@ public class Hotel implements Serializable {
 
 	private String nome;
 
-	private byte selezionabile;
+	private boolean selezionabile;
 
 	private String telefono;
 
@@ -46,7 +51,18 @@ public class Hotel implements Serializable {
 
 	public Hotel() {
 	}
-
+	public Hotel(HotelDTO h){
+		this.idHotel=h.getIdHotel();
+		this.citta=h.getCitta();
+		this.descrizione=h.getDescrizione();
+		this.indirizzo=h.getIndirizzo();
+		this.nome=h.getNome();
+		this.selezionabile=h.isSelezionabile();
+		this.telefono=h.getTelefono();
+		this.foto1=h.getFoto1();
+		this.foto2=h.getFoto2();
+		this.foto3=h.getFoto3();
+	}
 	public int getIdHotel() {
 		return this.idHotel;
 	}
@@ -111,11 +127,11 @@ public class Hotel implements Serializable {
 		this.nome = nome;
 	}
 
-	public byte getSelezionabile() {
+	public boolean getSelezionabile() {
 		return this.selezionabile;
 	}
 
-	public void setSelezionabile(byte selezionabile) {
+	public void setSelezionabile(boolean selezionabile) {
 		this.selezionabile = selezionabile;
 	}
 

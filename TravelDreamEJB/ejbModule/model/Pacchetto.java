@@ -1,7 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import DTO.PacchettoDTO;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -11,11 +15,13 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="Pacchetto")
 @NamedQuery(name="Pacchetto.findAll", query="SELECT p FROM Pacchetto p")
 public class Pacchetto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idPacchetto;
 
 	private String citta;
@@ -37,7 +43,7 @@ public class Pacchetto implements Serializable {
 
 	private BigDecimal prezzo;
 
-	private byte selezionabile;
+	private boolean selezionabile;
 
 	private String target;
 
@@ -79,7 +85,22 @@ public class Pacchetto implements Serializable {
 
 	public Pacchetto() {
 	}
-
+	public Pacchetto(PacchettoDTO p){
+		this.titolo = p.getTitolo();
+		this.citta = p.getCitta();
+		this.descrizione = p.getDescrizione();
+		this.foto1 = p.getFoto1();
+		this.foto2 = p.getFoto2();
+		this.foto3 = p.getFoto3();
+		this.foto4 = p.getFoto4();
+		this.foto5 = p.getFoto5();
+		this.foto6 = p.getFoto6();
+		this.idPacchetto = p.getIdPacchetto();
+		this.prezzo = p.getPrezzo();
+		this.selezionabile = p.getSelezionabile();
+		this.target = p.getTarget();
+		this.tipologia = p.getTipologia();
+	}
 	public int getIdPacchetto() {
 		return this.idPacchetto;
 	}
@@ -160,11 +181,11 @@ public class Pacchetto implements Serializable {
 		this.prezzo = prezzo;
 	}
 
-	public byte getSelezionabile() {
+	public boolean  getSelezionabile() {
 		return this.selezionabile;
 	}
 
-	public void setSelezionabile(byte selezionabile) {
+	public void setSelezionabile(boolean  selezionabile) {
 		this.selezionabile = selezionabile;
 	}
 

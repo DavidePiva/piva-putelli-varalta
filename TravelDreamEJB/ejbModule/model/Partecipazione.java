@@ -9,6 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="Partecipazione")
 @NamedQuery(name="Partecipazione.findAll", query="SELECT p FROM Partecipazione p")
 public class Partecipazione implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -16,7 +17,7 @@ public class Partecipazione implements Serializable {
 	@EmbeddedId
 	private PartecipazionePK id;
 
-	private byte pagato;
+	private boolean pagato;
 
 	//bi-directional many-to-one association to Utente
 	@ManyToOne
@@ -39,11 +40,11 @@ public class Partecipazione implements Serializable {
 		this.id = id;
 	}
 
-	public byte getPagato() {
+	public boolean getPagato() {
 		return this.pagato;
 	}
 
-	public void setPagato(byte pagato) {
+	public void setPagato(boolean pagato) {
 		this.pagato = pagato;
 	}
 
