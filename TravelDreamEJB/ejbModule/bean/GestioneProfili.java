@@ -38,17 +38,28 @@ public class GestioneProfili implements GestioneProfiliLocal {
 
 	@Override
 	public void salva(UtenteDTO utente) {
-		Utente nuovoUtente = new Utente(utente);
-		nuovoUtente.setAttivo(utente.getAttivo());
+		
+		Utente u=em.find(Utente.class, utente.getEmail());
+		
+		if(u==null){
+			Utente nuovoUtente = new Utente(utente);
+			nuovoUtente.setAttivo(utente.getAttivo());
 
-		List<Gruppo> gruppi = new ArrayList<Gruppo>();
-		Gruppo g = new Gruppo();
-		g.setIdGruppo("USER");
-		gruppi.add(g);
-		nuovoUtente.setGruppos(gruppi);
+			List<Gruppo> gruppi = new ArrayList<Gruppo>();
+			Gruppo g = new Gruppo();
+			g.setIdGruppo("USER");
+			gruppi.add(g);
+			nuovoUtente.setGruppos(gruppi);
 
-		em.persist(nuovoUtente);
-
+			em.persist(nuovoUtente);
+		}else if (u!=null && u.getAttivo()==false){
+			Utente u2 = new Utente(utente);
+			u.setAttivo(true);
+			u.setNome(u2.getNome());
+			u.setCognome(u2.getCognome());
+			u.setPassword(u2.getPassword());
+			em.merge(u);
+		}
 	}
 
 	@Override
