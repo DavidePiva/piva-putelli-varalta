@@ -135,4 +135,44 @@ public class ShowViaggio implements ShowViaggioLocal {
 		return lista;
 	}
 
+	@Override
+	public List<ViaggioDTO> getViaggiDaRegalare(String emailUtente) {
+		Query q = em.createNativeQuery("SELECT DISTINCT idViaggio FROM Donazione_Attivita WHERE donato = 0 AND emailDonatore = '"+emailUtente+"'");
+		List<Integer> viaggi = q.getResultList();
+		Query q2 = em.createNativeQuery("SELECT DISTINCT idViaggio FROM Donazione_Pernottamento WHERE donato = 0 AND emailDonatore = '"+emailUtente+"'");
+		List<Integer> viaggi2 = q2.getResultList();
+		Query q3 = em.createNativeQuery("SELECT DISTINCT idViaggio FROM Donazione_Volo WHERE donato = 0 AND emailDonatore = '"+emailUtente+"'");
+		List<Integer> viaggi3 = q3.getResultList();
+		List<ViaggioDTO> lista = new ArrayList<ViaggioDTO>();
+		for(int i = 0; i < viaggi.size(); i++){
+			for(int j = 0; j < viaggi2.size(); j++){
+				int a = viaggi2.get(j);
+				int b = viaggi.get(i);
+				if(a==b){
+					viaggi2.remove(j);
+				}
+			}
+		}
+		for(int i = 0; i < viaggi2.size(); i++){
+			viaggi.add(viaggi2.get(i));
+		}
+		for(int i = 0; i < viaggi.size(); i++){
+			for(int j = 0; j < viaggi3.size(); j++){
+				int a = viaggi3.get(j);
+				int b = viaggi.get(i);
+				if(a==b){
+					viaggi3.remove(j);
+				}
+			}
+		}
+		for(int i = 0; i < viaggi3.size(); i++){
+			viaggi.add(viaggi3.get(i));
+		}
+		for(int i = 0; i < viaggi.size(); i++){
+			Viaggio v = em.find(Viaggio.class, viaggi.get(i));
+			lista.add(convertiViaggioDTO(v));
+		}
+		return lista;
+	}
+
 }

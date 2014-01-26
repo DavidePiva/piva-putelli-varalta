@@ -20,4 +20,6 @@ public interface ShowViaggioLocal {
 
 	public List<UtenteDTO> getDonatori(int idViaggio);
 
+	public List<ViaggioDTO> getViaggiDaRegalare(String emailUtente);
+
 }
