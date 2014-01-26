@@ -86,7 +86,7 @@
 								<f:selectItems value="#{rb.listaDonatori}" var="d" itemLabel = "#{d.email}"
 									itemValue = "#{d.email}"/>
 						</h:selectOneMenu>
-						<h:commandButton value="Rimuovi"/>
+						<h:commandButton value="Rimuovi" action = "#{rb.rimuoviDonatore()}"/>
 						<br></br>
 						<h:commandButton value="Conferma" action = "#{gv.rendiRegalabile()}"/>
 
