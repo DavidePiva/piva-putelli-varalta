@@ -81,10 +81,10 @@ public class GestioneOfferteBean {
 		this.setPaginaSelezionata(1);
 		
 		//gestioneOfferte.setDescrizione(descrizione+" DESCRIZZZ!");
-		System.out.println("OOOOOOOOOOK, SI RIPARTE!PAGINA: "+this.getPaginaSelezionata());
+		
 	}
 	public String salva(){
-		System.out.println("RICHIAMATA SALVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA! Nel pDTO foto4: "+pDTO.getFoto4());
+		
 		//gestioneOfferte.setPaginaSelezionata(2);
 		//paginaSelezionata=gestioneOfferte.getPaginaSelezionata();
 		pDTO.setSelezionabile(true);

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.validation.constraints.Pattern;
 
 import DTO.UtenteDTO;
 
@@ -16,10 +17,12 @@ public class RegaliBean {
 	private GestioneViaggiLocal gestioneViaggi;
 	@EJB
 	private ShowViaggioLocal showViaggio;
+
 	@EJB
 	private DatiStaticiLocal datistatici;
 	@EJB
 	private GestioneProfiliLocal gestioneProfili;
+	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",   message="Email non valida")	
 	private String emailSelezionata;
 	private String utenteSelezionato;
 	private int idViaggio;
