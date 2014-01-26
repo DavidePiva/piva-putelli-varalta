@@ -16,7 +16,9 @@ import org.primefaces.event.FileUploadEvent;
  
 @ManagedBean(name="fileUploadController")
 public class FileUploadBean {
-   private String destination="D:\\";
+	
+	//Probabilmente bisognera' togliere il solo eclipseApps dal percorso destination una volta che ci sara' il deploy del progetto
+	private String destination="../eclipseApps/TravelDream/TravelDreamWeb_war/foto/";
 
     public void upload(FileUploadEvent event) {  
         FacesMessage msg = new FacesMessage("Success! ", event.getFile().getFileName() + " is uploaded.");  
