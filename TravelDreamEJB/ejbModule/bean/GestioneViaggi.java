@@ -419,4 +419,48 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		}
 	}
 
+	@Override
+	public void rimuoviDonatore(int idViaggio, String utenteSelezionato) {
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		List<Donazione_Attivita> l1 = v.getDonazioneAttivitas();
+		List<Donazione_Attivita> r = new ArrayList<Donazione_Attivita>();
+		for(int i = 0; i < l1.size(); i++){
+			Donazione_Attivita a = l1.get(i);
+			Utente u = a.getUtente();
+			String email = u.getEmail();
+			if(!a.getDonato() && utenteSelezionato.equals(email)){
+				r.add(a);
+			}
+		}
+		List<Donazione_Pernottamento> l2 = v.getDonazionePernottamentos();
+		List<Donazione_Pernottamento> r2 = new ArrayList<Donazione_Pernottamento>();
+		for(int i = 0; i < l2.size(); i++){
+			Donazione_Pernottamento a = l2.get(i);
+			Utente u = a.getUtente();
+			String email = u.getEmail();
+			if(!a.getDonato() && utenteSelezionato.equals(email)){
+				r2.add(a);
+			}
+		}
+		List<Donazione_Volo> l3 = v.getDonazioneVolos();
+		List<Donazione_Volo> r3 = new ArrayList<Donazione_Volo>();
+		for(int i = 0; i < l3.size(); i++){
+			Donazione_Volo a = l3.get(i);
+			Utente u = a.getUtente();
+			String email = u.getEmail();
+			if(!a.getDonato() && utenteSelezionato.equals(email)){
+				r3.add(a);
+			}
+		}
+		for(int i = 0; i < r.size(); i++){
+			em.remove(r.get(i));
+		}
+		for(int i = 0; i < r2.size(); i++){
+			em.remove(r2.get(i));
+		}
+		for(int i = 0; i < r3.size(); i++){
+			em.remove(r3.get(i));
+		}
+	}
+
 }
