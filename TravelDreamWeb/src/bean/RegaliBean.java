@@ -16,6 +16,10 @@ public class RegaliBean {
 	private GestioneViaggiLocal gestioneViaggi;
 	@EJB
 	private ShowViaggioLocal showViaggio;
+	@EJB
+	private DatiStaticiLocal datistatici;
+	@EJB
+	private GestioneProfiliLocal gestioneProfili;
 	private String emailSelezionata;
 	private String utenteSelezionato;
 	private int idViaggio;
@@ -46,7 +50,15 @@ public class RegaliBean {
 	}
 	
 	public String aggiungiDonatore(){
-		gestioneViaggi.aggiungiDonatore(idViaggio,emailSelezionata);
+		List<String> utenti = datistatici.getListaUtenti();
+		if(utenti.contains(emailSelezionata))
+		{
+			gestioneViaggi.aggiungiDonatore(idViaggio,emailSelezionata);
+		}
+		else{
+			gestioneProfili.salvaUtenteProvvisorio(emailSelezionata);
+			gestioneViaggi.aggiungiDonatore(idViaggio,emailSelezionata);
+		}
 		return "/user/regali?faces-redirect=true&id="+idViaggio;
 	}
 	
