@@ -66,18 +66,14 @@
 		<div id="boxcontenuto">
 			<div>
 				<h1>Upload</h1>
-
-
-
 				<h:form id="form">
+				<!-- Upload limitato a 5MB -->
 
 					<p:fileUpload fileUploadListener="#{fileUploadController.upload}"
-						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="100000"
+						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="5000000"
 						description="Select Images" />
 
 				</h:form>
-
-
 			</div>
 		</div>
 	</div>
