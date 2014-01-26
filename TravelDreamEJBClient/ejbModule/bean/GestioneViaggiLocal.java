@@ -26,5 +26,6 @@ public interface GestioneViaggiLocal {
 	public void rimuoviPartecipazione(int idViaggio, String emailInvito);
 	public void aggiungiDonatore(int idViaggio, String emailSelezionata);
 	public boolean isRegalabile(int idViaggio);
+	public void rimuoviDonatore(int idViaggio, String utenteSelezionato);
 
 }

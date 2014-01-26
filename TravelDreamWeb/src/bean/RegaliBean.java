@@ -50,6 +50,11 @@ public class RegaliBean {
 		return "/user/regali?faces-redirect=true&id="+idViaggio;
 	}
 	
+	public String rimuoviDonatore(){
+		gestioneViaggi.rimuoviDonatore(idViaggio,utenteSelezionato);
+		return "/user/regali?faces-redirect=true&id="+idViaggio;
+	}
+	
 	public List<UtenteDTO> getListaDonatori(){
 		listaDonatori = showViaggio.getDonatori(idViaggio);
 		return listaDonatori;
