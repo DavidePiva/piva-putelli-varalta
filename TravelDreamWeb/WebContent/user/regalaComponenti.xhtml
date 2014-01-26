@@ -10,6 +10,9 @@
 <link href='../css/application.css' media='all' rel='stylesheet'
 	type='text/css' />
 <script type='text/javascript' src='../css/menu.js' />
+<f:metadata>
+	<f:viewParam name="id" value="#{gv.idViaggio}"></f:viewParam>
+</f:metadata>
 </head>
 <body onload="javascript:start()">
 	<div id="boxintestazione">
@@ -24,7 +27,6 @@
 					id="textlandmark_left2" rendered="#{gp.loggato()}" />
 				<h:link outcome="/user/index" value="Ciao, #{gp.nomeUtente}"
 					id="textlandmark_right2" rendered="#{gp.loggato()}" />
-
 			</div>
 		</h:form>
 	</div>
@@ -66,44 +68,40 @@
 
 
 				<h1>
-					<h:outputLabel value="Scegli i componenti da regalare"></h:outputLabel>
+					<h:outputLabel value="Scegli i componenti da regalare per il viaggio a #{gv.citta}"></h:outputLabel>
 				</h1>
 				<br></br>
 				<h:panelGrid columns="2" id="regGrid1">
-
 					<h:form>
 						<h:outputLabel for="voli" value="Regala un volo:"></h:outputLabel>
 						<br></br>
-						<h:selectOneMenu id="voli">
-							<f:selectItems />
+						<h:selectOneMenu id="voli" value="#{rb.voloScelto}">
+							<f:selectItems value = "#{gv.getVoli()}" var="v" itemLabel= "#{v.getDataFormattata()}"
+								itemValue = "#{v.idVolo}"/>
 						</h:selectOneMenu>
 						<h:commandButton value="Regala" />
-						
 					</h:form>
-<br></br>
-<br></br>
+					<br></br>
+					<br></br>
 					<h:form>
 						<h:outputLabel for="attivita" value="Regala un'attività:"></h:outputLabel>
 						<br></br>
-						<h:selectOneMenu id="attivita">
-							<f:selectItems />
+						<h:selectOneMenu id="attivita" value="#{rb.attivitaScelta}">
+							<f:selectItems value="#{gv.attivita}" var="a" itemLabel = "#{a.titolo}"
+								itemValue = "#{a.id}"/>
 						</h:selectOneMenu>
 						<h:commandButton value="Regala" />
-						
 					</h:form>
-<br></br>
-<br></br>
+					<br></br>
+					<br></br>
 					<h:form>
 						<h:outputLabel for="hotel" value="Regala il pernottamento:"></h:outputLabel>
 						<br></br>
-						<h:outputLabel for="hotel" value="QUI HOTEL"></h:outputLabel>
+						<h:outputLabel for="hotel" value="#{gv.hotel}"></h:outputLabel>
 						<h:commandButton value="Regala" />
 					</h:form>
 
 				</h:panelGrid>
-
-
-
 			</div>
 		</div>
 	</div>
