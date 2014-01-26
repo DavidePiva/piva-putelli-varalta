@@ -45,4 +45,8 @@ public class InfoViaggio {
 	public String riepilogo(){
 		return titolare + " ti ha invitato a " + citta;
 	}
+	
+	public String regalo(){
+		return titolare + " farà un viaggio a " + citta + " , vuoi regalare qualcosa?";
+	}
 }
