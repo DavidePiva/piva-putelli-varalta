@@ -98,7 +98,7 @@
 			<ui:repeat value="#{rb.getInfoRegali(gp.emailUtente)}"
 				var="viaggio">
 				<li><h:link value="#{viaggio.regalo()}"
-						outcome="riepilogoPerRegalo">
+						outcome="regalaComponenti">
 						<f:param name="id" value="#{viaggio.idViaggio}"></f:param>
 					</h:link></li>
 			</ui:repeat>

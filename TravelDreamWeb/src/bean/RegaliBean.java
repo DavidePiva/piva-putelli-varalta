@@ -10,6 +10,7 @@ import javax.validation.constraints.Pattern;
 
 import DTO.UtenteDTO;
 import DTO.ViaggioDTO;
+import DTO.VoloDTO;
 
 @ManagedBean(name = "rb")
 @ViewScoped
@@ -31,6 +32,24 @@ public class RegaliBean {
 	private List<UtenteDTO> listaDonatori;
 	private List<ViaggioDTO> viaggiDaRegalare;
 	private List<InfoViaggio> infoRegali;
+	private int voloScelto;
+	private int attivitaScelta;
+	
+	public void setAttivitaScelta(int attivitaScelta){
+		this.attivitaScelta = attivitaScelta;
+	}
+	
+	public int getAttivitaScelta(){
+		return attivitaScelta;
+	}
+	
+	public void setVoloScelto(int voloScelto){
+		this.voloScelto = voloScelto;
+	}
+	
+	public int getVoloScelto(){
+		return voloScelto;
+	}
 	
 	public void setIdViaggio(int idViaggio){
 		this.idViaggio = idViaggio;
