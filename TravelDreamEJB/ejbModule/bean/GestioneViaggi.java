@@ -473,5 +473,7 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 			em.merge(v);
 		}
 	}
+	
+
 
 }

@@ -16,7 +16,7 @@ public class PagamentoBean {
 		
 	@EJB
 	private GestioneViaggiLocal gestioneViaggi;
-	
+
 	private int idViaggio;
 	private int numeroPersoneSelezionato;
 	private ViaggioDTO viaggio;
@@ -58,4 +58,6 @@ public class PagamentoBean {
     	gestioneViaggi.setNumeroPersone(numeroPersoneSelezionato, idViaggio);
     	return "/user/modificaViaggio?faces-redirect=true&id="+idViaggio;
     }
+    
+
 }

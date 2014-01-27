@@ -188,4 +188,13 @@ public class ShowViaggio implements ShowViaggioLocal {
 		return lista;
 	}
 
+	@Override
+	public boolean pagabile(int idViaggio){
+		List<UtenteDTO> l=getUtentiInvitati(idViaggio);
+		if(l.size()==0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
