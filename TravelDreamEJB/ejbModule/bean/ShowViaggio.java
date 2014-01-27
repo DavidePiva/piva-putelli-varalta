@@ -175,4 +175,17 @@ public class ShowViaggio implements ShowViaggioLocal {
 		return lista;
 	}
 
+	@Override
+	public List<ViaggioDTO> getPagati(String email) {
+		Query q = em.createNativeQuery("SELECT idViaggio FROM Viaggio WHERE pagato=1 AND titolare = '"+email+"'");
+		List<Integer> l = q.getResultList();
+		List<ViaggioDTO> lista = new ArrayList<ViaggioDTO>();
+		for(int i = 0; i < l.size(); i++){
+			int id = l.get(i);
+			Viaggio v = em.find(Viaggio.class, id);
+			lista.add(convertiViaggioDTO(v));
+		}
+		return lista;
+	}
+
 }

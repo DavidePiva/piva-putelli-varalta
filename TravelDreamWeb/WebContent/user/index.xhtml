@@ -102,6 +102,13 @@
 						<f:param name="id" value="#{viaggio.idViaggio}"></f:param>
 					</h:link></li>
 			</ui:repeat>
+			<h1>Viaggi già pagati</h1>
+			<ui:repeat value = "#{sv.viaggiPagati(gp.emailUtente)}" var = "viaggio">
+				<li><h:link value="#{viaggio.toString()}"
+						outcome="riepilogoViaggio">
+						<f:param name="id" value="#{viaggio.idViaggio}"></f:param>
+					</h:link></li>
+			</ui:repeat>
 		</div>
 	</div>
 	<!--/boxbig-->
