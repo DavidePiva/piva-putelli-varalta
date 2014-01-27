@@ -103,12 +103,12 @@
 						<br></br>
 						<h:outputLabel for="regalo"
 							value="Se vuoi che qualcuno te lo regali clicca su:" rendered="#{gv.nonRegalabile()}"></h:outputLabel>
-						<h:commandButton value="Vorrei..." action = "#{gv.regali()}" update="regGrid1" rendered="#{gv.nonRegalabile()}"/>
+						<h:commandButton value="Vorrei..." action = "#{gv.regali()}" update="regGrid1"/>
 						<br></br>
 						<br></br>
 						<h:outputLabel for="invito"
 							value="Se invece vuoi partire in compagnia:"></h:outputLabel>
-						<h:commandButton value="Invita" action = "#{gv.invita()}" update="regGrid1" />
+						<h:commandButton value="Invita" action = "#{gv.invita()}"  rendered="#{gv.nonRegalabile()}" update="regGrid1" />
 
 
 					</h:panelGrid>
