@@ -8,18 +8,40 @@ import javax.faces.bean.RequestScoped;
 
 
 
+import javax.faces.bean.ViewScoped;
+
 import DTO.ViaggioDTO;
 
 @ManagedBean(name="pb")
-@RequestScoped
+@ViewScoped
 public class PagamentoBean {
 		
 	@EJB
 	private GestioneViaggiLocal gestioneViaggi;
-
+	@EJB
+	private ShowViaggioLocal showViaggio;
+	
 	private int idViaggio;
 	private int numeroPersoneSelezionato;
+	private int idPernottamento;
+	private String donatore;
 	private ViaggioDTO viaggio;
+	
+	public int getIdPernottamento() {
+		return idPernottamento;
+	}
+
+	public void setIdPernottamento(int idPernottamento) {
+		this.idPernottamento = idPernottamento;
+	}
+
+	public String getDonatore() {
+		return donatore;
+	}
+
+	public void setDonatore(String donatore) {
+		this.donatore = donatore;
+	}
 	
 	public void setIdViaggio(int idViaggio){
 		this.idViaggio = idViaggio;
@@ -58,6 +80,14 @@ public class PagamentoBean {
     	gestioneViaggi.setNumeroPersone(numeroPersoneSelezionato, idViaggio);
     	return "/user/modificaViaggio?faces-redirect=true&id="+idViaggio;
     }
+    
+    public BigDecimal getPrezzoPernottamento(){
+    	getViaggio();
+    	idPernottamento = viaggio.getIdPernottamento();
+    	return showViaggio.getPrezzoPernottamento(idPernottamento);
+    }
+
+    
     
 
 }

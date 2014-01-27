@@ -116,5 +116,11 @@ public class RegaliBean {
 		}
 		return infoRegali;
 	}
+	
+	public String pagaPernottamento(String emailUtente,int idViaggio){
+		ViaggioDTO v = gestioneViaggi.getViaggio(idViaggio);
+		int idPernottamento = v.getIdPernottamento();
+		return "/user/pagamentoPernottamento?faces-redirect=true&idViaggio="+idViaggio+"&email="+emailUtente+"&idPer"+idPernottamento;
+	}
 
 }

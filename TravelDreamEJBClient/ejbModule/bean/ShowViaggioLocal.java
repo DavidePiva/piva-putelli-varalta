@@ -1,5 +1,6 @@
 package bean;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -23,6 +24,8 @@ public interface ShowViaggioLocal {
 	public List<ViaggioDTO> getViaggiDaRegalare(String emailUtente);
 
 	public List<ViaggioDTO> getPagati(String email);
+
+	public BigDecimal getPrezzoPernottamento(int idPernottamento);
 
 	boolean pagabile(int idViaggio);
 
