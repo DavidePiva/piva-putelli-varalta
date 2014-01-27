@@ -463,4 +463,15 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		}
 	}
 
+	@Override
+	public void paga(int idViaggio) {
+		Query q = em.createNativeQuery("SELECT idViaggio FROM Viaggio WHERE idViaggio = "+idViaggio);
+		List<Integer> lista = q.getResultList();
+		if(lista.size()==1){
+			Viaggio v = em.find(Viaggio.class, lista.get(0));
+			v.setPagato(true);
+			em.merge(v);
+		}
+	}
+
 }

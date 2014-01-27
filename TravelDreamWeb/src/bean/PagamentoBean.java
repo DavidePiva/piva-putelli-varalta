@@ -43,7 +43,8 @@ public class PagamentoBean {
     }
     
     public String paga(){
-    	 return "/user/index?faces-redirect=true";
+    	gestioneViaggi.paga(idViaggio);
+    	return "/user/index?faces-redirect=true";
     }
 
 	public int getNumeroPersoneSelezionato() {
