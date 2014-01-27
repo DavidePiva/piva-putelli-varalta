@@ -29,4 +29,6 @@ public interface ShowViaggioLocal {
 
 	boolean pagabile(int idViaggio);
 
+	public boolean eleminabile(int idViaggio);
+
 }

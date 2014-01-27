@@ -114,7 +114,7 @@
 						<h:commandButton value="Acquista il viaggio" action="#{gv.acquista()}" rendered="#{gv.pagabile()}" />
 						<h:outputLabel value = "Attenzione, non puoi ancora effettuare il pagamento: alcune delle persone che hai invitato non hanno ancora confermato la loro partecipazione. Attendi una loro risposta oppure cancella l'invito dalla pagina del tuo viaggio." rendered="#{gv.nonPagabile()}" ></h:outputLabel>
 						<br ></br>
-						<h:commandButton value="Elimina dai tuoi viaggi" action="#{gv.rimuovi()}"  />
+						<h:commandButton value="Elimina dai tuoi viaggi" action="#{gv.rimuovi()}" rendered="#{gv.eliminabile()}" />
 					
 				</h:form>
 
