@@ -28,5 +28,4 @@ public interface GestioneViaggiLocal {
 	public boolean isRegalabile(int idViaggio);
 	public void rimuoviDonatore(int idViaggio, String utenteSelezionato);
 	public void paga(int idViaggio);
-
 }

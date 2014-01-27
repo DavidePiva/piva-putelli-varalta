@@ -189,6 +189,15 @@ public class ShowViaggio implements ShowViaggioLocal {
 	}
 
 	@Override
+	public BigDecimal getPrezzoPernottamento(int idPernottamento) {
+		Query q = em.createNativeQuery("SELECT prezzo FROM Pernottamento, TipoCamere_Hotel "
+				+ "WHERE Pernottamento.hotel = TipoCamere_Hotel.idHotel AND "
+				+ "Pernottamento.tipo = TipoCamere_Hotel.tipoCamera AND Pernottamento.idPernottamento ="+idPernottamento);
+		List<BigDecimal> l = q.getResultList();
+		return l.get(0);
+	}
+
+	@Override
 	public boolean pagabile(int idViaggio){
 		List<UtenteDTO> l=getUtentiInvitati(idViaggio);
 		if(l.size()==0){
