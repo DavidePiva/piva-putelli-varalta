@@ -29,4 +29,7 @@ public interface GestioneViaggiLocal {
 	public void rimuoviDonatore(int idViaggio, String utenteSelezionato);
 	public void paga(int idViaggio);
 	public void pagaPernottamento(int idViaggio, int idPernottamento, String donatore);
+	public List<VoloDTO> getVoliRegalabili(int idViaggio);
+	public List<AttivitaDTO> getAttivitaRegalabili(int idViaggio);
+	public HotelDTO getHotelRegalabile(int idViaggio);
 }

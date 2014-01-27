@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.validation.constraints.Pattern;
 
+import DTO.AttivitaDTO;
+import DTO.HotelDTO;
 import DTO.UtenteDTO;
 import DTO.ViaggioDTO;
 import DTO.VoloDTO;
@@ -121,6 +123,21 @@ public class RegaliBean {
 		ViaggioDTO v = gestioneViaggi.getViaggio(idViaggio);
 		int idPernottamento = v.getIdPernottamento();
 		return "/user/pagamentoPernottamento?faces-redirect=true&idViaggio="+idViaggio+"&email="+emailUtente+"&idPer"+idPernottamento;
+	}
+	
+	public List<VoloDTO> getVoli(int idViaggio){
+		List<VoloDTO> l = gestioneViaggi.getVoliRegalabili(idViaggio);
+		return l;
+	}
+	
+	public List<AttivitaDTO> getAttivita(int idViaggio){
+		List<AttivitaDTO> l = gestioneViaggi.getAttivitaRegalabili(idViaggio);
+		return l;
+	}
+	
+	public HotelDTO getHotel(int idViaggio){
+		HotelDTO h = gestioneViaggi.getHotelRegalabile(idViaggio);
+		return h;
 	}
 
 }
