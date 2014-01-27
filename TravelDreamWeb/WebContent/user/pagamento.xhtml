@@ -86,7 +86,7 @@
 						<p:inputText   size='4' />
 						<br></br>
 						<br></br>
-						<h:outputLabel value = "Attenzione, non puoi ancora effettuare il pagamento: alcune delle persone che hai invitato non hanno ancora confermato la loro partecipazione. Attendi una loro risposta oppure cancella l'invito dalla pagina del tuo viaggio." rendered="pb.nonPagabile()></h:outputLabel>
+						<h:outputLabel value = "Attenzione, non puoi ancora effettuare il pagamento: alcune delle persone che hai invitato non hanno ancora confermato la loro partecipazione. Attendi una loro risposta oppure cancella l'invito dalla pagina del tuo viaggio." rendered="pb.nonPagabile()" ></h:outputLabel>
 						<p:commandButton value="Completa il pagamento" 	action="#{pb.paga()}" rendered="pb.pagabile()"/>
 				</h:form>
 				
