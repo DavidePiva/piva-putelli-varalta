@@ -70,11 +70,10 @@
 			<h:form>
 				<h:link outcome="/admin/index" value="Sezione Admin" id="link_admin"
 					rendered="#{gp.isAdmin()}" />
-				<h:link outcome="/impiegato/index" value="Sezione Impiegato"
+				<h:link outcome="/impiegato/index" value="Area gestione pacchetti e componenti"
 					id="link_impiegato" rendered="#{gp.isImpiegato()}" />
 				<br></br>
-				<br></br>
-				<h:commandButton value="Eliminati" action="#{gp.eliminaUtente()}" />
+
 				<br></br>
 			</h:form>
 			<ul>
