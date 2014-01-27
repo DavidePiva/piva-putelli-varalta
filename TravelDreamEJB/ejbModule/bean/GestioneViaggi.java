@@ -495,7 +495,43 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 			em.remove(rem);
 		}
 	}
-	
 
+	@Override
+	public List<VoloDTO> getVoliRegalabili(int idViaggio) {
+		Query q = em.createNativeQuery("SELECT DISTINCT idVolo FROM Donazione_Volo WHERE donato = 0 AND idViaggio ="+idViaggio);
+		List<VoloDTO> voli = new ArrayList<VoloDTO>();
+		List<Integer> lista = q.getResultList();
+		for(int i = 0; i < lista.size(); i++){
+			int id = lista.get(i);
+			Volo v = em.find(Volo.class, id);
+			voli.add(convertiVoloDTO(v));
+		}
+		return voli;
+	}
+
+	@Override
+	public List<AttivitaDTO> getAttivitaRegalabili(int idViaggio) {
+		Query q = em.createNativeQuery("SELECT DISTINCT idAttivita FROM Donazione_Attivita WHERE donato = 0 AND idViaggio ="+idViaggio);
+		List<AttivitaDTO> attivita = new ArrayList<AttivitaDTO>();
+		List<Integer> lista = q.getResultList();
+		for(int i = 0; i < lista.size(); i++){
+			int id = lista.get(i);
+			Attivita v = em.find(Attivita.class, id);
+			attivita.add(convertiAttivitaDTO(v));
+		}
+		return attivita;
+	}
+	
+	public HotelDTO getHotelRegalabile(int idViaggio){
+		Query q = em.createNativeQuery("SELECT DISTINCT idPernottamento FROM Donazione_Pernottamento WHERE donato = 0 AND idViaggio ="+idViaggio);
+		List<Integer> lista = q.getResultList();
+		if(lista.isEmpty()){
+			return null;
+		}
+		int id = lista.get(0);
+		Pernottamento p = em.find(Pernottamento.class, id);
+		Hotel h = p.getHotelBean();
+		return convertiHotelDTO(h);
+	}
 
 }

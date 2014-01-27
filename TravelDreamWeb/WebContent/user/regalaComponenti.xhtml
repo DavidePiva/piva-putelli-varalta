@@ -78,7 +78,7 @@
 						<h:outputLabel for="voli" value="Regala un volo:"></h:outputLabel>
 						<br></br>
 						<h:selectOneMenu id="voli" value="#{rb.voloScelto}">
-							<f:selectItems value = "#{gv.getVoli()}" var="v" itemLabel= "#{v.getDataFormattata()}"
+							<f:selectItems value = "#{rb.getVoli(gv.idViaggio)}" var="v" itemLabel= "#{v.getDataFormattata()}"
 								itemValue = "#{v.idVolo}"/>
 						</h:selectOneMenu>
 						<h:commandButton value="Regala" />
@@ -89,7 +89,7 @@
 						<h:outputLabel for="attivita" value="Regala un'attività:"></h:outputLabel>
 						<br></br>
 						<h:selectOneMenu id="attivita" value="#{rb.attivitaScelta}">
-							<f:selectItems value="#{gv.attivita}" var="a" itemLabel = "#{a.titolo}"
+							<f:selectItems value="#{rb.getAttivita(gv.idViaggio)}" var="a" itemLabel = "#{a.titolo}"
 								itemValue = "#{a.id}"/>
 						</h:selectOneMenu>
 						<h:commandButton value="Regala" />
@@ -99,7 +99,7 @@
 					<h:form>
 						<h:outputLabel for="hotel" value="Regala il pernottamento:"></h:outputLabel>
 						<br></br>
-						<h:outputLabel for="hotel" value="#{gv.hotel}"></h:outputLabel>
+						<h:outputLabel for="hotel" value="#{rb.getHotel(gv.idViaggio)}"></h:outputLabel>
 						<h:commandButton value="Regala" action = "#{rb.pagaPernottamento(gp.emailUtente,gv.idViaggio)}" />
 					</h:form>
 
