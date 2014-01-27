@@ -325,5 +325,22 @@ public class DatiStaticiBean {
 		HotelDTO h = datistatici.getHotelPerId(idHotel);
 		return h;
 	}
+	
+	public List<PacchettoDTO> getUltimiPacchetti1(){
+		List<PacchettoDTO> l = new ArrayList<PacchettoDTO>();
+		if(datistatici.ultimiPacchetti().size()>0)
+			l.add(datistatici.ultimiPacchetti().get(0));
+		if(datistatici.ultimiPacchetti().size()>1)
+			l.add(datistatici.ultimiPacchetti().get(1));
+		return l;
+	}
 
+	public List<PacchettoDTO> getUltimiPacchetti2(){
+		List<PacchettoDTO> l = new ArrayList<PacchettoDTO>();
+		if(datistatici.ultimiPacchetti().size()>2)
+			l.add(datistatici.ultimiPacchetti().get(2));
+		if(datistatici.ultimiPacchetti().size()>3)
+			l.add(datistatici.ultimiPacchetti().get(3));
+		return l;
+	}
 }
