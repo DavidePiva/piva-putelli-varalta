@@ -26,7 +26,9 @@ public class GestioneViaggiBean {
        
         @EJB
         private GestioneViaggiLocal gestioneViaggi;
-        
+    	@EJB
+    	private ShowViaggioLocal showViaggio;
+    	
         @EJB
         private DatiStaticiLocal datistatici;
         
@@ -183,6 +185,18 @@ public class GestioneViaggiBean {
         public boolean nonRegalabile(){
         	boolean regalabile=gestioneViaggi.isRegalabile(idViaggio);
         	return !regalabile;
+        }
+        
+        public boolean pagabile(){
+        	if(showViaggio.pagabile(idViaggio)){
+        		return true;
+        	}else{
+        		return false;
+        	}
+        }
+        
+        public boolean nonPagabile(){
+        	return !pagabile();
         }
        
         

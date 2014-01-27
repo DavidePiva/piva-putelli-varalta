@@ -69,9 +69,8 @@
 						<h:outputLabel
 							value="Pagina di modifica del viaggio a #{gv.citta}"></h:outputLabel>
 						<br></br>
-						<h:commandButton value="Acquista" action="#{gv.acquista()}" update="regGrid1" />
-						<h:commandButton value="Rimuovi" action="#{gv.rimuovi()}" update="regGrid1" />
 					</h1>
+
 					<br></br>
 					<h:panelGrid columns="3" id="regGrid1">
 						<h:outputLabel for="numeroPersone"
@@ -112,6 +111,11 @@
 
 
 					</h:panelGrid>
+						<h:commandButton value="Acquista il viaggio" action="#{gv.acquista()}" rendered="#{gv.pagabile()}" />
+						<h:outputLabel value = "Attenzione, non puoi ancora effettuare il pagamento: alcune delle persone che hai invitato non hanno ancora confermato la loro partecipazione. Attendi una loro risposta oppure cancella l'invito dalla pagina del tuo viaggio." rendered="#{gv.nonPagabile()}" ></h:outputLabel>
+						<br ></br>
+						<h:commandButton value="Elimina dai tuoi viaggi" action="#{gv.rimuovi()}"  />
+					
 				</h:form>
 
 

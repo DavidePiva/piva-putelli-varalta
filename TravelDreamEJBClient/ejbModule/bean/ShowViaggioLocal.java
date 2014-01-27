@@ -24,4 +24,6 @@ public interface ShowViaggioLocal {
 
 	public List<ViaggioDTO> getPagati(String email);
 
+	boolean pagabile(int idViaggio);
+
 }
