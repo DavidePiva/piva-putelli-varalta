@@ -39,4 +39,5 @@ public interface DatiStaticiLocal {
 	public VoloDTO getVoloDTO(int id);
 	AeroportoDTO getAeroportoDTO(int id);
 	public List<String> getListaUtenti();
+	public List<PacchettoDTO> ultimiPacchetti();
 }

@@ -564,4 +564,20 @@ public class DatiStatici implements DatiStaticiLocal {
 		Query q = em.createNativeQuery("SELECT email FROM Utente");
 		return q.getResultList();
 	}
+
+	@Override
+	public List<PacchettoDTO> ultimiPacchetti() {
+		int numeroPacchetti = 4;
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile = 1 ORDER BY idPacchetto DESC");
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		List<PacchettoDTO> l1 = new ArrayList<PacchettoDTO>();
+		if(numeroPacchetti > i.size())
+			numeroPacchetti = i.size();
+		for(int index = 0; index < numeroPacchetti; index++){
+			Pacchetto p = em.find(Pacchetto.class, i.get(index));
+			l1.add(convertiPacchettoDTO(p));
+		}
+		return l1;
+	}
 }
