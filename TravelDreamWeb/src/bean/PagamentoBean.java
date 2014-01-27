@@ -87,7 +87,10 @@ public class PagamentoBean {
     	return showViaggio.getPrezzoPernottamento(idPernottamento);
     }
 
-    
+    public String pagaPernottamento(){
+    	gestioneViaggi.pagaPernottamento(idViaggio,idPernottamento,donatore);
+    	return "/user/index?faces-redirect=true";
+    }
     
 
 }
