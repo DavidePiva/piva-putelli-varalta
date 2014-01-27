@@ -473,6 +473,28 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 			em.merge(v);
 		}
 	}
+
+	@Override
+	public void pagaPernottamento(int idViaggio, int idPernottamento, String donatore) {
+		Donazione_PernottamentoPK pk = new Donazione_PernottamentoPK();
+		pk.setEmailDonatore(donatore);
+		pk.setIdPernottamento(idPernottamento);
+		pk.setIdViaggio(idViaggio);
+		Donazione_Pernottamento dp = em.find(Donazione_Pernottamento.class, pk);
+		dp.setDonato(true);
+		em.merge(dp);
+		Query q = em.createNativeQuery("SELECT emailDonatore FROM Donazione_Pernottamento WHERE idViaggio = "+ idViaggio+ " AND donato = 0");
+		List<String> emails = q.getResultList();
+		List<Donazione_PernottamentoPK> pki = new ArrayList<Donazione_PernottamentoPK>();
+		for(int i = 0; i < emails.size(); i++){
+			Donazione_PernottamentoPK temp = new Donazione_PernottamentoPK();
+			temp.setEmailDonatore(emails.get(i));
+			temp.setIdViaggio(idViaggio);
+			temp.setIdPernottamento(idPernottamento);
+			Donazione_Pernottamento rem = em.find(Donazione_Pernottamento.class, temp);
+			em.remove(rem);
+		}
+	}
 	
 
 
