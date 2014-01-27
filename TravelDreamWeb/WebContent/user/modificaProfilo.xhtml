@@ -90,9 +90,13 @@
 
 						</h:panelGrid>
 						<br></br>
-						<p:commandButton value="Salva" update="regGrid"
+						<p:commandButton value="Salva modifiche" update="regGrid"
 							action="#{gp.aggiorna()}" />
 					</p:panel>
+				</h:form>
+						<br></br>
+				<h:form>
+				<h:commandButton value="Elimina account" action="#{gp.eliminaUtente()}" />
 				</h:form>
 			</div>
 		</div>
