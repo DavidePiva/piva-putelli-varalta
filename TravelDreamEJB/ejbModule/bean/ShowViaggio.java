@@ -206,4 +206,14 @@ public class ShowViaggio implements ShowViaggioLocal {
 			return false;
 		}
 	}
+
+	@Override
+	public boolean eleminabile(int idViaggio) {
+		List<UtenteDTO> l=getUtentiConfermati(idViaggio);
+		if(l.size()==0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

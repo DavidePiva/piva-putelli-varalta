@@ -199,5 +199,12 @@ public class GestioneViaggiBean {
         	return !pagabile();
         }
        
+        public boolean eliminabile(){
+        	if(showViaggio.eleminabile(idViaggio) && pagabile()){
+           			return true;
+            	}else{
+            		return false;
+            	}
+        }
         
 }
