@@ -123,5 +123,14 @@ public class PartecipazioniBean {
     	gestioneViaggi.rimuoviPartecipazione(idViaggio, utenteSelezionato);
     	return "/user/inviti?faces-redirect=true&id="+idViaggio;
     }
+    
+    public String rimuovimi(int idViaggio, String emailUtente){
+    	gestioneViaggi.rimuoviPartecipazione(idViaggio, emailUtente);
+    	return "/user/index?faces-redirect=true";
+    }
+    
+    public String pagaPartecipazione(int idViaggio, String emailUtente){
+    	return "/user/pagamentoPartecipazione?faces-redirect=true&id="+idViaggio+"&email="+emailUtente;
+    }
 	
 }

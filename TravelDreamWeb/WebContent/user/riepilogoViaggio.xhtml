@@ -66,8 +66,6 @@
 		</div>
 		<div id="boxcontenuto">
 			<div>
-				<h:form>
-
 					<h1>
 						<h:outputLabel
 							value="Viaggio a #{gv.citta}"></h:outputLabel>
@@ -93,10 +91,7 @@
 						<br></br>
 						<br></br>
 						<br></br>
-						<h:commandButton value="Partecipo" action = "#{par.pagaPartecipazione(gv.idViaggio,gp.emailUtente)}" update="regGrid1" />
-						<h:commandButton value = "Non partecipo" action = "#{par.rimuovimi(gv.idViaggio,gp.emailUtente)}" update = "regGrid1" ></h:commandButton>
 					</h:panelGrid>
-				</h:form>
 
 
 			</div>

@@ -70,8 +70,9 @@
 			<h:form>
 				<h:link outcome="/admin/index" value="Sezione Admin" id="link_admin"
 					rendered="#{gp.isAdmin()}" />
-				<h:link outcome="/impiegato/index" value="Area gestione pacchetti e componenti"
-					id="link_impiegato" rendered="#{gp.isImpiegato()}" />
+				<h:link outcome="/impiegato/index"
+					value="Area gestione pacchetti e componenti" id="link_impiegato"
+					rendered="#{gp.isImpiegato()}" />
 				<br></br>
 
 				<br></br>
@@ -94,15 +95,21 @@
 					</h:link></li>
 			</ui:repeat>
 			<h1>Regali</h1>
-			<ui:repeat value="#{rb.getInfoRegali(gp.emailUtente)}"
-				var="viaggio">
+			<ui:repeat value="#{rb.getInfoRegali(gp.emailUtente)}" var="viaggio">
 				<li><h:link value="#{viaggio.regalo()}"
 						outcome="regalaComponenti">
 						<f:param name="id" value="#{viaggio.idViaggio}"></f:param>
 					</h:link></li>
 			</ui:repeat>
 			<h1>Viaggi già pagati</h1>
-			<ui:repeat value = "#{sv.viaggiPagati(gp.emailUtente)}" var = "viaggio">
+			<ui:repeat value="#{sv.viaggiPagati(gp.emailUtente)}" var="viaggio">
+				<li><h:link value="#{viaggio.toString()}"
+						outcome="riepilogoViaggio">
+						<f:param name="id" value="#{viaggio.idViaggio}"></f:param>
+					</h:link></li>
+			</ui:repeat>
+			<h1>Viaggi ai quali parteciperò</h1>
+			<ui:repeat value="#{sv.viaggiPartecipati(gp.emailUtente)}" var="viaggio">
 				<li><h:link value="#{viaggio.toString()}"
 						outcome="riepilogoViaggio">
 						<f:param name="id" value="#{viaggio.idViaggio}"></f:param>

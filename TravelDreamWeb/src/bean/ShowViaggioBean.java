@@ -24,6 +24,8 @@ public class ShowViaggioBean {
 	private List<InfoViaggio> infoViaggi;
 	private List<ViaggioDTO> pagati;
 	private List<InfoViaggio> viaggiPagati;
+	private List<ViaggioDTO> partecipati;
+	private List<InfoViaggio> viaggiPartecipati;
 	
 	public List<ViaggioDTO> getViaggiUtente(String email){
 		viaggiUtente = showViaggio.getViaggiUtente(email);
@@ -99,6 +101,23 @@ public class ShowViaggioBean {
 		return viaggiPagati;
 	}
 	
+	public List<InfoViaggio> viaggiPartecipati(String email){
+		partecipati = getPartecipati(email);
+		viaggiPartecipati = new ArrayList<InfoViaggio>();
+		for(int i = 0; i < partecipati.size(); i++){
+			InfoViaggio a = new InfoViaggio();
+			a.setCitta(partecipati.get(i).getCitta());
+			a.setIdViaggio(partecipati.get(i).getIdViaggio());
+			a.setNumeroPersone(partecipati.get(i).getNumeroPersone());
+			a.setTitolare(partecipati.get(i).getTitolare());
+			viaggiPartecipati.add(a);
+		}
+		return viaggiPartecipati;
+	}
+
+	private List<ViaggioDTO> getPartecipati(String email) {
+		return showViaggio.getViaggiPartecipati(email);
+	}
 	
 	
 }

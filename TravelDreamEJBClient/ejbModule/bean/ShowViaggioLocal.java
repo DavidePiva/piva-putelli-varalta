@@ -33,6 +33,7 @@ public interface ShowViaggioLocal {
 
 	public BigDecimal getPrezzoAttivita(int idAttivita);
 
-	public BigDecimal getPrezzoVolo(int idVolo);
+	public List<ViaggioDTO> getViaggiPartecipati(String email);
 
+	public BigDecimal getPrezzoVolo(int idVolo);
 }

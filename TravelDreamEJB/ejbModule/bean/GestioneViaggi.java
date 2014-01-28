@@ -667,6 +667,16 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		}
 		
 	}
+
+	@Override
+	public void pagaPartecipazione(int idViaggio, String invitato) {
+		PartecipazionePK pk = new PartecipazionePK();
+		pk.setEmailPartecipante(invitato);
+		pk.setIdViaggio(idViaggio);
+		Partecipazione p = em.find(Partecipazione.class, pk);
+		p.setPagato(true);
+		em.merge(p);
+	}
 	
 	
 }
