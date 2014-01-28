@@ -1,6 +1,7 @@
 package bean;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -10,7 +11,11 @@ import javax.faces.bean.RequestScoped;
 
 import javax.faces.bean.ViewScoped;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+
 import DTO.ViaggioDTO;
+import DTO.VoloDTO;
 
 @ManagedBean(name="pb")
 @ViewScoped
@@ -20,6 +25,8 @@ public class PagamentoBean {
 	private GestioneViaggiLocal gestioneViaggi;
 	@EJB
 	private ShowViaggioLocal showViaggio;
+	@EJB
+	private DatiStaticiLocal datistatici;
 	
 	private int idViaggio;
 	private int numeroPersoneSelezionato;
@@ -110,8 +117,19 @@ public class PagamentoBean {
     
     public BigDecimal getPrezzoPernottamento(){
     	getViaggio();
+    	int v1 = viaggio.getIdVoloAndata();
+    	int v2 = viaggio.getIdVoloRitorno();
+    	VoloDTO andata = datistatici.getVoloDTO(v1);
+    	VoloDTO ritorno = datistatici.getVoloDTO(v2);
+    	Date data1 = andata.getData();
+    	Date data2 = ritorno.getData();
+    	DateTime dt1 = new DateTime(data1);
+    	DateTime dt2 = new DateTime(data2);
+    	int days = Days.daysBetween(dt1, dt2).getDays();
+    	BigDecimal giorni = BigDecimal.valueOf(days);
     	idPernottamento = viaggio.getIdPernottamento();
-    	return showViaggio.getPrezzoPernottamento(idPernottamento);
+    	BigDecimal prezzo = showViaggio.getPrezzoPernottamento(idPernottamento);
+    	return prezzo.multiply(giorni);
     }
 
     public String pagaPernottamento(){
