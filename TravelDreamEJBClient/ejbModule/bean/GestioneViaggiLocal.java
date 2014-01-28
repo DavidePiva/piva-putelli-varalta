@@ -41,5 +41,6 @@ public interface GestioneViaggiLocal {
 	public void cancellaTutteAttivita(int idViaggio);
 	public void rimuoviAttivita(int idAttivita, int idViaggio);
 	public void gestoreDate(ViaggioDTO viaggio, int idVolo1, int idVolo2);
+	public void pagaVolo(int idViaggio, int idVolo, String donatore);
 
 }
