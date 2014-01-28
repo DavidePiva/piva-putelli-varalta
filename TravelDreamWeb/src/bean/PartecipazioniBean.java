@@ -94,6 +94,10 @@ public class PartecipazioniBean {
 		return infoPartecipazioni;
 	}
 	
+	public boolean ciSonoViaggiPartecipazione(String email){
+		return !getPartecipazioni(email).isEmpty();
+	}
+	
 	public ViaggioDTO getViaggio(){
 		viaggio = gestioneViaggi.getViaggio(idViaggio);
 		return viaggio;

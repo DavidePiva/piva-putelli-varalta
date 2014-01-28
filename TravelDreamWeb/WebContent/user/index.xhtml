@@ -64,19 +64,22 @@
 				<h:outputLabel value="Ciao #{gp.nomeUtente}"></h:outputLabel>
 			</h1>
 
-			<h:link outcome="modificaProfilo" value="Modifica profilo personale"></h:link>
-			<br></br>
-
 			<h:form>
+				<h:link outcome="modificaProfilo" value="Modifica profilo personale"></h:link>
+
+				<h:outputLabel value=" - " rendered="#{gp.isAdmin()}" />
 				<h:link outcome="/admin/index" value="Sezione Admin" id="link_admin"
 					rendered="#{gp.isAdmin()}" />
+				
+				<h:outputLabel value=" - " rendered="#{gp.isImpiegato()}" />
 				<h:link outcome="/impiegato/index"
 					value="Area gestione pacchetti e componenti" id="link_impiegato"
 					rendered="#{gp.isImpiegato()}" />
-				<br></br>
-
-				<br></br>
+				<br /><br />
 			</h:form>
+
+
+			<b><h:outputLabel value="VIAGGI IN FASE DI MODIFICA" rendered="#{sv.ciSonoViaggiInFaseDiCreazione(gp.emailUtente)}" /></b>
 			<ul>
 				<ui:repeat value="#{sv.getInfoViaggi(gp.emailUtente)}" var="viaggio">
 					<li><h:link value="#{viaggio.toString()}"
@@ -85,8 +88,8 @@
 						</h:link></li>
 				</ui:repeat>
 			</ul>
-			<br></br>
-			<h1>Partecipazioni</h1>
+			<br /><br />
+			<b><h:outputLabel value="PARTECIPAZIONI" rendered="#{par.ciSonoViaggiPartecipazione(gp.emailUtente)}" /></b>
 			<ui:repeat value="#{par.getInfoPartecipazioni(gp.emailUtente)}"
 				var="viaggio">
 				<li><h:link value="#{viaggio.riepilogo()}"
@@ -109,7 +112,8 @@
 					</h:link></li>
 			</ui:repeat>
 			<h1>Viaggi ai quali parteciperò</h1>
-			<ui:repeat value="#{sv.viaggiPartecipati(gp.emailUtente)}" var="viaggio">
+			<ui:repeat value="#{sv.viaggiPartecipati(gp.emailUtente)}"
+				var="viaggio">
 				<li><h:link value="#{viaggio.toString()}"
 						outcome="riepilogoViaggio">
 						<f:param name="id" value="#{viaggio.idViaggio}"></f:param>
