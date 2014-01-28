@@ -104,6 +104,7 @@ GestioneComponenti(){
 	public void creaAttivita(AttivitaDTO a)
 	{
 		Attivita attivita= new Attivita(a);
+		attivita.setSelezionabile(true);
 		em.persist(attivita);	
 	}
 	@Override
@@ -141,10 +142,7 @@ GestioneComponenti(){
         	TipoCamere_Hotel t3=em.find(TipoCamere_Hotel.class,pk);  
         	t3.setPrezzo(t.getPrezzo());
         	em.merge(t3);
- /*       	em.remove(t3);        	
-    		em.flush();
-        	t2.setPrezzo(t.getPrezzo());
-        	em.persist(t2);   */
+
 		}
 		
 		
@@ -154,8 +152,14 @@ GestioneComponenti(){
 		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento WHERE hotel = "+idHotel+" AND tipo = '"+tipoCamera+"'");
 		List<Integer> list= new ArrayList<Integer>();
 		list=q.getResultList();
-		int i=list.get(0);
-		return i;
+		if(list.size()>=1){
+			int i=list.get(0);
+			return i;
+		}else{
+			return -1;
+		}
+		
+		
 	}
 	//###MODIFICA###//
 	
@@ -197,15 +201,23 @@ GestioneComponenti(){
 		h.setSelezionabile(false);
 		em.merge(h);
 		em.flush();
+		
 		int id1=getIdPernottamento("lowcost",id);
-		eliminaPernottamento(id1);
-		em.flush();
+		if(id1!=-1){
+			eliminaPernottamento(id1);
+			em.flush();
+		}
+		
 		int id2=getIdPernottamento("smart",id);
-		eliminaPernottamento(id2);
-		em.flush();
+		if(id2!=-1){		
+			eliminaPernottamento(id2);
+			em.flush();
+		}
+		
 		int id3=getIdPernottamento("dream",id);
-		eliminaPernottamento(id3);
-			
+		if(id3!=-1){
+			eliminaPernottamento(id3);	
+		}	
 	}
 	
 
