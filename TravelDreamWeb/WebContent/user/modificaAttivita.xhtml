@@ -6,14 +6,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
-<title>TravelDream</title>
-<link href='../css/application.css' media='all' rel='stylesheet'
-	type='text/css' />
-<script type='text/javascript' src='../css/menu.js' />
-<f:metadata>
-	<f:viewParam name="id" value="#{mv.idViaggio}" />
-</f:metadata>
+	<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+	<title>TravelDream</title>
+	<link href='../css/application.css' media='all' rel='stylesheet'
+		type='text/css' />
+	<script type='text/javascript' src='../css/menu.js' />
+	<f:metadata>
+		<f:viewParam name="id" value="#{mv.idViaggio}" />
+	</f:metadata>
 </h:head>
 <h:body onload="javascript:start()">
 	<div id="boxintestazione">
@@ -67,14 +67,32 @@
 		</div>
 		<div id="boxcontenuto">
 			<div>
-				
 
-					<h1>
-						<h:outputLabel value="Le attività"></h:outputLabel>
-					</h1>
-					<br></br>
-				
 
+				<h1>
+					<h:outputLabel value="Le attività"></h:outputLabel>
+				</h1>
+				<br></br> <b>Elimina attività: </b>
+				<h:form>
+					<h:selectOneMenu value="#{mv.idAttivitaDaEliminare}">
+						<f:selectItems value="#{mv.attivita}" var="c"
+							itemLabel="#{c.titolo}" itemValue="#{c.id}" />
+					</h:selectOneMenu>
+					<h:commandButton value="ELIMINA DAL VIAGGIO"
+						action="#{mv.eliminaAttivitaDaViaggio()}" />
+				</h:form>
+				<br />
+				<br /> <b>Aggiungi attività: </b>
+				<h:form>
+					<h:selectOneMenu value="#{mv.idAttivitaDaAggiungere}">
+						<f:selectItems value="#{mv.attivitaNonSelezionateViaggio}" var="c"
+							itemLabel="#{c.titolo}" itemValue="#{c.id}" />
+					</h:selectOneMenu>
+					<h:commandButton value="AGGIUNGI AL VIAGGIO"
+						action="#{mv.aggiungiAttivitaAlViaggio()}" />
+				</h:form>
+				
+				
 
 			</div>
 		</div>

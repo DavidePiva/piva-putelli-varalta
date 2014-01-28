@@ -207,4 +207,8 @@ public class GestioneViaggiBean {
         	return "/user/modificaDate?faces-redirect=true&id="+idViaggio;
         }
         
+        public String scegliAttivita(){
+        	return "/user/modificaAttivita?faces-redirect=true&id="+idViaggio;
+        }
+        
 }
