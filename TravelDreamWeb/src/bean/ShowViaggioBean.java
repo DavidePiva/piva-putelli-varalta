@@ -105,6 +105,10 @@ public class ShowViaggioBean {
 		return viaggiPagati;
 	}
 	
+	public boolean ciSonoViaggiPagati(String email){
+		return !getPagati(email).isEmpty();
+	}
+	
 	public List<InfoViaggio> viaggiPartecipati(String email){
 		partecipati = getPartecipati(email);
 		viaggiPartecipati = new ArrayList<InfoViaggio>();
@@ -117,6 +121,10 @@ public class ShowViaggioBean {
 			viaggiPartecipati.add(a);
 		}
 		return viaggiPartecipati;
+	}
+	
+	public boolean ciSonoViaggiPartecipati(String email){
+		return !getPartecipati(email).isEmpty();
 	}
 
 	private List<ViaggioDTO> getPartecipati(String email) {
