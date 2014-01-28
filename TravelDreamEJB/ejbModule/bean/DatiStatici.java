@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 
+
+
 import javax.annotation.Resource;
 import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
@@ -579,5 +581,33 @@ public class DatiStatici implements DatiStaticiLocal {
 			l1.add(convertiPacchettoDTO(p));
 		}
 		return l1;
+	}
+
+	@Override
+	public List<String> getCittaConHotel() {
+		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel");
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		List<String> lista = new ArrayList<String>();
+		for(int index = 0; index < i.size(); index++){
+			Hotel h = em.find(Hotel.class, i.get(index));
+			if(!lista.contains(h.getCitta()))
+				lista.add(h.getCitta());
+		}
+		return lista;
+	}
+
+	@Override
+	public List<String> getCittaConPacchetto() {
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto");
+		List<Integer> i = new ArrayList<Integer>();
+		i = q.getResultList();
+		List<String> lista = new ArrayList<String>();
+		for(int index = 0; index < i.size(); index++){
+			Pacchetto h = em.find(Pacchetto.class, i.get(index));
+			if(!lista.contains(h.getCitta()))
+				lista.add(h.getCitta());
+		}
+		return lista;
 	}
 }
