@@ -32,4 +32,7 @@ public interface GestioneViaggiLocal {
 	public List<VoloDTO> getVoliRegalabili(int idViaggio);
 	public List<AttivitaDTO> getAttivitaRegalabili(int idViaggio);
 	public HotelDTO getHotelRegalabile(int idViaggio);
+	public void aggiungiAttivita(int idAttivita, int idViaggio);
+	public void cancellaTutteAttivita(int idViaggio);
+	public void rimuoviAttivita(int idAttivita, int idViaggio);
 }

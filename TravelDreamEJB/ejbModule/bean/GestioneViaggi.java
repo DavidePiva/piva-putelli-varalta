@@ -533,4 +533,44 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		Hotel h = p.getHotelBean();
 		return convertiHotelDTO(h);
 	}
+
+	@Override
+	public void aggiungiAttivita(int idAttivita, int idViaggio) {
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		Attivita a = em.find(Attivita.class, idAttivita);
+		Viaggio_AttivitaPK pk = new Viaggio_AttivitaPK();
+		pk.setIdAttivita(idAttivita);
+		pk.setIdViaggio(idViaggio);
+		Viaggio_Attivita va = new Viaggio_Attivita();
+		va.setId(pk);
+		va.setViaggio(v);
+		va.setAttivita(a);
+		va.setRegalabile(false);
+		em.persist(va);
+	}
+
+	@Override
+	public void cancellaTutteAttivita(int idViaggio) {
+		Query q = em.createNativeQuery("SELECT idAttivita FROM Viaggio_Attivita WHERE idViaggio = "+idViaggio);
+		List<Integer> ids = q.getResultList();
+		for(int i = 0; i < ids.size(); i++){
+			int id = ids.get(i);
+			Viaggio_AttivitaPK pk = new Viaggio_AttivitaPK();
+			pk.setIdAttivita(id);
+			pk.setIdViaggio(idViaggio);
+			Viaggio_Attivita va = em.find(Viaggio_Attivita.class, pk);
+			em.remove(va);
+		}
+	}
+
+	@Override
+	public void rimuoviAttivita(int idAttivita, int idViaggio) {
+		Viaggio_AttivitaPK pk = new Viaggio_AttivitaPK();
+		pk.setIdAttivita(idAttivita);
+		pk.setIdViaggio(idViaggio);
+		Viaggio_Attivita va = em.find(Viaggio_Attivita.class, pk);
+		em.remove(va);
+	}
+	
+	
 }
