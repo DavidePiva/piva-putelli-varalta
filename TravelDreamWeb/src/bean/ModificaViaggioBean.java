@@ -12,7 +12,7 @@ import DTO.ViaggioDTO;
 import DTO.VoloDTO;
 
 @ManagedBean(name="mv")
-@SessionScoped
+@ViewScoped
 public class ModificaViaggioBean {
 	
 	@EJB
