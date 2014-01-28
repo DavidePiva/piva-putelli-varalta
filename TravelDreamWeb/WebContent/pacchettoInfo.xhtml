@@ -80,26 +80,33 @@
 					</h:link>
 				</h1>
 
-				<table>
-					<tr>
-						<td><h:link value="#{sp.hotelRelativo.nome}" outcome="hotel">
+				<b>Andata</b><br />
+				<h:outputLabel	value="#{sp.aeroportoPartenza.nome}, #{sp.voloPartenza.dataFormattata}"></h:outputLabel>
+				<br /> <br />
+				<b>Ritorno</b><br /> <h:outputLabel
+						value="#{sp.aeroportoArrivo.nome}, #{sp.voloArrivo.dataFormattata}"></h:outputLabel>
+
+<br /><br />
+<b><h:link value="#{sp.hotelRelativo.nome}" outcome="hotel">
 								<f:param name="hotel" value="#{sp.hotelRelativo.nome}" />
 								<f:param name="foto" value="1" />
-							</h:link><br /></td>
-						<ui:repeat value="#{sp.attivitaPacchetto}" var="attivita">
-							<li><h:link value="#{attivita.titolo} - #{attivita.prezzo}" outcome="attivita">
+				</h:link></b><br /><br />
+				<h:graphicImage width="200" height="150" url="foto/#{sp.hotelRelativo.foto1}"></h:graphicImage>
+				
+				
+	<br /><br /><br />
+<b>Attività</b><br />
+				<table>
+				<ui:repeat value="#{sp.attivitaPacchetto}" var="attivita">
+				<tr><td>
+							<h:graphicImage width="100" height="75" url="foto/#{attivita.foto1}"></h:graphicImage></td><td valign="middle">
+							<h:link value="#{attivita.titolo} - #{attivita.prezzo}" outcome="attivita">
 									<f:param name="attivita" value="#{attivita.id}" />
 									<f:param name="foto" value="1" />
-								</h:link></li>
-						</ui:repeat>
-						<td width='20px' />
-						<td><b>Andata</b><br /> <h:outputLabel
-								value="#{sp.aeroportoPartenza.nome}, #{sp.voloPartenza.dataFormattata}"></h:outputLabel>
-							<br /> <br /> <b>Ritorno</b><br /> <h:outputLabel
-								value="#{sp.aeroportoArrivo.nome}, #{sp.voloArrivo.dataFormattata}"></h:outputLabel>
-						</td>
-					</tr>
-				</table>
+								</h:link>
+								<br /><br />
+			</td>	</tr>		</ui:repeat>
+</table>						
 
 
 

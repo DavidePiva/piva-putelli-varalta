@@ -205,6 +205,7 @@ public class ShowPacchetto implements ShowPacchettoLocal {
 		a2.setOra(ora);
 		a2.setData(data);
 		a2.setSelezionabile(selezionabile);
+		a2.setPrezzo(a.getPrezzo());
 		return a2;
 	}
 }
