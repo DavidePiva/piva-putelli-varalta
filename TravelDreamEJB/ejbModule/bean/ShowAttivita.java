@@ -33,15 +33,6 @@ public class ShowAttivita implements ShowAttivitaLocal {
     public ShowAttivita() {
     }
 
-//////////////////////DAAAAAAAAAAAAAAAAA SISTEMAREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-/*	@Override
-	public AttivitaDTO getAttivita(String nomeAttivita) {
-		Query q = em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE titolo = \""+nomeAttivita+"\"");
-		List<Integer> l = q.getResultList();
-	
-			Attivita a = em.find(Attivita.class, l.get(0));
-			return convertiAttivitaDTO(a);
-	}*/
 		
 	@Override
 	
