@@ -533,5 +533,4 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		Hotel h = p.getHotelBean();
 		return convertiHotelDTO(h);
 	}
-
 }
