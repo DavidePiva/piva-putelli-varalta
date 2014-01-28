@@ -33,6 +33,17 @@ public class GestioneAttivitaBean {
 	private int minuti;
 	private String nomeAttivitaDaModificare;
 	private int idAttivitaDaEliminare;
+	
+	@Pattern(regexp = "^$|^(?!^0)\\d{1,9}$", message = "Inserisci un valore positivo")
+	private String prezzoNuovo;
+
+	public String getPrezzoNuovo() {
+		return prezzoNuovo;
+	}
+
+	public void setPrezzoNuovo(String prezzoNuovo) {
+		this.prezzoNuovo = prezzoNuovo;
+	}
 
 	@NotEmpty(message = "Inserisci un titolo")
 	private String titolo;
@@ -73,14 +84,6 @@ public class GestioneAttivitaBean {
 
 		gc.creaAttivita(attivita);
 		return "/impiegato/index?faces-redirect=true";
-	}
-
-	public GestioneComponentiLocal getGc() {
-		return gc;
-	}
-
-	public void setGc(GestioneComponentiLocal gc) {
-		this.gc = gc;
 	}
 
 	public AttivitaDTO getAttivita() {
@@ -153,9 +156,10 @@ public class GestioneAttivitaBean {
 		if (attivita.getDescrizione().equals("")) {
 			attivita.setDescrizione(attivitaDaModificare.getDescrizione());
 		}
-		if (attivita.getPrezzo() == null) {
-				attivita.setPrezzo(attivitaDaModificare.getPrezzo());
-		}
+		if (prezzoNuovo.equals(""))
+			attivita.setPrezzo(attivitaDaModificare.getPrezzo());
+		else
+			attivita.setPrezzo(new BigDecimal(prezzoNuovo));
 		if (attivita.getTitolo().equals("")) {
 			attivita.setTitolo(attivitaDaModificare.getTitolo());
 		}
@@ -172,28 +176,12 @@ public class GestioneAttivitaBean {
 
 	}
 
-	public ShowAttivitaLocal getSa() {
-		return sa;
-	}
-
-	public void setSa(ShowAttivitaLocal sa) {
-		this.sa = sa;
-	}
-
 	public String getNomeAttivitaDaModificare() {
 		return nomeAttivitaDaModificare;
 	}
 
 	public void setNomeAttivitaDaModificare(String nomeAttivitaDaModificare) {
 		this.nomeAttivitaDaModificare = nomeAttivitaDaModificare;
-	}
-
-	public DatiStaticiLocal getDs() {
-		return ds;
-	}
-
-	public void setDs(DatiStatici ds) {
-		this.ds = ds;
 	}
 
 	public int getIdAttivitaDaEliminare() {
