@@ -55,6 +55,8 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 	@Resource
 	private EJBContext context;
 	
+	private int paginaSelezionata;
+	
     public GestioneViaggi() {
     }
 
@@ -532,6 +534,14 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		Pernottamento p = em.find(Pernottamento.class, id);
 		Hotel h = p.getHotelBean();
 		return convertiHotelDTO(h);
+	}
+
+	public int getPaginaSelezionata() {
+		return paginaSelezionata;
+	}
+
+	public void setPaginaSelezionata(int paginaSelezionata) {
+		this.paginaSelezionata = paginaSelezionata;
 	}
 
 	@Override
