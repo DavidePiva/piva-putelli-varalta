@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import javax.ejb.EJBContext;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -63,6 +62,7 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 	@Override
 	public void creaViaggio(String nomePacchetto, String emailUtente) {
 		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE titolo = '"+nomePacchetto+"'");
+		@SuppressWarnings("unchecked")
 		List<Integer> l = q.getResultList();
 		Pacchetto p = null;
 		if(l.size()==1){
@@ -75,7 +75,7 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		Volo ritorno = p.getVolo2();
 		List<Attivita> a = p.getAttivitas();
 		BigDecimal prezzo = p.getPrezzo();
-		int id = p.getIdPacchetto();
+
 		Viaggio v = new Viaggio();
 		v.setPacchetto(p);
 		v.setCitta(citta);
@@ -163,6 +163,7 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 	@Override
 	public HotelDTO getHotelViaggio(int idViaggio) {
 		Query q = em.createNativeQuery("SELECT Pernottamento.hotel FROM Pernottamento,Viaggio WHERE Pernottamento.idPernottamento = Viaggio.pernottamento AND Viaggio.idViaggio = "+idViaggio);
+		@SuppressWarnings("unchecked")
 		List<Integer> l = q.getResultList();
 		Hotel h = new Hotel();
 		if(l.size()==1){
@@ -468,6 +469,7 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 	@Override
 	public void paga(int idViaggio) {
 		Query q = em.createNativeQuery("SELECT idViaggio FROM Viaggio WHERE idViaggio = "+idViaggio);
+		@SuppressWarnings("unchecked")
 		List<Integer> lista = q.getResultList();
 		if(lista.size()==1){
 			Viaggio v = em.find(Viaggio.class, lista.get(0));
@@ -486,8 +488,9 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		dp.setDonato(true);
 		em.merge(dp);
 		Query q = em.createNativeQuery("SELECT emailDonatore FROM Donazione_Pernottamento WHERE idViaggio = "+ idViaggio+ " AND donato = 0");
+		@SuppressWarnings("unchecked")
 		List<String> emails = q.getResultList();
-		List<Donazione_PernottamentoPK> pki = new ArrayList<Donazione_PernottamentoPK>();
+
 		for(int i = 0; i < emails.size(); i++){
 			Donazione_PernottamentoPK temp = new Donazione_PernottamentoPK();
 			temp.setEmailDonatore(emails.get(i));
@@ -497,6 +500,35 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 			em.remove(rem);
 		}
 	}
+
+
+	@Override
+	public void pagaAttivita(int idViaggio, int idAttivita, String donatore) {
+		Donazione_AttivitaPK pk = new Donazione_AttivitaPK();
+		pk.setEmailDonatore(donatore);
+		pk.setIdAttivita(idAttivita);
+		pk.setIdViaggio(idViaggio);
+    	System.out.println("ID VIAGGIO2222."+idViaggio);
+    	System.out.println("ID ATT222222."+idAttivita);
+    	System.out.println("DNATOREEEEE222222."+donatore);
+		Donazione_Attivita da = em.find(Donazione_Attivita.class, pk);
+		da.setDonato(true);
+		em.merge(da);
+		Query q = em.createNativeQuery("SELECT emailDonatore FROM Donazione_Attivita WHERE idViaggio = "+ idViaggio+ " AND donato = 0");
+		@SuppressWarnings("unchecked")
+		List<String> emails = q.getResultList();
+
+		for(int i = 0; i < emails.size(); i++){
+			Donazione_AttivitaPK temp = new Donazione_AttivitaPK();
+			temp.setEmailDonatore(emails.get(i));
+			temp.setIdViaggio(idViaggio);
+			temp.setIdAttivita(idAttivita);
+			Donazione_Attivita rem = em.find(Donazione_Attivita.class, temp);
+			em.remove(rem);
+		}
+		
+	}
+
 
 	@Override
 	public List<VoloDTO> getVoliRegalabili(int idViaggio) {
@@ -523,6 +555,7 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		}
 		return attivita;
 	}
+
 	
 	public HotelDTO getHotelRegalabile(int idViaggio){
 		Query q = em.createNativeQuery("SELECT DISTINCT idPernottamento FROM Donazione_Pernottamento WHERE donato = 0 AND idViaggio ="+idViaggio);

@@ -140,4 +140,8 @@ public class RegaliBean {
 		return h;
 	}
 
+	public String pagaAttivita(String emailUtente,int idViaggio){
+		
+		return "/user/pagamentoAttivita?faces-redirect=true&idViaggio="+idViaggio+"&email="+emailUtente+"&idAtt="+attivitaScelta;
+	}
 }

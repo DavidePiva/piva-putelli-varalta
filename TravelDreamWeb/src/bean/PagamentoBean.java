@@ -26,6 +26,7 @@ public class PagamentoBean {
 	private int idPernottamento;
 	private String donatore;
 	private ViaggioDTO viaggio;
+	private int idAttivita;
 	
 	public int getIdPernottamento() {
 		return idPernottamento;
@@ -33,6 +34,14 @@ public class PagamentoBean {
 
 	public void setIdPernottamento(int idPernottamento) {
 		this.idPernottamento = idPernottamento;
+	}
+
+	public int getIdAttivita() {
+		return idAttivita;
+	}
+
+	public void setIdAttivita(int idAttivita) {
+		this.idAttivita = idAttivita;
 	}
 
 	public String getDonatore() {
@@ -92,5 +101,17 @@ public class PagamentoBean {
     	return "/user/index?faces-redirect=true";
     }
     
+    public String pagaAttivita(){
+    	System.out.println("ID VIAGGIO."+idViaggio);
+    	System.out.println("ID ATTT."+idAttivita);
+    	System.out.println("DNATOREEEEE."+donatore);
+    	gestioneViaggi.pagaAttivita(idViaggio,idAttivita,donatore);
+    	return "/user/index?faces-redirect=true";
+    }
 
+    public BigDecimal getPrezzoAttivita(){
+    	getViaggio();
+    	
+    	return showViaggio.getPrezzoAttivita(idAttivita);
+    }
 }
