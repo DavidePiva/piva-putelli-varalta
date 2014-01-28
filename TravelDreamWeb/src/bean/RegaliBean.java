@@ -144,4 +144,10 @@ public class RegaliBean {
 		
 		return "/user/pagamentoAttivita?faces-redirect=true&idViaggio="+idViaggio+"&email="+emailUtente+"&idAtt="+attivitaScelta;
 	}
+	public String pagaVolo(String emailUtente,int idViaggio){
+		
+		return "/user/pagamentoVolo?faces-redirect=true&idViaggio="+idViaggio+"&email="+emailUtente+"&idVolo="+voloScelto;
+	}
+	
+
 }

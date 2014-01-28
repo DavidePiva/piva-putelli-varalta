@@ -525,7 +525,7 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		Donazione_Attivita da = em.find(Donazione_Attivita.class, pk);
 		da.setDonato(true);
 		em.merge(da);
-		Query q = em.createNativeQuery("SELECT DISTINCT emailDonatore FROM Donazione_Attivita WHERE idViaggio = "+ idViaggio+ " AND donato = 0");
+		Query q = em.createNativeQuery("SELECT DISTINCT emailDonatore FROM Donazione_Attivita WHERE idViaggio = "+ idViaggio+ " AND donato = 0 AND emailDonatore <> '"+donatore+"'" );
 		List<String> emails = q.getResultList();
 		for(int i = 0; i < emails.size(); i++){
 			Donazione_AttivitaPK temp = new Donazione_AttivitaPK();
@@ -644,6 +644,28 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		v.setVolo2(nuovoRitorno);
 		
 		em.merge(v);
+	}
+
+	@Override
+	public void pagaVolo(int idViaggio, int idVolo, String donatore) {
+		Donazione_VoloPK pk = new Donazione_VoloPK();
+		pk.setEmailDonatore(donatore);
+		pk.setIdVolo(idVolo);
+		pk.setIdViaggio(idViaggio);
+		Donazione_Volo dv = em.find(Donazione_Volo.class, pk);
+		dv.setDonato(true);
+		em.merge(dv);
+		Query q = em.createNativeQuery("SELECT DISTINCT emailDonatore FROM Donazione_Volo WHERE idViaggio = "+ idViaggio+ " AND donato = 0 AND emailDonatore <> '"+donatore+"'");
+		List<String> emails = q.getResultList();
+		for(int i = 0; i < emails.size(); i++){
+			Donazione_VoloPK temp = new Donazione_VoloPK();
+			temp.setEmailDonatore(emails.get(i));
+			temp.setIdViaggio(idViaggio);
+			temp.setIdVolo(idVolo);
+			Donazione_Volo rem = em.find(Donazione_Volo.class, temp);
+			em.remove(rem);
+		}
+		
 	}
 	
 	

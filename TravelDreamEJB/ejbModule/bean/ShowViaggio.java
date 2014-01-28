@@ -226,4 +226,13 @@ public class ShowViaggio implements ShowViaggioLocal {
 		List<BigDecimal> l = q.getResultList();
 		return l.get(0);
 	}
+
+	@Override
+	public BigDecimal getPrezzoVolo(int idVolo) {
+		Query q = em.createNativeQuery("SELECT prezzo FROM Volo "
+				+ "WHERE idVolo = "+idVolo);
+		@SuppressWarnings("unchecked")
+		List<BigDecimal> l = q.getResultList();
+		return l.get(0);
+	}
 }
