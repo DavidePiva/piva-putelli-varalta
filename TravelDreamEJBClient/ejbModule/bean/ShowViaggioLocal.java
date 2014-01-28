@@ -31,4 +31,6 @@ public interface ShowViaggioLocal {
 
 	public boolean eleminabile(int idViaggio);
 
+	public BigDecimal getPrezzoAttivita(int idAttivita);
+
 }

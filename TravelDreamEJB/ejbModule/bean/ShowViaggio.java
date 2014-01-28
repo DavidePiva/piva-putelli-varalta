@@ -193,6 +193,7 @@ public class ShowViaggio implements ShowViaggioLocal {
 		Query q = em.createNativeQuery("SELECT prezzo FROM Pernottamento, TipoCamere_Hotel "
 				+ "WHERE Pernottamento.hotel = TipoCamere_Hotel.idHotel AND "
 				+ "Pernottamento.tipo = TipoCamere_Hotel.tipoCamera AND Pernottamento.idPernottamento ="+idPernottamento);
+		@SuppressWarnings("unchecked")
 		List<BigDecimal> l = q.getResultList();
 		return l.get(0);
 	}
@@ -215,5 +216,14 @@ public class ShowViaggio implements ShowViaggioLocal {
 		}else{
 			return false;
 		}
+	}
+
+	@Override
+	public BigDecimal getPrezzoAttivita(int idAttivita) {
+		Query q = em.createNativeQuery("SELECT prezzo FROM Attivita "
+				+ "WHERE idAttivita = "+idAttivita);
+		@SuppressWarnings("unchecked")
+		List<BigDecimal> l = q.getResultList();
+		return l.get(0);
 	}
 }
