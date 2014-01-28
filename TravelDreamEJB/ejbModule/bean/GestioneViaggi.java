@@ -581,6 +581,18 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		Viaggio_Attivita va = em.find(Viaggio_Attivita.class, pk);
 		em.remove(va);
 	}
+
+	@Override
+	public void gestoreDate(ViaggioDTO viaggio, int idVolo1, int idVolo2) {
+		int idViaggio = viaggio.getIdViaggio();
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		Volo andata = v.getVolo1();
+		Volo ritorno = v.getVolo2();
+		if(andata.getIdVolo()==idVolo1 && ritorno.getIdVolo()==idVolo2){
+			return;
+		}
+		cancellaTutteAttivita(idViaggio);
+	}
 	
 	
 }

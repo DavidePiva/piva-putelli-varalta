@@ -34,8 +34,8 @@ public interface GestioneViaggiLocal {
 	public HotelDTO getHotelRegalabile(int idViaggio);
 	public int getPaginaSelezionata();
 	public void setPaginaSelezionata(int paginaSelezionata);
-
 	public void aggiungiAttivita(int idAttivita, int idViaggio);
 	public void cancellaTutteAttivita(int idViaggio);
 	public void rimuoviAttivita(int idAttivita, int idViaggio);
+	public void gestoreDate(ViaggioDTO viaggio, int idVolo1, int idVolo2);
 }
