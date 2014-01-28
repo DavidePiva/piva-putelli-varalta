@@ -50,6 +50,7 @@ public class ModificaViaggioBean {
 	public String salva(){
 		System.out.println("Volo andata id: "+viaggioDTO.getIdVoloAndata());
 		System.out.println("Volo ritorno id: "+viaggioDTO.getIdVoloRitorno());
+		viaggioDTO.setIdViaggio(idViaggio);
 		gestioneViaggi.gestoreDate(viaggioDTO, viaggioDTO.getIdVoloAndata(), viaggioDTO.getIdVoloRitorno());
 		return "/index?faces-redirect=true";
 	}
