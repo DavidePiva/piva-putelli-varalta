@@ -199,14 +199,28 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 
 	@Override
 	public List<AttivitaDTO> getAttivitaViaggio(int idViaggio) {
-		Viaggio v = em.find(Viaggio.class, idViaggio);
+		System.out.println("ENTRATO IN GETATTIVITAVIAGGIO");/////////////////////////////////////////////////////
+		/*Viaggio v = em.find(Viaggio.class, idViaggio);
 		List<Viaggio_Attivita> l = v.getViaggioAttivitas();
 		List<AttivitaDTO> lista = new ArrayList<AttivitaDTO>();
 		for(int i = 0; i < l.size(); i++){
 			Attivita a = l.get(i).getAttivita();
 			lista.add(convertiAttivitaDTO(a));
 		}
-		return lista;
+		System.out.println("LISTA "+lista.toString());
+		return lista;*/
+		
+		
+		Query q = em.createNativeQuery("SELECT idAttivita FROM Viaggio_Attivita WHERE idViaggio = "+idViaggio);
+		List<Integer> ids = q.getResultList();
+		List<AttivitaDTO> list  = new ArrayList<AttivitaDTO>();
+		for(int i = 0; i < ids.size(); i++){
+			Attivita a = em.find(Attivita.class, ids.get(i));
+			list.add(convertiAttivitaDTO(a));
+		}
+		
+		return list;
+
 	}
 	
 	private AttivitaDTO convertiAttivitaDTO(Attivita a) {
@@ -622,6 +636,14 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 			return;
 		}
 		cancellaTutteAttivita(idViaggio);
+		
+		Volo nuovaAndata = em.find(Volo.class, viaggio.getIdVoloAndata());
+		Volo nuovoRitorno = em.find(Volo.class, viaggio.getIdVoloRitorno());
+		
+		v.setVolo1(nuovaAndata);
+		v.setVolo2(nuovoRitorno);
+		
+		em.merge(v);
 	}
 	
 	

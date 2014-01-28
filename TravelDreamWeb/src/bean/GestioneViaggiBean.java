@@ -37,7 +37,6 @@ public class GestioneViaggiBean {
         private int numeroPersone;
         private BigDecimal prezzo;
         private HotelDTO hotel;
-        private List<AttivitaDTO> attivita;
         private VoloDTO andata;
         private VoloDTO ritorno;
         private List<VoloDTO> voli;
@@ -108,8 +107,7 @@ public class GestioneViaggiBean {
         }
         
         public List<AttivitaDTO> getAttivita(){
-        	attivita = gestioneViaggi.getAttivitaViaggio(idViaggio);
-        	return attivita;
+        	return gestioneViaggi.getAttivitaViaggio(idViaggio);
         }
         
         public VoloDTO getAndata(){
