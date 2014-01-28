@@ -160,6 +160,14 @@ public class DatiStaticiBean {
 		
 	}
 	
+	public List<String> getCittaConHotel(){
+		return citta= datistatici.getCittaConHotel();
+	}
+	
+	public List<String> getCittaConPacchetto(){
+		return citta= datistatici.getCittaConPacchetto();
+	}
+	
 	public List<String> getHotels(){
 		hotels = new ArrayList<String>();
 		List<HotelDTO> h = hotelPerCitta(cittaSelezionata);

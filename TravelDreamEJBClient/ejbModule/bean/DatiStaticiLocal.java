@@ -40,4 +40,7 @@ public interface DatiStaticiLocal {
 	AeroportoDTO getAeroportoDTO(int id);
 	public List<String> getListaUtenti();
 	public List<PacchettoDTO> ultimiPacchetti();
+	
+	public List<String> getCittaConHotel();
+	public List<String> getCittaConPacchetto();
 }

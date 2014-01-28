@@ -67,7 +67,7 @@
 		<div id="boxcontenuto">
 			<h1>Pacchetti per città</h1>
 			<ul id="lista_principale">
-				<ui:repeat value="#{ds.citta}" var="c">
+				<ui:repeat value="#{ds.cittaConPacchetto}" var="c">
 					<li><h:link value="#{c}" outcome="pacchettiPerCitta">
 							<f:param name="c" value="#{c}" />
 						</h:link></li>
