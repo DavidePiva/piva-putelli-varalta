@@ -27,6 +27,7 @@ public class PagamentoBean {
 	private String donatore;
 	private ViaggioDTO viaggio;
 	private int idAttivita;
+	private String invitato;
 	private int idVolo;
 	
 	public int getIdPernottamento() {
@@ -59,6 +60,14 @@ public class PagamentoBean {
 
 	public void setDonatore(String donatore) {
 		this.donatore = donatore;
+	}
+	
+	public String getInvitato(){
+		return invitato;
+	}
+	
+	public void setInvitato(String invitato){
+		this.invitato = invitato;
 	}
 	
 	public void setIdViaggio(int idViaggio){
@@ -111,7 +120,6 @@ public class PagamentoBean {
     }
     
     public String pagaAttivita(){
-
     	gestioneViaggi.pagaAttivita(idViaggio,idAttivita,donatore);
     	return "/user/index?faces-redirect=true";
     }
@@ -123,8 +131,13 @@ public class PagamentoBean {
     }
     public BigDecimal getPrezzoAttivita(){
     	getViaggio();
-    	
     	return showViaggio.getPrezzoAttivita(idAttivita);
+    }
+
+    
+    public String pagaPartecipazione(){
+    	gestioneViaggi.pagaPartecipazione(idViaggio,invitato);
+    	return "/user/index?faces-redirect=true";
     }
     public BigDecimal getPrezzoVolo(){
     	getViaggio();

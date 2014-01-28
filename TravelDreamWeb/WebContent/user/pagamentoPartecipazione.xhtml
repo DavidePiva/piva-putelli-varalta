@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <head>
@@ -11,7 +12,8 @@
 	type='text/css' />
 <script type='text/javascript' src='../css/menu.js' />
 <f:metadata>
-	<f:viewParam name="id" value="#{gv.idViaggio}"></f:viewParam>
+	<f:viewParam name="id" value="#{pb.idViaggio}" />
+	<f:viewParam name="email" value ="#{pb.invitato}"></f:viewParam>
 </f:metadata>
 </head>
 <body onload="javascript:start()">
@@ -66,39 +68,30 @@
 		</div>
 		<div id="boxcontenuto">
 			<div>
+	
 				<h:form>
 
-					<h1>
-						<h:outputLabel
-							value="Viaggio a #{gv.citta}"></h:outputLabel>
+						<h1><h:outputLabel value = "Effettua il pagamento"></h:outputLabel></h1>
+						<h:outputLabel value = "L'importo totale è di: #{pb.getPrezzo()} €"></h:outputLabel>
+						<br></br><br></br>
+					
+						<h:outputLabel value = "Inserisci il numero e la data di scadenza della carta:"></h:outputLabel>
 						<br></br>
-					</h1>
-					<br></br>
-					<h:panelGrid columns="3" id="regGrid1">
-						<h:outputLabel for="numeroPersone"
-							value="#{gv.prezzo} euro a testa"></h:outputLabel>
-						<h:outputLabel for="hotel" value="Informazioni Hotel:"></h:outputLabel>
-						<h:outputLabel for="hotel" value="#{gv.hotel}"></h:outputLabel>
-						<h:outputLabel for="attivita" value="Attività:"></h:outputLabel>
-						<ui:repeat  value="#{gv.attivita}" var="a">
-							<li><h:outputLabel value = "#{a}"></h:outputLabel></li>
-						</ui:repeat>	
-						<h:outputLabel for="voli" value="Informazioni voli e date:"></h:outputLabel>
-						<ui:repeat value="#{gv.voli}" var="v">
-							<li><h:outputLabel value = "#{v.getDataFormattata()}"></h:outputLabel></li>
-						</ui:repeat>	
+						<p:inputText    />						<h:outputLabel value = " - "></h:outputLabel>
+						
+						<p:inputText   size='4' />
+						<h:outputLabel value = " / "></h:outputLabel>
+						<p:inputText   size='4' />
+						<br></br>
+						<h:outputLabel value = "Inserisci il codice a tre cifre sul retro della carta:"></h:outputLabel>
+						<br></br>
+						<p:inputText   size='4' />
 						<br></br>
 						<br></br>
-						<br></br>
-						<br></br>
-						<br></br>
-						<br></br>
-						<h:commandButton value="Partecipo" action = "#{par.pagaPartecipazione(gv.idViaggio,gp.emailUtente)}" update="regGrid1" />
-						<h:commandButton value = "Non partecipo" action = "#{par.rimuovimi(gv.idViaggio,gp.emailUtente)}" update = "regGrid1" ></h:commandButton>
-					</h:panelGrid>
+					
+						<p:commandButton value="Completa il pagamento" 	action="#{pb.pagaPartecipazione()}" />
 				</h:form>
-
-
+				
 			</div>
 		</div>
 	</div>
