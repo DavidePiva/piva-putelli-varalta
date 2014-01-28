@@ -7,6 +7,8 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 
 public class AttivitaDTO {
@@ -15,6 +17,7 @@ public class AttivitaDTO {
 	@Temporal(TemporalType.DATE)
 	private Date data;
 	private Time ora;
+	
 	String titolo;
 	String descrizione;
 	String citta;
