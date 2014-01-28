@@ -89,13 +89,12 @@
 						<ui:repeat  value="#{gv.attivita}" var="a">
 							<li><h:outputLabel value = "#{a}"></h:outputLabel></li>
 						</ui:repeat>	
-						<h:commandButton value="Modifica" update="regGrid1" rendered="#{gv.nonRegalabile()}"/>
 						
 						<h:outputLabel for="voli" value="Informazioni voli e date:"></h:outputLabel>
 						<ui:repeat value="#{gv.voli}" var="v">
 							<li><h:outputLabel value = "#{v.getDataFormattata()}"></h:outputLabel></li>
 						</ui:repeat>	
-						<h:commandButton value="Modifica" update="regGrid1" rendered="#{gv.nonRegalabile()}"/>
+						<h:commandButton value="Modifica date e attività" update="regGrid1" action = "#{gv.scegliDate()}" rendered="#{gv.nonRegalabile()}"/>
 						<br></br>
 						<br></br>
 						<br></br>
