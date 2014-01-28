@@ -119,6 +119,10 @@ public class RegaliBean {
 		return infoRegali;
 	}
 	
+	public boolean ciSonoViaggiRegalo(String email){
+		return !getViaggiDaRegalare(email).isEmpty();
+	}
+	
 	public String pagaPernottamento(String emailUtente,int idViaggio){
 		ViaggioDTO v = gestioneViaggi.getViaggio(idViaggio);
 		int idPernottamento = v.getIdPernottamento();
