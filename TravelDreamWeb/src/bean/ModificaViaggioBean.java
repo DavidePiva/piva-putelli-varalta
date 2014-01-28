@@ -46,13 +46,11 @@ public class ModificaViaggioBean {
 	
 	public void continua(){
 		this.setPaginaSelezionata(1);
-		
-		//gestioneOfferte.setDescrizione(descrizione+" DESCRIZZZ!");
-		
 	}
 	public String salva(){
-
-		
+		System.out.println("Volo andata id: "+viaggioDTO.getIdVoloAndata());
+		System.out.println("Volo ritorno id: "+viaggioDTO.getIdVoloRitorno());
+		gestioneViaggi.gestoreDate(viaggioDTO, viaggioDTO.getIdVoloAndata(), viaggioDTO.getIdVoloRitorno());
 		return "/index?faces-redirect=true";
 	}
 	public boolean primaPaginaVisibile(){
