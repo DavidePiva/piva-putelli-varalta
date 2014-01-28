@@ -73,12 +73,12 @@
 					<h:panelGrid columns="3" id="regGrid1">
 
 						<h:outputLabel for="titolo">Titolo</h:outputLabel>
-						<h:inputText id="titolo" value="#{ga.attivita.titolo}" />
+						<h:inputText id="titolo" value="#{ga.titolo}" />
 						<p:message for="titolo" />
 
 						<h:outputLabel for="descrizione">Descrizione</h:outputLabel>
 						<h:inputTextarea id="descrizione"
-							value="#{ga.attivita.descrizione}" cols="50" rows="20" />
+							value="#{ga.descrizione}" cols="50" rows="20" />
 						<p:message for="descrizione" />
 
 						<h:outputLabel for="citta">Città</h:outputLabel>
@@ -94,8 +94,8 @@
 
 
 						<h:outputLabel for="data">Data</h:outputLabel>
-						<p:calendar value="#{ga.attivita.data}" id="popupCal" />
-						<h:outputLabel for="data"></h:outputLabel>
+						<p:calendar value="#{ga.data}" id="data" />
+						<p:message for="data" />
 
 						<h:outputLabel for="ora">Ora</h:outputLabel>
 						<h:panelGroup>
