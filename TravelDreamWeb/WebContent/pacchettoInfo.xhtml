@@ -100,7 +100,7 @@
 				<ui:repeat value="#{sp.attivitaPacchetto}" var="attivita">
 				<tr><td>
 							<h:graphicImage width="100" height="75" url="foto/#{attivita.foto1}"></h:graphicImage></td><td valign="middle">
-							<h:link value="#{attivita.titolo} - #{attivita.prezzo}" outcome="attivita">
+							<h:link value="#{attivita.titolo} - #{attivita.prezzo} euro" outcome="attivita">
 									<f:param name="attivita" value="#{attivita.id}" />
 									<f:param name="foto" value="1" />
 								</h:link>
