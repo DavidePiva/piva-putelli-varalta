@@ -508,16 +508,11 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		pk.setEmailDonatore(donatore);
 		pk.setIdAttivita(idAttivita);
 		pk.setIdViaggio(idViaggio);
-    	System.out.println("ID VIAGGIO2222."+idViaggio);
-    	System.out.println("ID ATT222222."+idAttivita);
-    	System.out.println("DNATOREEEEE222222."+donatore);
 		Donazione_Attivita da = em.find(Donazione_Attivita.class, pk);
 		da.setDonato(true);
 		em.merge(da);
-		Query q = em.createNativeQuery("SELECT emailDonatore FROM Donazione_Attivita WHERE idViaggio = "+ idViaggio+ " AND donato = 0");
-		@SuppressWarnings("unchecked")
+		Query q = em.createNativeQuery("SELECT DISTINCT emailDonatore FROM Donazione_Attivita WHERE idViaggio = "+ idViaggio+ " AND donato = 0");
 		List<String> emails = q.getResultList();
-
 		for(int i = 0; i < emails.size(); i++){
 			Donazione_AttivitaPK temp = new Donazione_AttivitaPK();
 			temp.setEmailDonatore(emails.get(i));
@@ -604,6 +599,8 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 			Viaggio_Attivita va = em.find(Viaggio_Attivita.class, pk);
 			em.remove(va);
 		}
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		em.merge(v);
 	}
 
 	@Override
