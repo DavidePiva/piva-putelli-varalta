@@ -87,6 +87,10 @@ public class ShowViaggioBean {
 		return infoViaggi;
 	}
 	
+	public boolean ciSonoViaggiInFaseDiCreazione(String email){
+		return !getViaggiUtente(email).isEmpty();
+	}
+	
 	public List<InfoViaggio> viaggiPagati(String email){
 		pagati = getPagati(email);
 		viaggiPagati = new ArrayList<InfoViaggio>();
