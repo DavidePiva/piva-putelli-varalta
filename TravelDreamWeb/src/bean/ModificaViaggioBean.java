@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.bean.ManagedBean;
 
@@ -11,7 +12,7 @@ import DTO.ViaggioDTO;
 import DTO.VoloDTO;
 
 @ManagedBean(name="mv")
-@ViewScoped
+@SessionScoped
 public class ModificaViaggioBean {
 	
 	@EJB
@@ -114,6 +115,5 @@ public class ModificaViaggioBean {
 	public void setDataRitorno(Date dataRitorno) {
 		this.dataRitorno = dataRitorno;
 	}
-	
 	
 }
