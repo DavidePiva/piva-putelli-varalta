@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<head>
+<h:head>
 <meta http-equiv='content-type' content='text/html; charset=UTF-8' />
 <title>TravelDream</title>
 <link href='../css/application.css' media='all' rel='stylesheet'
@@ -14,8 +14,8 @@
 <f:metadata>
 	<f:viewParam name="id" value="#{mv.idViaggio}" />
 </f:metadata>
-</head>
-<body onload="javascript:start()">
+</h:head>
+<h:body onload="javascript:start()">
 	<div id="boxintestazione">
 		<div id="boxlogo">
 			<h:link outcome="/index">
@@ -95,14 +95,14 @@
 					<h:panelGrid columns="3" id="regGrid2"
 						rendered="#{mv.secondaPaginaVisibile()}">
 						<h:outputLabel for="voloAndata">Volo andata</h:outputLabel>
-						<h:selectOneMenu value="#{mv.viaggioDTO.voloAndata}" id="voloAndata">
+						<h:selectOneMenu value="#{mv.viaggioDTO.idVoloAndata}" id="voloAndata">
 							<f:selectItems value="#{mv.voliPossibiliAndata()}" var="c"
 								itemLabel="#{c.dataFormattata}" itemValue="#{c.idVolo}" />
 						</h:selectOneMenu>
 						<p:message for="voloAndata" />
 
 						<h:outputLabel for="voloRitorno">Volo ritorno</h:outputLabel>
-						<h:selectOneMenu value="#{mv.viaggioDTO.voloRitorno}" id="voloRitorno">
+						<h:selectOneMenu value="#{mv.viaggioDTO.idVoloRitorno}" id="voloRitorno">
 							<f:selectItems value="#{mv.voliPossibiliRitorno()}" var="c"
 								itemLabel="#{c.dataFormattata}" itemValue="#{c.idVolo}" />
 						</h:selectOneMenu>
@@ -121,6 +121,6 @@
 		</div>
 	</div>
 	<!--/boxbig-->
-</body>
+</h:body>
 </html>
 
