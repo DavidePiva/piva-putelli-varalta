@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.bean.ManagedBean;
 
+import DTO.AttivitaDTO;
 import DTO.ViaggioDTO;
 import DTO.VoloDTO;
 
@@ -26,6 +27,8 @@ public class ModificaViaggioBean {
 	private Date dataAndata;
 	private Date dataRitorno;
 	private int paginaSelezionata;
+	private int idAttivitaDaEliminare;
+	private int idAttivitaDaAggiungere;
 
 	
 
@@ -78,9 +81,20 @@ public class ModificaViaggioBean {
 		return datistatici.getVoliPossibili(cittaPartenza, cittaArrivo, dataRitorno.getYear()+1900, dataRitorno.getMonth()+1, dataRitorno.getDate());
 	}
 
+	public String eliminaAttivitaDaViaggio(){
+		gestioneViaggi.rimuoviAttivita(idAttivitaDaEliminare, idViaggio);
+		return "/index?faces-redirect=true";
+	}
+	
+	public String aggiungiAttivitaAlViaggio(){
+		gestioneViaggi.aggiungiAttivita(idAttivitaDaAggiungere, idViaggio);
+		return "/index?faces-redirect=true";
+	}
 	
 	
-	
+    public List<AttivitaDTO> getAttivita(){
+    	return gestioneViaggi.getAttivitaViaggio(idViaggio);
+    }
 	
 	//getter and setter
 	public void setIdViaggio(int idViaggio){
@@ -113,6 +127,30 @@ public class ModificaViaggioBean {
 
 	public void setDataRitorno(Date dataRitorno) {
 		this.dataRitorno = dataRitorno;
+	}
+
+
+	public int getIdAttivitaDaEliminare() {
+		return idAttivitaDaEliminare;
+	}
+
+
+	public void setIdAttivitaDaEliminare(int idAttivitaDaEliminare) {
+		this.idAttivitaDaEliminare = idAttivitaDaEliminare;
+	}
+	
+	public List<AttivitaDTO> getAttivitaNonSelezionateViaggio(){
+		return gestioneViaggi.getAttivitaNonSelezionateViaggio(idViaggio);
+	}
+
+
+	public int getIdAttivitaDaAggiungere() {
+		return idAttivitaDaAggiungere;
+	}
+
+
+	public void setIdAttivitaDaAggiungere(int idAttivitaDaAggiungere) {
+		this.idAttivitaDaAggiungere = idAttivitaDaAggiungere;
 	}
 	
 }

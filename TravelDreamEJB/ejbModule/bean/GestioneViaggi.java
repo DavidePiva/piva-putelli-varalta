@@ -647,6 +647,42 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 	}
 
 	@Override
+	public List<AttivitaDTO> getAttivitaNonSelezionateViaggio(int idViaggio) {
+		List<AttivitaDTO> listaGiaSelezionate = getAttivitaViaggio(idViaggio);	//Le attività selezionate, da rimuovere
+		List<AttivitaDTO> listaNonSelezionate = new ArrayList<AttivitaDTO>();
+		
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		int anno1 = v.getVolo1().getData().getYear()+1900;
+		int mese1 = v.getVolo1().getData().getMonth()+1;
+		int giorno1 = v.getVolo1().getData().getDate();
+		
+		int anno2 = v.getVolo2().getData().getYear()+1900;
+		int mese2 = v.getVolo2().getData().getMonth()+1;
+		int giorno2 = v.getVolo2().getData().getDate();
+		
+		
+		//tutte le attività possibili per quel viaggio
+		Query q = em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE selezionabile = 1 AND citta = '"+v.getCitta()+"' AND data BETWEEN '"+anno1+"-"+mese1+"-"+giorno1+"' AND '"+anno2+"-"+mese2+"-"+giorno2+"'");
+		@SuppressWarnings("unchecked")
+		List<Integer> l = q.getResultList();
+
+		for(int i = 0; i < l.size(); i++){
+			boolean b = true;
+			AttivitaDTO a = convertiAttivitaDTO(em.find(Attivita.class, l.get(i)));
+			for(int j = 0; j<listaGiaSelezionate.size(); j++){
+				if(listaGiaSelezionate.get(j).getId()==a.getId()){
+					//è già presente e non la aggiungo
+					b=false;
+				}
+			}
+			if(b)
+				listaNonSelezionate.add(a);
+		}
+		
+		return listaNonSelezionate;
+	}
+
+	@Override
 	public void pagaVolo(int idViaggio, int idVolo, String donatore) {
 		Donazione_VoloPK pk = new Donazione_VoloPK();
 		pk.setEmailDonatore(donatore);
