@@ -69,11 +69,8 @@ public class GestioneOfferte implements GestioneOfferteLocal {
 	@Override
 	public void salvaTutto(PacchettoDTO p, AttivitaDTO a1, AttivitaDTO a2,
 			AttivitaDTO a3, AttivitaDTO a4, AttivitaDTO a5) {
-		System.out.println("SALVATUTTO CON DeScRiZiOnE "+descrizione);
-		pacchetto = new Pacchetto(p);
-		//pacchetto.setIdPacchetto(100);
-		System.out.println("ENTRATO NEL SALVATUTTO, P: "+pacchetto.getTitolo()+pacchetto.getIdPacchetto());
-		
+
+		pacchetto = new Pacchetto(p);	
 		
 		Pernottamento pernott = em.find(Pernottamento.class, p.getIdPernottamento());
 		pacchetto.setPernottamentoBean(pernott);
@@ -86,7 +83,6 @@ public class GestioneOfferte implements GestioneOfferteLocal {
 		em.flush();
 		em.clear();
 		
-		System.out.println("ID PACCK: "+pacchetto.getIdPacchetto());
 		
 		List<Attivita> attivitas = new ArrayList<Attivita>();
 		if(a1.getId()!=0)
@@ -99,8 +95,10 @@ public class GestioneOfferte implements GestioneOfferteLocal {
 			attivitas.add(em.find(Attivita.class, a4.getId()));
 		if(a5.getId()!=0)
 			attivitas.add(em.find(Attivita.class, a5.getId()));
-		pacchetto.setAttivitas(attivitas);
-		System.out.println("ATTIVITA AGGGGGGG: "+pacchetto.getAttivitas().get(0).getTitolo());
+		if(attivitas.size()>=1){
+					pacchetto.setAttivitas(attivitas);
+
+		}
 		
 		em.merge(pacchetto);
 		
