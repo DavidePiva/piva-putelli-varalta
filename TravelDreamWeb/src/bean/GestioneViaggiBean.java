@@ -206,7 +206,7 @@ public class GestioneViaggiBean {
         }
         
         public String scegliDate(){
-        	return "/user/scegliDate?faces-redirect=true&id"+idViaggio;
+        	return "/user/modificaDate?faces-redirect=true&id"+idViaggio;
         }
         
 }
