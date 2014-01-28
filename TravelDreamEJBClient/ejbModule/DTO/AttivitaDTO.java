@@ -96,5 +96,80 @@ public class AttivitaDTO {
 		return titolo;
 	}
 	
+	public String getOraFormattata(){
+		return (ora.getHours() < 10 ? "0" : "")+ora.getHours()+":"+(ora.getMinutes() < 10 ? "0" : "")+ora.getMinutes();
+	}
+	
+	public String getDataFormattata(){
+		String giornoSettimana, meseStringa;
+		switch(data.getDay()){
+		case 0:
+			giornoSettimana="Domenica";
+			break;
+		case 1:
+			giornoSettimana="Lunedì";
+			break;
+		case 2:
+			giornoSettimana="Martedì";
+			break;
+		case 3:
+			giornoSettimana="Mercoledì";
+			break;
+		case 4:
+			giornoSettimana="Giovedì";
+			break;
+		case 5:
+			giornoSettimana="Venerdì";
+			break;
+		case 6:
+			giornoSettimana="Sabato";
+			break;
+		default:
+			giornoSettimana="";
+		}
+		
+		switch(data.getMonth()){
+		case 0:
+			meseStringa="Gennaio";
+			break;
+		case 1:
+			meseStringa="Febbraio";
+			break;
+		case 2:
+			meseStringa="Marzo";
+			break;
+		case 3:
+			meseStringa="Aprile";
+			break;
+		case 4:
+			meseStringa="Maggio";
+			break;
+		case 5:
+			meseStringa="Giugno";
+			break;
+		case 6:
+			meseStringa="Luglio";
+			break;
+		case 7:
+			meseStringa="Agosto";
+			break;
+		case 8:
+			meseStringa="Settembre";
+			break;
+		case 9:
+			meseStringa="Ottobre";
+			break;
+		case 10:
+			meseStringa="Novembre";
+			break;
+		case 11:
+			meseStringa="Dicembre";
+			break;
+		default:
+			meseStringa="";
+		}
+		
+		return giornoSettimana+" "+data.getDate()+" "+meseStringa+" "+(data.getYear()+1900);
+	}
 	
 }
