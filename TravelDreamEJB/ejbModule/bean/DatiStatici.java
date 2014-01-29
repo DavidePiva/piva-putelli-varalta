@@ -91,7 +91,7 @@ public class DatiStatici implements DatiStaticiLocal {
 	
 	@SuppressWarnings("unchecked")
 	public List<HotelDTO> hotelPerCitta(String s){
-		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE citta = '"+s+"'");
+		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE selezionabile = 1 AND citta = '"+s+"'");
 		List<Integer> i = new ArrayList<Integer>();
 		i = q.getResultList();
 		List<HotelDTO> lista = new ArrayList<HotelDTO>();
@@ -227,7 +227,7 @@ public class DatiStatici implements DatiStaticiLocal {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<PacchettoDTO> pacchettiPerHotel(String hotelSelezionato) {
-		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE nome = '"+hotelSelezionato+"'");
+		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE selezionabile = 1 AND nome = '"+hotelSelezionato+"'");
 		List<Integer> i = new ArrayList<Integer>();
 		i = q.getResultList();
 		int id = 0;
@@ -247,7 +247,7 @@ public class DatiStatici implements DatiStaticiLocal {
 
 	@SuppressWarnings("unchecked")
 	public int getIdPernottamento(String tipoCamera,int idHotel){
-		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento WHERE hotel = "+idHotel+" AND tipo = "+tipoCamera);
+		Query q = em.createNativeQuery("SELECT idPernottamento FROM Pernottamento WHERE selezionabile = 1 AND hotel = "+idHotel+" AND tipo = "+tipoCamera);
 		List<Integer> list=new ArrayList<Integer>();
 		list=q.getResultList();
 		
@@ -430,7 +430,7 @@ public class DatiStatici implements DatiStaticiLocal {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<AttivitaDTO> attivitaPerTitolo(String titolo) {
-		Query q=em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE titolo = '"+titolo+"'");
+		Query q=em.createNativeQuery("SELECT idAttivita FROM Attivita WHERE selezionabile = 1 AND titolo = '"+titolo+"'");
 		List<Integer> list=new ArrayList<Integer>();
 		list=q.getResultList();
 		List<AttivitaDTO> listDTO=new ArrayList<AttivitaDTO>();
@@ -463,7 +463,7 @@ public class DatiStatici implements DatiStaticiLocal {
 	@SuppressWarnings("unchecked")
 	@Override
 	public HotelDTO getHotelPerNome(String nome){
-		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE nome = '"+nome+"'");
+		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE selezionabile = 1 AND nome = '"+nome+"'");
 		List<Integer> i = new ArrayList<Integer>();
 		i = q.getResultList();
 		HotelDTO l1 = new HotelDTO();
@@ -585,7 +585,7 @@ public class DatiStatici implements DatiStaticiLocal {
 
 	@Override
 	public List<String> getCittaConHotel() {
-		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel");
+		Query q = em.createNativeQuery("SELECT idHotel FROM Hotel WHERE selezionabile = 1");
 		List<Integer> i = new ArrayList<Integer>();
 		i = q.getResultList();
 		List<String> lista = new ArrayList<String>();
@@ -599,7 +599,7 @@ public class DatiStatici implements DatiStaticiLocal {
 
 	@Override
 	public List<String> getCittaConPacchetto() {
-		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto");
+		Query q = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto WHERE selezionabile = 1");
 		List<Integer> i = new ArrayList<Integer>();
 		i = q.getResultList();
 		List<String> lista = new ArrayList<String>();

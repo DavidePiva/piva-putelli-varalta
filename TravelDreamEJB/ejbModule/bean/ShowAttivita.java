@@ -37,7 +37,7 @@ public class ShowAttivita implements ShowAttivitaLocal {
 	@Override
 	
 	public List<String> getListaTitoliAttivita(){
-		Query q = em.createNativeQuery("SELECT distinct titolo FROM Attivita");
+		Query q = em.createNativeQuery("SELECT distinct titolo FROM Attivita WHERE selezionabile = 1");
 		List<String> list=q.getResultList();
 		return list;
 	}
