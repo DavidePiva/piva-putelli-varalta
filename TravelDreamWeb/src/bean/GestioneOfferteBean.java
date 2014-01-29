@@ -131,11 +131,11 @@ public class GestioneOfferteBean {
 	}
 	public String eliminaAttivitaDaPacchetto(){
 		gestioneOfferte.eliminaAttivitaDaPacchetto(idPacchettoModificare, idAttivitaDaEliminare);
-		return "/index?faces-redirect=true";
+		return "/impiegato/modificaAttivitaPacchetto?faces-redirect=true&id="+idPacchettoModificare;
 	}
 	public String aggiungiAttivitaAlPacchetto(){
 		gestioneOfferte.aggiungiAttivitaAlPacchetto(idPacchettoModificare, idAttivitaDaAggiungere);
-		return "/index?faces-redirect=true";
+		return "/impiegato/modificaAttivitaPacchetto?faces-redirect=true&id="+idPacchettoModificare;
 	}
 	public String eliminaPacchetto(){
 		gestioneOfferte.eliminaPacchetto(idPacchettoModificare);

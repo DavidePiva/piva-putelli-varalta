@@ -68,7 +68,7 @@
 			<b>Elimina attività: </b>
 				<h:form>
 					<h:selectOneMenu value="#{go.idAttivitaDaEliminare}">
-						<f:selectItems value="#{go.getAttivitaEliminabili()}" var="c" itemLabel="#{c.titolo}"
+						<f:selectItems value="#{go.getAttivitaEliminabili()}" var="c" itemLabel="#{c.titolo}, #{c.dataFormattata} #{c.oraFormattata} - #{c.prezzo} euro"
 							itemValue="#{c.id}" />
 					</h:selectOneMenu>
 					<h:commandButton value="ELIMINA DAL PACCHETTO" action="#{go.eliminaAttivitaDaPacchetto()}"/>
@@ -79,7 +79,7 @@
 			<b>Aggiungi attività: </b>
 				<h:form>
 					<h:selectOneMenu value="#{go.idAttivitaDaAggiungere}">
-						<f:selectItems value="#{go.getAttivitaAggiungibili()}" var="c" itemLabel="#{c.titolo}"
+						<f:selectItems value="#{go.getAttivitaAggiungibili()}" var="c" itemLabel="#{c.titolo}, #{c.dataFormattata} #{c.oraFormattata} - #{c.prezzo} euro"
 							itemValue="#{c.id}" />
 					</h:selectOneMenu>
 					<h:commandButton value="AGGIUNGI AL PACCHETTO" action="#{go.aggiungiAttivitaAlPacchetto()}"/>
