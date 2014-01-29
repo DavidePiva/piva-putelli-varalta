@@ -538,6 +538,29 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 			Donazione_Pernottamento rem = em.find(Donazione_Pernottamento.class, temp);
 			em.remove(rem);
 		}
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		Query q2 = em.createNativeQuery("SELECT prezzo FROM Pernottamento, TipoCamere_Hotel "
+				+ "WHERE Pernottamento.hotel = TipoCamere_Hotel.idHotel AND "
+				+ "Pernottamento.tipo = TipoCamere_Hotel.tipoCamera AND Pernottamento.idPernottamento ="+idPernottamento);
+		List<BigDecimal> l = q2.getResultList();
+		Date data1 = v.getVolo1().getData();
+    	Date data2 = v.getVolo2().getData();
+    	DateTime dt1 = new DateTime(data1);
+    	DateTime dt2 = new DateTime(data2);
+    	int days = Days.daysBetween(dt1, dt2).getDays();
+    	BigDecimal giorni = BigDecimal.valueOf(days);
+		BigDecimal prezzoNotte = l.get(0);
+		BigDecimal prezzoPer = prezzoNotte.multiply(giorni);
+		BigDecimal nuovoPrezzo = v.getPrezzo().subtract(prezzoPer);
+		float np = nuovoPrezzo.floatValue();
+		if(np<=0){
+			v.setPrezzo(BigDecimal.ZERO);
+			v.setPagato(true);
+		}
+		else{
+			v.setPrezzo(nuovoPrezzo);
+		}
+		em.merge(v);
 	}
 
 
@@ -560,7 +583,19 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 			Donazione_Attivita rem = em.find(Donazione_Attivita.class, temp);
 			em.remove(rem);
 		}
-		
+		Attivita a = da.getAttivita();
+		BigDecimal prezzoA = a.getPrezzo();
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		BigDecimal nuovoPrezzo = v.getPrezzo().subtract(prezzoA);
+		float np = nuovoPrezzo.floatValue();
+		if(np<=0){
+			v.setPrezzo(BigDecimal.ZERO);
+			v.setPagato(true);
+		}
+		else{
+			v.setPrezzo(nuovoPrezzo);
+		}
+		em.merge(v);
 	}
 
 
@@ -736,7 +771,19 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 			Donazione_Volo rem = em.find(Donazione_Volo.class, temp);
 			em.remove(rem);
 		}
-		
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		BigDecimal prezzo = v.getPrezzo();
+		Volo volo = dv.getVolo();
+		BigDecimal nuovoPrezzo = prezzo.subtract(volo.getPrezzo());
+		float np = nuovoPrezzo.floatValue();
+		if(np<=0){
+			v.setPrezzo(BigDecimal.ZERO);
+			v.setPagato(true);
+		}
+		else{
+			v.setPrezzo(nuovoPrezzo);
+		}
+		em.merge(v);
 	}
 
 	@Override
