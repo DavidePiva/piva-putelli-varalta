@@ -7,7 +7,6 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 
 
@@ -99,6 +98,7 @@ public class AttivitaDTO {
 		return titolo;
 	}
 	
+
 	public String getOraFormattata(){
 		return (ora.getHours() < 10 ? "0" : "")+ora.getHours()+":"+(ora.getMinutes() < 10 ? "0" : "")+ora.getMinutes();
 	}

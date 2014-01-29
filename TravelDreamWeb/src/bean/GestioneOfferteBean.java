@@ -8,6 +8,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import DTO.AttivitaDTO;
 import DTO.PacchettoDTO;
@@ -26,7 +29,9 @@ public class GestioneOfferteBean {
 	private Date dataAndata;
 	private Date dataRitorno;
 	private PacchettoDTO pDTO;
+	@NotEmpty(message="Campo obbligatorio")
 	private String titolo;
+	@NotEmpty(message="Campo obbligatorio")
 	private String descrizione;
 	private String citta;
 	private String target;
@@ -350,11 +355,15 @@ public class GestioneOfferteBean {
 	private Date dataAndataMod;
 	private Date dataRitornoMod;
 	private PacchettoDTO pDTOMod;
+	@NotEmpty(message="Campo obbligatorio")
 	private String titoloMod;
+	@NotEmpty(message="Campo obbligatorio")
 	private String descrizioneMod;
 	private String targetMod;
 	private String tipologiaMod;
-	private BigDecimal prezzoMod;
+	@Pattern(regexp="^(?!^0)\\d{1,9}$", message="Inserisci un valore positivo")
+	@NotEmpty(message="Campo obbligatorio")
+	private String prezzoMod;
 	private String foto1Mod;
 	private String foto2Mod;
 	private String foto3Mod;
@@ -452,13 +461,12 @@ public class GestioneOfferteBean {
 		pDTOMod.setFoto4(foto4Mod);
 		pDTOMod.setFoto5(foto5Mod);
 		pDTOMod.setFoto6(foto6Mod);
-		pDTOMod.setPrezzo(prezzoMod);
+		pDTOMod.setPrezzo(new BigDecimal(prezzoMod));
 		pDTOMod.setVoloAndata(voloAndataMod);
 		pDTOMod.setVoloRitorno(voloRitornoMod);
 		pDTOMod.setIdPernottamento(idPernottamentoMod);
 		gestioneOfferte.modificaSalva(pDTOMod);
-		// gestioneOfferte.salvaTutto(pDTO, attivita1, attivita2, attivita3,
-		// attivita4, attivita5);
+
 		return "/impiegato/index?faces-redirect=true";
 	}
 
@@ -524,11 +532,11 @@ public class GestioneOfferteBean {
 		this.tipologiaMod = tipologiaMod;
 	}
 
-	public BigDecimal getPrezzoMod() {
-		return datistatici.getPacchettoDTO(idPacchettoModificare).getPrezzo();
+	public String getPrezzoMod() {
+		return datistatici.getPacchettoDTO(idPacchettoModificare).getPrezzo().toString();
 	}
 
-	public void setPrezzoMod(BigDecimal prezzoMod) {
+	public void setPrezzoMod(String prezzoMod) {
 		this.prezzoMod = prezzoMod;
 	}
 
