@@ -2,6 +2,10 @@ package DTO;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 public class PacchettoDTO {
 
@@ -30,6 +34,9 @@ public class PacchettoDTO {
 	private String foto6;
 
 	private BigDecimal prezzo;
+	@Pattern(regexp="^(?!^0)\\d{1,9}$", message="Inserisci un valore positivo")
+	@NotEmpty(message="Campo obbligatorio")
+	private String prezzoString;
 
 	private boolean selezionabile;
 
@@ -173,6 +180,15 @@ public class PacchettoDTO {
 
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;
+	}
+
+	public String getPrezzoString() {
+		return prezzoString;
+	}
+
+	public void setPrezzoString(String prezzoString) {
+		this.prezzoString = prezzoString;
+		this.prezzo=new BigDecimal(prezzoString);
 	}
 	
 	
