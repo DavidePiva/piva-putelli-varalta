@@ -14,6 +14,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+
 import DTO.AttivitaDTO;
 import DTO.HotelDTO;
 import DTO.ViaggioDTO;
@@ -318,10 +321,32 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 
 	private BigDecimal ricalcolaPrezzo(int idViaggio) {
 		Viaggio v = em.find(Viaggio.class, idViaggio);
-		BigDecimal nuovoPrezzo = v.getPrezzo();
-		Float f = nuovoPrezzo.floatValue();
-		f+=100;
-		nuovoPrezzo = BigDecimal.valueOf(f);
+		BigDecimal prezzoA = v.getVolo1().getPrezzo();
+		BigDecimal prezzoR = v.getVolo2().getPrezzo();
+		BigDecimal prezzoVoli = prezzoA.add(prezzoR);
+		int idPernottamento = v.getPernottamentoBean().getIdPernottamento();
+		Query q = em.createNativeQuery("SELECT prezzo FROM Pernottamento, TipoCamere_Hotel "
+				+ "WHERE Pernottamento.hotel = TipoCamere_Hotel.idHotel AND "
+				+ "Pernottamento.tipo = TipoCamere_Hotel.tipoCamera AND Pernottamento.idPernottamento ="+idPernottamento);
+		List<BigDecimal> l = q.getResultList();
+    	Date data1 = v.getVolo1().getData();
+    	Date data2 = v.getVolo2().getData();
+    	DateTime dt1 = new DateTime(data1);
+    	DateTime dt2 = new DateTime(data2);
+    	int days = Days.daysBetween(dt1, dt2).getDays();
+    	BigDecimal giorni = BigDecimal.valueOf(days);
+		BigDecimal prezzoNotte = l.get(0);
+		BigDecimal prezzoPer = prezzoNotte.multiply(giorni);
+		float totale = 0;
+		for(int i = 0; i < v.getViaggioAttivitas().size(); i++)
+		{
+			Viaggio_Attivita va = v.getViaggioAttivitas().get(i);
+			Attivita att = va.getAttivita();
+			totale+=att.getPrezzo().floatValue();
+		}
+		float prezzoV = prezzoVoli.floatValue();
+		totale+=prezzoV;
+		BigDecimal nuovoPrezzo = prezzoPer.add(BigDecimal.valueOf(totale));
 		return nuovoPrezzo;
 	}
 
@@ -599,6 +624,9 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		va.setAttivita(a);
 		va.setRegalabile(false);
 		em.persist(va);
+		BigDecimal prezzo = ricalcolaPrezzo(idViaggio);
+		v.setPrezzo(prezzo);
+		em.merge(v);
 	}
 
 	@Override
@@ -643,6 +671,9 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		v.setVolo1(nuovaAndata);
 		v.setVolo2(nuovoRitorno);
 		
+		em.merge(v);
+		BigDecimal prezzo = ricalcolaPrezzo(idViaggio);
+		v.setPrezzo(prezzo);
 		em.merge(v);
 	}
 
