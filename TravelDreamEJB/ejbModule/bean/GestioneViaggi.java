@@ -652,6 +652,10 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		pk.setIdViaggio(idViaggio);
 		Viaggio_Attivita va = em.find(Viaggio_Attivita.class, pk);
 		em.remove(va);
+		Viaggio v = em.find(Viaggio.class, idViaggio);
+		BigDecimal prezzo = ricalcolaPrezzo(idViaggio);
+		v.setPrezzo(prezzo);
+		em.merge(v);
 	}
 
 	@Override
