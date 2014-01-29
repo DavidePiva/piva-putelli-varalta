@@ -131,5 +131,9 @@ public class ShowViaggioBean {
 		return showViaggio.getViaggiPartecipati(email);
 	}
 	
+	public boolean inCorso(String email, boolean regali){
+		boolean inCorso = ciSonoViaggiPartecipati(email) || ciSonoViaggiPagati(email) || ciSonoViaggiInFaseDiCreazione(email) || regali;
+		return !inCorso;
+	}
 	
 }
