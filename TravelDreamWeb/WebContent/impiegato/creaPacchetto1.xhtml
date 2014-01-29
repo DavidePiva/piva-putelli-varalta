@@ -154,7 +154,7 @@
 						<h:selectOneMenu value="#{go.attivita1.id}" id="attivita1">
 							<f:selectItem itemLabel="NESSUNA" itemValue="0" />
 							<f:selectItems value="#{go.attivitaPossibili}" var="c1"
-								itemLabel="#{c1.titolo} - #{c1.prezzo} euro"
+								itemLabel="#{c1.titolo}, #{c1.dataFormattata} #{c1.oraFormattata} - #{c1.prezzo} euro"
 								itemValue="#{c1.id}" />
 						</h:selectOneMenu>
 						<p:message for="attivita1" />
@@ -164,7 +164,7 @@
 						<h:selectOneMenu value="#{go.attivita2.id}" id="attivita2">
 							<f:selectItem itemLabel="NESSUNA" itemValue="0" />
 							<f:selectItems value="#{go.attivitaPossibili}" var="c2"
-								itemLabel="#{c2.titolo} - #{c2.prezzo} euro"
+								itemLabel="#{c2.titolo}, #{c2.dataFormattata} #{c2.oraFormattata} - #{c2.prezzo} euro"
 								itemValue="#{c2.id}" />
 						</h:selectOneMenu>
 						<p:message for="attivita2" />
@@ -173,7 +173,7 @@
 						<h:selectOneMenu value="#{go.attivita3.id}" id="attivita3">
 							<f:selectItem itemLabel="NESSUNA" itemValue="0" />
 							<f:selectItems value="#{go.attivitaPossibili}" var="c3"
-								itemLabel="#{c3.titolo} - #{c3.prezzo} euro"
+								itemLabel="#{c3.titolo}, #{c3.dataFormattata} #{c3.oraFormattata} - #{c3.prezzo} euro"
 								itemValue="#{c3.id}" />
 						</h:selectOneMenu>
 						<p:message for="attivita3" />
@@ -182,7 +182,7 @@
 						<h:selectOneMenu value="#{go.attivita4.id}" id="attivita4">
 							<f:selectItem itemLabel="NESSUNA" itemValue="0" />
 							<f:selectItems value="#{go.attivitaPossibili}" var="c4"
-								itemLabel="#{c4.titolo} - #{c4.prezzo} euro"
+								itemLabel="#{c4.titolo}, #{c4.dataFormattata} #{c4.oraFormattata} - #{c4.prezzo} euro"
 								itemValue="#{c4.id}" />
 						</h:selectOneMenu>
 						<p:message for="attivita4" />
@@ -191,7 +191,7 @@
 						<h:selectOneMenu value="#{go.attivita5.id}" id="attivita5">
 							<f:selectItem itemLabel="NESSUNA" itemValue="0" />
 							<f:selectItems value="#{go.attivitaPossibili}" var="c5"
-								itemLabel="#{c5.titolo} - #{c5.prezzo} euro"
+								itemLabel="#{c5.titolo}, #{c5.dataFormattata} #{c5.oraFormattata} - #{c5.prezzo} euro"
 								itemValue="#{c5.id}" />
 						</h:selectOneMenu>
 						<p:message for="attivita5" />
