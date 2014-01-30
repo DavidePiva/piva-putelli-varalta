@@ -25,5 +25,7 @@ public class AeroportoDTO {
 		this.citta = citta;
 	}
 	
-	
+	public String toString(){
+		return nome+", "+citta;
+	}
 }

@@ -34,10 +34,10 @@ public interface DatiStaticiLocal {
 	public HotelDTO getHotelPerId(int idHotel);
 	HotelDTO getHotelPerNome(String nome);
 	public ViaggioDTO getViaggioDTO(int id);
-	PacchettoDTO getPacchettoDTO(int id);
+	public PacchettoDTO getPacchettoDTO(int id);
 	public List<TipoCamere_HotelDTO> camerePerHotel(int idHotelScelto);
 	public VoloDTO getVoloDTO(int id);
-	AeroportoDTO getAeroportoDTO(int id);
+	public AeroportoDTO getAeroportoDTO(int id);
 	public List<String> getListaUtenti();
 	public List<PacchettoDTO> ultimiPacchetti();
 	

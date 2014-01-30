@@ -151,6 +151,9 @@ public class DatiStaticiBean {
 		return aero.getNome();
 	}
 	
+	public AeroportoDTO getAeroportoDTO(int id){
+		return datistatici.getAeroportoDTO(id);
+	}
 	
 	public List<String> getCitta(){
 		citta= datistatici.getDestinazioni();
