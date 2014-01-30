@@ -69,28 +69,29 @@
 			</div>
 		</div>
 		<div id="boxcontenuto">
-			<h1>Benvenuti</h1>
-			<div>
+			<h1>Benvenuti in TravelDream</h1>
+			<br /><br />
+			<div align="center">
 				<table>
 					<tr>
 						<ui:repeat value="#{ds.ultimiPacchetti1}" var="p">
 							<td>
-							<h:graphicImage width="227" height="170"	url="foto/#{p.foto1}"></h:graphicImage><br />
+							<h:graphicImage width="240" height="180"	url="foto/#{p.foto1}"></h:graphicImage><br />
 							<h2><h:link value="#{p.titolo}" outcome="pacchetto"  id="homeurl">
 									<f:param name="pacchetto" value="#{p.titolo}" />
 									<f:param name="foto" value="1" />
-								</h:link></h2>
+								</h:link></h2><br />
 								</td><td width='40px'></td>
 						</ui:repeat>
 					</tr>
 					<tr>
 						<ui:repeat value="#{ds.ultimiPacchetti2}" var="p">
 							<td>
-							<h:graphicImage width="227" height="170"	url="foto/#{p.foto1}"></h:graphicImage><br />
+							<h:graphicImage width="240" height="180"	url="foto/#{p.foto1}"></h:graphicImage><br />
 							<h:link value="#{p.titolo}" outcome="pacchetto" id="homeurl">
 									<f:param name="pacchetto" value="#{p.titolo}" />
 									<f:param name="foto" value="1" />
-								</h:link></td><td width='40px'></td>
+								</h:link><br /></td><td width='40px'></td>
 						</ui:repeat>
 					</tr>
 				</table>
