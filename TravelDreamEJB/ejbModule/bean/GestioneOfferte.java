@@ -83,26 +83,27 @@ public class GestioneOfferte implements GestioneOfferteLocal {
 		em.flush();
 		em.clear();
 		
-		
 		List<Attivita> attivitas = new ArrayList<Attivita>();
-		if(a1.getId()!=0)
-			attivitas.add(em.find(Attivita.class, a1.getId()));
-		if(a2.getId()!=0)
-			attivitas.add(em.find(Attivita.class, a2.getId()));
-		if(a3.getId()!=0)
-			attivitas.add(em.find(Attivita.class, a3.getId()));
-		if(a4.getId()!=0)
-			attivitas.add(em.find(Attivita.class, a4.getId()));
-		if(a5.getId()!=0)
-			attivitas.add(em.find(Attivita.class, a5.getId()));
-		if(attivitas.size()>=1){
-					pacchetto.setAttivitas(attivitas);
+		if (a1.getId() != 0)
+			if (!attivitas.contains(em.find(Attivita.class, a1.getId())))
+				attivitas.add(em.find(Attivita.class, a1.getId()));
+		if (a2.getId() != 0)
+			if (!attivitas.contains(em.find(Attivita.class, a2.getId())))
+				attivitas.add(em.find(Attivita.class, a2.getId()));
+		if (a3.getId() != 0)
+			if (!attivitas.contains(em.find(Attivita.class, a3.getId())))
+				attivitas.add(em.find(Attivita.class, a3.getId()));
+		if (a4.getId() != 0)
+			if (!attivitas.contains(em.find(Attivita.class, a4.getId())))
+				attivitas.add(em.find(Attivita.class, a4.getId()));
+		if (a5.getId() != 0)
+			if (!attivitas.contains(em.find(Attivita.class, a5.getId())))
+				attivitas.add(em.find(Attivita.class, a5.getId()));
 
-		}
-		
+		if (attivitas.size() >= 1)
+			pacchetto.setAttivitas(attivitas);
+
 		em.merge(pacchetto);
-		
-
 		
 
 	}
