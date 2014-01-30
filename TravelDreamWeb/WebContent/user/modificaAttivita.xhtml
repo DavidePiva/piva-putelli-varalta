@@ -76,7 +76,7 @@
 				<h:form>
 					<h:selectOneMenu value="#{mv.idAttivitaDaEliminare}">
 						<f:selectItems value="#{mv.attivita}" var="c"
-							itemLabel="#{c.titolo}" itemValue="#{c.id}" />
+							itemLabel="#{c.titolo} - #{c.getDataFormattata()}" itemValue="#{c.id}" />
 					</h:selectOneMenu>
 					<h:commandButton value="ELIMINA DAL VIAGGIO"
 						action="#{mv.eliminaAttivitaDaViaggio()}" />
@@ -86,7 +86,7 @@
 				<h:form>
 					<h:selectOneMenu value="#{mv.idAttivitaDaAggiungere}">
 						<f:selectItems value="#{mv.attivitaNonSelezionateViaggio}" var="c"
-							itemLabel="#{c.titolo}" itemValue="#{c.id}" />
+							itemLabel="#{c.titolo} - #{c.getDataFormattata()}" itemValue="#{c.id}" />
 					</h:selectOneMenu>
 					<h:commandButton value="AGGIUNGI AL VIAGGIO"
 						action="#{mv.aggiungiAttivitaAlViaggio()}" />

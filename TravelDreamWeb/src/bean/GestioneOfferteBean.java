@@ -444,11 +444,8 @@ public class GestioneOfferteBean {
 	}
 
 	public String salvaMod() {
-		System.out
-				.println("RICHIAMATA SALVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmod! Nel pDTO foto1: "
-						+ foto1Mod + " e voloandata " + voloAndataMod);
-		// gestioneOfferte.setPaginaSelezionata(2);
-		// paginaSelezionata=gestioneOfferte.getPaginaSelezionata();
+
+
 		pDTOMod.setIdPacchetto(idPacchettoModificare);
 		pDTOMod.setSelezionabile(true);
 		pDTOMod.setTitolo(titoloMod);
@@ -541,10 +538,7 @@ public class GestioneOfferteBean {
 	}
 
 	public String getFoto1Mod() {
-		System.out
-				.println("La foto 1 è : "
-						+ datistatici.getPacchettoDTO(idPacchettoModificare)
-								.getFoto1());
+
 		return datistatici.getPacchettoDTO(idPacchettoModificare).getFoto1();
 	}
 
