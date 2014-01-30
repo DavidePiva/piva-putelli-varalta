@@ -77,34 +77,36 @@
 							value="Viaggio per #{gv.numeroPersone} persone "></h:outputLabel>&nbsp;&nbsp;&nbsp;&nbsp;</i></h:panelGroup>
 						<h:outputLabel for="numeroPersone"
 							value="#{gv.prezzo} euro a testa"></h:outputLabel>
-						<h:commandButton value="Modifica" action="#{gv.modificaNumeroPersone()}" update="regGrid1" rendered="#{gv.nonRegalabile()}" />
+						<h:panelGroup><h:commandButton value="Modifica" action="#{gv.modificaNumeroPersone()}" update="regGrid1" rendered="#{gv.nonRegalabile()}" /></h:panelGroup>
 
 						<h:panelGroup><i><h:outputLabel for="hotel" value="Informazioni Hotel:"></h:outputLabel></i></h:panelGroup>
-
 						<h:outputLabel for="hotel" value="#{gv.hotel}"></h:outputLabel>
-						<h:commandButton value="Modifica" action="#{gv.scegliHotel()}" update="regGrid1" rendered="#{gv.nonRegalabile()}"/>
+						<h:panelGroup><h:commandButton value="Modifica" action="#{gv.scegliHotel()}" update="regGrid1" rendered="#{gv.nonRegalabile()}"/></h:panelGroup>
 
 						<h:panelGroup><i><h:outputLabel for="attivita" value="Attività:"></h:outputLabel></i></h:panelGroup>
 						<ui:repeat  value="#{gv.attivita}" var="a">
 							<h:outputLabel value = "- #{a}"></h:outputLabel><br />
 						</ui:repeat>
-						<h:commandButton value="Modifica attività" update="regGrid1" action = "#{gv.scegliAttivita()}" rendered="#{gv.nonRegalabile()}"/>
+						<h:panelGroup><h:commandButton value="Modifica attività" update="regGrid1" action = "#{gv.scegliAttivita()}" rendered="#{gv.nonRegalabile()}"/></h:panelGroup>
 						
 						
 						<h:panelGroup><i><h:outputLabel for="voli" value="Informazioni " /><br />voli e date: </i></h:panelGroup>
 						<ui:repeat value="#{gv.voli}" var="v">
 							<h:outputLabel value = " - #{v.getDataFormattata()}, #{ds.getAeroportoDTO(v.idAeroportoPartenza)}"></h:outputLabel><br />
 						</ui:repeat>
-						<h:commandButton value="Modifica date" update="regGrid1" action = "#{gv.scegliDate()}" rendered="#{gv.nonRegalabile()}"/>
+						<h:panelGroup><h:commandButton value="Modifica date" update="regGrid1" action = "#{gv.scegliDate()}" rendered="#{gv.nonRegalabile()}"/></h:panelGroup>
 						
 						<br /><br /><br /><br /><br />
-						<h:outputLabel for="regalo"
+						<h:panelGroup><h:outputLabel for="regalo"
 							value="Se vuoi che qualcuno te lo regali clicca su:" rendered="#{gv.nonRegalabile()}"></h:outputLabel>
+							<h:outputLabel for="regalo"
+							value="Se vuoi modificare le persone della lista regalo clicca su:&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{gv.regalabile()}"></h:outputLabel>
+							</h:panelGroup>
 						<h:commandButton value="Vorrei..." action = "#{gv.regali()}" update="regGrid1"/>
 						
 						<br />
 						<h:outputLabel for="invito"
-							value="Se invece vuoi partire in compagnia:"></h:outputLabel>
+							value="Se invece vuoi partire in compagnia:" rendered="#{gv.nonRegalabile()}"></h:outputLabel>
 						<h:commandButton value="Invita" action = "#{gv.invita()}"  rendered="#{gv.nonRegalabile()}" update="regGrid1" />
 
 
