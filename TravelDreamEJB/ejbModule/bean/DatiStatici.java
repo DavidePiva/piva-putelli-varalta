@@ -235,7 +235,7 @@ public class DatiStatici implements DatiStaticiLocal {
 		if(i.size()==1){
 			id = i.get(0);
 		}
-		Query q2 = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto,Pernottamento WHERE Pacchetto.pernottamento = Pernottamento.idPernottamento AND Pernottamento.hotel = "+id);
+		Query q2 = em.createNativeQuery("SELECT idPacchetto FROM Pacchetto,Pernottamento WHERE Pacchetto.selezionabile = 1 AND Pacchetto.pernottamento = Pernottamento.idPernottamento AND Pernottamento.hotel = "+id);
 		List<Integer> j = new ArrayList<Integer>();
 		j = q2.getResultList();
 		for(int index = 0; index < j.size(); index++){
