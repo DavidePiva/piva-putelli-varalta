@@ -73,47 +73,46 @@
 
 					<br></br>
 					<h:panelGrid columns="3" id="regGrid1">
-						<h:outputLabel for="numeroPersone"
-							value="Viaggio per #{gv.numeroPersone} persone"></h:outputLabel>
+						<h:panelGroup><i><h:outputLabel for="numeroPersone"
+							value="Viaggio per #{gv.numeroPersone} persone "></h:outputLabel>&nbsp;&nbsp;&nbsp;&nbsp;</i></h:panelGroup>
 						<h:outputLabel for="numeroPersone"
 							value="#{gv.prezzo} euro a testa"></h:outputLabel>
 						<h:commandButton value="Modifica" action="#{gv.modificaNumeroPersone()}" update="regGrid1" rendered="#{gv.nonRegalabile()}" />
 
-						<h:outputLabel for="hotel" value="Informazioni Hotel:"></h:outputLabel>
+						<h:panelGroup><i><h:outputLabel for="hotel" value="Informazioni Hotel:"></h:outputLabel></i></h:panelGroup>
 
 						<h:outputLabel for="hotel" value="#{gv.hotel}"></h:outputLabel>
 						<h:commandButton value="Modifica" action="#{gv.scegliHotel()}" update="regGrid1" rendered="#{gv.nonRegalabile()}"/>
 
-						<h:outputLabel for="attivita" value="Attività:"></h:outputLabel>
+						<h:panelGroup><i><h:outputLabel for="attivita" value="Attività:"></h:outputLabel></i></h:panelGroup>
 						<ui:repeat  value="#{gv.attivita}" var="a">
-							<li><h:outputLabel value = "#{a}"></h:outputLabel></li>
+							<h:outputLabel value = "- #{a}"></h:outputLabel><br />
 						</ui:repeat>
 						<h:commandButton value="Modifica attività" update="regGrid1" action = "#{gv.scegliAttivita()}" rendered="#{gv.nonRegalabile()}"/>
 						
 						
-						<h:outputLabel for="voli" value="Informazioni voli e date:"></h:outputLabel>
+						<h:panelGroup><i><h:outputLabel for="voli" value="Informazioni " /><br />voli e date: </i></h:panelGroup>
 						<ui:repeat value="#{gv.voli}" var="v">
-							<li><h:outputLabel value = "#{v.getDataFormattata()}"></h:outputLabel></li>
-						</ui:repeat>	
+							<h:outputLabel value = " - #{v.getDataFormattata()}, #{ds.getAeroportoDTO(v.idAeroportoPartenza)}"></h:outputLabel><br />
+						</ui:repeat>
 						<h:commandButton value="Modifica date" update="regGrid1" action = "#{gv.scegliDate()}" rendered="#{gv.nonRegalabile()}"/>
-						<br></br>
-						<br></br>
-						<br></br>
-						<br></br>
+						
+						<br /><br /><br /><br /><br />
 						<h:outputLabel for="regalo"
 							value="Se vuoi che qualcuno te lo regali clicca su:" rendered="#{gv.nonRegalabile()}"></h:outputLabel>
 						<h:commandButton value="Vorrei..." action = "#{gv.regali()}" update="regGrid1"/>
-						<br></br>
-						<br></br>
+						
+						<br />
 						<h:outputLabel for="invito"
 							value="Se invece vuoi partire in compagnia:"></h:outputLabel>
 						<h:commandButton value="Invita" action = "#{gv.invita()}"  rendered="#{gv.nonRegalabile()}" update="regGrid1" />
 
 
 					</h:panelGrid>
+					<br />
 						<h:commandButton value="Acquista il viaggio" action="#{gv.acquista()}" rendered="#{gv.pagabile()}" />
 						<h:outputLabel value = "Attenzione, non puoi ancora effettuare il pagamento: alcune delle persone che hai invitato non hanno ancora confermato la loro partecipazione. Attendi una loro risposta oppure cancella l'invito dalla pagina del tuo viaggio." rendered="#{gv.nonPagabile()}" ></h:outputLabel>
-						<br ></br>
+						<br /> <br />
 						<h:commandButton value="Elimina dai tuoi viaggi" action="#{gv.rimuovi()}" rendered="#{gv.eliminabile()}" />
 					
 				</h:form>
