@@ -183,6 +183,10 @@ public class GestioneViaggiBean {
         	return !regalabile;
         }
         
+        public boolean regalabile(){
+        	return !nonRegalabile();
+        }
+        
         public boolean pagabile(){
         	if(showViaggio.pagabile(idViaggio)){
         		return true;

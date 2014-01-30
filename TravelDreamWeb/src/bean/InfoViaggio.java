@@ -47,6 +47,6 @@ public class InfoViaggio {
 	}
 	
 	public String regalo(){
-		return titolare + " far‡ un viaggio a " + citta + " , vuoi regalare qualcosa?";
+		return titolare + " far√† un viaggio a " + citta + ", vuoi regalare qualcosa?";
 	}
 }
