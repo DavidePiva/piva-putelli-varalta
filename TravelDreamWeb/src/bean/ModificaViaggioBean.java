@@ -51,11 +51,9 @@ public class ModificaViaggioBean {
 		this.setPaginaSelezionata(1);
 	}
 	public String salva(){
-		System.out.println("Volo andata id: "+viaggioDTO.getIdVoloAndata());
-		System.out.println("Volo ritorno id: "+viaggioDTO.getIdVoloRitorno());
 		viaggioDTO.setIdViaggio(idViaggio);
 		gestioneViaggi.gestoreDate(viaggioDTO, viaggioDTO.getIdVoloAndata(), viaggioDTO.getIdVoloRitorno());
-		return "/index?faces-redirect=true";
+    	return "/user/modificaAttivita?faces-redirect=true&id="+idViaggio;
 	}
 	public boolean primaPaginaVisibile(){
 		if(paginaSelezionata==0)
@@ -83,12 +81,12 @@ public class ModificaViaggioBean {
 
 	public String eliminaAttivitaDaViaggio(){
 		gestioneViaggi.rimuoviAttivita(idAttivitaDaEliminare, idViaggio);
-		return "/index?faces-redirect=true";
+    	return "/user/modificaAttivita?faces-redirect=true&id="+idViaggio;
 	}
 	
 	public String aggiungiAttivitaAlViaggio(){
 		gestioneViaggi.aggiungiAttivita(idAttivitaDaAggiungere, idViaggio);
-		return "/index?faces-redirect=true";
+    	return "/user/modificaAttivita?faces-redirect=true&id="+idViaggio;
 	}
 	
 	
