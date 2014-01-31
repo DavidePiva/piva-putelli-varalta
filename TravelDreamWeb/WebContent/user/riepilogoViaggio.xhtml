@@ -72,25 +72,24 @@
 						<br></br>
 					</h1>
 					<br></br>
-					<h:panelGrid columns="3" id="regGrid1">
-						<h:outputLabel for="numeroPersone"
-							value="#{gv.prezzo} euro a testa"></h:outputLabel>
-						<h:outputLabel for="hotel" value="Informazioni Hotel:"></h:outputLabel>
+					<h:panelGrid columns="2" id="regGrid1">
+						<h:panelGroup><i><h:outputLabel for="numeroPersone"
+							value="#{gv.prezzo} euro a testa"></h:outputLabel></i></h:panelGroup>
+						<h:outputLabel />
+							
+						<h:panelGroup><i><h:outputLabel for="hotel" value="Informazioni Hotel:"></h:outputLabel></i></h:panelGroup>
 						<h:outputLabel for="hotel" value="#{gv.hotel}"></h:outputLabel>
-						<h:outputLabel for="attivita" value="Attività:"></h:outputLabel>
+						
+						<h:panelGroup><i><h:outputLabel for="attivita" value="Attività:"></h:outputLabel></i></h:panelGroup>
 						<ui:repeat  value="#{gv.attivita}" var="a">
-							<li><h:outputLabel value = "#{a}"></h:outputLabel></li>
+							<h:outputLabel value = "- #{a}"></h:outputLabel><br />
 						</ui:repeat>	
-						<h:outputLabel for="voli" value="Informazioni voli e date:"></h:outputLabel>
+						
+						<h:panelGroup><i><h:outputLabel for="voli" value="Informazioni " /><br />voli e date: </i></h:panelGroup>
 						<ui:repeat value="#{gv.voli}" var="v">
-							<li><h:outputLabel value = "#{v.getDataFormattata()}"></h:outputLabel></li>
-						</ui:repeat>	
-						<br></br>
-						<br></br>
-						<br></br>
-						<br></br>
-						<br></br>
-						<br></br>
+							<h:outputLabel value = " - #{v.getDataFormattata()}, #{ds.getAeroportoDTO(v.idAeroportoPartenza)}"></h:outputLabel><br />
+						</ui:repeat>
+
 					</h:panelGrid>
 
 
