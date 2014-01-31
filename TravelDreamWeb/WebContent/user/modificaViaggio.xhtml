@@ -97,17 +97,17 @@
 						<h:panelGroup><h:panelGroup rendered="#{gv.nonCiSonoUtentiInvitati()}"><h:commandButton value="Modifica date" update="regGrid1" action = "#{gv.scegliDate()}" rendered="#{gv.nonRegalabile()}"/></h:panelGroup></h:panelGroup>
 						
 						<br /><br /><br /><br /><br />
-						<h:panelGroup><h:outputLabel for="regalo"
+						<h:panelGroup><h:panelGroup rendered="#{gv.nonCiSonoUtentiInvitati()}"> <h:outputLabel for="regalo"
 							value="Se vuoi che qualcuno te lo regali clicca su:" rendered="#{gv.nonRegalabile()}"></h:outputLabel>
 							<h:outputLabel for="regalo"
 							value="Se vuoi modificare le persone della lista regalo clicca su:&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{gv.regalabile()}"></h:outputLabel>
-							</h:panelGroup>
-						<h:commandButton value="Vorrei..." action = "#{gv.regali()}" update="regGrid1"/>
+							</h:panelGroup></h:panelGroup>
+						<h:panelGroup><h:panelGroup rendered="#{gv.nonCiSonoUtentiInvitati()}"><h:commandButton value="Vorrei..." action = "#{gv.regali()}" update="regGrid1"/></h:panelGroup> </h:panelGroup>
 						
 						<br />
 						<h:outputLabel for="invito"
-							value="Se invece vuoi partire in compagnia:" rendered="#{gv.nonRegalabile()}"></h:outputLabel>
-						<h:commandButton value="Invita" action = "#{gv.invita()}"  rendered="#{gv.nonRegalabile()}" update="regGrid1" />
+							value="Se vuoi partire in compagnia:" rendered="#{gv.nonRegalabile()}"></h:outputLabel>
+						<h:panelGroup> <h:commandButton value="Invita" action = "#{gv.invita()}"  rendered="#{gv.nonRegalabile()}" update="regGrid1" /></h:panelGroup>
 
 
 					</h:panelGrid>
@@ -116,8 +116,6 @@
 						<h:outputLabel value = "Attenzione, non puoi ancora effettuare il pagamento: alcune delle persone che hai invitato non hanno ancora confermato la loro partecipazione. Attendi una loro risposta oppure cancella l'invito dalla pagina del tuo viaggio." rendered="#{gv.nonPagabile()}" ></h:outputLabel>
 						<br /> <br />
 						<h:commandButton value="Elimina dai tuoi viaggi" action="#{gv.rimuovi()}" rendered="#{gv.eliminabile()}" />
-					<h:outputLabel for="noncisonoinvitati"
-							value="#{gv.nonCiSonoUtentiInvitati()} ci sono? 1: no, 0: sì" rendered="#{gv.nonCiSonoUtentiInvitati()}"></h:outputLabel>
 				</h:form>
 
 
