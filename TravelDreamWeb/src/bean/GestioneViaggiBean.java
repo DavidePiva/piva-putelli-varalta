@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 
 import DTO.HotelDTO;
 import DTO.TipoCamere_HotelDTO;
+import DTO.UtenteDTO;
 import DTO.ViaggioDTO;
 import DTO.VoloDTO;
 import model.TipoCamere_Hotel;
@@ -206,6 +207,10 @@ public class GestioneViaggiBean {
             		return false;
             	}
         }
+        
+        public boolean nonCiSonoUtentiInvitati(){
+    		return showViaggio.getUtentiInvitati(idViaggio).isEmpty() && showViaggio.getUtentiConfermati(idViaggio).isEmpty();
+    	}
         
         public String scegliDate(){
         	return "/user/modificaDate?faces-redirect=true&id="+idViaggio;

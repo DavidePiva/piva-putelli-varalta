@@ -77,24 +77,24 @@
 							value="Viaggio per #{gv.numeroPersone} persone "></h:outputLabel>&nbsp;&nbsp;&nbsp;&nbsp;</i></h:panelGroup>
 						<h:outputLabel for="numeroPersone"
 							value="#{gv.prezzo} euro a testa"></h:outputLabel>
-						<h:panelGroup><h:commandButton value="Modifica" action="#{gv.modificaNumeroPersone()}" update="regGrid1" rendered="#{gv.nonRegalabile()}" /></h:panelGroup>
+						<h:panelGroup><h:panelGroup rendered="#{gv.nonCiSonoUtentiInvitati()}"><h:commandButton value="Modifica" action="#{gv.modificaNumeroPersone()}" update="regGrid1" rendered="#{gv.nonRegalabile()}" /></h:panelGroup></h:panelGroup>
 
 						<h:panelGroup><i><h:outputLabel for="hotel" value="Informazioni Hotel:"></h:outputLabel></i></h:panelGroup>
 						<h:outputLabel for="hotel" value="#{gv.hotel}"></h:outputLabel>
-						<h:panelGroup><h:commandButton value="Modifica" action="#{gv.scegliHotel()}" update="regGrid1" rendered="#{gv.nonRegalabile()}"/></h:panelGroup>
+						<h:panelGroup><h:panelGroup rendered="#{gv.nonCiSonoUtentiInvitati()}"><h:commandButton value="Modifica" action="#{gv.scegliHotel()}" update="regGrid1" rendered="#{gv.nonRegalabile()}"/></h:panelGroup></h:panelGroup>
 
 						<h:panelGroup><i><h:outputLabel for="attivita" value="Attività:"></h:outputLabel></i></h:panelGroup>
 						<ui:repeat  value="#{gv.attivita}" var="a">
 							<h:outputLabel value = "- #{a}"></h:outputLabel><br />
 						</ui:repeat>
-						<h:panelGroup><h:commandButton value="Modifica attività" update="regGrid1" action = "#{gv.scegliAttivita()}" rendered="#{gv.nonRegalabile()}"/></h:panelGroup>
+						<h:panelGroup><h:panelGroup rendered="#{gv.nonCiSonoUtentiInvitati()}"><h:commandButton value="Modifica attività" update="regGrid1" action = "#{gv.scegliAttivita()}" rendered="#{gv.nonRegalabile()}"/></h:panelGroup></h:panelGroup>
 						
 						
 						<h:panelGroup><i><h:outputLabel for="voli" value="Informazioni " /><br />voli e date: </i></h:panelGroup>
 						<ui:repeat value="#{gv.voli}" var="v">
 							<h:outputLabel value = " - #{v.getDataFormattata()}, #{ds.getAeroportoDTO(v.idAeroportoPartenza)}"></h:outputLabel><br />
 						</ui:repeat>
-						<h:panelGroup><h:commandButton value="Modifica date" update="regGrid1" action = "#{gv.scegliDate()}" rendered="#{gv.nonRegalabile()}"/></h:panelGroup>
+						<h:panelGroup><h:panelGroup rendered="#{gv.nonCiSonoUtentiInvitati()}"><h:commandButton value="Modifica date" update="regGrid1" action = "#{gv.scegliDate()}" rendered="#{gv.nonRegalabile()}"/></h:panelGroup></h:panelGroup>
 						
 						<br /><br /><br /><br /><br />
 						<h:panelGroup><h:outputLabel for="regalo"
@@ -116,7 +116,8 @@
 						<h:outputLabel value = "Attenzione, non puoi ancora effettuare il pagamento: alcune delle persone che hai invitato non hanno ancora confermato la loro partecipazione. Attendi una loro risposta oppure cancella l'invito dalla pagina del tuo viaggio." rendered="#{gv.nonPagabile()}" ></h:outputLabel>
 						<br /> <br />
 						<h:commandButton value="Elimina dai tuoi viaggi" action="#{gv.rimuovi()}" rendered="#{gv.eliminabile()}" />
-					
+					<h:outputLabel for="noncisonoinvitati"
+							value="#{gv.nonCiSonoUtentiInvitati()} ci sono? 1: no, 0: sì" rendered="#{gv.nonCiSonoUtentiInvitati()}"></h:outputLabel>
 				</h:form>
 
 
