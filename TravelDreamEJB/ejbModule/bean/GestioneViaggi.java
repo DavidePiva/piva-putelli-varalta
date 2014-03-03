@@ -676,8 +676,8 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 			Viaggio_Attivita va = em.find(Viaggio_Attivita.class, pk);
 			em.remove(va);
 		}
-		Viaggio v = em.find(Viaggio.class, idViaggio);
-		em.merge(v);
+		//Viaggio v = em.find(Viaggio.class, idViaggio);
+		//em.merge(v);
 	}
 
 	@Override
@@ -690,7 +690,7 @@ public class GestioneViaggi implements GestioneViaggiLocal {
 		Viaggio v = em.find(Viaggio.class, idViaggio);
 		BigDecimal prezzo = ricalcolaPrezzo(idViaggio);
 		v.setPrezzo(prezzo);
-		em.merge(v);
+		//em.merge(v);
 	}
 
 	@Override
